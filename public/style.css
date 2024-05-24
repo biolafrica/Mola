@@ -7,10 +7,11 @@ body{
   color: var(--Text-light);
   font-size: 1rem;
 }
-
-img{
-  width: 100%;
+h1,h2,h3,h4,h5{
+  margin: 0;
+  padding: 0;
 }
+
 /* Text Default specifications*/
 h1{
   font-weight: 400;
@@ -81,7 +82,7 @@ h5{
 
 .filled-btn{
   border-radius: 5px;
-  background-color: var(--Layout-Background-dark);
+  background-color: #000000;
   color: var(--Text-dark);
   padding: 10px 24px;
   gap: 8px;
@@ -154,7 +155,14 @@ textarea{
   padding: 10px 16px ;
   border-radius: 5px;
   border: 1px solid var(--Border-light);
+  font-size: 1rem;
 }
+input:focus,
+select:focus,
+textarea:focus{
+  outline: 2px solid black;
+}
+
 
 .container{
   max-width: 1320px;
@@ -162,9 +170,82 @@ textarea{
   padding: 0 20px;
 }
 
+/* login header */
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+  border-bottom: 1px solid var(--Border-light);
+}
+.header_left{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* login */
+
+.login_container,
+.register_container{
+  display: flex;
+
+}
+.login_left,
+.register_left{
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  background-color: var(--Layout-Background-light);
+
+}
+.login_left img,
+.register_left img{
+  width: 200px;
+  height: 200px;
+  
+}
+.login_right,
+.register_right{
+  width: 60%;
+  margin: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_right form,
+.register_right form{
+  width: 60%;
+}
+.form_text{
+  margin-bottom: 30px;
+}
+.sub_text{
+  margin-bottom: 15px;
+}
+
+form button{
+  width: 100%;
+  margin: 10px 0px;
+}
+.checkbox-container{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 
-@media(max-width:600px){
+
+
+
+
+
+
+
+@media(max-width:768px){
   h1{
     font-size: 48px;
     line-height: 58.7px;
@@ -198,10 +279,27 @@ textarea{
     width: 18px;
     height: 18px;
   }
+  .icon{
+    width: 48px;
+    height: 48px;
+  }
+  .login_left,
+  .register_left{
+    display: none;
+  }
+  .login_right,
+  .register_right{
+    width: 100%;
+  }
+  .login_right form,
+  .register_right form{  
+    margin: 50px 0;
+    width: 80%;
+  }
 
 }
 
-@media(min-width:601px)and(max-width:992px){
+@media(min-width:769px) and (max-width:992px){
   h1{
     font-size: 60px;
     line-height: 69.3px;
@@ -235,7 +333,25 @@ textarea{
     width: 20px;
     height: 20px;
   }
-  
+  .icon{
+    width: 24px;
+    height: 24px;
+  }
+
+  .login_left,
+  .register_left{
+    display: none;
+  }
+
+  .login_right,
+  .register_right{
+    width: 100%;
+  }
+  .login_right form,
+  .register_right form{
+    margin: 50px 0;
+    width: 50%;
+  }
 }
 
 @media(min-width:993px){
@@ -270,6 +386,11 @@ textarea{
   .text-btn img{
     width: 22px;
     height: 22px;
+  }
+
+  .icon{
+    width: 24px;
+    height: 24px;
   }
   
 }
