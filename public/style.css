@@ -73,6 +73,46 @@ h5{
 
 }
 
+.filled-btn{
+  border-radius: 5px;
+  background-color: var(--Layout-Background-dark);
+  color: var(--Text-dark);
+  padding: 10px 24px;
+  gap: 8px;
+}
+
+.outlined-btn{
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: var(--Text-light);
+  padding: 10px 24px;
+  border: 1px solid var(--Border-dark);
+  gap: 8px;
+}
+
+.text-btn{
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--Text-light);
+  padding: 10px 24px;
+  gap: 8px;
+}
+
+.inactive-btn{
+  border-radius: 5px;
+  background-color: var(--Layout-Background-light);
+  color: var(--Disabled-Text-light);
+  padding: 10px 24px;
+  gap: 8px;
+}
+
+.filled-btn img,
+.inactive-btn img,
+.outlined-btn img,
+.text-btn img{
+  width: 22px;
+  height: 22px;
+}
 
 @media(max-width:600px){
   h1{
@@ -101,9 +141,17 @@ h5{
     letter-spacing: 0.6%;
   }
 
+  .filled-btn img,
+  .inactive-btn img,
+  .outlined-btn img,
+  .text-btn img{
+    width: 18px;
+    height: 18px;
+  }
+
 }
 
-@media(min-width:601px)and(max-width:1200px){
+@media(min-width:601px)and(max-width:992px){
   h1{
     font-size: 60px;
     line-height: 69.3px;
@@ -129,10 +177,18 @@ h5{
     line-height: 21px;
     letter-spacing: 0.7%;
   }
+
+  .filled-btn img,
+  .inactive-btn img,
+  .outlined-btn img,
+  .text-btn img{
+    width: 20px;
+    height: 20px;
+  }
   
 }
 
-@media(min-width:1201px){
+@media(min-width:993px){
   h1{
     font-size: 76px;
     line-height: 85.3px;
@@ -157,6 +213,13 @@ h5{
     font-size: 19px;
     line-height: 27px;
     letter-spacing: 0%;
+  }
+  .filled-btn img,
+  .inactive-btn img,
+  .outlined-btn img,
+  .text-btn img{
+    width: 22px;
+    height: 22px;
   }
   
 }
