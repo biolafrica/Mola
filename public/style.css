@@ -4,6 +4,12 @@ body{
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  color: var(--Text-light);
+  font-size: 1rem;
+}
+
+img{
+  width: 100%;
 }
 /* Text Default specifications*/
 h1{
@@ -79,6 +85,8 @@ h5{
   color: var(--Text-dark);
   padding: 10px 24px;
   gap: 8px;
+  cursor: pointer;
+  border: none;
 }
 
 .outlined-btn{
@@ -88,14 +96,16 @@ h5{
   padding: 10px 24px;
   border: 1px solid var(--Border-dark);
   gap: 8px;
+  cursor: pointer;
 }
 
 .text-btn{
-  border-radius: 5px;
   background-color: transparent;
   color: var(--Text-light);
   padding: 10px 24px;
   gap: 8px;
+  cursor: pointer;
+  border: none;
 }
 
 .inactive-btn{
@@ -104,6 +114,8 @@ h5{
   color: var(--Disabled-Text-light);
   padding: 10px 24px;
   gap: 8px;
+  cursor: none;
+  border: none;
 }
 
 .filled-btn img,
@@ -113,6 +125,44 @@ h5{
   width: 22px;
   height: 22px;
 }
+
+.filled-btn:hover,
+.inactive-btn:hover,
+.outlined-btn:hover,
+.text-btn:hover{
+  filter: brightness(0.9);
+}
+
+.filled-btn:active,
+.inactive-btn:active,
+.outlined-btn:active,
+.text-btn:active{
+  transform: translateY(2px);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+input[type="search"],
+select,
+textarea{
+  font-family: "Roboto", sans-serif;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 16px ;
+  border-radius: 5px;
+  border: 1px solid var(--Border-light);
+}
+
+.container{
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
 
 @media(max-width:600px){
   h1{
