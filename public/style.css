@@ -170,7 +170,7 @@ textarea:focus{
   padding: 0 20px;
 }
 
-/* login header */
+/* header */
 header{
   display: flex;
   justify-content: space-between;
@@ -182,6 +182,59 @@ header{
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.header_right{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.order_container,
+.profile_container,
+.more_container{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.profile_container{
+  position: relative;
+}
+
+.more_container{
+  position: relative;
+
+}
+
+.profile_container:hover .profile_tooltip,
+.profile_tooltip:hover .profile_tooltip {
+  display: block;
+
+}
+
+.more_container:hover .more_tooltip,
+.more_tooltip:hover .more_tooltip {
+  display: block;
+
+}
+
+.profile_tooltip{
+  position: absolute;
+  top: 25px;
+  left: -280px;
+  right: -103px;
+  background-color: white;
+  
+}
+.more_tooltip{
+  position: absolute;
+  top: 25px;
+  left: -200px;
+  background-color: white;
+  
+
+
 }
 
 /* login */
@@ -237,6 +290,70 @@ form button{
   gap: 5px;
 }
 
+/* landing page */
+.landing_page{
+  text-align: center;
+  max-width: 716px;
+  margin: 90px auto;
+}
+
+.landing_new_user_container{
+  margin-top: 25px;
+}
+
+/* header tooltips */
+.profile_verification_details,
+.profile_tooltip_body_nav,
+.profile_tooltip_footer_nav,
+.more_tooltip_nav{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0px;
+}
+
+.profile_tooltip{
+  border: 1px solid var(--Border-light);
+  box-shadow: var(--elevate-3);
+  max-width: 283px;
+  padding: 20px 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  display: none;
+}
+.profile_tooltip_header{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px 0px;
+  border-bottom: 1px solid var(--Border-light);
+}
+.profile_tooltip_body{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.profile_tooltip_footer{
+  padding: 5px 0;
+  border-top: 1px solid var(--Border-light);
+}
+
+.more_tooltip{
+  border: 1px solid var(--Border-light);
+  box-shadow: var(--elevate-3);
+  max-width: 344px;
+  padding: 30px 30px;
+  border-radius: 5px;
+  display: none;
+
+}
+
+
+
 
 
 
@@ -246,6 +363,10 @@ form button{
 
 
 @media(max-width:768px){
+  .landing_page{
+    padding: 32px;
+  }
+
   h1{
     font-size: 48px;
     line-height: 58.7px;
@@ -296,6 +417,24 @@ form button{
     margin: 50px 0;
     width: 80%;
   }
+
+  .order_container h5,
+  .profile_container h5,
+  .more_container h5{
+    display: none;
+  }
+
+  .header_left img{
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile_tooltip{
+    left: -183px;
+    
+  }
+
+  
 
 }
 
