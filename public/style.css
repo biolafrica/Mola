@@ -155,8 +155,12 @@ textarea{
   padding: 10px 16px ;
   border-radius: 5px;
   border: 1px solid var(--Border-light);
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: clamp(16px, 2.5vw, 21px);
+  line-height: clamp(21px, 3vw, 32px);
+  letter-spacing: clamp(0.5%, 0.1vw, 0.6%);
 }
+
 input:focus,
 select:focus,
 textarea:focus{
@@ -233,8 +237,6 @@ header{
   left: -200px;
   background-color: white;
   
-
-
 }
 
 /* login */
@@ -352,6 +354,51 @@ form button{
 
 }
 
+/* available orders */
+.filter_container{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.filter_container_type{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+
+.amount_form{
+  display: flex;
+  align-items: center;
+}
+
+.amount_form label {
+  border: 1px solid var(--Border-light);
+  padding: 10px 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.amount_form input {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: none;
+}
+
+.order_container{
+  max-width: 120px;
+}
+
+.order_table{
+  width: 100%;
+  
+}
+
+
+
 
 
 
@@ -391,6 +438,17 @@ form button{
     font-size: 14.7px;
     line-height: 21.3px;
     letter-spacing: 0.6%;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="file"],
+  input[type="search"],
+  select,
+  textarea{
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.5%;
   }
 
   .filled-btn img,
@@ -463,6 +521,17 @@ form button{
     font-size: 16px;
     line-height: 21px;
     letter-spacing: 0.7%;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="file"],
+  input[type="search"],
+  select,
+  textarea{
+    font-size: 19px;
+    line-height: 27px;
+    letter-spacing: 0.3%;
   }
 
   .filled-btn img,
