@@ -296,7 +296,7 @@ form button{
 .landing_page{
   text-align: center;
   max-width: 716px;
-  margin: 90px auto;
+  margin: 150px auto;
 }
 
 .landing_new_user_container{
@@ -359,15 +359,15 @@ form button{
   display: flex;
   align-items: center;
   gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px 130px;
 }
 
 
 .filter_container_type{
   border: 1px solid var(--Border-light);
   border-radius: 5px;
-  padding: 5px 5px;
+  padding: 2.5px 2.5px;
+  
 }
 
 .amount_form{
@@ -386,24 +386,170 @@ form button{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-left: none;
+  outline: none;
 }
 
-.order_container{
-  max-width: 120px;
+.orders_container{
+
 }
 
-.order_table{
-  width: 100%;
-  
+.row_head{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(204px, 1fr));
+  border-bottom: 1px solid var(--Border-light);
+  width: 1200px;
+  column-gap: 1%;
+  margin: 20px auto;
+  grid-template-areas: "seller rate amount limit button";
+
 }
 
+.rate_container{
+ grid-area: rate;
+}
+
+.Amount_available_container{
+  grid-area: amount;
+}
+
+.Limit_container{
+  grid-area: limit;
+}
+
+.Buy_container{
+  grid-area: button;
+
+}
+
+.rate_container,
+.Amount_available_container,
+.Limit_container,
+.Buy_container{
+  max-width: 200px;
+  padding: 15px 0px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.seller_container{
+  grid-area: seller;
+  padding: 15px 0px;
+  max-width: 220px;
+  display: flex;
+  gap: 10px;
+}
+
+.seller_container_user{
+  display: flex;
+  flex-direction: column;
+
+}
+.seller_container_username{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.seller_container_metrics{
+  color: var(--Secondary-Text-light);
+  font-weight: 300;
+}
+
+.head{
+  color: var(--Secondary-Text-light);
+}
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  gap: 15px;
+}
+
+.pagination_number{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.page{
+  padding: 10px 20px;
+  border-radius: 100px;
+}
+
+.filled_page{
+  background-color: var(--Layout-Background-dark);
+  color: var(--Text-dark);
+}
+
+.Buy_small_container{
+  display: none;
+}
+
+.how_it_works_container{
+  max-width: 1200px;
+  margin: 200px  auto;
+
+}
+
+.how_it_works_head{
+  margin: 60px auto;
+  text-align: center;
+}
+
+.how_it_works_head_text{
+  margin-top: 10px;
+}
+
+.how_it_works_body{
+  display: flex;
+  text-align: center;
+  gap: 2%;
 
 
+}
 
+.place_order,
+.receive_payment,
+.pay_seller{
+  border: 1px solid var(--Border-light);
+  border-radius: 10px;
+  padding: 50px 20px;
+  max-width: 384px;
+}
 
+.place_order_sell,
+.receive_payment_sell,
+.pay_seller_sell{
+  display: none;
+}
 
+.footer{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 50px auto;
+  border: 1px solid var(--Border-light);
+  padding: 50px 30px;
+  border-radius: 15px;
 
+}
 
+.footer_logo_head{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer_company_head,
+.footer_legal_head,
+.footer_contact_head{
+  color: var(--Secondary-Text-light);
+  margin-bottom: 15px;
+}
 
 
 
@@ -482,6 +628,14 @@ form button{
     display: none;
   }
 
+  header{
+    padding: 25px 35px;
+  }
+
+  .header_right{
+    gap: 5px;
+  }
+
   .header_left img{
     width: 24px;
     height: 24px;
@@ -492,6 +646,18 @@ form button{
     
   }
 
+  .filter_container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    margin: 20px 32px ;
+
+  }
+
+  .filter_container_amount{
+    width: 80%;
+  }
   
 
 }
@@ -560,6 +726,14 @@ form button{
     margin: 50px 0;
     width: 50%;
   }
+
+  .row_head{
+    grid-template-areas: 
+    "seller rate amount limit" 
+    "button";
+  
+  } 
+
 }
 
 @media(min-width:993px){
@@ -600,6 +774,8 @@ form button{
     width: 24px;
     height: 24px;
   }
+
+  
   
 }
 
