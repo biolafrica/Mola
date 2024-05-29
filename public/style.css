@@ -551,6 +551,86 @@ form button{
   margin-bottom: 15px;
 }
 
+/* orders-page  */
+.orders_container{
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+.order_head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--Layout-Background-light);
+  padding: 25px 120px;
+
+}
+.order_bodys_container{
+  display: flex;
+  gap: 40px;
+}
+.order_body_container{
+  width: 60%;
+}
+.order_details_body{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order_details,
+.order_payment_details,
+.order_payment_status{
+  margin: 20px 0;
+}
+.order_details_head,
+.order_payment_details_head,
+.order_payment_status_head{
+  margin: 10px 0;
+}
+.order_payment_details_body{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+.order_payment_details_body_up,
+.order_payment_details_body_down{
+  display: flex;
+  justify-content: space-between;
+
+}
+.account_name,
+.bank,
+.account_number,
+.sort_code{
+  width: 50%;
+}
+
+.user_term_container{
+  width: 40%;
+}
+.user_term_head
+{
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.user_term_username{
+  display: flex;
+  gap: 5px;
+}
+
+.user_term_user{
+  display: flex;
+  flex-direction: column;
+}
+.order_terms_details{
+  display: none;
+}
+
 
 
 
@@ -558,6 +638,9 @@ form button{
 @media(max-width:768px){
   .landing_page{
     padding: 32px;
+  }
+  .orders_container{
+    padding: 0 32px;
   }
 
   h1{
@@ -658,11 +741,38 @@ form button{
   .filter_container_amount{
     width: 80%;
   }
+
+  .user_term_container{
+    display: none;
+  }
+  .order_terms_details{
+    display: initial;
+  }
+  .order_head{
+    display: grid;
+    
+  }
+  .order_head_right{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+  }
+
+  .order_body_container,
+  .order_head{
+    width: 100%;
+  }
+  .orders_container,
+  .order_head{
+    padding: 30px 24px;
+  }
   
 
 }
 
 @media(min-width:769px) and (max-width:992px){
+
   h1{
     font-size: 60px;
     line-height: 69.3px;
@@ -732,7 +842,30 @@ form button{
     "seller rate amount limit" 
     "button";
   
-  } 
+  }
+  .user_term_container{
+    display: none;
+  }
+  .order_terms_details{
+    display: initial;
+  }
+  .order_head{
+    display: grid;
+  }
+  .order_head_right{
+    display: flex;
+    gap: 15px;
+    
+
+  }
+  .order_body_container{
+    width: 100%;
+  }
+  .orders_container,
+  .order_head{
+    padding: 30px 24px;
+  }
+
 
 }
 
