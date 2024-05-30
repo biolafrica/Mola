@@ -389,9 +389,6 @@ form button{
   outline: none;
 }
 
-.orders_container{
-
-}
 
 .row_head{
   display: grid;
@@ -400,24 +397,6 @@ form button{
   width: 1200px;
   column-gap: 1%;
   margin: 20px auto;
-  grid-template-areas: "seller rate amount limit button";
-
-}
-
-.rate_container{
- grid-area: rate;
-}
-
-.Amount_available_container{
-  grid-area: amount;
-}
-
-.Limit_container{
-  grid-area: limit;
-}
-
-.Buy_container{
-  grid-area: button;
 
 }
 
@@ -434,7 +413,7 @@ form button{
 }
 
 .seller_container{
-  grid-area: seller;
+  
   padding: 15px 0px;
   max-width: 220px;
   display: flex;
@@ -631,6 +610,91 @@ form button{
   display: none;
 }
 
+/* order-history-page  */
+.order_history_container{
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.history_metrics{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1%;
+  margin: 30px 0;
+}
+
+.total,
+.progress,
+.completed,
+.cancelled{
+  padding: 10px 15px;
+  background-color: var(--Layout-Background-light);
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  width: 282px;
+  box-shadow: var(--elevate-1);
+
+}
+.history_filter{
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.history_status_filter{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+select{
+  padding: 15px 10px;
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  width: 150px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url(../public/icons/Arrow\ drop\ down.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/*select:focus{
+  border-color: #007bff;
+  box-shadow: var(--elevate-1);
+  outline: none;
+}*/
+
+.history_table_head,
+.history_table_body{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border-bottom: 1px solid var(--Seperator-light);
+  column-gap: 0.1%;
+  margin: 20px auto;
+
+}
+.date_column,
+.sent_column,
+.receive_column,
+.counterparty_column,
+.status_column,
+.orderID_column{
+  
+  padding: 10px 0px;
+}
+
+.head{
+  color: var(--Secondary-Text-light);
+}
+.title_name,
+.title_s_name{
+  display: none;
+}
 
 
 
@@ -767,7 +831,53 @@ form button{
   .order_head{
     padding: 30px 24px;
   }
-  
+
+  .history_table_body{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0px 34px;
+    gap: 0px;
+  }
+
+  .head{
+    display: none;
+  }
+
+  .title_name{
+    display: initial;
+    color: var(--Secondary-Text-light);
+  }
+  .title_s_name{
+    display: initial;
+    color: var(--Secondary-Text-light);
+    margin-bottom: 20px;
+  }
+
+  .Title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .history_filter{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 24px;
+  }
+
+  .history_status_filter{
+    max-width: 460px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .history_metrics{
+    display:none;
+  }
+  .order_history_title{
+    margin: 0 24px;
+  }
+
 
 }
 
@@ -837,12 +947,6 @@ form button{
     width: 50%;
   }
 
-  .row_head{
-    grid-template-areas: 
-    "seller rate amount limit" 
-    "button";
-  
-  }
   .user_term_container{
     display: none;
   }
@@ -855,8 +959,6 @@ form button{
   .order_head_right{
     display: flex;
     gap: 15px;
-    
-
   }
   .order_body_container{
     width: 100%;
@@ -865,6 +967,53 @@ form button{
   .order_head{
     padding: 30px 24px;
   }
+
+  .history_table_body{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0px 24px;
+  }
+
+  .head{
+    display: none;
+  }
+
+  .title_name{
+    display: initial;
+    color: var(--Secondary-Text-light);
+  }
+  .title_s_name{
+    display: initial;
+    color: var(--Secondary-Text-light);
+    margin-bottom: 20px;
+  }
+
+  .Title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+ 
+  .history_filter{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 24px;
+  }
+
+  .history_status_filter{
+    max-width: 460px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .order_history_title{
+    margin: 0 24px;
+  }
+
+  
+  
 
 
 }
