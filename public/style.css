@@ -613,7 +613,7 @@ form button{
 /* order-history-page  */
 .order_history_container,
 .my_ads_container{
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 20px auto;
 }
 .history_metrics{
@@ -908,9 +908,12 @@ option{
     margin: 0px 24px;
   }
 
-  .my_ads_head{
+  .my_ads_head,
+  .history_metrics{
     margin: 10px 24px;
   }
+
+ 
 
 
 }
@@ -1054,16 +1057,13 @@ option{
     padding: 10px 0px;
    
   }
-  .my_ads_head{
+  .my_ads_head,
+  .history_metrics{
     margin: 10px 24px;
   }
   .my_ads_filter_container{
     margin: 0px 24px;
   }
-
-  
-  
-
 
 }
 
@@ -1104,6 +1104,23 @@ option{
   .icon{
     width: 24px;
     height: 24px;
+  }
+
+  .my_ads_head,
+  .history_metrics{
+    margin: 10px 20px;
+  }
+  .my_ads_filter_container{
+    margin: 0px 20px;
+  }
+
+  .order_history_title{
+    margin: 0 20px;
+  }
+
+  .history_filter,
+  .history_table{
+    margin: 20px 20px;
   }
 
   
