@@ -611,7 +611,8 @@ form button{
 }
 
 /* order-history-page  */
-.order_history_container{
+.order_history_container,
+.my_ads_container{
   max-width: 1200px;
   margin: 20px auto;
 }
@@ -663,14 +664,18 @@ select{
   background-position: right 10px center;
 }
 
+option{
+  background-color: var(--Layout-Background-light);
+}
+
 /*select:focus{
   border-color: #007bff;
   box-shadow: var(--elevate-1);
   outline: none;
 }*/
 
-.history_table_head,
-.history_table_body{
+.history_table_head,.ads_table_head,
+.history_table_body,.ads_table_body{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   border-bottom: 1px solid var(--Seperator-light);
@@ -678,14 +683,14 @@ select{
   margin: 20px auto;
 
 }
-.date_column,
-.sent_column,
-.receive_column,
-.counterparty_column,
-.status_column,
-.orderID_column{
-  
-  padding: 10px 0px;
+.date_column,.ads_column,
+.sent_column,.amount_column,
+.receive_column,.rate_column,
+.counterparty_column,.time_column,
+.status_column,.status_ads_column,
+.orderID_column,.action_column{
+  padding: 20px 0px;
+ 
 }
 
 .head{
@@ -694,6 +699,17 @@ select{
 .title_name,
 .title_s_name{
   display: none;
+}
+
+/* my-ads-page  */
+.my_ads_filter_container{
+  display: flex;
+  gap: 20px;
+  
+}
+
+.my_ads_head{
+  margin: 20px 0px;
 }
 
 
@@ -832,11 +848,12 @@ select{
     padding: 30px 24px;
   }
 
-  .history_table_body{
-    display: grid;
-    grid-template-columns: 1fr;
+  .history_table_body, .ads_table_body{
+    display: flex;
+    flex-direction: column;
     padding: 0px 34px;
-    gap: 0px;
+    margin: 0px auto;
+    
   }
 
   .head{
@@ -846,11 +863,12 @@ select{
   .title_name{
     display: initial;
     color: var(--Secondary-Text-light);
+
   }
   .title_s_name{
     display: initial;
     color: var(--Secondary-Text-light);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .Title{
@@ -876,6 +894,22 @@ select{
   }
   .order_history_title{
     margin: 0 24px;
+  }
+  .date_column,.ads_column,
+  .sent_column,.amount_column,
+  .receive_column,.rate_column,
+  .counterparty_column,.time_column,
+  .status_column,.status_ads_column,
+  .orderID_column,.action_column{
+    padding: 10px 0px;
+   
+  }
+  .my_ads_filter_container{
+    margin: 0px 24px;
+  }
+
+  .my_ads_head{
+    margin: 10px 24px;
   }
 
 
@@ -968,7 +1002,7 @@ select{
     padding: 30px 24px;
   }
 
-  .history_table_body{
+  .history_table_body, .ads_table_body{
     display: grid;
     grid-template-columns: 1fr;
     padding: 0px 24px;
@@ -1010,6 +1044,21 @@ select{
 
   .order_history_title{
     margin: 0 24px;
+  }
+  .date_column,.ads_column,
+  .sent_column,.amount_column,
+  .receive_column,.rate_column,
+  .counterparty_column,.time_column,
+  .status_column,.status_ads_column,
+  .orderID_column,.action_column{
+    padding: 10px 0px;
+   
+  }
+  .my_ads_head{
+    margin: 10px 24px;
+  }
+  .my_ads_filter_container{
+    margin: 0px 24px;
   }
 
   
