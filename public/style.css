@@ -712,6 +712,144 @@ option{
   margin: 20px 0px;
 }
 
+/* post ads  */
+
+.post_ads_container{
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.post_ads_sub_container{
+  display: flex;
+  justify-content: space-between;
+  gap: 1%;
+  padding: 20px 20px ;
+}
+
+.post_ads_progress_container{
+  width: 30%;
+  height: 278px;
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  box-shadow: var(--elevate-1);
+  padding: 30px 25px;
+
+}
+.stage_1,
+.stage_2,
+.stage_3,
+.stage_4{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 4px 0;
+}
+
+
+.line{
+  height: 30px;
+  border-left: 2px solid black;
+  margin-left: 10px;
+}
+
+.post_ads_form{
+  width: 70%;
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  box-shadow: var(--elevate-1);
+  padding: 30px 30px;
+}
+
+.post_ads_form select,
+.post_ads_form input,
+.post_ads_form textarea,
+.post_ads_form button,
+.post_ads_form_bank{
+ width: 80%;
+}
+
+.post_ads_form_bank button{
+  width: 40%;
+}
+
+.input_money{
+  display: flex;
+  align-items: center;
+  width: 80%;
+  
+}
+
+.input_money h4{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 10px 10px;
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+
+}
+
+.input_money input{
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  width: 100%;
+}
+
+.post_ads_form select,
+.input_money,
+.post_ads_form_bank,
+.post_ads_form textarea{
+  margin-bottom: 35px;
+}
+
+.post_ads_head_text{
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+/* post ads popup  */
+.bank_option_popup{
+  max-width: 716px;
+  box-shadow: var(--elevate-3);
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 20px 24px;
+  display: none;
+}
+
+.bank_option_popup_head,
+.bank_option_popup_list_head,
+.bank_name_popup,
+.banker_name_popup,
+.bank_account_popup,
+.bank_sort_code_popup{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bank_option_popup_list{
+  background-color: var(--Layout-Background-light);
+  padding: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+
+}
+
+.bank_option_popup_list_head h4{
+  border-left: 3px solid black;
+  padding-left: 5px;
+}
+.bank_option_popup_list_head,
+.bank_option_popup_head{
+  margin-bottom: 20px;
+}
+
+.secondary{
+  color: var(--Secondary-Text-light);
+}
 
 
 
@@ -912,6 +1050,39 @@ option{
   .history_metrics{
     margin: 10px 24px;
   }
+  .post_ads_progress_container{
+    display: none;
+  }
+
+  .post_ads_form{
+    width: 100%;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    padding: 30px 24px;
+  }
+  
+  .post_ads_form select,
+  .post_ads_form input,
+  .post_ads_form textarea,
+  .post_ads_form button,
+  .post_ads_form_bank{
+   width: 100%;
+  }
+
+  .input_money{
+    width: 100%;
+  }
+
+  .post_ads_head_text{
+    text-align: center;
+  }
+
+  .post_ads_form_bank button{
+    width: 40%;
+  }
+
+
 
  
 
@@ -1064,6 +1235,40 @@ option{
   .my_ads_filter_container{
     margin: 0px 24px;
   }
+
+  .post_ads_progress_container{
+    display: none;
+  }
+  
+  .post_ads_form{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid var(--Border-light);
+    border-radius: 5px;
+    box-shadow: var(--elevate-1);
+    padding: 20px 24px;
+  }
+  .post_ads_head_text{
+    text-align: center;
+  }
+  
+  .post_ads_form select,
+  .post_ads_form input,
+  .post_ads_form textarea,
+  .post_ads_form button,
+  .post_ads_form_bank{
+    width: 90%;
+  }
+
+  .input_money{
+    width: 90%;
+  }
+
+  .post_ads_form_bank button{
+    width: 40%;
+  }
+
+
 
 }
 
