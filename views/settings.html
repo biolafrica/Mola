@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="settings_container">
+
+    <!-- profile  settings option container for small screen-->
+    <div class="profile_settings_small_heading_screen">
+      <button class="filled-btn">Profile</button>
+      <button class="text-btn">Notification</button>
+    </div>
+
+    <!-- profile settings screen -->
+    <div class="settings_sub_container">
+
+      <div class="settings_sub_container_left">
+        <div class="settings_sub_container_left_profile">
+          <img src="../public/icons/Person 3.svg" alt="">
+          <h4>Profile</h4>
+        </div>
+
+        <div class="settings_sub_container_left_notification">
+          <img src="../public/icons/Notifications.svg" alt="">
+          <h4>Notification</h4>
+        </div>
+        
+      </div>
+
+      <div class="settings_sub_container_right">
+
+        <div class="settings_profile_container">
+          <h3>Profile</h3>
+
+          <div class="settings_profile_sub_container">
+
+            <div class="settings_profile_username">
+
+              <div class="settings_profile_username_small_up">
+                <div class="settings_profile_username_left">
+
+                  <div class="settings_profile_username_left-icon">
+                    <img src="../public/icons/Person 4.svg" alt="">
+                  </div>
+
+                  <div class="settings_profile_username_left-text">
+                    <h4>Username</h4>
+                    <h5>Set your preferred username. Real names are not allowed.</h5>
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="settings_profile_username_small_down">
+                <div class="settings_profile_username_middle">
+                  <h4>biolafrica</h4>
+                </div>
+
+                <div class="settings_profile_username_right">
+                  <button class="filled-btn">Edit</button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="settings_profile_avatar">
+
+              <div class="settings_profile_avatar_small_up">
+
+                <div class="settings_profile_avatar_left">
+
+                  <div class="settings_profile_avatar_left-icon">
+                    <img src="../public/icons/Face.svg" alt="">
+                  </div>
+
+                  <div class="settings_profile_avatar_left-text">
+                    <h4>Avatar</h4>
+                    <h5>Select an avatar that suit your personality</h5>
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="settings_profile_avatar_small_down">
+                <div class="settings_profile_avatar_middle">
+                  <h4>AB</h4>
+                </div>
+
+                <div class="settings_profile_avatar_right">
+                  <button class="filled-btn">Edit</button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="settings_profile_password">
+
+              <div class="settings_profile_password_small_up">
+
+                <div class="settings_profile_password_left">
+
+                  <div class="settings_profile_password_left-icon">
+                    <img src="../public/icons/Password.svg" alt="">
+                  </div>
+
+                  <div class="settings_profile_password_left-text">
+                    <h4>Password</h4>
+                    <h5>Reset your login password</h5>
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="settings_profile_password_small_down">
+                <div class="settings_profile_password_middle">
+                  <h4>******</h4>
+                </div>
+
+                <div class="settings_profile_password_right">
+                  <button class="filled-btn">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+
+        <div class="settings_notification_container">
+          <h3>Notification</h3>
+
+          <div class="settings_notification_email">
+            <div class="settings_notification_email_left">
+
+              <div class="settings_notification_email_icon">
+                <img src="../public/icons/Email.svg" alt="">
+              </div>
+
+              <div class="settings_notification_email_text">
+                <h4>Email Notification</h4>
+                <h5>Relevant update sent directly to your email</h5>
+              </div>
+            </div>
+
+            <div class="settings_notification_email_right">
+              <div class="settings_notification_email_radio"></div>
+
+            </div>
+          </div>
+
+          <div class="settings_notification_sms">
+
+            <div class="settings_notification_sms_left">
+              <div class="settings_notification_sms_icon">
+                <img src="../public/icons/Phone iphone.svg" alt="">
+              </div>
+              <div class="settings_notification_sms_text">
+                <h4>SMS Notification</h4>
+                <h5>Time dependent information directly to your phone</h5>
+              </div>
+            </div>
+
+            <div class="settings_notification_sms_right">
+              <div class="settings_notification_sms_radio">
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div class="settings_notification_push">
+            <div class="settings_notification_push_left">
+              <div class="settings_notification_push_icon">
+                <img src="../public/icons/Stream apps.svg" alt="">
+              </div>
+              <div class="settings_notification_push_text">
+                <h4>Push Notification</h4>
+                <h5>In app notification on your device</h5>
+              </div>
+            </div>
+
+            <div class="settings_notification_push_right">
+              <div class="settings_notification_push_radio">
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- edit username popup screen -->
+    <div class="edit_username_container">
+
+      <div class="edit_username_container_head">
+        <h4>Edit Username</h4>
+        <img src="../public/icons/Close small.svg" alt="">
+      </div>
+
+      <div class="edit_username_container_body">
+        <h4>Set your preferred username, Your real names are not allowed.</h4>
+
+        <form action="">
+          <label for=""><h4>Username</h4></label>
+          <input type="text" placeholder="enter new username" required>
+          <div></div>
+
+          <div class="edit_username_container_button">
+            <button class="outline-btn">Back</button>
+            <button class="filled-btn">Confirm</button>
+          </div>
+
+
+        </form>
+      </div>
+
+    </div>
+
+    <!-- edit avatar popup screen -->
+    <div class="edit_avatar_container">
+
+      <div class="edit_avatar_container_head">
+        <h4>Edit Avatar</h4>
+        <img src="../public/icons/Close small.svg" alt="">
+      </div>
+
+      <div class="edit_username_container_body">
+        <h4>Select an avatar to use as your profile picture.</h4>
+
+        <div class="avatar_list_container">
+
+          <div class="avatar_list_container_up">
+            <div class="avatar_icon"><img src="../public/avatar/avatar 1.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 2.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 3.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 4.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 5.svg" alt=""></div>
+          </div>
+
+          <div class="avatar_list_container_middle">
+            <div class="avatar_icon"><img src="../public/avatar/avatar 6.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 7.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 8.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 9.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 10.svg" alt=""></div>
+          </div>
+
+          <div class="avatar_list_container_down">
+            <div class="avatar_icon"><img src="../public/avatar/avatar 11.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 12.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 13.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 14.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar 15.svg" alt=""></div>
+          </div>
+
+          <div class="avatar_list_container_btn">
+            <button class="filled-btn">Back</button>
+            <button class="outline-btn">Confirm</button>
+          </div>
+
+        </div>
+        
+      </div>
+
+    </div>
+
+    <!-- change password popup screen -->
+    <div class="change_password_container">
+
+      <div class="change_password_container_head">
+        <h4>Change Password</h4>
+        <img src="../public/icons/Close small.svg" alt="">
+      </div>
+
+      <div class="edit_username_container_body">
+        
+        <form action="">
+          <label for=""><h4>Old Password:</h4></label>
+          <input type="text" placeholder="enter old username" required>
+          <div></div>
+
+          <label for=""><h4>New Password:</h4></label>
+          <input type="text" placeholder="enter new username" required>
+          <div></div>
+
+
+          <label for=""><h4>Confirm New Password:</h4></label>
+          <input type="text" placeholder="confirm new username" required>
+          <div></div>
+
+          <div class="edit_username_container_button">
+            <button class="outline-btn">Back</button>
+            <button class="filled-btn">Confirm</button>
+          </div>
+
+
+        </form>
+      </div>
+
+      
+
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1063,6 +1063,12 @@ option{
   font-weight: 400;
 }
 
+/* settings page */
+.avatar_icon{
+  width: 80px;
+  height: 80px;
+}
+
 
 @media(max-width:768px){
   .landing_page{
