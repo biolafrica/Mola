@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../public/style.css">
   <title>Document</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
       <div class="settings_sub_container_right">
 
         <div class="settings_profile_container">
-          <h3>Profile</h3>
+          <h3 class="setting_heading">Profile</h3>
 
           <div class="settings_profile_sub_container">
 
@@ -49,7 +50,7 @@
 
                   <div class="settings_profile_username_left-text">
                     <h4>Username</h4>
-                    <h5>Set your preferred username. Real names are not allowed.</h5>
+                    <h5 class="light secondary">Set your preferred username. Real names are not allowed.</h5>
                   </div>
                   
                 </div>
@@ -79,7 +80,7 @@
 
                   <div class="settings_profile_avatar_left-text">
                     <h4>Avatar</h4>
-                    <h5>Select an avatar that suit your personality</h5>
+                    <h5 class="light secondary">Select an avatar that suit your personality</h5>
                   </div>
                   
                 </div>
@@ -109,7 +110,7 @@
 
                   <div class="settings_profile_password_left-text">
                     <h4>Password</h4>
-                    <h5>Reset your login password</h5>
+                    <h5 class="light secondary">Reset your login password</h5>
                   </div>
                   
                 </div>
@@ -125,13 +126,14 @@
                 </div>
               </div>
             </div>
+            
           </div>
           
           
         </div>
 
         <div class="settings_notification_container">
-          <h3>Notification</h3>
+          <h3 class="setting_heading">Notification</h3>
 
           <div class="settings_notification_email">
             <div class="settings_notification_email_left">
@@ -142,12 +144,12 @@
 
               <div class="settings_notification_email_text">
                 <h4>Email Notification</h4>
-                <h5>Relevant update sent directly to your email</h5>
+                <h5 class="light secondary">Relevant update sent directly to your email</h5>
               </div>
             </div>
 
             <div class="settings_notification_email_right">
-              <div class="settings_notification_email_radio"></div>
+              <button class="inactive-btn">Enabled</button>
 
             </div>
           </div>
@@ -160,16 +162,12 @@
               </div>
               <div class="settings_notification_sms_text">
                 <h4>SMS Notification</h4>
-                <h5>Time dependent information directly to your phone</h5>
+                <h5 class="light secondary">Time dependent information directly to your phone</h5>
               </div>
             </div>
 
             <div class="settings_notification_sms_right">
-              <div class="settings_notification_sms_radio">
-
-              </div>
-
-
+              <button class="filled-btn">Enable</button>
             </div>
 
           </div>
@@ -181,14 +179,12 @@
               </div>
               <div class="settings_notification_push_text">
                 <h4>Push Notification</h4>
-                <h5>In app notification on your device</h5>
+                <h5 class="light secondary">In app notification on your device</h5>
               </div>
             </div>
 
             <div class="settings_notification_push_right">
-              <div class="settings_notification_push_radio">
-
-              </div>
+              <button class="inactive-btn">Enabled</button>
             </div>
           </div>
 
@@ -207,19 +203,17 @@
       </div>
 
       <div class="edit_username_container_body">
-        <h4>Set your preferred username, Your real names are not allowed.</h4>
+        <h4 class="secondary">Set your preferred username, Your real names are not allowed.</h4>
 
         <form action="">
-          <label for=""><h4>Username</h4></label>
+          <label for=""><h4>Username:</h4></label>
           <input type="text" placeholder="enter new username" required>
-          <div></div>
+          <div class="error_text"></div>
 
           <div class="edit_username_container_button">
-            <button class="outline-btn">Back</button>
-            <button class="filled-btn">Confirm</button>
+            <button class="outlined-btn"><h4>Back</h4></button>
+            <button class="filled-btn"><h4>Confirm</h4></button>
           </div>
-
-
         </form>
       </div>
 
@@ -233,8 +227,8 @@
         <img src="../public/icons/Close small.svg" alt="">
       </div>
 
-      <div class="edit_username_container_body">
-        <h4>Select an avatar to use as your profile picture.</h4>
+      <div class="edit_avatar_container_body">
+        <h4 class="secondary">Select an avatar to use as your profile picture.</h4>
 
         <div class="avatar_list_container">
 
@@ -262,13 +256,13 @@
             <div class="avatar_icon"><img src="../public/avatar/avatar 15.svg" alt=""></div>
           </div>
 
-          <div class="avatar_list_container_btn">
-            <button class="filled-btn">Back</button>
-            <button class="outline-btn">Confirm</button>
-          </div>
-
         </div>
-        
+
+        <div class="edit_avatar_container_button">
+          <button class="outlined-btn"><h4>Back</h4></button>
+          <button class="filled-btn"><h4>Confirm</h4></button>
+        </div>
+
       </div>
 
     </div>
@@ -298,8 +292,8 @@
           <div></div>
 
           <div class="edit_username_container_button">
-            <button class="outline-btn">Back</button>
-            <button class="filled-btn">Confirm</button>
+            <button class="outlined-btn"><h4>Back</h4></button>
+            <button class="filled-btn"><h4>Confirm</h4></button>
           </div>
 
 

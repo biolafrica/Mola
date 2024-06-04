@@ -853,12 +853,14 @@ option{
 
 /* profile page */
 
-.user_verification_container{
+.user_verification_container,
+.settings_container{
   max-width: 1200px;
   margin: 30px auto;
 }
 
-.user_verification_small_heading_screen{
+.user_verification_small_heading_screen,
+.profile_settings_small_heading_screen{
   display: none;
   align-items: center;
   gap: 25px;
@@ -869,20 +871,25 @@ option{
   border-radius: 5px;
 }
 
-.user_verification_sub_container{
+.user_verification_sub_container,
+.settings_sub_container{
   display: flex;
 }
-.user_verification_left_container{
+.user_verification_left_container,
+.settings_sub_container_left{
   width: 25%;
 }
 .user_verification,
-.user_account{
+.user_account,
+.settings_sub_container_left_profile,
+.settings_sub_container_left_notification{
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.user_verification_right_container{
+.user_verification_right_container,
+.settings_sub_container_right{
   width: 75%;
   
 }
@@ -915,7 +922,9 @@ option{
 .personal_information,
 .basic_verification,
 .intermediate_verification,
-.advance_verification{
+.advance_verification,
+.settings_profile_container,
+.settings_notification_container{
   padding: 30px;
   border: 1px solid var(--Border-light);
   border-radius: 5px;
@@ -949,7 +958,10 @@ option{
 .basic_verification_body_phone,
 .advance_verification_body_diligence,
 .intermediate_verification_body_id,
-.intermediate_verification_body_address
+.intermediate_verification_body_address,
+.settings_profile_username,
+.settings_profile_avatar,
+.settings_profile_password
 {
   display: flex;
   align-items: center;
@@ -959,7 +971,10 @@ option{
 
 .basic_verification_body_small_down,
 .intermediate_verification_body_down,
-.advance_verification_body_down{
+.advance_verification_body_down,
+.settings_profile_username_small_down,
+.settings_profile_avatar_small_down,
+.settings_profile_password_small_down{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -970,7 +985,13 @@ option{
 .basic_verification_body_phone_left,
 .advance_verification_body_diligence_left,
 .intermediate_verification_body_id_left,
-.intermediate_verification_body_address_left{
+.intermediate_verification_body_address_left,
+.settings_profile_password_left,
+.settings_profile_avatar_left,
+.settings_profile_username_left,
+.settings_notification_email_left,
+.settings_notification_sms_left,
+.settings_notification_push_left{
   display: flex;
   gap: 15px;
   width: 450px;
@@ -979,8 +1000,12 @@ option{
 .basic_verification_body_email_middle,
 .basic_verification_body_phone_middle,
 .advance_verification_body_diligence_middle,
-.basic_verification_body_email_middle,
-.intermediate_verification_body_address_middle{
+.intermediate_verification_body_email_middle,
+.intermediate_verification_body_address_middle,
+.settings_profile_username_middle,
+.settings_profile_avatar_middle,
+.settings_profile_password_middle
+{
   display: flex;
   align-items: center;
   gap: 5px;
@@ -1068,6 +1093,102 @@ option{
   width: 80px;
   height: 80px;
 }
+
+.settings_profile_avatar_middle h4{
+  border-radius: 100px;
+  background-color: var(--Layout-Background-dark);
+  width: 52px;
+  height: 52px;
+  color: var(--Text-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.setting_heading{
+  margin-bottom: 20px;
+}
+
+.settings_notification_email,
+.settings_notification_sms,
+.settings_notification_push,
+.settings_profile_avatar,
+.settings_profile_password,
+.settings_profile_username{
+  margin-bottom: 20px;
+}
+.settings_notification_email,
+.settings_notification_sms,
+.settings_notification_push{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit_username_container,
+.edit_avatar_container,
+.change_password_container{
+  width: 50%;
+  margin: 30px auto;
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  box-shadow: var(--elevate-3);
+}
+
+.edit_username_container_head,
+.edit_avatar_container_head,
+.change_password_container_head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--Seperator-light);
+}
+.edit_username_container_body,
+.edit_avatar_container_body,
+.edit_username_container_body{
+  padding: 20px 24px;
+}
+
+.edit_username_container_button
+{
+  display: flex;
+  gap: 30px;
+  margin: 20px 0px;
+}
+
+.edit_username_container_body h4{
+  margin-bottom: 10px;
+}
+
+.avatar_list_container_up img,
+.avatar_list_container_middle img,
+.avatar_list_container_down img{
+  width: 100%;
+}
+
+.avatar_list_container_up,
+.avatar_list_container_middle,
+.avatar_list_container_down{
+  display: flex;
+  margin: 30px 0;
+  gap: 30px;
+}
+.avatar_icon{
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 100px;
+}
+
+.avatar_icon:active{
+  border: 3px solid black;
+}
+
+
+  
+
 
 
 @media(max-width:768px){
@@ -1298,11 +1419,13 @@ option{
   .post_ads_form_bank button{
     width: 40%;
   }
-  .user_verification_left_container{
+  .user_verification_left_container,
+  .settings_sub_container_left{
     display: none;
   }
   .user_verification_right_container,
-  .bank_account_right_screen{
+  .bank_account_right_screen,
+  .settings_sub_container_right{
     width: 100%;
     padding: 0px 24px;
   }
@@ -1318,12 +1441,15 @@ option{
     justify-content: space-between;
     align-items: center;
   }
-  .user_verification_small_heading_screen{
+  .user_verification_small_heading_screen,
+  .profile_settings_small_heading_screen
+  {
     width: 80%;
     display: flex;
   }
 
-  .user_verification_small_heading_screen button{
+  .user_verification_small_heading_screen button,
+  .profile_settings_small_heading_screen button{
     width: 50%;
    
   }
@@ -1332,7 +1458,10 @@ option{
   .basic_verification_body_phone,
   .intermediate_verification_body_id,
   .intermediate_verification_body_address,
-  .advance_verification_body_diligence{
+  .advance_verification_body_diligence,
+  .settings_profile_username,
+  .settings_profile_avatar,
+  .settings_profile_password{
     display: grid;
     grid-template-columns: 1fr;
     gap: 0px;
@@ -1340,8 +1469,10 @@ option{
 
   .basic_verification_body_small_down,
   .intermediate_verification_body_down,
-  .intermediate_verification_body_down,
-  .advance_verification_body_down{
+  .advance_verification_body_down,
+  .settings_profile_username_small_down,
+  .settings_profile_avatar_small_down,
+  .settings_profile_password_small_down{
     justify-content: space-between;
   }
 
@@ -1543,16 +1674,19 @@ option{
   .post_ads_form_bank button{
     width: 40%;
   }
-  .user_verification_left_container{
+  .user_verification_left_container,
+  .settings_sub_container_left{
     display: none;
   }
   .user_verification_right_container,
-  .bank_account_right_screen{
+  .bank_account_right_screen,
+  .settings_sub_container_right{
     width: 100%;
     padding: 0px 24px;
   }
 
-  .user_verification_small_heading_screen{
+  .user_verification_small_heading_screen,
+  .profile_settings_small_heading_screen{
     display: flex;
   }
 
