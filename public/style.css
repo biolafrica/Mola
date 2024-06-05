@@ -1274,6 +1274,93 @@ option{
   border: 3px solid black;
 }
 
+/* dashboard page */
+.dashboard_container{
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.dashboard_head{
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--Border-light);
+}
+
+
+
+.dashboard_head_top,
+.dashboard_head_top_text_middle,
+.dashboard_head_top_text_bottom,
+.all_tardes_metrics,
+.all_feedbacks_metrics,
+.dasboard_head_bottom_top,
+.dasboard_head_bottom_top_left,
+.seller_dashboard,
+.review_negative_container,
+.review_positive_container,
+.review_type_container,
+.review_container,
+.user_feedback_top,
+.user_feedbacks_bottom{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dashboard_metrics_small{
+  display: none;
+}
+
+.all_trades_container,
+.completion_rate_container,
+.positive_feedbacks_container{
+  width: 312px;
+
+}
+
+.dasboard_head_bottom,
+.user_feedback_list{
+  margin: 30px 0;
+}
+
+.dashboard_body_filter{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 5px;
+  width: 230px;
+}
+.dashboard_body_feedbacks_container{
+  display: none;
+}
+.dashboard_feedbacks_middle{
+  display: flex;
+  gap: 20px;
+  margin: 20px 0px;
+  border-bottom: 1px solid var(--Border-light);
+}
+.dashboard_feedbacks_middle h4{
+  padding: 5px;
+}
+
+.feedback_active{
+  border-bottom: 3px solid black;
+}
+
+.feedback_user_dp{
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: black;
+  color: var(--Text-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.feedback_user_dp img{
+  width: 100%
+}
+.user_feedback_top{
+  margin-bottom: 10px;
+}
 
 
 
@@ -1582,8 +1669,39 @@ option{
   .bank_account_form_popup{
     width: 80%;
   }
-  
 
+  /* dashboard page*/ 
+  .dasboard_head_bottom_top,
+  .dasboard_head_bottom_top_left{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .dashboard_metrics_big{
+    display: none;
+  }
+  .dashboard_metrics_small{
+    display: initial;
+  }
+
+  .all_trades_container,
+  .completion_rate_container,
+  .positive_feedbacks_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .all_trades_container,
+  .completion_rate_container,
+  .positive_feedbacks_container{
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .dashboard_head,
+  .dashboard_body{
+    padding: 0px 24px;
+  }
 }
 
 @media(min-width:769px) and (max-width:992px){
@@ -1715,6 +1833,8 @@ option{
     padding: 10px 0px;
    
   }
+
+  /* my ads page*/
   .my_ads_head,
   .history_metrics{
     margin: 10px 24px;
@@ -1754,6 +1874,8 @@ option{
   .post_ads_form_bank button{
     width: 40%;
   }
+
+  /* verification page*/ 
   .user_verification_left_container,
   .settings_sub_container_left{
     display: none;
@@ -1772,6 +1894,18 @@ option{
 
   .bank_account_form_popup{
     width: 60%;
+  }
+
+  /* dashboard page*/ 
+
+  .dasboard_head_bottom_top{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard_head,
+  .dashboard_body{
+    padding: 0px 24px;
   }
 
 
