@@ -872,7 +872,10 @@ option{
 }
 
 .user_verification_sub_container,
-.settings_sub_container{
+.settings_sub_container,
+.email_phone_verify_body_left,
+.enter_phone_container,
+.send_code_container{
   display: flex;
 }
 .user_verification_left_container,
@@ -904,6 +907,7 @@ option{
   box-shadow: var(--elevate-1);
   margin-bottom: 30px;
 }
+
 .joined_container,
 .user_basic,
 .user_intermediate,
@@ -939,7 +943,9 @@ option{
 .personal_information_name,
 .personal_information_email,
 .personal_information_phone,
-.personal_information_country{
+.personal_information_country,
+.email_verify1_body_content,
+.phone_verify1_body_content{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1088,6 +1094,59 @@ option{
   font-weight: 400;
 }
 
+.send_code{
+  width: 150px;
+  border: 1px solid var(--Border-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border-radius: 5px;
+  border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  cursor: pointer;
+}
+
+.unbooked-call,
+.booked_call,
+.verified_call{
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--Seperator-light);
+}
+.enter_phone_container select{
+  border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+.enter_phone_container input,
+.send_code_container input{
+  border-right: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+
+}
+
+.error_content{
+  margin-bottom: 20px;
+}
+.booked_success_container{
+  text-align: center;
+  box-sizing: border-box;
+}
+.booked_success_container img{
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+.booked_success_container button{
+  width: 60%;
+  margin: 20px 0;
+
+}
+
 /* settings page */
 .avatar_icon{
   width: 80px;
@@ -1117,9 +1176,13 @@ option{
 .settings_profile_username{
   margin-bottom: 20px;
 }
+
 .settings_notification_email,
 .settings_notification_sms,
-.settings_notification_push{
+.settings_notification_push,
+.unbooked-call,
+.booked_call,
+.verified_call{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1127,7 +1190,10 @@ option{
 
 .edit_username_container,
 .edit_avatar_container,
-.change_password_container{
+.change_password_container,
+.email_phone_verify_container,
+.due_diligence_popup,
+.booked_success_container{
   width: 50%;
   margin: 30px auto;
   border: 1px solid var(--Border-light);
@@ -1137,7 +1203,9 @@ option{
 
 .edit_username_container_head,
 .edit_avatar_container_head,
-.change_password_container_head{
+.change_password_container_head,
+.email_phone_verify_heading,
+.due_diligence_verify_heading{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1146,7 +1214,10 @@ option{
 }
 .edit_username_container_body,
 .edit_avatar_container_body,
-.edit_username_container_body{
+.edit_password_container_body,
+.email_phone_verify_body,
+.due_diligence_verify_body,
+.booked_success_container{
   padding: 20px 24px;
 }
 
@@ -1186,8 +1257,6 @@ option{
   border: 3px solid black;
 }
 
-
-  
 
 
 
