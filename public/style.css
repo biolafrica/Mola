@@ -1428,6 +1428,15 @@ option{
   margin: 30px 0;
 }
 
+.dashboard_head_top_dp{
+  width: 80px;
+  height: 80px;
+}
+
+.dashboard_head_top_dp img{
+  width: 100%;
+}
+
 .dashboard_body_filter{
   border: 1px solid var(--Border-light);
   border-radius: 5px;
@@ -1467,6 +1476,7 @@ option{
 .user_feedback_top{
   margin-bottom: 10px;
 }
+
 
 
 

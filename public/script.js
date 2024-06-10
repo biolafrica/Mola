@@ -1,4 +1,4 @@
-const nairaBtn = document.querySelector(".js_buy_ngn");
+const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
 const nairaEl = document.querySelector(".js_buy_el");
 const poundEl = document.querySelector(".js_sell_el");
@@ -14,7 +14,46 @@ const orderSellEl = document.querySelector(".js_place_order_sell");
 const sellSellEl = document.querySelector(".js_pay_seller_sell");
 const paymentSellEl = document.querySelector(".js_receive_payment_sell");
 const buyBtn = document.querySelector(".Js_buy_order_btn");
+const adsBtn = document.querySelector(".js_ads_btn");
+const feedbackBtn = document.querySelector(".js_feedback_btn");
+const adsEl = document.querySelector(".dashboard_body_ads_container");
+const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container")
 
+document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
+  btn.addEventListener("click", ()=>{
+    overlay.style.display = "initial";
+    moreEl.style.display = "flex";
+
+  })
+
+});
+
+cancelBtn.addEventListener("click", ()=>{
+  overlay.style.display = "none";
+  moreEl.style.display = "none";
+   
+})
+
+adsBtn.addEventListener("click", ()=>{
+  adsBtn.classList.remove("text-btn");
+  adsBtn.classList.add("filled-btn");
+  feedbackBtn.classList.remove("filled-btn");
+  feedbackBtn.classList.add("text-btn");
+  adsEl.style.display = "initial";
+  feedbackEl.style.display= "none";
+  
+
+})
+
+feedbackBtn.addEventListener("click", ()=>{
+  feedbackBtn.classList.remove("text-btn");
+  feedbackBtn.classList.add("filled-btn");
+  adsBtn.classList.remove("filled-btn");
+  adsBtn.classList.add("text-btn");
+  adsEl.style.display = "none";
+  feedbackEl.style.display= "initial";
+  
+})
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
@@ -44,11 +83,6 @@ document.querySelectorAll(".js_buy_btn").forEach((btn)=>{
 
 });
 
-cancelBtn.addEventListener("click", ()=>{
-  overlay.style.display = "none";
-  moreEl.style.display = "none";
-   
-})
 
 howBuyBtn.addEventListener("click", ()=>{
   howBuyBtn.classList.remove("inactive-btn");
@@ -78,15 +112,8 @@ howSellBtn.addEventListener("click", ()=>{
 
 })
 
-js_place_order_buy
-js_pay_seller_buy
-js_receive_payment_buy
 
 
-
-js_receive_payment_sell
-js_place_order_sell
-js_pay_seller_sell
 
 
 
