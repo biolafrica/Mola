@@ -17,7 +17,11 @@ const buyBtn = document.querySelector(".Js_buy_order_btn");
 const adsBtn = document.querySelector(".js_ads_btn");
 const feedbackBtn = document.querySelector(".js_feedback_btn");
 const adsEl = document.querySelector(".dashboard_body_ads_container");
-const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container")
+const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container");
+
+
+
+
 
 document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
   btn.addEventListener("click", ()=>{
@@ -54,6 +58,8 @@ feedbackBtn.addEventListener("click", ()=>{
   feedbackEl.style.display= "initial";
   
 })
+
+
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
@@ -111,6 +117,9 @@ howSellBtn.addEventListener("click", ()=>{
   paymentBuyEl.style.display ="none";
 
 })
+
+
+
 
 
 
