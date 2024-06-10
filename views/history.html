@@ -11,54 +11,56 @@
   <header>
 
     <div class="header_left">
-      <img src="../public/icons/Currency exchange.svg" alt="">
-      <h3><b>Mola</b></h3>
+      <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+      <a href="../index.html"><h3><b>Mola</b></h3></a>
+      
     </div>
 
     <div class="header_right">
 
-      <div class="order_container">
+      <a class="order_container" href="/views/history.html">
         <img src="../public/icons/Receipt long.svg" alt="">
         <h5>My Orders</h5>
-      </div>
+      </a>
 
       <div class="profile_container">
         <img src="../public/icons/Account circle.svg" alt="">
-        <h5>My profile</h5>
+        <h5 class="profile_none">My profile</h5>
 
         <div class="profile_tooltip">
 
-          <div class="profile_tooltip_header">
-            <h5>Biolafrica</h5>
+          <div class="profile_tooltip_header"> 
+            <h5 style="padding-left: 20px;">Biolafrica</h5>
             <div class="profile_verification_details">
               <img src="../public/icons/Verified user.svg" alt="">
-              <h4>Intermediate Level Verified</h4>
+              <h5 class="light">Intermediate Level Verified</h5>
             </div>
           </div>
           
           <div class="profile_tooltip_body">
-            <div class="profile_tooltip_body_nav">
+
+            <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
               <img src="../public/icons/Dashboard.svg" alt="">
               <h4>Dashboard</h4>
-            </div>
+            </a>
     
-            <div class="profile_tooltip_body_nav">
+            <a class="profile_tooltip_body_nav" href="/views/verify.html">
               <img src="../public/icons/Manage accounts.svg" alt="">
               <h4>Account</h4>
-            </div>
+            </a>
             
-            <div class="profile_tooltip_body_nav">
+            <a class="profile_tooltip_body_nav" href="/views/settings.html">
               <img src="../public/icons/Settings.svg" alt="">
               <h4>Settings</h4>
-            </div>
+            </a>
     
           </div>
     
-          <div class="profile_tooltip_footer">
-            <div class="profile_tooltip_footer_nav">
-              <img src="../public/icons/Logout.svg" alt="">
+          <div class="profile_tooltip_footer" >
+            <a class="profile_tooltip_footer_nav" href="/views/login.html">
+              <img class="secondary" src="../public/icons/Logout.svg" alt="">
               <h4>Logout</h4>
-            </div>
+            </a>
     
           </div>
         </div>
@@ -66,23 +68,23 @@
 
       <div class="more_container">
         <img src="../public/icons/Pending.svg" alt="">
-        <h5>More</h5>
+        <h5 class="more_none">More</h5>
         <img src="../public/icons/Arrow drop down.svg" alt="">
 
         <div class="more_tooltip">
-          <div class="more_tooltip_nav">
+
+          <a class="more_tooltip_nav" href="/views/postadd.html">
             <img src="../public/icons/Playlist add.svg" alt="">
             <h4>Post New Ads</h4>
-          </div>
-          <div class="more_tooltip_nav">
+          </a>
+
+          <a class="more_tooltip_nav" href="/views/history.html">
             <img src="../public/icons/Format list bulleted.svg" alt="">
             <h4>My Ads</h4>
-          </div>
+          </a>
     
         </div>
       </div>
-
-    
 
     </div>
   </header>
@@ -117,7 +119,7 @@
     <div class="history_filter">
 
       <div class="history_status_filter">
-        <button class="filled-btn"><h5>All</h5></button>
+        <button class="filled-btn"><h5>Active</h5></button>
         <button class="text-btn"><h5>Completed</h5></button>
         <button class="text-btn"><h5>Cancelled</h5></button>
        
@@ -462,6 +464,37 @@
 
   </div>
 
+  <section class="footers">
+    <div class="footer">
+
+      <div class="footer_left">
+        <h2><b>Mola</b></h2>
+      </div>
+  
+      <div class="footer_middle">
+        <a href=""><h4><b>Privacy and Terms</b></h4></a>
+        <a href=""><h4><b>About Mola</b></h4></a>
+        <a href=""><h4><b>Support</b></h4></a>
+      </div>
+  
+      <div class="footer_right">
+        <h4>Follow us</h4>
+        <div class="socials_icon">
+          <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
+          <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
+          <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
+          <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
+        </div>
+  
+      </div>
+
+    </div>
+
+    <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
+
+    
+
+  </section>
   
 </body>
 </html>

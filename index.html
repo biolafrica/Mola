@@ -7,59 +7,142 @@
   <link rel="stylesheet" href="./public/style.css">
   <script src="./public/script.js" defer></script>
 </head>
-<body>
 
+<body>
+  
+  <!--more order info popup-->
+  <div class="more_info_popup js_more_info_popup">
+
+    <div class="more_info_popup_left">
+      <div class="more_info_popup_left_top">
+
+        <div class="more_info_popup_image">
+          <img src="./public/avatar/avatar 14.svg" alt="">
+        </div>
+
+        <div class="more_info_popup_text">
+
+          <div class="more_info_popup_text_up">
+            <h4>Biolafrica</h4>
+            <img src="./public/icons/Verified.svg" alt="">
+          </div>
+
+          <div class="more_info_popup_text_down">
+            <h4 class="secondary">128 Orders | 100.0% completion</h4>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="more_info_popup_left_middle">
+
+        <div class="more_info_popup_verification">
+          <h4 class="secondary">Verification level</h4>
+          <h4>Advance level</h4>
+        </div>
+
+        <div class="more_info_popup_time_limit">
+          <h4 class="secondary">Payment Time Limit</h4>
+          <h4>15 minutes</h4>
+        </div>
+
+        <div class="more_info_popup_amount">
+          <h4 class="secondary">Available Amount</h4>
+          <h4>200,000.00 NGN</h4>
+        </div>
+
+      </div>
+      
+      <div class="more_info_popup_left_bottom">
+        <h4>Seller's Terms(Read Carefully)</h4>
+        <h4 class="secondary">Please do not send money with a third party account name.</h4>
+      </div>
+    </div>
+
+    <div class="more_info_popup_right">
+      <h4>Rate: <b>1,900.00 NGN</b></h4>
+
+      <form action="">
+
+        <Label><h4>I want to pay:</h4></Label>
+        <div class="input_money" style="margin-bottom: 0px;width: 100%;">
+          <input type="text" placeholder="0.00">
+          <h4>GBP</h4>
+        </div>
+        <h5 class="light" style="margin-bottom: 35px;">Limits £500.0 - £700.0</h5>
+
+        <Label><h4>I will receive:</h4></Label>
+        <div class="input_money" style="width: 100%;">
+          <input type="text" placeholder="0.00">
+          <h4>NGN</h4>
+        </div>
+        
+      </form>
+
+      <div class="more_info_popup_button">
+        <button class="outlined-btn"><h5 class="js_cancel_btn">Cancel</h5></button>
+        <a href="./views/order.html"><button style="width: 100%;" class="filled-btn Js_buy_order_btn"><h5>Buy NGN</h5></button></a>
+      </div>
+
+      
+    </div>
+
+  </div>
+  <div class="overlay js_overlay"></div>
+  
   <header>
 
     <div class="header_left">
-      <img src="../public/icons/Currency exchange.svg" alt="">
-      <h3><b>Mola</b></h3>
+      <a href="./index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+      <a href="./index.html"><h3><b>Mola</b></h3></a>
+      
     </div>
 
     <div class="header_right">
 
-      <div class="order_container">
+      <a class="order_container" href="./views/history.html">
         <img src="./public/icons/Receipt long.svg" alt="">
         <h5>My Orders</h5>
-      </div>
+      </a>
 
       <div class="profile_container">
         <img src="./public/icons/Account circle.svg" alt="">
-        <h5>My profile</h5>
+        <h5 class="profile_none">My profile</h5>
 
         <div class="profile_tooltip">
 
-          <div class="profile_tooltip_header">
-            <h5>Biolafrica</h5>
+          <div class="profile_tooltip_header"> 
+            <h5 style="padding-left: 20px;">Biolafrica</h5>
             <div class="profile_verification_details">
               <img src="./public/icons/Verified user.svg" alt="">
-              <h4>Intermediate Level Verified</h4>
+              <h5 class="light">Intermediate Level Verified</h5>
             </div>
           </div>
           
           <div class="profile_tooltip_body">
-            <div class="profile_tooltip_body_nav">
+
+            <a class="profile_tooltip_body_nav" href="./views/dashboard.html">
               <img src="./public/icons/Dashboard.svg" alt="">
               <h4>Dashboard</h4>
-            </div>
+            </a>
     
-            <div class="profile_tooltip_body_nav">
+            <a class="profile_tooltip_body_nav" href="./views/verify.html">
               <img src="./public/icons/Manage accounts.svg" alt="">
               <h4>Account</h4>
-            </div>
+            </a>
             
-            <div class="profile_tooltip_body_nav">
+            <a class="profile_tooltip_body_nav" href="./views/settings.html">
               <img src="./public/icons/Settings.svg" alt="">
               <h4>Settings</h4>
-            </div>
+            </a>
     
           </div>
     
-          <div class="profile_tooltip_footer">
-            <div class="profile_tooltip_footer_nav">
-              <img src="./public/icons/Logout.svg" alt="">
+          <div class="profile_tooltip_footer" >
+            <a class="profile_tooltip_footer_nav" href="./views/login.html">
+              <img class="secondary" src="./public/icons/Logout.svg" alt="">
               <h4>Logout</h4>
-            </div>
+            </a>
     
           </div>
         </div>
@@ -67,34 +150,40 @@
 
       <div class="more_container">
         <img src="./public/icons/Pending.svg" alt="">
-        <h5>More</h5>
+        <h5 class="more_none">More</h5>
         <img src="./public/icons/Arrow drop down.svg" alt="">
 
         <div class="more_tooltip">
-          <div class="more_tooltip_nav">
+
+          <a class="more_tooltip_nav" href="./views/postadd.html">
             <img src="./public/icons/Playlist add.svg" alt="">
             <h4>Post New Ads</h4>
-          </div>
-          <div class="more_tooltip_nav">
+          </a>
+
+          <a class="more_tooltip_nav" href="./views/history.html">
             <img src="./public/icons/Format list bulleted.svg" alt="">
             <h4>My Ads</h4>
-          </div>
+          </a>
     
         </div>
       </div>
 
-     
-
     </div>
   </header>
-
 
   <section class="landing_page">
     <h2><b>Peer-to-Peer Currency Exchange with Zero Fees</b></h2>
     <h3>Purchase any currency at your preferred exchange rates</h3>
     <div class="landing_new_user_container">
-      <button class="text-btn"><h5>Log In</h5></button>
-      <button class="filled-btn"><h5>Register</h5></button>
+
+      <a href="./views/login.html">
+        <button class="text-btn"><h5>Log In</h5></button>
+      </a>
+
+      <a href="./views/register.html">
+        <button class="filled-btn"><h5>Register</h5></button>
+      </a>
+
     </div>
   </section>
 
@@ -102,8 +191,8 @@
     <div class="filter_container">
 
       <div class="filter_container_type">
-        <button class="filled-btn"><h5>BUY NGN</h5></button>
-        <button class="text-btn"><h5>BUY GBP</h5></button>
+        <button class="filled-btn js_buy_ngn"><h5>Buy NGN</h5></button>
+        <button class="text-btn js_buy_gbp"><h5>Buy GBP</h5></button>
       </div>
 
       <div class="filter_container_amount">
@@ -115,7 +204,7 @@
 
     </div>
 
-    <div class="orders_container">
+    <div class="orders_container buyNGN js_buy_el">
 
       <div class="row_head">
         <div class="seller_container head"><h4>Seller</h4></div>
@@ -128,7 +217,8 @@
       <div class="row_head_body">
 
         <div class="row_head">
-          <div class="seller_container">
+
+          <div class="seller_container big">
 
             <div class="seller_container_image">
               <img src="./public/images/3D Avatars.svg" alt="">
@@ -137,34 +227,90 @@
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <h4>Biolafrica</h4>
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
                 <img src="./public/icons/Verified.svg" alt="">
               </div>
 
               <div class="seller_container_metrics">
-                <h5>128 Orders | 100%</h5>
+                <h5 class="light">128 Orders | 100%</h5>
               </div>
 
             </div>
 
           </div>
 
-          <div class="rate_container">
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
             <h3>1,918</h3>NGN
           </div>
 
-          <div class="Amount_available_container"><h4>200,000.00 NGN</h4></div>
-
-          <div class="Limit_container"><h4>200.00 - 250.00 GBP</h4></div>
-
-          <div class="Buy_container">
-            <button class="filled-btn"><h5>BUY NGN</h5></button>
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 NGN</h4>
           </div>
 
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 GBP</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 NGN</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+            </div>
+
+          </div>
+          
         </div>
 
         <div class="row_head">
-          <div class="seller_container">
+
+          <div class="seller_container big">
 
             <div class="seller_container_image">
               <img src="./public/images/3D Avatars.svg" alt="">
@@ -173,31 +319,90 @@
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <h4>Biolafrica</h4>
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
                 <img src="./public/icons/Verified.svg" alt="">
               </div>
 
               <div class="seller_container_metrics">
-                <h5>128 Orders | 100%</h5>
+                <h5 class="light">128 Orders | 100%</h5>
               </div>
 
             </div>
 
           </div>
 
-          <div class="rate_container">
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
             <h3>1,918</h3>NGN
           </div>
 
-          <div class="Amount_available_container"><h4>200,000.00 NGN</h4></div>
-          <div class="Limit_container"><h4>200.00 - 250.00 GBP</h4></div>
-          <div class="Buy_container">
-            <button class="filled-btn"><h5>BUY NGN</h5></button>
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 NGN</h4>
           </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 GBP</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 NGN</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+            </div>
+
+          </div>
+          
         </div>
 
         <div class="row_head">
-          <div class="seller_container">
+
+          <div class="seller_container big">
 
             <div class="seller_container_image">
               <img src="./public/images/3D Avatars.svg" alt="">
@@ -206,31 +411,90 @@
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <h4>Biolafrica</h4>
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
                 <img src="./public/icons/Verified.svg" alt="">
               </div>
 
               <div class="seller_container_metrics">
-                <h5>128 Orders | 100%</h5>
+                <h5 class="light">128 Orders | 100%</h5>
               </div>
 
             </div>
 
           </div>
 
-          <div class="rate_container">
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
             <h3>1,918</h3>NGN
           </div>
 
-          <div class="Amount_available_container"><h4>200,000.00 NGN</h4></div>
-          <div class="Limit_container"><h4>200.00 - 250.00 GBP</h4></div>
-          <div class="Buy_container">
-            <button class="filled-btn"><h5>BUY NGN</h5></button>
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 NGN</h4>
           </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 GBP</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 NGN</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+            </div>
+
+          </div>
+          
         </div>
 
         <div class="row_head">
-          <div class="seller_container">
+
+          <div class="seller_container big">
 
             <div class="seller_container_image">
               <img src="./public/images/3D Avatars.svg" alt="">
@@ -239,31 +503,90 @@
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <h4>Biolafrica</h4>
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
                 <img src="./public/icons/Verified.svg" alt="">
               </div>
 
               <div class="seller_container_metrics">
-                <h5>128 Orders | 100%</h5>
+                <h5 class="light">128 Orders | 100%</h5>
               </div>
 
             </div>
 
           </div>
 
-          <div class="rate_container">
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
             <h3>1,918</h3>NGN
           </div>
 
-          <div class="Amount_available_container"><h4>200,000.00 NGN</h4></div>
-          <div class="Limit_container"><h4>200.00 - 250.00 GBP</h4></div>
-          <div class="Buy_container">
-            <button class="filled-btn"><h5>BUY NGN</h5></button>
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 NGN</h4>
           </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 GBP</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 NGN</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+            </div>
+
+          </div>
+          
         </div>
 
         <div class="row_head">
-          <div class="seller_container">
+
+          <div class="seller_container big">
 
             <div class="seller_container_image">
               <img src="./public/images/3D Avatars.svg" alt="">
@@ -272,27 +595,561 @@
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <h4>Biolafrica</h4>
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
                 <img src="./public/icons/Verified.svg" alt="">
               </div>
 
               <div class="seller_container_metrics">
-                <h5>128 Orders | 100%</h5>
+                <h5 class="light">128 Orders | 100%</h5>
               </div>
 
             </div>
 
           </div>
 
-          <div class="rate_container">
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
             <h3>1,918</h3>NGN
           </div>
 
-          <div class="Amount_available_container"><h4>200,000.00 NGN</h4></div>
-          <div class="Limit_container"><h4>200.00 - 250.00 GBP</h4></div>
-          <div class="Buy_container">
-            <button class="filled-btn"><h5>BUY NGN</h5></button>
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 NGN</h4>
           </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 GBP</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 NGN</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY NGN</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="orders_container buyGBP js_sell_el">
+
+      <div class="row_head">
+        <div class="seller_container head"><h4>Seller</h4></div>
+        <div class="rate_container head"><h4>Rate</h4></div>
+        <div class="Amount_available_container head"><h4>Amount Available</h4></div>
+        <div class="Limit_container head"><h4>Limit</h4></div>
+        <div class="Buy_container head"><h4>Buy</h4></div>
+      </div>
+
+      <div class="row_head_body">
+
+        <div class="row_head">
+
+          <div class="seller_container big">
+
+            <div class="seller_container_image">
+              <img src="./public/images/3D Avatars.svg" alt="">
+            </div>
+
+            <div class="seller_container_user">
+
+              <div class="seller_container_username">
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                <img src="./public/icons/Verified.svg" alt="">
+              </div>
+
+              <div class="seller_container_metrics">
+                <h5 class="light">128 Orders | 100%</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>1,918</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 GBP</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 NGN</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 GBP</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 NGN</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row_head">
+
+          <div class="seller_container big">
+
+            <div class="seller_container_image">
+              <img src="./public/images/3D Avatars.svg" alt="">
+            </div>
+
+            <div class="seller_container_user">
+
+              <div class="seller_container_username">
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                <img src="./public/icons/Verified.svg" alt="">
+              </div>
+
+              <div class="seller_container_metrics">
+                <h5 class="light">128 Orders | 100%</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>1,918</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 GBP</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 NGN</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 GBP</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 NGN</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row_head">
+
+          <div class="seller_container big">
+
+            <div class="seller_container_image">
+              <img src="./public/images/3D Avatars.svg" alt="">
+            </div>
+
+            <div class="seller_container_user">
+
+              <div class="seller_container_username">
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                <img src="./public/icons/Verified.svg" alt="">
+              </div>
+
+              <div class="seller_container_metrics">
+                <h5 class="light">128 Orders | 100%</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>1,918</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 GBP</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 NGN</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 GBP</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 NGN</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row_head">
+
+          <div class="seller_container big">
+
+            <div class="seller_container_image">
+              <img src="./public/images/3D Avatars.svg" alt="">
+            </div>
+
+            <div class="seller_container_user">
+
+              <div class="seller_container_username">
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                <img src="./public/icons/Verified.svg" alt="">
+              </div>
+
+              <div class="seller_container_metrics">
+                <h5 class="light">128 Orders | 100%</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>1,918</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 GBP</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 NGN</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 GBP</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 NGN</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row_head">
+
+          <div class="seller_container big">
+
+            <div class="seller_container_image">
+              <img src="./public/images/3D Avatars.svg" alt="">
+            </div>
+
+            <div class="seller_container_user">
+
+              <div class="seller_container_username">
+                <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                <img src="./public/icons/Verified.svg" alt="">
+              </div>
+
+              <div class="seller_container_metrics">
+                <h5 class="light">128 Orders | 100%</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>1,918</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>200,000.00 GBP</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>200.00 - 250.00 NGN</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image">
+                <img src="./public/images/3D Avatars.svg" alt="">
+              </div>
+  
+              <div class="seller_container_user">
+  
+                <div class="seller_container_username">
+                  <a href="./views/dashboard.html"><h4><b>Biolafrica</b></h4></a>
+                  <img src="./public/icons/Verified.svg" alt="">
+                </div>
+  
+                <div class="seller_container_metrics">
+                  <h5 class="light">128 Orders | 100%</h5>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>1,918</h3>NGN
+            </div>
+  
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>200,000.00 GBP</h4>
+            </div>
+  
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>200.00 - 250.00 NGN</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_btn"><h5>BUY GBP</h5></button>
+            </div>
+
+          </div>
+          
         </div>
 
       </div>
@@ -303,16 +1160,19 @@
       <img src="./public/icons/Keyboard arrow left.svg" alt="">
 
       <div class="pagination_number">
-        <div class="page filled_page"><h4>1</h4></div>
-        <div class="page"><h4>2</h4></div>
-        <div class="page"><h4>3</h4></div>
-        <div class="page"><h4>4</h4></div>
-        <div class="page"><h4>5</h4></div>
-        <div class="page"><h4>6</h4></div>
-        <div class="page"><h4>7</h4></div>
-        <div class="page"><h4>8</h4></div>
-        <div class="page"><h4>9</h4></div>
-        <div class="page"><h4>10</h4></div> 
+        <div class="page filled_page"><h5 class="light">1</h5></div>
+
+        <div class="page"><h5 class="light">2</h5></div>
+        
+        <div class="page"><h5 class="light">3</h5></div>
+
+        <div class="page"><h5 class="light">4</h5></div>
+
+        <div class="page"><h5 class="light">5</h5></div>
+
+        <div class="page"><h5 class="light">6</h5></div>
+
+        <div class="page"><h5 class="light">10</h5></div> 
       </div>
 
       <img src="./public/icons/Keyboard arrow right.svg" alt="">
@@ -327,8 +1187,8 @@
 
       <h2>How Mola Works</h2>
       <div class="how_it_works_head_text">
-        <button class="filled-btn"><h5>How to Buy</h5></button>
-        <button class="text-btn"><h5>How to Sell </h5></button>
+        <button class="filled-btn js_how_buy"><h5>How to Buy</h5></button>
+        <button class="inactive-btn js_how_sell"><h5>How to Sell </h5></button>
       </div>
 
     </div>
@@ -338,14 +1198,14 @@
       <div class="place_order">
         <img src="./public/icons/Receipt long big.svg" alt="">
 
-        <div class="place_order_buy">
+        <div class="place_order_buy js_place_order_buy">
           <h3><b>Place Buy Order</b></h3>
-          <h4>Choose ads with preferred price. Enter you buy amount to place an order</h4>
+          <h5 class="light">Select ads with your preferred price. Enter your desired purchase amount to place an order.</h5>
         </div>
 
-        <div class="place_order_sell">
+        <div class="place_order_sell js_place_order_sell">
           <h3><b>Place Sell Order</b></h3>
-          <h4>Place a sell order and wait for offers</h4>
+          <h5 class="light">Submit a sell order and wait for offers.</h5>
         </div>
 
       </div>
@@ -353,14 +1213,14 @@
       <div class="receive_payment">
         <img src="./public/icons/Payment.svg" alt="">
 
-        <div class="receive_payment_buy">
+        <div class="receive_payment_buy js_receive_payment_buy">
           <h3><b>Receive Payment</b></h3>
-          <h4>After seller receive the payments, he will initiate transfer of the equivalent amount</h4>
+          <h5 class="light">Once the seller receives the payment, they will initiate the transfer of the equivalent amount.</h5>
         </div>
 
-        <div class="receive_payment_sell">
+        <div class="receive_payment_sell js_receive_payment_sell">
           <h3><b>Receive Payment</b></h3>
-          <h4>Check your registered bank account to confirm payment from the buyer</h4>
+          <h5 class="light">Check your registered bank account to confirm receipt of payment from the buyer.</h5>
         </div>
 
       </div>
@@ -368,14 +1228,14 @@
       <div class="pay_seller">
         <img src="./public/icons/Payment.svg" alt="">
 
-        <div class="pay_seller_buy">
+        <div class="pay_seller_buy js_pay_seller_buy">
           <h3><b>Pay Seller</b></h3>
-          <h4>Make Bank payment to the account information provided by the seller</h4>
+          <h5 class="light">"Make a bank payment using the account information provided by the seller."</h5>
         </div>
 
-        <div class="pay_seller_sell">
+        <div class="pay_seller_sell js_pay_seller_sell">
           <h3><b>Pay Buyer</b></h3>
-          <h4>Transfer the equivalent amount in the account provided by the buyer.</h4>
+          <h5 class="light">Transfer the equivalent amount to the account provided by the buyer.</h5>
         </div>
       </div>
 
@@ -384,53 +1244,37 @@
 
   </section>
 
-  <section class="footer">
+  <section class="footers">
+    <div class="footer">
 
-    <div class="footer_logo">
-      <div class="footer_logo_head">
-        <img src="./public/icons/Currency exchange.svg" alt="">
-        <h3>Mola</h3>
+      <div class="footer_left">
+        <h2><b>Mola</b></h2>
       </div>
-      <div class="footer_logo_body">
-        <h4>A P2P currency exchange platform</h4>
-        <div>
-          <img src="./public/icons/Facebook.svg" alt="">
-          <img src="./public/icons/TwitterX.svg" alt="">
-          <img src="./public/icons/Instagram.svg" alt="">
-          <img src="./public/icons/LinkedIn.svg" alt="">
+  
+      <div class="footer_middle">
+        <a href=""><h4><b>Privacy and Terms</b></h4></a>
+        <a href=""><h4><b>About Mola</b></h4></a>
+        <a href=""><h4><b>Support</b></h4></a>
+      </div>
+  
+      <div class="footer_right">
+        <h4>Follow us</h4>
+        <div class="socials_icon">
+          <a href=""><img src="./public/icons/Facebook.svg" alt=""></a>
+          <a href=""><img src="./public/icons/TwitterX.svg" alt=""></a>
+          <a href=""><img src="./public/icons/Instagram.svg" alt=""></a>
+          <a href=""><img src="./public/icons/LinkedIn.svg" alt=""></a>
         </div>
+  
       </div>
-    </div>
-    
-    <div class="footer_company">
-      <div class="footer_company_head"><h4>COMPANY</h4></div>
-      <div class="footer_company_body">
-        <h4>Blog</h4>
-        <h4>About Us</h4>
-      </div>
+
     </div>
 
-    <div class="footer_legal">
-      <div class="footer_legal_head"><h4>LEGAL</h4></div>
-      <div class="footer_legal_body">
-        <h4>Term of Use</h4>
-        <h4>Privacy Policy</h4>
-      </div>
-    </div>
+    <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
+
     
-    <div class="footer_contact">
-      <div class="footer_contact_head"><h4>CONTACT</h4></div>
-      <div class="footer_contact_body">
-        <h4>support@mola.com</h4>
-        <h4>+447455267167</h4>
-        <h4>United Kingdom</h4>
-      </div>
-    </div>
 
   </section>
 
-  
-  
-  
 </body>
 </html>
