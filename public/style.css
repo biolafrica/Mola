@@ -1024,13 +1024,17 @@ option{
 }
 
 .user_verification:hover,
-.user_account:hover{
+.user_account:hover,
+.settings_sub_container_left_profile:hover,
+.settings_sub_container_left_notification:hover{
   background-color: var(--Layout-Background-light);
   cursor: pointer;
 }
 
 .user_verification:active,
-.user_account:active{
+.user_account:active,
+.settings_sub_container_left_profile:active,
+.settings_sub_container_left_notification:active{
   transform: translateY(2px);
 }
 
@@ -1385,8 +1389,10 @@ option{
 .avatar_list_container_middle,
 .avatar_list_container_down{
   display: flex;
+  justify-content: space-between;
   margin: 30px 0;
   gap: 30px;
+  align-items: center;
 }
 .avatar_icon{
   width: 80px;
@@ -1398,6 +1404,21 @@ option{
 
 .avatar_icon:active{
   border: 3px solid black;
+}
+
+.password_error{
+  margin-bottom: 20px;
+}
+
+
+.edit_avatar_container_button{
+  display: flex;
+  gap: 20px;
+}
+
+.edit_avatar_container_button button{
+  width: 50%;
+
 }
 
 /* dashboard page */
