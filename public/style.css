@@ -932,15 +932,6 @@ option{
 }
 
 /* post ads popup  */
-.bank_option_popup{
-  max-width: 716px;
-  box-shadow: var(--elevate-3);
-  border: 1px solid var(--Border-light);
-  border-radius: 5px;
-  margin: 20px auto;
-  padding: 20px 24px;
-  display: none;
-}
 
 .bank_option_popup_head,
 .bank_option_popup_list_head,
@@ -1330,7 +1321,8 @@ option{
 .email_phone_verify_container,
 .due_diligence_popup,
 .booked_success_container,
-.bank_account_form_popup{
+.bank_account_form_popup,
+.bank_option_popup{
   display: none;
   width: 50%;
   border-radius: 5px;
