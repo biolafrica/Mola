@@ -478,6 +478,15 @@ form button{
   gap: 5px;
 }
 
+.seller_container_image{
+  width: 48px;
+  height: 48px;
+}
+
+.seller_container_image img{
+  width: 100%;
+}
+
 .seller_container_metrics{
   color: var(--Secondary-Text-light);
   font-weight: 300;
@@ -573,6 +582,10 @@ form button{
   align-items: center;
 }
 
+.no_ads{
+  text-align: center;
+  margin: 50px auto;
+}
 /* more about selected order popup  */
 .more_info_popup{
   display: none;
