@@ -249,7 +249,7 @@
 
       <div class="dashboard_body_ads_container" style="margin-bottom: 20px;">
 
-        <div class="orders_container buyNGN js_buy_el" style="padding: 0;">
+        <div class="orders_container buyNGN" style="padding: 0;">
 
           <div class="row_head">
             <div class="seller_container head"><h4>Currency</h4></div>
@@ -735,6 +735,32 @@
     
 
   </section>
+
+  <script>
+    const adsBtn = document.querySelector(".js_ads_btn");
+    const feedbackBtn = document.querySelector(".js_feedback_btn");
+
+    adsBtn.addEventListener("click", ()=>{
+      adsBtn.classList.remove("text-btn");
+      adsBtn.classList.add("filled-btn");
+      feedbackBtn.classList.remove("filled-btn");
+      feedbackBtn.classList.add("text-btn");
+      adsEl.style.display = "initial";
+      feedbackEl.style.display= "none";
+  
+    })
+
+    feedbackBtn.addEventListener("click", ()=>{
+      feedbackBtn.classList.remove("text-btn");
+      feedbackBtn.classList.add("filled-btn");
+      adsBtn.classList.remove("filled-btn");
+      adsBtn.classList.add("text-btn");
+      adsEl.style.display = "none";
+      feedbackEl.style.display= "initial";
+  
+    })
+
+  </script>
 
 </body>
 </html>

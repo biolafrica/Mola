@@ -14,13 +14,8 @@ const orderSellEl = document.querySelector(".js_place_order_sell");
 const sellSellEl = document.querySelector(".js_pay_seller_sell");
 const paymentSellEl = document.querySelector(".js_receive_payment_sell");
 const buyBtn = document.querySelector(".Js_buy_order_btn");
-const adsBtn = document.querySelector(".js_ads_btn");
-const feedbackBtn = document.querySelector(".js_feedback_btn");
 const adsEl = document.querySelector(".dashboard_body_ads_container");
 const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container");
-
-
-
 
 
 document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
@@ -37,29 +32,6 @@ cancelBtn.addEventListener("click", ()=>{
   moreEl.style.display = "none";
    
 })
-
-adsBtn.addEventListener("click", ()=>{
-  adsBtn.classList.remove("text-btn");
-  adsBtn.classList.add("filled-btn");
-  feedbackBtn.classList.remove("filled-btn");
-  feedbackBtn.classList.add("text-btn");
-  adsEl.style.display = "initial";
-  feedbackEl.style.display= "none";
-  
-
-})
-
-feedbackBtn.addEventListener("click", ()=>{
-  feedbackBtn.classList.remove("text-btn");
-  feedbackBtn.classList.add("filled-btn");
-  adsBtn.classList.remove("filled-btn");
-  adsBtn.classList.add("text-btn");
-  adsEl.style.display = "none";
-  feedbackEl.style.display= "initial";
-  
-})
-
-
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");

@@ -387,7 +387,7 @@ form button{
 .filter_container{
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   margin: 20px 130px;
 }
 
