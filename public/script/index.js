@@ -17,7 +17,6 @@ const buyBtn = document.querySelector(".Js_buy_order_btn");
 const adsEl = document.querySelector(".dashboard_body_ads_container");
 const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container");
 
-
 document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
   btn.addEventListener("click", ()=>{
     overlay.style.display = "initial";
@@ -31,7 +30,7 @@ cancelBtn.addEventListener("click", ()=>{
   overlay.style.display = "none";
   moreEl.style.display = "none";
    
-})
+});
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
@@ -50,7 +49,7 @@ poundBtn.addEventListener("click", ()=>{
   poundBtn.classList.add("filled-btn");
   nairaEl.style.display = "none";
   poundEl.style.display = "initial";  
-})
+});
 
 document.querySelectorAll(".js_buy_btn").forEach((btn)=>{
   btn.addEventListener("click", ()=>{
@@ -76,6 +75,7 @@ howBuyBtn.addEventListener("click", ()=>{
 
 });
 
+
 howSellBtn.addEventListener("click", ()=>{
   howSellBtn.classList.remove("inactive-btn");
   howSellBtn.classList.add("filled-btn");
@@ -89,12 +89,3 @@ howSellBtn.addEventListener("click", ()=>{
   paymentBuyEl.style.display ="none";
 
 })
-
-
-
-
-
-
-
-
-

@@ -1475,6 +1475,7 @@ option{
   border-radius: 5px;
   padding: 5px;
   width: 230px;
+  margin-bottom: 20px;
 }
 .dashboard_body_feedbacks_container{
   display: none;
