@@ -1,5 +1,6 @@
-import {orders,} from "../../../Data/order.js";
+import {orders} from "../../../Data/order.js";
 import {formatCurrency} from "../utils.js";
+import{users,matchUser} from "../../../Data/user.js";
 
 const ngnEl = document.querySelector(".js_ngn_el");
 const overlay = document.querySelector(".js_overlay");
@@ -10,6 +11,16 @@ export const displayAvailableNGNOrder =(orders)=>{
 
   // display available order dynamically
   orders.forEach((orderItem)=>{
+
+    let totalOrder = 0;
+    let completedOrder = 0;
+    let matchingUser = matchUser(orderItem);
+    
+    totalOrder = matchingUser.buyOrder + matchingUser.sellOrder + matchingUser.cancelledOrder;
+    completedOrder = (((matchingUser.buyOrder + matchingUser.sellOrder)/totalOrder) * 100).toFixed(0);
+
+    let verified = matchingUser.advanceVerification === true ? "./public/icons/Verified.svg" : "";
+
     if(orderItem.type === "NGN"){
       let html = `
         <div class="row_head">
@@ -17,18 +28,18 @@ export const displayAvailableNGNOrder =(orders)=>{
           <div class="seller_container big">
 
             <div class="seller_container_image">
-              <img src="./public/avatar/${orderItem.dp}.svg" alt="">
+              <img src="./public/avatar/${matchingUser.dp}.svg" alt="">
             </div>
 
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <a href="./views/dashboard.html" target="_blank"><h5>${orderItem.username}</h5></a>
-                <img src="./public/icons/Verified.svg" alt="">
+                <a href="./views/dashboard.html" target="_blank"><h5>${matchingUser.username}</h5></a>
+                <img src="${verified}" alt=""></img>
               </div>
 
               <div class="seller_container_metrics">
-                <h5 class="light">128 Orders | 100%</h5>
+                <h5 class="light">${(totalOrder)} Orders | ${completedOrder}%</h5>
               </div>
 
             </div>
@@ -59,18 +70,18 @@ export const displayAvailableNGNOrder =(orders)=>{
             <div class="seller_container">
 
               <div class="seller_container_image">
-                <img src="./public/avatar/${orderItem.dp}.svg" alt="">
+                <img src="./public/avatar/${matchingUser.dp}.svg" alt="">
               </div>
 
               <div class="seller_container_user">
 
                 <div class="seller_container_username">
-                  <a href="./views/dashboard.html" target="_blank"><h5>${orderItem.username}</h5></a>
-                  <img src="./public/icons/Verified.svg" alt="">
+                  <a href="./views/dashboard.html" target="_blank"><h5>${matchingUser.username}</h5></a>
+                  <img src=${verified} alt="">
                 </div>
 
                 <div class="seller_container_metrics">
-                  <h5 class="light">128 Orders | 100%</h5>
+                  <h5 class="light">${totalOrder} Orders | ${completedOrder}%</h5>
                 </div>
 
               </div>

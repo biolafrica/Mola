@@ -1,4 +1,4 @@
-const user = [{
+export const users = [{
   id: "user_1",
   dp: "avatar_1",
   username: "biolafrica",
@@ -77,4 +77,16 @@ const user = [{
   cancelledOrder: 7,
   basicVerification: true,
   advanceVerification:true,
-}]
+}];
+
+export const matchUser = (orderItem)=>{
+  let matchingUser = {};
+  users.forEach((user)=>{
+    if(orderItem.userId === user.id){
+      matchingUser = user;
+    }
+
+  })
+
+  return matchingUser;
+}

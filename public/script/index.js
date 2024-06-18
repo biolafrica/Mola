@@ -99,6 +99,8 @@ form.addEventListener("input", (e)=>{
 
 });
 
+
+
 /*const displayAvailableOrder =(orders)=>{
 
   let displayNGN = "";
