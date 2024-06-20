@@ -1,3 +1,29 @@
+export let poundsOrder = [];
+export let nairaOrder = [];
+
+class Order {
+  id;
+  rate;
+  amount;
+  minimumOrder;
+  maximumOrder;
+  exchangeTerms;
+  type;
+  userId;
+
+  constructor(orderItem){
+    this.id = orderItem.id;
+    this.rate = orderItem.rate;
+    this.amount = orderItem.amount;
+    this.minimumOrder = orderItem.minimumOrder;
+    this.maximumOrder = orderItem.maximumOrder;
+    this.exchangeTerms= orderItem.exchangeTerms;
+    this.type= orderItem.type;
+    this.userId = orderItem.userId;
+  }
+
+}
+
 
 export const orders = [{
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -80,9 +106,42 @@ export const orders = [{
   userId: "user_4",
 }];
 
-export const matchOrder = (orderId)=>{
+orders.forEach((orderItem)=>{
+  if(orderItem.type === "NGN"){
+    nairaOrder.push(orderItem);
+
+  } else if (orderItem.type === "GBP"){
+    poundsOrder.push(orderItem)
+
+  }
+
+})
+
+poundsOrder.map((poundsOrderItem)=>{
+  return new Order(poundsOrderItem);
+})
+
+nairaOrder.map((nairaOrderItem)=>{
+  return new Order (nairaOrderItem);
+})
+
+
+
+export const poundsMatchOrder = (orderId)=>{
   let matchingOrder = {};
-  orders.forEach((orderItem)=>{
+  poundsOrder.forEach((orderItem)=>{
+    if(orderId === orderItem.id){
+      matchingOrder = orderItem;
+    }
+
+  })
+
+  return matchingOrder;
+}
+
+export const nairaMatchOrder = (orderId)=>{
+  let matchingOrder = {};
+  nairaOrder.forEach((orderItem)=>{
     if(orderId === orderItem.id){
       matchingOrder = orderItem;
     }

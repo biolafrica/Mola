@@ -1,8 +1,10 @@
-import {orders}  from "../../Data/order.js";
+import {orders, poundsOrder, nairaOrder}  from "../../Data/order.js";
 import { formatCurrency } from "./utils.js";
 import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";
 
+console.log(poundsOrder);
+console.log(nairaOrder);
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
@@ -70,8 +72,8 @@ howSellBtn.addEventListener("click", ()=>{
 });
 
 
-displayAvailableGBPOrder(orders);
-displayAvailableNGNOrder(orders);
+displayAvailableGBPOrder(poundsOrder);
+displayAvailableNGNOrder(nairaOrder);
 
 //search amount
 const form = document.querySelector(".js_amount_form");
