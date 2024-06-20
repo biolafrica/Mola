@@ -8,7 +8,6 @@ const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
 const nairaEl = document.querySelector(".js_buy_el");
 const poundEl = document.querySelector(".js_sell_el");
-const cancelBtn = document.querySelector(".js_cancel_btn");
 const howSellBtn = document.querySelector(".js_how_sell");
 const howBuyBtn = document.querySelector(".js_how_buy");
 const orderBuyEl = document.querySelector(".js_place_order_buy");
@@ -22,11 +21,6 @@ const overlay = document.querySelector(".js_overlay");
 const moreEl = document.querySelector(".js_more_info_popup");
 
 
-cancelBtn.addEventListener("click", ()=>{
-  overlay.style.display = "none";
-  moreEl.style.display = "none";
-   
-});
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
@@ -98,8 +92,6 @@ form.addEventListener("input", (e)=>{
   }
 
 });
-
-
 
 /*const displayAvailableOrder =(orders)=>{
 

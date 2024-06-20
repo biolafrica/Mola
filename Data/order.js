@@ -80,4 +80,16 @@ export const orders = [{
   userId: "user_4",
 }];
 
+export const matchOrder = (orderId)=>{
+  let matchingOrder = {};
+  orders.forEach((orderItem)=>{
+    if(orderId === orderItem.id){
+      matchingOrder = orderItem;
+    }
+
+  })
+
+  return matchingOrder;
+}
+
 

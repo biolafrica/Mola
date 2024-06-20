@@ -151,6 +151,7 @@ input[type="email"],
 input[type="password"],
 input[type="file"],
 input[type="search"],
+input[type="number"],
 select,
 textarea{
   font-family: "Roboto", sans-serif;
@@ -913,6 +914,15 @@ option{
   align-items: center;
   width: 80%;
   
+}
+
+.js_input_money_color{
+  border: 1px solid red;
+  border-radius: 5px;
+  
+}
+.js_limit_value_color{
+  color: red;
 }
 
 .input_money h4{
@@ -1929,6 +1939,8 @@ option{
   .more_info_popup{
     flex-direction: column-reverse;
     width: 100%;
+    
+    
   }
 
   .more_info_popup_left,
