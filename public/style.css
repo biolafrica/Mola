@@ -505,20 +505,33 @@ form button{
   gap: 15px;
 }
 
-.pagination_number{
+.pagination_number,
+.pagination_no{
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
 }
 
-.page{
+.page,
+.page_n{
   padding: 10px 20px;
   border-radius: 100px;
+  cursor: pointer;
+  
+}
+.page:hover,
+.page_n:hover{
+  background-color: var(--Layout-Background-light);
 }
 
-.filled_page{
+
+.filled_page,
+.filled_page_n{
   background-color: var(--Layout-Background-dark);
   color: var(--Text-dark);
+  padding: 10px 20px;
+  border-radius: 100px;
+  cursor: pointer;
 }
 
 .Buy_small_container{
