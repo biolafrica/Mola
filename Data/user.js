@@ -1,7 +1,7 @@
 export const users = [{
   id: "user_1",
   dp: "avatar_1",
-  username: "biolafrica",
+  username: "Biolafrica",
   buyOrder: 5,
   sellOrder: 8,
   cancelledOrder: 0,
@@ -11,7 +11,7 @@ export const users = [{
 {
   id: "user_2",
   dp: "avatar_3",
-  username: "susu",
+  username: "Susu",
   buyOrder: 33,
   sellOrder: 22,
   cancelledOrder: 0,
@@ -22,7 +22,7 @@ export const users = [{
 {
   id: "user_2",
   dp: "avatar_4",
-  username: "asake",
+  username: "Asake",
   buyOrder: 65,
   sellOrder: 2,
   cancelledOrder: 1,
@@ -32,7 +32,7 @@ export const users = [{
 {
   id: "user_3",
   dp: "avatar_2",
-  username: "baddo",
+  username: "Baddo",
   buyOrder: 45,
   sellOrder: 88,
   cancelledOrder: 0,

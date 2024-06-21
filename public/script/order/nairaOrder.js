@@ -46,12 +46,12 @@ export const displayAvailableNGNOrder = (nairaOrder)=>{
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <a href="./views/dashboard.html" target="_blank"><h5>${matchingUser.username}</h5></a>
+                <a href="./views/dashboard.html" target="_blank"><h6><b>${matchingUser.username}</b></h6></a>
                 <img src="${verified}" alt=""></img>
               </div>
 
               <div class="seller_container_metrics">
-                <h5 class="light">${(totalOrder)} Orders | ${completedOrder}%</h5>
+                <h6 class="light">${(totalOrder)} Orders | ${completedOrder}%</h6>
               </div>
 
             </div>
@@ -60,21 +60,21 @@ export const displayAvailableNGNOrder = (nairaOrder)=>{
 
           <div class="rate_container big">
             <h5 class="small_title secondary light">Rate:</h5>
-            <h3>${formatCurrency(orderItem.rate)}</h3>NGN
+            <h4>${formatCurrency(orderItem.rate)}</h4>NGN
           </div>
 
           <div class="Amount_available_container big">
             <h5 class="small_title secondary light">Available:</h5>
-            <h5 class="light">&#8358;${formatCurrency(orderItem.amount)}</h5>
+            <h6 class="light">&#8358;${formatCurrency(orderItem.amount)}</h6>
           </div>
 
           <div class="Limit_container big">
             <h5 class="small_title secondary light">Limit:</h5>
-            <h5 class="light">£${formatCurrency(orderItem.minimumOrder)} - £${formatCurrency(orderItem.maximumOrder)}</h5>
+            <h6 class="light">£${formatCurrency(orderItem.minimumOrder)} - £${formatCurrency(orderItem.maximumOrder)}</h6>
           </div>
 
           <div class="Buy_container big">
-            <button class="filled-btn js_buy_dash_btn" id="${orderItem.id}"><h5 id="${orderItem.id}">BUY NGN</h5></button>
+            <button class="filled-btn js_buy_dash_btn" id="${orderItem.id}"><h6 id="${orderItem.id}">BUY NGN</h6></button>
           </div>
 
           <!--for small and medium screen responsivenes-->
