@@ -744,8 +744,14 @@ form button {
 
 .order_details,
 .order_payment_details,
-.order_payment_status {
-  margin: 20px 0;
+.order_terms_details{
+  padding: 25px 0;
+  border-bottom: 1px solid var(--Border-light);
+}
+
+.order_payment_status{
+  padding: 25px 0;
+
 }
 
 .order_details_head,
