@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../public/style.css">
-</head>
-<body>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/style.css">
+  </head>
 
-  <div class="brand_header">
-    <div class="header_middle">
-      <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
-      <a href="../index.html"><h3><b>Mola</b></h3></a>
-    </div>
-  </div>
+  <body>
 
-  <div class="login_container">
-
-    <form action="">
-      <div class="form_text">
-        <h3><b>Welcome Back</b></h3>
-        <h4 class="secondary">Sign into your Mola account to continue</h4>
+    <div class="brand_header">
+      <div class="header_middle">
+        <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+        <a href="../index.html"><h3><b>Mola</b></h3></a>
       </div>
-        
-      <label for="email"><h4>Email:</h4></label>
-      <input type="text" placeholder="Enter email address" id="email" required> 
-      <div class="sub_text"></div>
+    </div>
 
-      <label for=""><h4>Password:</h4></label>
-      <input class="h3" type="password" placeholder="Enter password" id="password" required>
-      <div class="sub_text"></div>
+    <div class="login_container">
 
-      <a href="./reset1.html"><h5 class="Forgot_password">Forgot Password?</h5></a>
+      <form action="" id="loginForm">
+        <div class="form_text">
+          <h3><b>Welcome Back</b></h3>
+          <h4 class="secondary">Sign into your Mola account to continue</h4>
+        </div>
+          
+        <label for="email"><h4>Email:</h4></label>
+        <input type="text" placeholder="Enter email address" id="email" required> 
+        <div class="sub_text"></div>
 
-      <button class="filled-btn"><h5>Login</h5></button>
-      <a href="./register.html"><h5 class="create_mola"><b>Create a mola account</b></h5></a>
+        <label for=""><h4>Password:</h4></label>
+        <input class="h3" type="password" placeholder="Enter password" id="password" required>
+        <div class="sub_text"></div>
 
-    </form>
-  
-  </div>  
+        <a href="./reset1.html"><h5 class="Forgot_password">Forgot Password?</h5></a>
 
-  
-  
-</body>
+        <button class="filled-btn"><h5>Login</h5></button>
+        <a href="./register.html"><h5 class="create_mola"><b>Create a mola account</b></h5></a>
+
+      </form>
+    
+    </div>  
+
+    <script src="../public/script/login.js"></script>
+    
+  </body>
+
 </html>

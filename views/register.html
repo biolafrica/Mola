@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../public/style.css">
+
 </head>
 <body>
 
@@ -44,7 +45,7 @@
 
         <div class="form">
           <label for="emailAddress"><h4>*Email Address:</h4></label>
-          <input type="text" placeholder="Enter your email" id="emailAddress" required> 
+          <input type="email" placeholder="Enter your email" id="emailAddress" required> 
           <div class="sub_text"></div>
         </div>
 
@@ -66,7 +67,7 @@
 
         <div class="form"> 
           <label for="confirmPassword"><h4>*Confirm Password:</h4></label>
-          <input class="h3" type="text" placeholder="Re-enter password" id="confirmPassword" required>
+          <input class="h3" type="text" placeholder="Re-enter password" id="confirmPassword">
           <div class="sub_text"></div>
         </div>
       
@@ -81,7 +82,7 @@
         </label>
       </div>
         
-      <button class="filled-btn"><h5>Register</h5></button>
+      <button class="filled-btn js_register_btn"><h5>Register</h5></button>
       <h4 class="create_mola">
         Already have an account?<a href="./login.html"><b>Log In</b></a>
       </h4>
@@ -89,6 +90,8 @@
     </form>
     
   </div>  
+
+  <script src="../public/script/register.js"></script>
   
 </body>
 </html>
