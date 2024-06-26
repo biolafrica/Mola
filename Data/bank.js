@@ -13,8 +13,6 @@ export async function loadBanks(token){
       console.error("Failed to load banks", data);
       return [];
     }
-    return data;
-    
     
   } catch (error) {
     console.error("Error fetching banks", error);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../public/style.css">
   <title>Document</title>
-  <script src="../public/script.js" defer></script>
+  
 </head>
 <body>
 
@@ -175,9 +175,10 @@
 
   <section class="dashboard_container">
 
-    <div class="dashboard_head">
+    <div class="dashboard_head js_dashboard_head">
 
-      <div class="dashboard_head_top">
+      <!--<div class="dashboard_head_top js_dashboard_head_top">
+
         <div class="dashboard_head_top_dp">
           <img src="../public/avatar/avatar_13.svg" alt="">
         </div>
@@ -195,9 +196,10 @@
             <img src="../public/icons/Check Mark.svg" alt="">
           </div>
         </div>
+
       </div>
 
-      <div class="dasboard_head_bottom">
+      <div class="dasboard_head_bottom js_dasboard_head_bottom">
 
         <div class="dasboard_head_bottom_top">
 
@@ -236,7 +238,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
     </div>
 
@@ -736,34 +738,7 @@
 
   </section>
 
-  <script>
-    const adsBtn = document.querySelector(".js_ads_btn");
-    const feedbackBtn = document.querySelector(".js_feedback_btn");
-    const adsEl = document.querySelector(".dashboard_body_ads_container");
-    const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container");
-
-    adsBtn.addEventListener("click", ()=>{
-      adsBtn.classList.remove("text-btn");
-      adsBtn.classList.add("filled-btn");
-      feedbackBtn.classList.remove("filled-btn");
-      feedbackBtn.classList.add("text-btn");
-      adsEl.style.display = "initial";
-      feedbackEl.style.display= "none";
-  
-    })
-
-    feedbackBtn.addEventListener("click", ()=>{
-      feedbackBtn.classList.remove("text-btn");
-      feedbackBtn.classList.add("filled-btn");
-      adsBtn.classList.remove("filled-btn");
-      adsBtn.classList.add("text-btn");
-      adsEl.style.display = "none";
-      feedbackEl.style.display= "initial";
-  
-    })
-
-
-  </script>
+  <script type="module" src="../public/script/dashboard.js"></script>
 
 </body>
 </html>

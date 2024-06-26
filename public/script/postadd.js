@@ -15,14 +15,13 @@ bankOptionBtn.addEventListener('click', (e)=>{
   bankOptionEl.style.display = "initial";
   
 
-})
+});
 
 paymentCancel.addEventListener("click", ()=>{
   overlay.style.display = "none";
   bankOptionEl.style.display = "none";
 
-})
-
+});
 
 form.addEventListener("submit", async(e)=>{
   e.preventDefault();
@@ -62,20 +61,6 @@ form.addEventListener("submit", async(e)=>{
 
 });
 
-async function getAllAds(){
-  const response = await fetch ("http://127.0.0.1:8000/api/all-ads", {
-    method : 'GET',
-    headers : {"Authorization" : `Bearer ${token}`}
-  })
-
-  const data = await response.json();
-  console.log (data);
-
-}
-
-getAllAds();
-
-
 currencySelect.addEventListener("change", (e)=>{
   let selectedValue = e.target.value;
   if(selectedValue === "GBP"){
@@ -91,4 +76,4 @@ currencySelect.addEventListener("change", (e)=>{
   }
 
 
-})
+});
