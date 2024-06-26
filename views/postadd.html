@@ -211,47 +211,45 @@
   
       <!-- post form-->
       <div class="post_ads_form">
-        <form action="" class="post_ad_form">
+
+        <form action="" class="post_ad_form js_post_ad_form">
   
-          <label for=""><h4>I want to sell:</h4></label>
-          <select name="" id="ads_select_type">
+          <label for="adsSelectType"><h4>I want to sell:</h4></label>
+          <select name="" id="adsSelectType">
             <option value="NGN">NGN</option>
             <option value="GBP">GBP</option>
           </select>
   
-          <label for=""><h4>Total Amount:</h4></label>
+          <label for="amountInput"><h4>Total Amount:</h4></label>
           <div class="input_money">
-            <input type="text" placeholder="0.00" >
+            <input type="text" placeholder="0.00" id="amountInput" required>
             <h4 class="js_amount_currency">NGN</h4>
           </div>
           
-          <label for=""><h4>Rate:</h4></label>
+          <label for="rateInput"><h4>Rate:</h4></label>
           <div style="margin-bottom: 0;" class="input_money">
-            <input type="text" placeholder="0.00">
+            <input type="text" placeholder="0.00" id="rateInput">
             <h4>NGN</h4>
           </div>
           <h5 style="margin-bottom: 35px;">Your rate should be between N1,900.00 - 1,919.00</h5>
   
-  
-          <label for=""><h4>Max Order Limit:</h4></label>
+          <label for="minOrderInput"><h4>Max Order Limit:</h4></label>
           <div class="input_money">
-            <input type="text" placeholder="0.00" >
+            <input type="text" placeholder="0.00" id="maxOrderInput" required >
             <h4 class="max_order_currency">GBP</h4>
           </div>
          
-  
-          <label for=""><h4>Min Order limit:</h4></label>
+          <label for="maxOrderInput"><h4>Min Order limit:</h4></label>
           <div class="input_money">
-            <input type="text" placeholder="0.00" >
+            <input type="text" placeholder="0.00" id="minOrderInput" required>
             <h4 class="min_order_currency">GBP</h4>
           </div>
          
-  
-          <label for=""><h4>Pay Time Limit:</h4></label>
-          <select name="" id="pay_time_limit">
-            <option value="15mins">15 mins</option>
-            <option value="30mins">30 mins</option>
-            <option value="45mins">45 mins</option>
+          <label for="payTimeLimit"><h4>Pay Time Limit:</h4></label>
+          <select name="" id="payTimeLimit">
+            <option value="15">15 mins</option>
+            <option value="30">30 mins</option>
+            <option value="45">45 mins</option>
           </select>
   
           <div class="post_ads_form_bank">
@@ -294,8 +292,8 @@
 
           </div>
   
-          <label for=""><h4>Exchange Terms:</h4></label>
-          <textarea name="" id="" placeholder="Enter extra infromation for your buyer"></textarea>
+          <label for="exchangeTerm"><h4>Exchange Terms:</h4></label>
+          <textarea name="" id="exchangeTerm" placeholder="Enter extra infromation for your buyer" required></textarea>
   
           <button class="filled-btn "><h5>Submit</h5></button>
   
@@ -339,51 +337,7 @@
 
   </section>
 
-  <script>
-
-    const currencySelect = document.getElementById("ads_select_type");
-    const amountCurrency = document.querySelector(".js_amount_currency");
-    const maxOrderCurrency = document.querySelector(".max_order_currency");
-    const minOrderCurrency = document.querySelector(".min_order_currency");
-    const bankOptionBtn = document.querySelector(".select_bank_option");
-    const overlay = document.querySelector(".js_overlay");
-    const bankOptionEl = document.querySelector(".bank_option_popup");
-    const paymentCancel = document.querySelector(".payment_cancel");
-
-    bankOptionBtn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      overlay.style.display = "initial";
-      bankOptionEl.style.display = "initial";
-      
-
-    })
-
-    paymentCancel.addEventListener("click", ()=>{
-      overlay.style.display = "none";
-      bankOptionEl.style.display = "none";
-
-    })
-
-
-    currencySelect.addEventListener("change", (e)=>{
-      let selectedValue = e.target.value;
-      if(selectedValue === "GBP"){
-        amountCurrency.textContent = "GBP";
-        maxOrderCurrency.textContent = "NGN";
-        minOrderCurrency.textContent = "NGN";
-
-      } else if(selectedValue === "NGN"){
-        amountCurrency.textContent = "NGN";
-        maxOrderCurrency.textContent = "GBP";
-        minOrderCurrency.textContent = "GBP";
-
-      }
-
-
-    })
-
-    
-  </script>
+  <script type="module" src="../public/script/postadd.js"></script>
   
 </body>
 </html>

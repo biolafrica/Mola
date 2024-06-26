@@ -26,6 +26,7 @@ const popupInput = document.querySelector(".popup_sort_input");
 const popupBankCancel = document.querySelector(".popup_bank_cancel");
 const popupIconCancel = document.querySelector(".popup_bank_cancel_icon");
 const bankSubmitBtn = document.querySelector(".confirmBank");
+const token = localStorage.getItem("access");
 
 verifyEl.addEventListener("click", (e)=>{
   if(e.target === user_verification){
@@ -216,7 +217,6 @@ async function renderBanks(token){
 
 };
 
-const token = localStorage.getItem("access");
 renderBanks(token);
 
 bankSubmitBtn.addEventListener("click", async(e)=>{
@@ -226,7 +226,7 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
   const bank_account_number = (document.getElementById("accountNo")).value;
   const bank_sort_code = (document.getElementById("sortCode")).value;
   const bank_type = (document.querySelector(".js_popup_bank_type")).textContent;
-  const token = localStorage.getItem("access");
+
   const selectedBankType = bank_type === "GBP Bank Account" ? "GBP" : "NGN";
   const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : 0;
   console.log(token);
@@ -246,6 +246,7 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
         bank_account_name,
         bank_account_number,
         bank_sort_code :sortCodeChoice,
+        is_default: true
       })
     
     });
