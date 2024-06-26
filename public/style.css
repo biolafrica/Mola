@@ -1287,6 +1287,7 @@ option {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .add_bank_popup {
@@ -1320,6 +1321,10 @@ option {
 
 .bank_account_form_popup_body input {
   margin-bottom: 21px;
+}
+
+.no_sort_code{
+  display: none;
 }
 
 .light {
