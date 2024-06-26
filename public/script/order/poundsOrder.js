@@ -3,6 +3,7 @@ import{matchUser} from "../../../Data/user.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {formatCurrency} from "../utils/money.js";
+import{AuthenticateUser} from "../../../Data/user.js"
 
 
 const gbpEl = document.querySelector(".js_gbp_el");
@@ -11,6 +12,7 @@ const moreEl = document.querySelector(".js_more_info_popup");
 const paginationNumbersEl = document.getElementById("paginationNumbers");
 const prevPageEl = document.getElementById("prevPage");
 const nextPageEl = document.getElementById("nextPage");
+const token = localStorage.getItem("access");
 
 
 
@@ -137,9 +139,10 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
 
     gbpEl.innerHTML = displayGBP;
     renderPaginationNumbers();
-
+  
     document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
-      btn.addEventListener("click", (e)=>{
+      btn.addEventListener("click", async(e)=>{
+        await AuthenticateUser(token);
         overlay.style.display = "initial";
         moreEl.style.display = "flex";
         let orderId = e.target.id;

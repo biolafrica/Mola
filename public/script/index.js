@@ -2,9 +2,7 @@ import {orders, poundsOrder, nairaOrder}  from "../../Data/order.js";
 import { formatCurrency } from "./utils.js";
 import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";
-
-console.log(poundsOrder);
-console.log(nairaOrder);
+import { checkUser,getUserProfile } from "../../Data/user.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
@@ -21,6 +19,9 @@ const paymentSellEl = document.querySelector(".js_receive_payment_sell");
 const buyBtn = document.querySelector(".Js_buy_order_btn");
 const overlay = document.querySelector(".js_overlay");
 const moreEl = document.querySelector(".js_more_info_popup");
+const token = localStorage.getItem("access");
+const landingPageEl = document.querySelector(".js_landing_page");
+const headerRightEl = document.querySelector(".js_header_right");
 
 
 
@@ -94,6 +95,130 @@ form.addEventListener("input", (e)=>{
   }
 
 });
+
+async function renderLandingPage(){
+
+  let value = 
+  `
+  <div class="landing_new_user_container">
+    <a href="./views/login.html">
+      <button class="text-btn"><h5>Log In</h5></button>
+    </a>
+
+    <a href="./views/register.html">
+      <button class="filled-btn"><h5>Register</h5></button>
+    </a>
+  </div>
+  `;
+
+  let valueI = "";
+  let userContent = await checkUser(token);
+  let authenticatedUserContent = userContent === false ? value : valueI;
+  
+  let html =
+  `
+    <h2><b>Peer-to-Peer Currency Exchange with Zero Fees</b></h2>
+    <h3>Purchase any currency at your preferred exchange rates</h3>
+    ${authenticatedUserContent}
+
+  `;
+  landingPageEl.innerHTML = html;
+
+}
+renderLandingPage();
+
+async function renderHeader(){
+  let valueI = 
+  `
+    <a class="order_container" href="./views/history.html">
+      <img src="./public/icons/Receipt long.svg" alt="">
+      <h5>My Orders</h5>
+    </a>
+
+    <div class="profile_container">
+      <img src="./public/icons/Account circle.svg" alt="">
+      <h5 class="profile_none">My profile</h5>
+
+      <div class="profile_tooltip">
+
+        <div class="profile_tooltip_header"> 
+          <h5 style="padding-left: 20px;">Biolafrica</h5>
+          <div class="profile_verification_details">
+            <img src="./public/icons/Verified user.svg" alt="">
+            <h5 class="light">Intermediate Level Verified</h5>
+          </div>
+        </div>
+        
+        <div class="profile_tooltip_body">
+
+          <a class="profile_tooltip_body_nav" href="./views/dashboard.html">
+            <img src="./public/icons/Dashboard.svg" alt="">
+            <h4>Dashboard</h4>
+          </a>
+
+          <a class="profile_tooltip_body_nav" href="./views/verify.html">
+            <img src="./public/icons/Manage accounts.svg" alt="">
+            <h4>Account</h4>
+          </a>
+          
+          <a class="profile_tooltip_body_nav" href="./views/settings.html">
+            <img src="./public/icons/Settings.svg" alt="">
+            <h4>Settings</h4>
+          </a>
+
+        </div>
+
+        <div class="profile_tooltip_footer" >
+          <a class="profile_tooltip_footer_nav" href="./views/login.html">
+            <img class="secondary" src="./public/icons/Logout.svg" alt="">
+            <h4>Logout</h4>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="more_container">
+      <img src="./public/icons/Pending.svg" alt="">
+      <h5 class="more_none">More</h5>
+      <img src="./public/icons/Arrow drop down.svg" alt="">
+
+      <div class="more_tooltip">
+
+        <a class="more_tooltip_nav" href="./views/postadd.html">
+          <img src="./public/icons/Playlist add.svg" alt="">
+          <h4>Post New Ads</h4>
+        </a>
+
+        <a class="more_tooltip_nav" href="./views/history.html">
+          <img src="./public/icons/Format list bulleted.svg" alt="">
+          <h4>My Ads</h4>
+        </a>
+
+      </div>
+    </div>
+  `;
+
+  let value = 
+  ` <div class="landing_new_user_container">
+      <a href="./views/login.html">
+        <button class="text-btn"><h5>Log In</h5></button>
+      </a>
+
+      <a href="./views/register.html">
+        <button class="filled-btn"><h5>Register</h5></button>
+      </a>
+    </div>
+  `
+
+  let headerContent = await checkUser(token)
+  let authenticatedheaderContent = headerContent === false ? value : valueI;
+  headerRightEl .innerHTML = authenticatedheaderContent;
+
+
+}
+
+renderHeader();
 
 /*const displayAvailableOrder =(orders)=>{
 

@@ -3,6 +3,7 @@ import {formatCurrency} from "../utils.js";
 import{users,matchUser} from "../../../Data/user.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
+import {AuthenticateUser} from "../../../Data/user.js";
 
 const ngnEl = document.querySelector(".js_ngn_el");
 const overlay = document.querySelector(".js_overlay");
@@ -10,8 +11,9 @@ const moreEl = document.querySelector(".js_more_info_popup");
 const paginationNumbersEl = document.getElementById("paginationNo");
 const prevPageEl = document.getElementById("prevPages");
 const nextPageEl = document.getElementById("nextPages");
+const token = localStorage.getItem("access");
 
-export const displayAvailableNGNOrder = (nairaOrder)=>{
+export const displayAvailableNGNOrder =(nairaOrder)=>{
   let displayNGN = "";
   const nairaOrdersPerPage = 3;
   let nairaCurrentPage = 1;
@@ -138,7 +140,11 @@ export const displayAvailableNGNOrder = (nairaOrder)=>{
     renderNairaPaginationNumbers();
 
     document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
-      btn.addEventListener("click", (e)=>{
+      btn.addEventListener("click", async(e)=>{
+        const isAuthenticated = await AuthenticateUser(token);
+        if(!isAuthenticated){
+          return;
+        }
         overlay.style.display = "initial";
         moreEl.style.display = "flex";
         let orderId = e.target.id;

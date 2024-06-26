@@ -1323,7 +1323,8 @@ option {
   margin-bottom: 21px;
 }
 
-.no_sort_code{
+.no_sort_code,
+.no_landing_display{
   display: none;
 }
 

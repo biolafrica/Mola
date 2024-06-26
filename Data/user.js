@@ -112,3 +112,30 @@ export async function getUserProfile(token){
   }
 
 }
+
+export async function AuthenticateUser(token){
+  if(!token){
+    location.assign("../../../views/login.html");
+    return false;
+  }
+  const userProfile = await getUserProfile(token);
+  if(!userProfile){
+    location.assign("../../../views/login.html");
+    return false;
+  }
+
+  return true;
+}
+
+export async function checkUser(token, value, valueI){
+  if(!token){
+    return false;
+  }
+  const userProfile = await getUserProfile(token);
+  if(!userProfile){
+    return false;
+  }
+  return true;
+  
+
+}

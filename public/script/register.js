@@ -40,7 +40,7 @@ regBtn.addEventListener("click", async(e)=>{
       if(data.access && data.refresh){
         localStorage.setItem("access", data.access);
         localStorage.setItem("refresh", data.refresh);
-        //location.assign("../index.html");
+        location.assign("../index.html");
       }
       
     } catch (error) {
