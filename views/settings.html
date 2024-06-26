@@ -1,386 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../public/style.css">
-  <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style.css">
+    <title>Document</title>
+  </head>
+  
+  <body>
 
-  <!-- edit username popup screen -->
-  <div class="edit_username_container">
+    <!-- edit username popup screen -->
+    <div class="edit_username_container">
 
-    <div class="edit_username_container_head">
-      <h4>Edit Username</h4>
-      <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
-    </div>
-
-    <div class="edit_username_container_body">
-      <h4 class="secondary">Set your preferred username, Your real names are not allowed.</h4>
-
-      <form action="">
-        <label for=""><h4>Username:</h4></label>
-        <input type="text" placeholder="enter new username" required>
-        <div class="error_text"></div>
-
-        <div class="edit_username_container_button">
-          <button class="outlined-btn username_cancel_btn"><h5>Back</h5></button>
-          <button class="filled-btn"><h5>Confirm</h5></button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-
-  <!-- edit avatar popup screen -->
-  <div class="edit_avatar_container">
-
-    <div class="edit_avatar_container_head">
-      <h4>Edit Avatar</h4>
-      <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
-    </div>
-
-    <div class="edit_avatar_container_body">
-      <h4 class="secondary">Select an avatar to use as your profile picture.</h4>
-
-      <div class="avatar_list_container">
-
-        <div class="avatar_list_container_up">
-          <div class="avatar_icon"><img src="../public/avatar/avatar_1.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_2.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_3.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_4.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_5.svg" alt=""></div>
-        </div>
-
-        <div class="avatar_list_container_middle">
-          <div class="avatar_icon"><img src="../public/avatar/avatar_6.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_7.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_8.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_9.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_10.svg" alt=""></div>
-        </div>
-
-        <div class="avatar_list_container_down">
-          <div class="avatar_icon"><img src="../public/avatar/avatar_11.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_12.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_13.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_14.svg" alt=""></div>
-          <div class="avatar_icon"><img src="../public/avatar/avatar_15.svg" alt=""></div>
-        </div>
-
+      <div class="edit_username_container_head">
+        <h4>Edit Username</h4>
+        <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
       </div>
 
-      <div class="edit_avatar_container_button">
-        <button class="outlined-btn avatar_cancel_btn"><h4>Back</h4></button>
-        <button class="filled-btn"><h4>Confirm</h4></button>
+      <div class="edit_username_container_body">
+        <h4 class="secondary">Set your preferred username, Your real names are not allowed.</h4>
+
+        <form action="">
+          <label for=""><h4>Username:</h4></label>
+          <input type="text" placeholder="enter new username" required>
+          <div class="error_text"></div>
+
+          <div class="edit_username_container_button">
+            <button class="outlined-btn username_cancel_btn"><h5>Back</h5></button>
+            <button class="filled-btn"><h5>Confirm</h5></button>
+          </div>
+        </form>
       </div>
 
     </div>
 
-  </div>
+    <!-- edit avatar popup screen -->
+    <div class="edit_avatar_container">
 
-  <!-- change password popup screen -->
-  <div class="change_password_container">
+      <div class="edit_avatar_container_head">
+        <h4>Edit Avatar</h4>
+        <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
+      </div>
 
-    <div class="change_password_container_head">
-      <h4>Change Password</h4>
-      <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
-    </div>
+      <div class="edit_avatar_container_body">
+        <h4 class="secondary">Select an avatar to use as your profile picture.</h4>
 
-    <div class="edit_password_container_body">
-      
-      <form class="edit_password_form" action="">
+        <div class="avatar_list_container">
 
-        <label for="oldPassword"><h4>Old Password:</h4></label>
-        <input type="text" placeholder="Enter old username" required id="oldPassword">
-        <div class="password_error"></div>
+          <div class="avatar_list_container_up">
+            <div class="avatar_icon"><img src="../public/avatar/avatar_1.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_2.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_3.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_4.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_5.svg" alt=""></div>
+          </div>
 
-        <label for=""><h4>New Password:</h4></label>
-        <input type="text" placeholder="Enter new password" required>
-        <div class="password_error"></div>
+          <div class="avatar_list_container_middle">
+            <div class="avatar_icon"><img src="../public/avatar/avatar_6.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_7.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_8.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_9.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_10.svg" alt=""></div>
+          </div>
 
+          <div class="avatar_list_container_down">
+            <div class="avatar_icon"><img src="../public/avatar/avatar_11.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_12.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_13.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_14.svg" alt=""></div>
+            <div class="avatar_icon"><img src="../public/avatar/avatar_15.svg" alt=""></div>
+          </div>
 
-        <label for=""><h4>Confirm New Password:</h4></label>
-        <input type="text" placeholder="Confirm new username" required>
-        <div class="password_error"></div>
+        </div>
 
-        <div class="edit_username_container_button">
-          <button class="outlined-btn password_cancel_btn"><h4>Back</h4></button>
+        <div class="edit_avatar_container_button">
+          <button class="outlined-btn avatar_cancel_btn"><h4>Back</h4></button>
           <button class="filled-btn"><h4>Confirm</h4></button>
         </div>
 
+      </div>
 
-      </form>
     </div>
 
-    
+    <!-- change password popup screen -->
+    <div class="change_password_container">
 
-  </div>
+      <div class="change_password_container_head">
+        <h4>Change Password</h4>
+        <img class="js_iconCancel" src="../public/icons/Close small.svg" alt="">
+      </div>
 
-  <div class="overlay js_overlay"></div>
+      <div class="edit_password_container_body">
+        
+        <form class="edit_password_form" action="">
 
-  <header>
+          <label for="oldPassword"><h4>Old Password:</h4></label>
+          <input type="text" placeholder="Enter old username" required id="oldPassword">
+          <div class="password_error"></div>
 
-    <div class="header_left">
-      <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
-      <a href="../index.html"><h3><b>Mola</b></h3></a>
+          <label for=""><h4>New Password:</h4></label>
+          <input type="text" placeholder="Enter new password" required>
+          <div class="password_error"></div>
+
+
+          <label for=""><h4>Confirm New Password:</h4></label>
+          <input type="text" placeholder="Confirm new username" required>
+          <div class="password_error"></div>
+
+          <div class="edit_username_container_button">
+            <button class="outlined-btn password_cancel_btn"><h4>Back</h4></button>
+            <button class="filled-btn"><h4>Confirm</h4></button>
+          </div>
+
+
+        </form>
+      </div>
+
       
-    </div>
-
-    <div class="header_right">
-
-      <a class="order_container" href="/views/history.html">
-        <img src="../public/icons/Receipt long.svg" alt="">
-        <h5>My Orders</h5>
-      </a>
-
-      <div class="profile_container">
-        <img src="../public/icons/Account circle.svg" alt="">
-        <h5 class="profile_none">My profile</h5>
-
-        <div class="profile_tooltip">
-
-          <div class="profile_tooltip_header"> 
-            <h5 style="padding-left: 20px;">Biolafrica</h5>
-            <div class="profile_verification_details">
-              <img src="../public/icons/Verified user.svg" alt="">
-              <h5 class="light">Intermediate Level Verified</h5>
-            </div>
-          </div>
-          
-          <div class="profile_tooltip_body">
-
-            <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
-              <img src="../public/icons/Dashboard.svg" alt="">
-              <h4>Dashboard</h4>
-            </a>
-    
-            <a class="profile_tooltip_body_nav" href="/views/verify.html">
-              <img src="../public/icons/Manage accounts.svg" alt="">
-              <h4>Account</h4>
-            </a>
-            
-            <a class="profile_tooltip_body_nav" href="/views/settings.html">
-              <img src="../public/icons/Settings.svg" alt="">
-              <h4>Settings</h4>
-            </a>
-    
-          </div>
-    
-          <div class="profile_tooltip_footer" >
-            <a class="profile_tooltip_footer_nav" href="/views/login.html">
-              <img class="secondary" src="../public/icons/Logout.svg" alt="">
-              <h4>Logout</h4>
-            </a>
-    
-          </div>
-        </div>
-      </div>
-
-      <div class="more_container">
-        <img src="../public/icons/Pending.svg" alt="">
-        <h5 class="more_none">More</h5>
-        <img src="../public/icons/Arrow drop down.svg" alt="">
-
-        <div class="more_tooltip">
-
-          <a class="more_tooltip_nav" href="/views/postadd.html">
-            <img src="../public/icons/Playlist add.svg" alt="">
-            <h4>Post New Ads</h4>
-          </a>
-
-          <a class="more_tooltip_nav" href="/views/history.html">
-            <img src="../public/icons/Format list bulleted.svg" alt="">
-            <h4>My Ads</h4>
-          </a>
-    
-        </div>
-      </div>
 
     </div>
-  </header>
 
-  <div class="settings_container">
+    <div class="overlay js_overlay"></div>
 
-    <!-- profile  settings option container for small screen-->
-    <div class="profile_settings_small_heading_screen">
-      <button class="filled-btn">Profile</button>
-      <button class="text-btn">Notification</button>
-    </div>
+    <header>
 
-    <!-- profile settings screen -->
-    <div class="settings_sub_container">
-
-      <div class="settings_sub_container_left">
-
-        <a class="settings_sub_container_left_profile" href="#profile">
-          <img src="../public/icons/Person 3.svg" alt="">
-          <h4>Profile</h4>
-        </a>
-
-        <a class="settings_sub_container_left_notification" href="#notification">
-          <img src="../public/icons/Notifications.svg" alt="">
-          <h4>Notification</h4>
-        </a>
+      <div class="header_left">
+        <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+        <a href="../index.html"><h3><b>Mola</b></h3></a>
         
       </div>
 
-      <div class="settings_sub_container_right">
+      <div class="header_right">
 
-        <div class="settings_profile_container" id="profile">
-          <h3 class="setting_heading">Profile</h3>
+        <a class="order_container" href="/views/history.html">
+          <img src="../public/icons/Receipt long.svg" alt="">
+          <h5>My Orders</h5>
+        </a>
 
-          <div class="settings_profile_sub_container">
+        <div class="profile_container">
+          <img src="../public/icons/Account circle.svg" alt="">
+          <h5 class="profile_none">My profile</h5>
 
-            <div class="settings_profile_username">
+          <div class="profile_tooltip">
 
-              <div class="settings_profile_username_small_up">
-                <div class="settings_profile_username_left">
-
-                  <div class="settings_profile_username_left-icon">
-                    <img src="../public/icons/Person 4.svg" alt="">
-                  </div>
-
-                  <div class="settings_profile_username_left-text">
-                    <h4>Username</h4>
-                    <h5 class="light secondary">Set your preferred username. Real names are not allowed.</h5>
-                  </div>
-                  
-                </div>
-              </div>
-
-              <div class="settings_profile_username_small_down">
-                <div class="settings_profile_username_middle">
-                  <h4>biolafrica</h4>
-                </div>
-
-                <div class="settings_profile_username_right">
-                  <button class="filled-btn js_username_btn"><h5>Edit</h5></button>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="settings_profile_avatar">
-
-              <div class="settings_profile_avatar_small_up">
-
-                <div class="settings_profile_avatar_left">
-
-                  <div class="settings_profile_avatar_left-icon">
-                    <img src="../public/icons/Face.svg" alt="">
-                  </div>
-
-                  <div class="settings_profile_avatar_left-text">
-                    <h4>Avatar</h4>
-                    <h5 class="light secondary">Select an avatar that suit your personality</h5>
-                  </div>
-                  
-                </div>
-              </div>
-
-              <div class="settings_profile_avatar_small_down">
-                <div class="settings_profile_avatar_middle">
-                  <h4>AB</h4>
-                </div>
-
-                <div class="settings_profile_avatar_right">
-                  <button class="filled-btn js_avatar_btn"><h5>Edit</h5></button>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="settings_profile_password">
-
-              <div class="settings_profile_password_small_up">
-
-                <div class="settings_profile_password_left">
-
-                  <div class="settings_profile_password_left-icon">
-                    <img src="../public/icons/Password.svg" alt="">
-                  </div>
-
-                  <div class="settings_profile_password_left-text">
-                    <h4>Password</h4>
-                    <h5 class="light secondary">Reset your login password</h5>
-                  </div>
-                  
-                </div>
-              </div>
-
-              <div class="settings_profile_password_small_down">
-                <div class="settings_profile_password_middle">
-                  <h4>******</h4>
-                </div>
-
-                <div class="settings_profile_password_right">
-                  <button class="filled-btn js_password_btn"><h5>Edit</h5></button>
-                </div>
+            <div class="profile_tooltip_header"> 
+              <h5 style="padding-left: 20px;">Biolafrica</h5>
+              <div class="profile_verification_details">
+                <img src="../public/icons/Verified user.svg" alt="">
+                <h5 class="light">Intermediate Level Verified</h5>
               </div>
             </div>
             
+            <div class="profile_tooltip_body">
+
+              <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
+                <img src="../public/icons/Dashboard.svg" alt="">
+                <h4>Dashboard</h4>
+              </a>
+      
+              <a class="profile_tooltip_body_nav" href="/views/verify.html">
+                <img src="../public/icons/Manage accounts.svg" alt="">
+                <h4>Account</h4>
+              </a>
+              
+              <a class="profile_tooltip_body_nav" href="/views/settings.html">
+                <img src="../public/icons/Settings.svg" alt="">
+                <h4>Settings</h4>
+              </a>
+      
+            </div>
+      
+            <div class="profile_tooltip_footer" >
+              <a class="profile_tooltip_footer_nav" href="/views/login.html">
+                <img class="secondary" src="../public/icons/Logout.svg" alt="">
+                <h4>Logout</h4>
+              </a>
+      
+            </div>
           </div>
-          
+        </div>
+
+        <div class="more_container">
+          <img src="../public/icons/Pending.svg" alt="">
+          <h5 class="more_none">More</h5>
+          <img src="../public/icons/Arrow drop down.svg" alt="">
+
+          <div class="more_tooltip">
+
+            <a class="more_tooltip_nav" href="/views/postadd.html">
+              <img src="../public/icons/Playlist add.svg" alt="">
+              <h4>Post New Ads</h4>
+            </a>
+
+            <a class="more_tooltip_nav" href="/views/ads.html">
+              <img src="../public/icons/Format list bulleted.svg" alt="">
+              <h4>My Ads</h4>
+            </a>
+      
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="settings_container">
+
+      <!-- profile  settings option container for small screen-->
+      <div class="profile_settings_small_heading_screen">
+        <button class="filled-btn">Profile</button>
+        <button class="text-btn">Notification</button>
+      </div>
+
+      <!-- profile settings screen -->
+      <div class="settings_sub_container">
+
+        <div class="settings_sub_container_left">
+
+          <a class="settings_sub_container_left_profile" href="#profile">
+            <img src="../public/icons/Person 3.svg" alt="">
+            <h4>Profile</h4>
+          </a>
+
+          <a class="settings_sub_container_left_notification" href="#notification">
+            <img src="../public/icons/Notifications.svg" alt="">
+            <h4>Notification</h4>
+          </a>
           
         </div>
 
-        <div class="settings_notification_container" id="notification">
-          <h3 class="setting_heading">Notification</h3>
+        <div class="settings_sub_container_right">
 
-          <div class="settings_notification_email">
-            <div class="settings_notification_email_left">
+          <div class="settings_profile_container" id="profile">
+            <h3 class="setting_heading">Profile</h3>
 
-              <div class="settings_notification_email_icon">
-                <img src="../public/icons/Email.svg" alt="">
+            <div class="settings_profile_sub_container">
+
+              <div class="settings_profile_username">
+
+                <div class="settings_profile_username_small_up">
+                  <div class="settings_profile_username_left">
+
+                    <div class="settings_profile_username_left-icon">
+                      <img src="../public/icons/Person 4.svg" alt="">
+                    </div>
+
+                    <div class="settings_profile_username_left-text">
+                      <h4>Username</h4>
+                      <h5 class="light secondary">Set your preferred username. Real names are not allowed.</h5>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="settings_profile_username_small_down">
+                  <div class="settings_profile_username_middle">
+                    <h4>biolafrica</h4>
+                  </div>
+
+                  <div class="settings_profile_username_right">
+                    <button class="filled-btn js_username_btn"><h5>Edit</h5></button>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="settings_notification_email_text">
-                <h4>Email Notification</h4>
-                <h5 class="light secondary">Relevant update sent directly to your email</h5>
+              <div class="settings_profile_avatar">
+
+                <div class="settings_profile_avatar_small_up">
+
+                  <div class="settings_profile_avatar_left">
+
+                    <div class="settings_profile_avatar_left-icon">
+                      <img src="../public/icons/Face.svg" alt="">
+                    </div>
+
+                    <div class="settings_profile_avatar_left-text">
+                      <h4>Avatar</h4>
+                      <h5 class="light secondary">Select an avatar that suit your personality</h5>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="settings_profile_avatar_small_down">
+                  <div class="settings_profile_avatar_middle">
+                    <h4>AB</h4>
+                  </div>
+
+                  <div class="settings_profile_avatar_right">
+                    <button class="filled-btn js_avatar_btn"><h5>Edit</h5></button>
+                  </div>
+                </div>
+
               </div>
-            </div>
 
-            <div class="settings_notification_email_right">
-              <button class="inactive-btn js_enable_btn"><h5>Enabled</h5></button>
+              <div class="settings_profile_password">
 
+                <div class="settings_profile_password_small_up">
+
+                  <div class="settings_profile_password_left">
+
+                    <div class="settings_profile_password_left-icon">
+                      <img src="../public/icons/Password.svg" alt="">
+                    </div>
+
+                    <div class="settings_profile_password_left-text">
+                      <h4>Password</h4>
+                      <h5 class="light secondary">Reset your login password</h5>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="settings_profile_password_small_down">
+                  <div class="settings_profile_password_middle">
+                    <h4>******</h4>
+                  </div>
+
+                  <div class="settings_profile_password_right">
+                    <button class="filled-btn js_password_btn"><h5>Edit</h5></button>
+                  </div>
+                </div>
+              </div>
+              
             </div>
+            
+            
           </div>
 
-          <div class="settings_notification_sms">
+          <div class="settings_notification_container" id="notification">
+            <h3 class="setting_heading">Notification</h3>
 
-            <div class="settings_notification_sms_left">
-              <div class="settings_notification_sms_icon">
-                <img src="../public/icons/Phone iphone.svg" alt="">
+            <div class="settings_notification_email">
+              <div class="settings_notification_email_left">
+
+                <div class="settings_notification_email_icon">
+                  <img src="../public/icons/Email.svg" alt="">
+                </div>
+
+                <div class="settings_notification_email_text">
+                  <h4>Email Notification</h4>
+                  <h5 class="light secondary">Relevant update sent directly to your email</h5>
+                </div>
               </div>
-              <div class="settings_notification_sms_text">
-                <h4>SMS Notification</h4>
-                <h5 class="light secondary">Time dependent information directly to your phone</h5>
-              </div>
-            </div>
 
-            <div class="settings_notification_sms_right">
-              <button class="filled-btn js_enable_btn"><h5>Enable</h5></button>
-            </div>
+              <div class="settings_notification_email_right">
+                <button class="inactive-btn js_enable_btn"><h5>Enabled</h5></button>
 
-          </div>
-
-          <div class="settings_notification_push">
-            <div class="settings_notification_push_left">
-              <div class="settings_notification_push_icon">
-                <img src="../public/icons/Stream apps.svg" alt="">
-              </div>
-              <div class="settings_notification_push_text">
-                <h4>Push Notification</h4>
-                <h5 class="light secondary">In app notification on your device</h5>
               </div>
             </div>
 
-            <div class="settings_notification_push_right">
-              <button class="inactive-btn js_enable_btn"><h5>Enabled</h5></button>
+            <div class="settings_notification_sms">
+
+              <div class="settings_notification_sms_left">
+                <div class="settings_notification_sms_icon">
+                  <img src="../public/icons/Phone iphone.svg" alt="">
+                </div>
+                <div class="settings_notification_sms_text">
+                  <h4>SMS Notification</h4>
+                  <h5 class="light secondary">Time dependent information directly to your phone</h5>
+                </div>
+              </div>
+
+              <div class="settings_notification_sms_right">
+                <button class="filled-btn js_enable_btn"><h5>Enable</h5></button>
+              </div>
+
             </div>
+
+            <div class="settings_notification_push">
+              <div class="settings_notification_push_left">
+                <div class="settings_notification_push_icon">
+                  <img src="../public/icons/Stream apps.svg" alt="">
+                </div>
+                <div class="settings_notification_push_text">
+                  <h4>Push Notification</h4>
+                  <h5 class="light secondary">In app notification on your device</h5>
+                </div>
+              </div>
+
+              <div class="settings_notification_push_right">
+                <button class="inactive-btn js_enable_btn"><h5>Enabled</h5></button>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -389,123 +392,121 @@
 
     </div>
 
-  </div>
+    <section class="footers">
+      <div class="footer">
 
-  <section class="footers">
-    <div class="footer">
-
-      <div class="footer_left">
-        <h2><b>Mola</b></h2>
-      </div>
-  
-      <div class="footer_middle">
-        <a href=""><h4><b>Privacy and Terms</b></h4></a>
-        <a href=""><h4><b>About Mola</b></h4></a>
-        <a href=""><h4><b>Support</b></h4></a>
-      </div>
-  
-      <div class="footer_right">
-        <h4>Follow us</h4>
-        <div class="socials_icon">
-          <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
-          <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
-          <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
-          <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
+        <div class="footer_left">
+          <h2><b>Mola</b></h2>
         </div>
-  
-      </div>
-
-    </div>
-
-    <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
-
     
+        <div class="footer_middle">
+          <a href=""><h4><b>Privacy and Terms</b></h4></a>
+          <a href=""><h4><b>About Mola</b></h4></a>
+          <a href=""><h4><b>Support</b></h4></a>
+        </div>
+    
+        <div class="footer_right">
+          <h4>Follow us</h4>
+          <div class="socials_icon">
+            <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
+            <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
+            <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
+            <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
+          </div>
+    
+        </div>
 
-  </section>
+      </div>
 
+      <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
 
-  <script>
-    const avatarEditBtn = document.querySelector(".js_avatar_btn");
-    const usernameEditBtn = document.querySelector(".js_username_btn");
-    const passwordEditBtn = document.querySelector(".js_password_btn");
-    const avatarEl = document.querySelector(".edit_avatar_container");
-    const usernameEl = document.querySelector(".edit_username_container");
-    const passwordEl = document.querySelector(".change_password_container");
-    const overlay = document.querySelector(".js_overlay");
-    const passwordCancelBtn = document.querySelector(".password_cancel_btn");
-    const avatarCancelBtn = document.querySelector(".avatar_cancel_btn");
-    const usernameCancelBtn = document.querySelector(".username_cancel_btn");
-
-    avatarEditBtn.addEventListener("click", ()=>{
-      overlay.style.display = "initial";
-      avatarEl.style.display = "initial";
-
-
-    });
-
-    avatarCancelBtn.addEventListener("click", ()=>{
-      overlay.style.display = "none";
-      avatarEl.style.display = "none";
-
-    });
-
-    usernameEditBtn.addEventListener('click', ()=>{
-      overlay.style.display = "initial";
-      usernameEl.style.display = "initial";
-
-    });
-
-    usernameCancelBtn.addEventListener("click", ()=>{
-      overlay.style.display = "none";
-      usernameEl.style.display = "none";
       
-    });
 
-    passwordEditBtn.addEventListener("click", ()=>{
-      overlay.style.display = "initial";
-      passwordEl.style.display = "initial";
-    });
+    </section>
 
-    passwordCancelBtn.addEventListener("click", ()=>{
-      overlay.style.display = "none";
-      passwordEl.style.display = "none";
-      
-    })
 
-    document.querySelectorAll(".js_iconCancel").forEach((icon)=>{
-      icon.addEventListener("click", ()=>{
+    <script>
+      const avatarEditBtn = document.querySelector(".js_avatar_btn");
+      const usernameEditBtn = document.querySelector(".js_username_btn");
+      const passwordEditBtn = document.querySelector(".js_password_btn");
+      const avatarEl = document.querySelector(".edit_avatar_container");
+      const usernameEl = document.querySelector(".edit_username_container");
+      const passwordEl = document.querySelector(".change_password_container");
+      const overlay = document.querySelector(".js_overlay");
+      const passwordCancelBtn = document.querySelector(".password_cancel_btn");
+      const avatarCancelBtn = document.querySelector(".avatar_cancel_btn");
+      const usernameCancelBtn = document.querySelector(".username_cancel_btn");
+
+      avatarEditBtn.addEventListener("click", ()=>{
+        overlay.style.display = "initial";
+        avatarEl.style.display = "initial";
+
+
+      });
+
+      avatarCancelBtn.addEventListener("click", ()=>{
         overlay.style.display = "none";
         avatarEl.style.display = "none";
+
+      });
+
+      usernameEditBtn.addEventListener('click', ()=>{
+        overlay.style.display = "initial";
+        usernameEl.style.display = "initial";
+
+      });
+
+      usernameCancelBtn.addEventListener("click", ()=>{
+        overlay.style.display = "none";
         usernameEl.style.display = "none";
+        
+      });
+
+      passwordEditBtn.addEventListener("click", ()=>{
+        overlay.style.display = "initial";
+        passwordEl.style.display = "initial";
+      });
+
+      passwordCancelBtn.addEventListener("click", ()=>{
+        overlay.style.display = "none";
         passwordEl.style.display = "none";
+        
+      })
+
+      document.querySelectorAll(".js_iconCancel").forEach((icon)=>{
+        icon.addEventListener("click", ()=>{
+          overlay.style.display = "none";
+          avatarEl.style.display = "none";
+          usernameEl.style.display = "none";
+          passwordEl.style.display = "none";
+
+        })
 
       })
 
-    })
-
-    document.querySelectorAll(".js_enable_btn").forEach((btn)=>{
-      btn.addEventListener("click", ()=>{
-        if (btn.textContent === "Enable"){
-          btn.classList.remove("filled-btn");
-          btn.classList.add("inactive-btn");
-          btn.innerHTML = "<h5>Enabled</5>";
-          console.log("name")
+      document.querySelectorAll(".js_enable_btn").forEach((btn)=>{
+        btn.addEventListener("click", ()=>{
+          if (btn.textContent === "Enable"){
+            btn.classList.remove("filled-btn");
+            btn.classList.add("inactive-btn");
+            btn.innerHTML = "<h5>Enabled</5>";
+            console.log("name")
 
 
 
-        } else if(btn.textContent === "Enabled"){
-          btn.classList.remove("inactive-btn");
-          btn.classList.add("filled-btn");
-          btn.innerHTML = "<h5>Enable</h5>";
+          } else if(btn.textContent === "Enabled"){
+            btn.classList.remove("inactive-btn");
+            btn.classList.add("filled-btn");
+            btn.innerHTML = "<h5>Enable</h5>";
 
-        }
+          }
+        })
+
       })
 
-    })
 
 
-
-  </script>
-  
-</body>
+    </script>
+    
+  </body>
 </html>

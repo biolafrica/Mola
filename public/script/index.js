@@ -190,7 +190,7 @@ async function renderHeader(){
           <h4>Post New Ads</h4>
         </a>
 
-        <a class="more_tooltip_nav" href="./views/history.html">
+        <a class="more_tooltip_nav" href="./views/ads.html">
           <img src="./public/icons/Format list bulleted.svg" alt="">
           <h4>My Ads</h4>
         </a>

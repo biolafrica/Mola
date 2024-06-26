@@ -11,54 +11,56 @@
     <header>
 
       <div class="header_left">
-        <img src="../public/icons/Currency exchange.svg" alt="">
-        <h3><b>Mola</b></h3>
+        <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+        <a href="../index.html"><h3><b>Mola</b></h3></a>
+        
       </div>
   
       <div class="header_right">
   
-        <div class="order_container">
+        <a class="order_container" href="/views/history.html">
           <img src="../public/icons/Receipt long.svg" alt="">
           <h5>My Orders</h5>
-        </div>
+        </a>
   
         <div class="profile_container">
           <img src="../public/icons/Account circle.svg" alt="">
-          <h5>My profile</h5>
+          <h5 class="profile_none">My profile</h5>
   
           <div class="profile_tooltip">
   
-            <div class="profile_tooltip_header">
-              <h5>Biolafrica</h5>
+            <div class="profile_tooltip_header"> 
+              <h5 style="padding-left: 20px;">Biolafrica</h5>
               <div class="profile_verification_details">
                 <img src="../public/icons/Verified user.svg" alt="">
-                <h4>Intermediate Level Verified</h4>
+                <h5 class="light">Intermediate Level Verified</h5>
               </div>
             </div>
             
             <div class="profile_tooltip_body">
-              <div class="profile_tooltip_body_nav">
+  
+              <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
                 <img src="../public/icons/Dashboard.svg" alt="">
                 <h4>Dashboard</h4>
-              </div>
+              </a>
       
-              <div class="profile_tooltip_body_nav">
+              <a class="profile_tooltip_body_nav" href="/views/verify.html">
                 <img src="../public/icons/Manage accounts.svg" alt="">
                 <h4>Account</h4>
-              </div>
+              </a>
               
-              <div class="profile_tooltip_body_nav">
+              <a class="profile_tooltip_body_nav" href="/views/settings.html">
                 <img src="../public/icons/Settings.svg" alt="">
                 <h4>Settings</h4>
-              </div>
+              </a>
       
             </div>
       
-            <div class="profile_tooltip_footer">
-              <div class="profile_tooltip_footer_nav">
-                <img src="../public/icons/Logout.svg" alt="">
+            <div class="profile_tooltip_footer" >
+              <a class="profile_tooltip_footer_nav" href="/views/login.html">
+                <img class="secondary" src="../public/icons/Logout.svg" alt="">
                 <h4>Logout</h4>
-              </div>
+              </a>
       
             </div>
           </div>
@@ -66,23 +68,23 @@
   
         <div class="more_container">
           <img src="../public/icons/Pending.svg" alt="">
-          <h5>More</h5>
+          <h5 class="more_none">More</h5>
           <img src="../public/icons/Arrow drop down.svg" alt="">
   
           <div class="more_tooltip">
-            <div class="more_tooltip_nav">
+  
+            <a class="more_tooltip_nav" href="/views/postadd.html">
               <img src="../public/icons/Playlist add.svg" alt="">
               <h4>Post New Ads</h4>
-            </div>
-            <div class="more_tooltip_nav">
+            </a>
+  
+            <a class="more_tooltip_nav" href="/views/ads.html">
               <img src="../public/icons/Format list bulleted.svg" alt="">
               <h4>My Ads</h4>
-            </div>
+            </a>
       
           </div>
         </div>
-  
-      
   
       </div>
     </header>
@@ -120,31 +122,31 @@
         <div class="ads_table_head">
 
           <div class="ads_column head">
-            <h4>Ad ID</h4>
-            <h4>Type</h4>
+            <h6>Ad ID</h6>
+            <h6>Type</h6>
           </div>
   
           <div class="amount_column head">
-            <h4>Available Amount</h4>
-            <h4>Sold Amount</h4>
+            <h6>Available Amount</h6>
+            <h6>Sold Amount</h6>
           </div>
     
           <div class="rate_column head">
-            <h4>Rate</h4>
-            <h4>Limit</h4>
+            <h6>Rate</h6>
+            <h6>Limit</h6>
           </div>
     
           <div class="time_column head">
-            <h4>Time Created</h4>
-            <h4>Time Edited</h4>
+            <h6>Time Created</h6>
+            <h6>Time Edited</h6>
           </div>
     
           <div class="status_ads_column head">
-            <h4>Status</h4>
+            <h6>Status</h6>
           </div>
     
           <div class="action_column head">
-            <h4>Action</h4>
+            <h6>Action</h6>
           </div>
   
         </div>
@@ -156,8 +158,8 @@
             <div class="ads_column">
   
               <div class="Title">
-                <h4><b>Buy(NGN)</b></h4> 
-                <h4>mola12345</h4> 
+                <h6><b>Buy(NGN)</b></h6> 
+                <h6>mola12345</h6> 
               </div>
   
             </div>
@@ -165,13 +167,13 @@
             <div class="amount_column">
   
               <div class="Title">
-                <h4 class="title_s_name">Amount Available</h4> 
-                <h4>N15,000.00</h4> 
+                <h6 class="title_s_name">Amount Available</h6> 
+                <h6>N15,000.00</h6> 
               </div>
   
               <div class="Title"> 
-                <h4 class="title_name">Sold Amount</h4> 
-                <h4>N0.00</h4> 
+                <h6 class="title_name">Sold Amount</h6> 
+                <h6>N0.00</h6> 
               </div>
   
             </div>
@@ -179,33 +181,33 @@
             <div class="rate_column">
 
               <div class="Title">
-                <h4 class="title_s_name">Rate</h4> 
-                <h4>N1,900.00</h4> 
+                <h6 class="title_s_name">Rate</h6> 
+                <h6>N1,900.00</h6> 
               </div>
   
               <div class="Title"> 
-                <h4 class="title_name">Limit</h4> 
-                <h4>£100.00 - £500.00</h4> 
+                <h6 class="title_name">Limit</h6> 
+                <h6>£100.00 - £500.00</h6> 
               </div>
 
             </div>
       
             <div class="time_column">
               <div class="Title">
-                <h4 class="title_s_name">Time Created</h4> 
-                <h4>2024-05-21 | 04:41</h4> 
+                <h6 class="title_s_name">Time Created</h6> 
+                <h6>2024-05-21 | 04:41</h6> 
               </div>
   
               <div class="Title"> 
-                <h4 class="title_name">Time Edited</h4> 
-                <h4>2024-05-21 | 04:41</h4> 
+                <h6 class="title_name">Time Edited</h6> 
+                <h6>2024-05-21 | 04:41</h6> 
               </div>
             </div>
       
             <div class="status_ads_column">
               <div class="Title"> 
-                <h4 class="title_name">Status</h4> 
-                <h4>Active</h4> 
+                <h6 class="title_name">Status</h6> 
+                <h6>Active</h6> 
               </div>
             </div>
     
@@ -507,6 +509,7 @@
           </div>
   
         </div>
+
       </div>
 
       

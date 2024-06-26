@@ -1,501 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../public/style.css">
-</head>
-<body>
-  
 
-  <header>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/style.css">
+  </head>
 
-    <div class="header_left">
-      <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
-      <a href="../index.html"><h3><b>Mola</b></h3></a>
-      
-    </div>
-
-    <div class="header_right">
-
-      <a class="order_container" href="/views/history.html">
-        <img src="../public/icons/Receipt long.svg" alt="">
-        <h5>My Orders</h5>
-      </a>
-
-      <div class="profile_container">
-        <img src="../public/icons/Account circle.svg" alt="">
-        <h5 class="profile_none">My profile</h5>
-
-        <div class="profile_tooltip">
-
-          <div class="profile_tooltip_header"> 
-            <h5 style="padding-left: 20px;">Biolafrica</h5>
-            <div class="profile_verification_details">
-              <img src="../public/icons/Verified user.svg" alt="">
-              <h5 class="light">Intermediate Level Verified</h5>
-            </div>
-          </div>
-          
-          <div class="profile_tooltip_body">
-
-            <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
-              <img src="../public/icons/Dashboard.svg" alt="">
-              <h4>Dashboard</h4>
-            </a>
+  <body>
     
-            <a class="profile_tooltip_body_nav" href="/views/verify.html">
-              <img src="../public/icons/Manage accounts.svg" alt="">
-              <h4>Account</h4>
-            </a>
+
+    <header>
+
+      <div class="header_left">
+        <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
+        <a href="../index.html"><h3><b>Mola</b></h3></a>
+        
+      </div>
+
+      <div class="header_right">
+
+        <a class="order_container" href="/views/history.html">
+          <img src="../public/icons/Receipt long.svg" alt="">
+          <h5>My Orders</h5>
+        </a>
+
+        <div class="profile_container">
+          <img src="../public/icons/Account circle.svg" alt="">
+          <h5 class="profile_none">My profile</h5>
+
+          <div class="profile_tooltip">
+
+            <div class="profile_tooltip_header"> 
+              <h5 style="padding-left: 20px;">Biolafrica</h5>
+              <div class="profile_verification_details">
+                <img src="../public/icons/Verified user.svg" alt="">
+                <h5 class="light">Intermediate Level Verified</h5>
+              </div>
+            </div>
             
-            <a class="profile_tooltip_body_nav" href="/views/settings.html">
-              <img src="../public/icons/Settings.svg" alt="">
-              <h4>Settings</h4>
-            </a>
-    
-          </div>
-    
-          <div class="profile_tooltip_footer" >
-            <a class="profile_tooltip_footer_nav" href="/views/login.html">
-              <img class="secondary" src="../public/icons/Logout.svg" alt="">
-              <h4>Logout</h4>
-            </a>
-    
+            <div class="profile_tooltip_body">
+
+              <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
+                <img src="../public/icons/Dashboard.svg" alt="">
+                <h4>Dashboard</h4>
+              </a>
+      
+              <a class="profile_tooltip_body_nav" href="/views/verify.html">
+                <img src="../public/icons/Manage accounts.svg" alt="">
+                <h4>Account</h4>
+              </a>
+              
+              <a class="profile_tooltip_body_nav" href="/views/settings.html">
+                <img src="../public/icons/Settings.svg" alt="">
+                <h4>Settings</h4>
+              </a>
+      
+            </div>
+      
+            <div class="profile_tooltip_footer" >
+              <a class="profile_tooltip_footer_nav" href="/views/login.html">
+                <img class="secondary" src="../public/icons/Logout.svg" alt="">
+                <h4>Logout</h4>
+              </a>
+      
+            </div>
           </div>
         </div>
+
+        <div class="more_container">
+          <img src="../public/icons/Pending.svg" alt="">
+          <h5 class="more_none">More</h5>
+          <img src="../public/icons/Arrow drop down.svg" alt="">
+
+          <div class="more_tooltip">
+
+            <a class="more_tooltip_nav" href="/views/postadd.html">
+              <img src="../public/icons/Playlist add.svg" alt="">
+              <h4>Post New Ads</h4>
+            </a>
+
+            <a class="more_tooltip_nav" href="/views/ads.html">
+              <img src="../public/icons/Format list bulleted.svg" alt="">
+              <h4>My Ads</h4>
+            </a>
+      
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="order_history_container">
+      <h3 class="order_history_title">All Orders</h3>
+
+      <!--<div class="history_metrics">
+
+        <div class="total">
+          <h4>Total</h4>
+          <h2>126</h2>
+        </div>
+
+        <div class="progress">
+          <h4>In Progress</h4>
+          <h2>126</h2>
+        </div>
+
+        <div class="completed">
+          <h4>Completed</h4>
+          <h2>126</h2>
+        </div>
+
+        <div class="cancelled">
+          <h4>Cancelled</h4>
+          <h2>126</h2>
+        </div>
+
+      </div>-->
+
+      <div class="history_filter">
+
+        <div class="history_status_filter">
+          <button class="filled-btn"><h5>Active</h5></button>
+          <button class="text-btn"><h5>Completed</h5></button>
+          <button class="text-btn"><h5>Cancelled</h5></button>
+        
+        </div>
+
+        <div class="history_type_filter">
+          <select name="" id="order-type">
+            <option value="all">All</option>
+            <option value="sell">Sell</option>
+            <option value="buy">Buy</option>
+          </select>
+        </div>
+
       </div>
 
-      <div class="more_container">
-        <img src="../public/icons/Pending.svg" alt="">
-        <h5 class="more_none">More</h5>
-        <img src="../public/icons/Arrow drop down.svg" alt="">
+      <div class="history_table">
 
-        <div class="more_tooltip">
+        <div class="history_table_head">
 
-          <a class="more_tooltip_nav" href="/views/postadd.html">
-            <img src="../public/icons/Playlist add.svg" alt="">
-            <h4>Post New Ads</h4>
-          </a>
+          <div class="date_column head">
+            <h6>Date</h6>
+            <h6>Type</h6>
+          </div>
 
-          <a class="more_tooltip_nav" href="/views/history.html">
-            <img src="../public/icons/Format list bulleted.svg" alt="">
-            <h4>My Ads</h4>
-          </a>
+          <div class="sent_column head">
+            <h6>Sent</h6>
+            <h6>Rate</h6>
+          </div>
     
+          <div class="receive_column head">
+            <h6>Received</h6>
+          </div>
+    
+          <div class="counterparty_column head">
+            <h6>Counterparty</h6>
+          </div>
+    
+          <div class="status_column head">
+            <h6>Status</h6>
+          </div>
+    
+          <div class="orderID_column head">
+            <h6>OrderID</h6>
+          </div>
+
         </div>
+
+        <div class="history_table_body_container">
+
+          <div class="history_table_body">
+
+            <div class="date_column">
+
+              <div class="Title">
+                <h6><b>Buy(NGN)</b></h6> 
+                <h6>22-01-2024 | 16:04</h6> 
+              </div>
+
+            </div>
+    
+            <div class="sent_column">
+
+              <div class="Title">
+                <h6 class="title_s_name">Sent</h6> 
+                <h6 style="margin-bottom: 20px;">£15.00</h6> 
+              </div>
+
+              <div class="Title"> 
+                <h6 class="title_name">Rate</h6> 
+                <h6>N1,900.00</h6> 
+              </div>
+
+            </div>
+      
+            <div class="receive_column">
+              <div class="Title"> 
+                <h6 class="title_name">Received</h6> 
+                <h6>N20,000.00</h6> 
+              </div>
+            </div>
+      
+            <div class="counterparty_column">
+              <div class="Title"> 
+                <h6 class="title_name">Counterparty</h6> 
+                <h6><b>Biolafrica</b></h6> 
+              </div>
+            </div>
+      
+            <div class="status_column">
+              <div class="Title"> 
+                <h6 class="title_name">Status</h6> 
+                <h6>In Progress</h6> 
+              </div>
+            </div>
+    
+            <div class="orderID_column">
+              <div class="Title"> 
+                <h6 class="title_name">Order ID</h6> 
+                <h6>mola12345</h6> 
+              </div>
+            </div>
+    
+          </div>
+
+          <div class="history_table_body">
+
+            <div class="date_column">
+
+              <div class="Title">
+                <h4><b>Buy(NGN)</b></h4> 
+                <h4>22-01-2024 | 16:04</h4> 
+              </div>
+
+            </div>
+    
+            <div class="sent_column">
+
+              <div class="Title">
+                <h4 class="title_s_name">Sent</h4> 
+                <h4 style="margin-bottom: 20px;">£15.00</h4> 
+              </div>
+
+              <div class="Title"> 
+                <h4 class="title_name">Rate</h4> 
+                <h4>N1,900.00</h4> 
+              </div>
+
+            </div>
+      
+            <div class="receive_column">
+              <div class="Title"> 
+                <h4 class="title_name">Received</h4> 
+                <h4>N20,000.00</h4> 
+              </div>
+            </div>
+      
+            <div class="counterparty_column">
+              <div class="Title"> 
+                <h4 class="title_name">Counterparty</h4> 
+                <h4><b>Biolafrica</b></h4> 
+              </div>
+            </div>
+      
+            <div class="status_column">
+              <div class="Title"> 
+                <h4 class="title_name">Status</h4> 
+                <h4>completed</h4> 
+              </div>
+            </div>
+    
+            <div class="orderID_column">
+              <div class="Title"> 
+                <h4 class="title_name">Order ID</h4> 
+                <h4>mola12345</h4> 
+              </div>
+            </div>
+    
+          </div>
+
+          <div class="history_table_body">
+
+            <div class="date_column">
+
+              <div class="Title">
+                <h4><b>Buy(NGN)</b></h4> 
+                <h4>22-01-2024 | 16:04</h4> 
+              </div>
+
+            </div>
+    
+            <div class="sent_column">
+
+              <div class="Title">
+                <h4 class="title_s_name">Sent</h4> 
+                <h4 style="margin-bottom: 20px;">£15.00</h4> 
+              </div>
+
+              <div class="Title"> 
+                <h4 class="title_name">Rate</h4> 
+                <h4>N1,900.00</h4> 
+              </div>
+
+            </div>
+      
+            <div class="receive_column">
+              <div class="Title"> 
+                <h4 class="title_name">Received</h4> 
+                <h4>N20,000.00</h4> 
+              </div>
+            </div>
+      
+            <div class="counterparty_column">
+              <div class="Title"> 
+                <h4 class="title_name">Counterparty</h4> 
+                <h4><b>Biolafrica</b></h4> 
+              </div>
+            </div>
+      
+            <div class="status_column">
+              <div class="Title"> 
+                <h4 class="title_name">Status</h4> 
+                <h4>In Progress</h4> 
+              </div>
+            </div>
+    
+            <div class="orderID_column">
+              <div class="Title"> 
+                <h4 class="title_name">Order ID</h4> 
+                <h4>mola12345</h4> 
+              </div>
+            </div>
+    
+          </div>
+
+          <div class="history_table_body">
+
+            <div class="date_column">
+
+              <div class="Title">
+                <h4><b>Buy(NGN)</b></h4> 
+                <h4>22-01-2024 | 16:04</h4> 
+              </div>
+
+            </div>
+    
+            <div class="sent_column">
+
+              <div class="Title">
+                <h4 class="title_s_name">Sent</h4> 
+                <h4 style="margin-bottom: 20px;">£15.00</h4> 
+              </div>
+
+              <div class="Title"> 
+                <h4 class="title_name">Rate</h4> 
+                <h4>N1,900.00</h4> 
+              </div>
+
+            </div>
+      
+            <div class="receive_column">
+              <div class="Title"> 
+                <h4 class="title_name">Received</h4> 
+                <h4>N20,000.00</h4> 
+              </div>
+            </div>
+      
+            <div class="counterparty_column">
+              <div class="Title"> 
+                <h4 class="title_name">Counterparty</h4> 
+                <h4><b>Biolafrica</b></h4> 
+              </div>
+            </div>
+      
+            <div class="status_column">
+              <div class="Title"> 
+                <h4 class="title_name">Status</h4> 
+                <h4>In Progress</h4> 
+              </div>
+            </div>
+    
+            <div class="orderID_column">
+              <div class="Title"> 
+                <h4 class="title_name">Order ID</h4> 
+                <h4>mola12345</h4> 
+              </div>
+            </div>
+    
+          </div>
+
+          <div class="history_table_body">
+
+            <div class="date_column">
+
+              <div class="Title">
+                <h4><b>Buy(NGN)</b></h4> 
+                <h4>22-01-2024 | 16:04</h4> 
+              </div>
+
+            </div>
+    
+            <div class="sent_column">
+
+              <div class="Title">
+                <h4 class="title_s_name">Sent</h4> 
+                <h4 style="margin-bottom: 20px;">£15.00</h4> 
+              </div>
+
+              <div class="Title"> 
+                <h4 class="title_name">Rate</h4> 
+                <h4>N1,900.00</h4> 
+              </div>
+
+            </div>
+      
+            <div class="receive_column">
+              <div class="Title"> 
+                <h4 class="title_name">Received</h4> 
+                <h4>N20,000.00</h4> 
+              </div>
+            </div>
+      
+            <div class="counterparty_column">
+              <div class="Title"> 
+                <h4 class="title_name">Counterparty</h4> 
+                <h4><b>Biolafrica</b></h4> 
+              </div>
+            </div>
+      
+            <div class="status_column">
+              <div class="Title"> 
+                <h4 class="title_name">Status</h4> 
+                <h4>In Progress</h4> 
+              </div>
+            </div>
+    
+            <div class="orderID_column">
+              <div class="Title"> 
+                <h4 class="title_name">Order ID</h4> 
+                <h4>mola12345</h4> 
+              </div>
+            </div>
+    
+          </div>
+
+        </div>
+        
+
       </div>
 
     </div>
-  </header>
 
-  <div class="order_history_container">
-    <h3 class="order_history_title">All Orders</h3>
+    <div class="pagination">
+      <img src="../public/icons/Keyboard arrow left.svg" alt="">
 
-    <!--<div class="history_metrics">
-
-      <div class="total">
-        <h4>Total</h4>
-        <h2>126</h2>
+      <div class="pagination_number">
+        <div class="page filled_page"><h4>1</h4></div>
+        <div class="page"><h4>2</h4></div>
+        <div class="page"><h4>3</h4></div>
       </div>
 
-      <div class="progress">
-        <h4>In Progress</h4>
-        <h2>126</h2>
-      </div>
-
-      <div class="completed">
-        <h4>Completed</h4>
-        <h2>126</h2>
-      </div>
-
-      <div class="cancelled">
-        <h4>Cancelled</h4>
-        <h2>126</h2>
-      </div>
-
-    </div>-->
-
-    <div class="history_filter">
-
-      <div class="history_status_filter">
-        <button class="filled-btn"><h5>Active</h5></button>
-        <button class="text-btn"><h5>Completed</h5></button>
-        <button class="text-btn"><h5>Cancelled</h5></button>
-       
-      </div>
-
-      <div class="history_type_filter">
-        <select name="" id="order-type">
-          <option value="all">All</option>
-          <option value="sell">Sell</option>
-          <option value="buy">Buy</option>
-        </select>
-      </div>
+      <img src="../public/icons/Keyboard arrow right.svg" alt="">
 
     </div>
 
-    <div class="history_table">
+    <section class="footers">
+      <div class="footer">
 
-      <div class="history_table_head">
-
-        <div class="date_column head">
-          <h4>Date</h4>
-          <h4>Type</h4>
+        <div class="footer_left">
+          <h2><b>Mola</b></h2>
         </div>
-
-        <div class="sent_column head">
-          <h4>Sent</h4>
-          <h4>Rate</h4>
+    
+        <div class="footer_middle">
+          <a href=""><h4><b>Privacy and Terms</b></h4></a>
+          <a href=""><h4><b>About Mola</b></h4></a>
+          <a href=""><h4><b>Support</b></h4></a>
         </div>
-  
-        <div class="receive_column head">
-          <h4>Received</h4>
-        </div>
-  
-        <div class="counterparty_column head">
-          <h4>Counterparty</h4>
-        </div>
-  
-        <div class="status_column head">
-          <h4>Status</h4>
-        </div>
-  
-        <div class="orderID_column head">
-          <h4>OrderID</h4>
+    
+        <div class="footer_right">
+          <h4>Follow us</h4>
+          <div class="socials_icon">
+            <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
+            <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
+            <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
+            <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
+          </div>
+    
         </div>
 
       </div>
 
-      <div class="history_table_body_container">
+      <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
 
-        <div class="history_table_body">
-
-          <div class="date_column">
-
-            <div class="Title">
-              <h4><b>Buy(NGN)</b></h4> 
-              <h4>22-01-2024 | 16:04</h4> 
-            </div>
-
-          </div>
-  
-          <div class="sent_column">
-
-            <div class="Title">
-              <h4 class="title_s_name">Sent</h4> 
-              <h4 style="margin-bottom: 20px;">£15.00</h4> 
-            </div>
-
-            <div class="Title"> 
-              <h4 class="title_name">Rate</h4> 
-              <h4>N1,900.00</h4> 
-            </div>
-
-          </div>
-    
-          <div class="receive_column">
-            <div class="Title"> 
-              <h4 class="title_name">Received</h4> 
-              <h4>N20,000.00</h4> 
-            </div>
-          </div>
-    
-          <div class="counterparty_column">
-            <div class="Title"> 
-              <h4 class="title_name">Counterparty</h4> 
-              <h4><b>Biolafrica</b></h4> 
-            </div>
-          </div>
-    
-          <div class="status_column">
-            <div class="Title"> 
-              <h4 class="title_name">Status</h4> 
-              <h4>In Progress</h4> 
-            </div>
-          </div>
-  
-          <div class="orderID_column">
-            <div class="Title"> 
-              <h4 class="title_name">Order ID</h4> 
-              <h4>mola12345</h4> 
-            </div>
-          </div>
-  
-        </div>
-
-        <div class="history_table_body">
-
-          <div class="date_column">
-
-            <div class="Title">
-              <h4><b>Buy(NGN)</b></h4> 
-              <h4>22-01-2024 | 16:04</h4> 
-            </div>
-
-          </div>
-  
-          <div class="sent_column">
-
-            <div class="Title">
-              <h4 class="title_s_name">Sent</h4> 
-              <h4 style="margin-bottom: 20px;">£15.00</h4> 
-            </div>
-
-            <div class="Title"> 
-              <h4 class="title_name">Rate</h4> 
-              <h4>N1,900.00</h4> 
-            </div>
-
-          </div>
-    
-          <div class="receive_column">
-            <div class="Title"> 
-              <h4 class="title_name">Received</h4> 
-              <h4>N20,000.00</h4> 
-            </div>
-          </div>
-    
-          <div class="counterparty_column">
-            <div class="Title"> 
-              <h4 class="title_name">Counterparty</h4> 
-              <h4><b>Biolafrica</b></h4> 
-            </div>
-          </div>
-    
-          <div class="status_column">
-            <div class="Title"> 
-              <h4 class="title_name">Status</h4> 
-              <h4>completed</h4> 
-            </div>
-          </div>
-  
-          <div class="orderID_column">
-            <div class="Title"> 
-              <h4 class="title_name">Order ID</h4> 
-              <h4>mola12345</h4> 
-            </div>
-          </div>
-  
-        </div>
-
-        <div class="history_table_body">
-
-          <div class="date_column">
-
-            <div class="Title">
-              <h4><b>Buy(NGN)</b></h4> 
-              <h4>22-01-2024 | 16:04</h4> 
-            </div>
-
-          </div>
-  
-          <div class="sent_column">
-
-            <div class="Title">
-              <h4 class="title_s_name">Sent</h4> 
-              <h4 style="margin-bottom: 20px;">£15.00</h4> 
-            </div>
-
-            <div class="Title"> 
-              <h4 class="title_name">Rate</h4> 
-              <h4>N1,900.00</h4> 
-            </div>
-
-          </div>
-    
-          <div class="receive_column">
-            <div class="Title"> 
-              <h4 class="title_name">Received</h4> 
-              <h4>N20,000.00</h4> 
-            </div>
-          </div>
-    
-          <div class="counterparty_column">
-            <div class="Title"> 
-              <h4 class="title_name">Counterparty</h4> 
-              <h4><b>Biolafrica</b></h4> 
-            </div>
-          </div>
-    
-          <div class="status_column">
-            <div class="Title"> 
-              <h4 class="title_name">Status</h4> 
-              <h4>In Progress</h4> 
-            </div>
-          </div>
-  
-          <div class="orderID_column">
-            <div class="Title"> 
-              <h4 class="title_name">Order ID</h4> 
-              <h4>mola12345</h4> 
-            </div>
-          </div>
-  
-        </div>
-
-        <div class="history_table_body">
-
-          <div class="date_column">
-
-            <div class="Title">
-              <h4><b>Buy(NGN)</b></h4> 
-              <h4>22-01-2024 | 16:04</h4> 
-            </div>
-
-          </div>
-  
-          <div class="sent_column">
-
-            <div class="Title">
-              <h4 class="title_s_name">Sent</h4> 
-              <h4 style="margin-bottom: 20px;">£15.00</h4> 
-            </div>
-
-            <div class="Title"> 
-              <h4 class="title_name">Rate</h4> 
-              <h4>N1,900.00</h4> 
-            </div>
-
-          </div>
-    
-          <div class="receive_column">
-            <div class="Title"> 
-              <h4 class="title_name">Received</h4> 
-              <h4>N20,000.00</h4> 
-            </div>
-          </div>
-    
-          <div class="counterparty_column">
-            <div class="Title"> 
-              <h4 class="title_name">Counterparty</h4> 
-              <h4><b>Biolafrica</b></h4> 
-            </div>
-          </div>
-    
-          <div class="status_column">
-            <div class="Title"> 
-              <h4 class="title_name">Status</h4> 
-              <h4>In Progress</h4> 
-            </div>
-          </div>
-  
-          <div class="orderID_column">
-            <div class="Title"> 
-              <h4 class="title_name">Order ID</h4> 
-              <h4>mola12345</h4> 
-            </div>
-          </div>
-  
-        </div>
-
-        <div class="history_table_body">
-
-          <div class="date_column">
-
-            <div class="Title">
-              <h4><b>Buy(NGN)</b></h4> 
-              <h4>22-01-2024 | 16:04</h4> 
-            </div>
-
-          </div>
-  
-          <div class="sent_column">
-
-            <div class="Title">
-              <h4 class="title_s_name">Sent</h4> 
-              <h4 style="margin-bottom: 20px;">£15.00</h4> 
-            </div>
-
-            <div class="Title"> 
-              <h4 class="title_name">Rate</h4> 
-              <h4>N1,900.00</h4> 
-            </div>
-
-          </div>
-    
-          <div class="receive_column">
-            <div class="Title"> 
-              <h4 class="title_name">Received</h4> 
-              <h4>N20,000.00</h4> 
-            </div>
-          </div>
-    
-          <div class="counterparty_column">
-            <div class="Title"> 
-              <h4 class="title_name">Counterparty</h4> 
-              <h4><b>Biolafrica</b></h4> 
-            </div>
-          </div>
-    
-          <div class="status_column">
-            <div class="Title"> 
-              <h4 class="title_name">Status</h4> 
-              <h4>In Progress</h4> 
-            </div>
-          </div>
-  
-          <div class="orderID_column">
-            <div class="Title"> 
-              <h4 class="title_name">Order ID</h4> 
-              <h4>mola12345</h4> 
-            </div>
-          </div>
-  
-        </div>
-
-      </div>
       
 
-    </div>
-
-  </div>
-
-  <div class="pagination">
-    <img src="../public/icons/Keyboard arrow left.svg" alt="">
-
-    <div class="pagination_number">
-      <div class="page filled_page"><h4>1</h4></div>
-      <div class="page"><h4>2</h4></div>
-      <div class="page"><h4>3</h4></div>
-    </div>
-
-    <img src="../public/icons/Keyboard arrow right.svg" alt="">
-
-  </div>
-
-  <section class="footers">
-    <div class="footer">
-
-      <div class="footer_left">
-        <h2><b>Mola</b></h2>
-      </div>
-  
-      <div class="footer_middle">
-        <a href=""><h4><b>Privacy and Terms</b></h4></a>
-        <a href=""><h4><b>About Mola</b></h4></a>
-        <a href=""><h4><b>Support</b></h4></a>
-      </div>
-  
-      <div class="footer_right">
-        <h4>Follow us</h4>
-        <div class="socials_icon">
-          <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
-          <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
-          <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
-          <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
-        </div>
-  
-      </div>
-
-    </div>
-
-    <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
-
+    </section>
     
-
-  </section>
+  </body>
   
-</body>
 </html>
