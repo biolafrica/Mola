@@ -1,4 +1,4 @@
-import {orders, poundsOrder, nairaOrder}  from "../../Data/order.js";
+import {orders, poundsOrder, nairaOrder}  from "../../Data/orders.js";
 import { formatCurrency } from "./utils.js";
 import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";

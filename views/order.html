@@ -8,6 +8,126 @@
   </head>
 
   <body>
+    <!--payment confirmation popup-->
+    <div class="payment_confirmation_popup">
+
+      <div class="payment_confirmation_popup_heading">
+        <h4>Payment Confirmation</h4>
+        <img src="../public/icons/Cancel.svg" alt="">
+      </div>
+
+      <div class="payment_confirmation_popup_body">
+        <h4>Please confirm that you transferred £20,000:00 to the bank account below;</h4>
+        <div class="payment_confirmation_popup_bank">
+
+          <div class="payment_confirmation_popup_bank_head">
+            <h4>ACCOUNT DETAILS</h4>
+          </div>
+
+          <div class="payment_confirmation_popup_bank_body">
+
+            <div class="payment_confirmation_popup_bank_details">
+              <h4>Name</h4>
+              <h4>Abiodun Biobaku</h4>
+            </div>
+
+            <div class="payment_confirmation_popup_bank_details">
+              <h4>Bank Name</h4>
+              <h4>Llyods Bank</h4>
+            </div>
+
+            <div class="payment_confirmation_popup_bank_details">
+              <h4>Account Number</h4>
+              <h4>0121615892</h4>
+            </div>
+
+            <div class="payment_confirmation_popup_bank_details">
+              <h4>Sort Code</h4>
+              <h4>01-02-03</h4>
+            </div>
+
+          </div>
+
+          <div class="payment_confirmation_popup_bank_confirm">
+            <div class="checkbox-container">
+              <input type="checkbox" id="registerCheckbox">
+              <label for="registerCheckbox">
+                <h4>I have made the payment</h4>
+              </label>
+            </div>
+          </div>
+
+          <div class="payment_confirmation_popup_bank_button">
+            <button class="inactive-btn"><h5>Cancel</h5></button>
+            <button class="filled-btn"><h5>Confirm Payment</h5></button>
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cancel_order_popup">
+
+      <div class="cancel_order_popup_heading">
+        <h4>Payment Confirmation</h4>
+        <img src="../public/icons/Cancel.svg" alt="">
+      </div>
+
+      <div class="cancel_order_popup_body">
+
+        <h4>Why do you want to cancel ?</h4>
+
+        <form action="">
+
+          <div class="bank_network_container">
+            <input type="radio" name="category" id="bankNetwork" value="Bank network issue">
+            <label for="bankNetwork">Bank network issue</label>
+          </div>
+
+          <div class="seller_requirement_container">
+            <input type="radio" name="category" id="sellerRequirement" value="I didn't meet seller requirement">
+            <label for="sellerRequirement">I didn't meet seller requirement</label>
+          </div>
+
+          <div class="extra_fee_container">
+            <input type="radio" name="category" id="extraFee" value="seller is asking for extra fee">
+            <label for="extraFee">Seller is asking for extra fee</label>
+          </div>
+
+          <div class="no_response_container">
+            <input type="radio" name="category" id="noResponse" value="No response from seller">
+            <label for="noResponse">No response from seller</label>
+          </div>
+
+          <div class="not_buying_container">
+            <input type="radio" name="category" id="notBuying" value="Not interested in buying anymore">
+            <label for="notBuying">Not interested in buying anymore</label>
+          </div>
+
+        </form>
+
+        <div class="payment_confirmation_popup_bank_confirm">
+          <div class="checkbox-container">
+            <input type="checkbox" id="registerCheckbox">
+            <label for="registerCheckbox">
+              <h4>I have not paid the seller</h4>
+            </label>
+          </div>
+        </div>
+
+        <div class="payment_confirmation_popup_bank_button">
+          <button class="inactive-btn"><h5>Back</h5></button>
+          <button class="filled-btn"><h5>Cancel order</h5></button>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+    <div class="overlay js_overlay"></div>
 
     <header>
 
@@ -92,7 +212,9 @@
 
     <div class="order_head">
       <div class="order_head_left">
-        <h3>Pay seller within: <span><b>15 : 00</b></span></h3>
+        <h3>Pay seller within: 
+          <span><b class="js_order_timer">15 : 00</b></span>
+        </h3>
       </div>
 
       <div class="order_head_right">
@@ -204,8 +326,15 @@
               </div>
     
               <div class="order_payment_status_body">
-                <button class="filled-btn"><h5>Transferred</h5></button>
-                <button class="text-btn"><h5>Cancel Order</h5></button>
+                
+                <button class="filled-btn js_transferred">
+                  <h5>Transferred</h5>
+                </button>
+
+                <button class="text-btn js_cancelled">
+                  <h5>Cancel Order</h5>
+                </button>
+
               </div>
             </div>
 
@@ -282,7 +411,6 @@
   
     </section>
 
-
-    
+    <script type="module" src="../public/script/order.js"></script>
   </body>
 </html>

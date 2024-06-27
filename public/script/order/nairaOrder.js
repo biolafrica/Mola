@@ -1,4 +1,4 @@
-import {orders,nairaMatchOrder,nairaOrder} from "../../../Data/order.js";
+import {orders,nairaMatchOrder,nairaOrder} from "../../../Data/orders.js";
 import {formatCurrency} from "../utils.js";
 import{users,matchUser} from "../../../Data/user.js";
 import {verified, verifyType} from "../utils/verification.js";
