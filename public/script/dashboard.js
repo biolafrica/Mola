@@ -40,8 +40,6 @@ async function renderDashboardHead(){
   const options = {year: "numeric", month: "long"};
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 
-
-
   let html = 
   `
   <div class="dashboard_head_top js_dashboard_head_top">
@@ -110,16 +108,3 @@ async function renderDashboardHead(){
 }
 
 renderDashboardHead();
-
-async function getAllAds(){
-  const response = await fetch ("http://127.0.0.1:8000/api/all-ads", {
-    method : 'GET',
-    headers : {"Authorization" : `Bearer ${token}`}
-  })
-
-  const data = await response.json();
-  console.log (data);
-
-}
-
-getAllAds();

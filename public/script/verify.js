@@ -1,4 +1,5 @@
 import {loadBanks} from "../../Data/bank.js";
+import { getUserProfile } from "../../Data/user.js";
 
 const verifyEl = document.querySelector(".user_verification_left_container");
 const verifyCont = document.querySelector(".user_verification_right_container");
@@ -114,6 +115,107 @@ popupIconCancel.addEventListener("click", ()=>{
 
 })
 
+async function renderUserDetails(){
+  let detailsEl = document.querySelector(".js_user_details");
+  let user = await getUserProfile(token);
+  const date = new Date(user.registration_date);
+  const options = {year: "numeric", month: "long"};
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+  
+  let html = 
+  `
+    <div class="user_image">
+      <img style="width: 80px; height: 80px;" src="../public/images/3D Avatars.svg" alt="">
+    </div>
+
+    <div class="user_primary_details">
+      <h3>${user.username}</h3>
+
+      <div class="joined_container">
+        <img src="../public/icons/Date range.svg" alt="">
+        <h4>Joined ${formattedDate}</h4>
+      </div>
+
+      <div class="verification_container">
+
+        <div class="user_basic">
+          <h4>Basic Verification</h4>
+          <img src="../public/icons/Cancel.svg" alt="">
+        </div>
+
+        <div class="user_intermediate">
+          <h4>Intermediate Verification</h4>
+          <img src="../public/icons/Cancel.svg" alt="">
+        </div>
+      </div>
+
+    </div>
+
+  `;
+  detailsEl.innerHTML = html;
+
+
+}
+
+async function renderProfile(){
+  const profileEl = document.querySelector(".js_personal_information");
+  let user = await getUserProfile(token);
+
+  let html = 
+  `
+    <h3>Personal Information</h3>
+
+    <div class="personal_information_name">
+      <h4 class="secondary">Name</h4>
+      <h4>${user.first_name} ${user.last_name}</h4>
+    </div>
+    
+    <div class="personal_information_email">
+      <h4 class="secondary">Email Address</h4>
+      <h4>${user.email_address}</h4>
+    </div>
+
+    <div class="personal_information_phone">
+      <h4 class="secondary">Phone Number</h4>
+      <h4>${user.phone_number}</h4>
+    </div>
+
+    <div class="personal_information_country">
+      <h4 class="secondary">Country</h4>
+      <h4>${user.country}</h4>
+    </div>
+  `;
+
+  profileEl.innerHTML = html;
+};
+
+async function verificationDetails(){
+  const emailEl = document.querySelector(".js_email");
+  const phoneEl = document.querySelector(".js_phone_number");
+  const verificationEl = document.querySelector(".js_verification");
+  const addressEl = document.querySelector(".js_proof_address");
+  let user = await getUserProfile(token);
+  let verifiedIcon = user.verification = true ? "Check Mark" : "Error";
+  let email = user.email_address ||"Not Enabled";
+  let phoneNumber = user.phone_number || "Not Enabled";
+
+  
+  let emailHTML = 
+  `
+    <img src="../public/icons/${verifiedIcon}.svg" alt="">
+    <h6 class="light js_email">${email}</h6>
+  `;
+  
+  let phoneHTML = 
+  `
+    <img src="../public/icons/${verifiedIcon}.svg" alt="">
+    <h5 class="light">${phoneNumber}</h5>
+  `;
+  emailEl.innerHTML = emailHTML;
+  phoneEl.innerHTML = phoneHTML;
+ 
+}
+
 async function renderBanks(token){
   let banklistEl = document.querySelector(".js_bank_account_list_container");
 
@@ -218,6 +320,10 @@ async function renderBanks(token){
 };
 
 renderBanks(token);
+renderProfile();
+renderUserDetails();
+verificationDetails();
+
 
 bankSubmitBtn.addEventListener("click", async(e)=>{
   e.preventDefault();
@@ -267,4 +373,6 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
   }
 
 
-})
+});
+
+console.log(await getUserProfile(token));
