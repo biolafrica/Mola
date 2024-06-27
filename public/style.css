@@ -1792,6 +1792,10 @@ option {
     margin: 0px auto;
 
   }
+  .ads_table_body:hover{
+    background-color: black;
+
+  }
 
   .head {
     display: none;

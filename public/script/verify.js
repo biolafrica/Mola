@@ -257,6 +257,7 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
       overlay.style.display = "none";
       bankPopupEl.style.display = "none";
       bankBtn.value = "Add_Bank";
+      renderBanks(token);
     }
 
     
