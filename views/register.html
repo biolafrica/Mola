@@ -32,13 +32,13 @@
           <div class="form">
             <label for="firstName"><h4>*First Name:</h4></label>
             <input type="text" placeholder="Enter first name" id="firstName" required> 
-            <div class="sub_text"></div>
+            <div class="first_name_sub_text"></div>
           </div>
 
           <div class="form">
             <label for="lastName"><h4>*Last Name:</h4></label>
             <input type="text" placeholder="Enter last name" id="lastName" required> 
-            <div class="sub_text"></div>
+            <div class="last_name_sub_text"></div>
           </div>
 
         </div>
@@ -48,13 +48,13 @@
           <div class="form">
             <label for="emailAddress"><h4>*Email Address:</h4></label>
             <input type="email" placeholder="Enter your email" id="emailAddress" required> 
-            <div class="sub_text"></div>
+            <div class="email_address_sub_text"></div>
           </div>
 
           <div class="form">
             <label for="Username"><h4>*Username:</h4></label>
             <input type="text" placeholder="Enter username" id="username" required> 
-            <div class="sub_text"></div>
+            <div class="username_sub_text"></div>
           </div>
 
         </div>
@@ -63,14 +63,14 @@
 
           <div class="form">
             <label for="password"><h4>*Password:</h4></label>
-            <input class="h3" type="text" placeholder="Enter password" id="password" required>
-            <div class="sub_text"></div>
+            <input class="h3" type="password" placeholder="Enter password" id="password" required>
+            <div class="password_sub_text"></div>
           </div>
 
           <div class="form"> 
             <label for="confirmPassword"><h4>*Confirm Password:</h4></label>
-            <input class="h3" type="text" placeholder="Re-enter password" id="confirmPassword">
-            <div class="sub_text"></div>
+            <input class="h3" type="password" placeholder="Re-enter password" id="confirmPassword" required>
+            <div class="confirmPassword_sub_text"></div>
           </div>
         
         </div>
@@ -78,9 +78,9 @@
         <h4>* Indicates a required field.</h4>
 
         <div class="checkbox-container">
-          <input type="checkbox" id="registerCheckbox">
+          <input type="checkbox" id="registerCheckbox" required>
           <label for="registerCheckbox">
-            <h4>I have read and agree to the <a href="#"><b>term of use.</b></a></h4>
+            <h4 id="checkbox_text">I have read and agree to the <a href="#"><b class="check_text">term of use.</b></a></h4>
           </label>
         </div>
           

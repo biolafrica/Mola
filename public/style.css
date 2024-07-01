@@ -1672,13 +1672,35 @@ option {
 
 /* error page */
 .email_sub_text,
-.password_sub_text{
+.password_sub_text,
+.confirmPassword_sub_text,
+.password_sub_text,
+.first_name_sub_text,
+.last_name_sub_text,
+.email_address_sub_text,
+.username_sub_text{
   color: red;
   margin-bottom: 20px;
 }
 
 .error_input{
   border: 1px solid red;
+}
+
+/* success popup */
+.success_popup{
+  display: none;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 14px 16px;
+  max-width: 350px;
+  background-color: white;
+  box-shadow: var(--elevate-1);
+  position: fixed;
+  right: 5px;
+  top: 5px;
 }
 
 
