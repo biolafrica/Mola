@@ -13,11 +13,12 @@
 
       <div class="payment_confirmation_popup_heading">
         <h4>Payment Confirmation</h4>
-        <img src="../public/icons/Cancel.svg" alt="">
+        <img src="../public/icons/Close small.svg" alt="">
       </div>
 
       <div class="payment_confirmation_popup_body">
         <h4>Please confirm that you transferred £20,000:00 to the bank account below;</h4>
+
         <div class="payment_confirmation_popup_bank">
 
           <div class="payment_confirmation_popup_bank_head">
@@ -27,51 +28,52 @@
           <div class="payment_confirmation_popup_bank_body">
 
             <div class="payment_confirmation_popup_bank_details">
-              <h4>Name</h4>
+              <h4 class="secondary">Name</h4>
               <h4>Abiodun Biobaku</h4>
             </div>
 
             <div class="payment_confirmation_popup_bank_details">
-              <h4>Bank Name</h4>
+              <h4 class="secondary">Bank Name</h4>
               <h4>Llyods Bank</h4>
             </div>
 
             <div class="payment_confirmation_popup_bank_details">
-              <h4>Account Number</h4>
+              <h4 class="secondary">Account Number</h4>
               <h4>0121615892</h4>
             </div>
 
             <div class="payment_confirmation_popup_bank_details">
-              <h4>Sort Code</h4>
+              <h4 class="secondary">Sort Code</h4>
               <h4>01-02-03</h4>
             </div>
 
           </div>
 
-          <div class="payment_confirmation_popup_bank_confirm">
-            <div class="checkbox-container">
-              <input type="checkbox" id="registerCheckbox">
-              <label for="registerCheckbox">
-                <h4>I have made the payment</h4>
-              </label>
-            </div>
-          </div>
+        </div>
 
-          <div class="payment_confirmation_popup_bank_button">
-            <button class="inactive-btn"><h5>Cancel</h5></button>
-            <button class="filled-btn"><h5>Confirm Payment</h5></button>
+        <div class="payment_confirmation_popup_bank_confirm">
+          <div class="payment_checkbox_container">
+            <input type="checkbox" id="paymentCheckbox">
+            <label for="paymentCheckbox">
+              <h4>I have made the payment</h4>
+            </label>
           </div>
-          
+        </div>
+
+        <div class="payment_confirmation_popup_bank_button">
+          <button class="inactive-btn"><h5>Cancel</h5></button>
+          <button class="filled-btn"><h5>Confirm Payment</h5></button>
         </div>
 
       </div>
     </div>
 
+    <!--order cancellation popup-->
     <div class="cancel_order_popup">
 
       <div class="cancel_order_popup_heading">
-        <h4>Payment Confirmation</h4>
-        <img src="../public/icons/Cancel.svg" alt="">
+        <h4>Order Cancellation</h4>
+        <img src="../public/icons/Close small.svg" alt="">
       </div>
 
       <div class="cancel_order_popup_body">
@@ -82,41 +84,41 @@
 
           <div class="bank_network_container">
             <input type="radio" name="category" id="bankNetwork" value="Bank network issue">
-            <label for="bankNetwork">Bank network issue</label>
+            <label for="bankNetwork"><h4>Bank network issue</h4></label>
           </div>
 
           <div class="seller_requirement_container">
             <input type="radio" name="category" id="sellerRequirement" value="I didn't meet seller requirement">
-            <label for="sellerRequirement">I didn't meet seller requirement</label>
+            <label for="sellerRequirement"><h4>I didn't meet seller requirement</h4></label>
           </div>
 
           <div class="extra_fee_container">
             <input type="radio" name="category" id="extraFee" value="seller is asking for extra fee">
-            <label for="extraFee">Seller is asking for extra fee</label>
+            <label for="extraFee"><h4>Seller is asking for extra fee</h4></label>
           </div>
 
           <div class="no_response_container">
             <input type="radio" name="category" id="noResponse" value="No response from seller">
-            <label for="noResponse">No response from seller</label>
+            <label for="noResponse"><h4>No response from seller</h4></label>
           </div>
 
           <div class="not_buying_container">
             <input type="radio" name="category" id="notBuying" value="Not interested in buying anymore">
-            <label for="notBuying">Not interested in buying anymore</label>
+            <label for="notBuying"><h4>Not interested in buying anymore</h4></label>
           </div>
 
         </form>
 
-        <div class="payment_confirmation_popup_bank_confirm">
-          <div class="checkbox-container">
-            <input type="checkbox" id="registerCheckbox">
-            <label for="registerCheckbox">
+        <div class="payment_cancellation_popup_bank_confirm">
+          <div class="order_cancel_checkbox_container">
+            <input type="checkbox" id="cancelCheckbox">
+            <label for="cancelCheckbox">
               <h4>I have not paid the seller</h4>
             </label>
           </div>
         </div>
 
-        <div class="payment_confirmation_popup_bank_button">
+        <div class="payment_cancellation_popup_bank_button">
           <button class="inactive-btn"><h5>Back</h5></button>
           <button class="filled-btn"><h5>Cancel order</h5></button>
         </div>
@@ -125,6 +127,45 @@
 
 
 
+    </div>
+
+    <!--order created successfully popup-->
+    <div class="order_created_popup">
+
+      <div class="order_created_popup_image">
+        <img src="../public/icons/Check Mark.svg" alt="">
+        <h4><b>successfully Purchased</b></h4>
+      </div>
+
+      <div class="order_created_popup_body">
+        <h4 class="secondary">You Received</h4>
+        <h4><b>N20,000:00</b></h4>
+      </div>
+
+      <button class="filled-btn">Back</button>
+
+
+    </div>
+
+    <!--support popup-->
+    <div class="support_popup">
+
+      <div class="support_popup_header">
+        <h4>Contact Support</h4>
+        <img src="../public/icons/Close small.svg" alt="">
+      </div>
+
+      <div class="support_popup_body">
+        <form action="" id="supportForm">
+
+          <label for="support"><b>Message:</b></label>
+          <textarea name="supportMessage" id="support" placeholder="Type your complaint here..." required></textarea>
+
+          <div class="support_info"><h5>Our team will get back to you within 15minutes</h5></div>
+
+          <button class="filled-btn">Send Message</button>
+        </form>
+      </div>
     </div>
 
     <div class="overlay js_overlay"></div>
@@ -410,6 +451,8 @@
       
   
     </section>
+
+    <input type="file">
 
     <script type="module" src="../public/script/order.js"></script>
   </body>

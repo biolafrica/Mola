@@ -18,7 +18,7 @@ function renderTimer(){
   }, 1000);
 
 }
-renderTimer();
+//renderTimer();
 
 transferredBtn.addEventListener("click", (()=>{
   timeReset();

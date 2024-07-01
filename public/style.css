@@ -333,7 +333,9 @@ form button {
   margin: 10px 0px;
 }
 
-.checkbox-container {
+.checkbox-container,
+.order_cancel_checkbox_container,
+.payment_checkbox_container {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -760,15 +762,27 @@ form button {
   margin: 10px 0;
 }
 
-.order_payment_details_body {
+.order_payment_details_body,
+.cancel_order_popup_body {
   display: flex;
   flex-direction: column;
   gap: 10px;
 
 }
 
+.not_buying_container,
+.no_response_container,
+.extra_fee_container,
+.seller_requirement_container,
+.bank_network_container{
+  display: flex;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
 .order_payment_details_body_up,
-.order_payment_details_body_down {
+.order_payment_details_body_down,
+.payment_confirmation_popup_bank_details {
   display: flex;
   justify-content: space-between;
 
@@ -803,6 +817,14 @@ form button {
 
 .order_terms_details {
   display: none;
+}
+.payment_confirmation_popup_bank_head{
+  margin-bottom: 15px;
+}
+.payment_confirmation_popup_bank{
+  background-color: var(--Layout-Background-light);
+  padding: 20px 25px;
+  margin: 20px 0px;
 }
 
 /* order-history-page  */
@@ -1314,10 +1336,19 @@ option {
 
 }
 
-.bank_account_form_popup_body_btn {
+.bank_account_form_popup_body_btn,
+.payment_confirmation_popup_bank_button,
+.payment_cancellation_popup_bank_button{
   display: flex;
   gap: 30px;
+  margin: 10px 0px;
 }
+
+.payment_confirmation_popup_bank_button button,
+.payment_cancellation_popup_bank_button button{ 
+  width: 50%;
+}
+
 
 .bank_account_form_popup_body input {
   margin-bottom: 21px;
@@ -1437,7 +1468,11 @@ option {
 .due_diligence_popup,
 .booked_success_container,
 .bank_account_form_popup,
-.bank_option_popup {
+.bank_option_popup,
+.payment_confirmation_popup,
+.order_created_popup,
+.support_popup,
+.cancel_order_popup{
   display: none;
   width: 50%;
   border-radius: 5px;
@@ -1452,13 +1487,14 @@ option {
   z-index: 1;
 }
 
-
-
 .edit_username_container_head,
 .edit_avatar_container_head,
 .change_password_container_head,
 .email_phone_verify_heading,
-.due_diligence_verify_heading {
+.due_diligence_verify_heading,
+.payment_confirmation_popup_heading,
+.cancel_order_popup_heading,
+.support_popup_header{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1471,7 +1507,9 @@ option {
 .edit_password_container_body,
 .email_phone_verify_body,
 .due_diligence_verify_body,
-.booked_success_container {
+.booked_success_container,
+.payment_confirmation_popup_body,
+.cancel_order_popup_body{
   padding: 20px 24px;
 }
 

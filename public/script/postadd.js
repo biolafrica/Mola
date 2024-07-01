@@ -1,4 +1,4 @@
-const currencySelect = document.getElementById("ads_select_type");
+const currencySelect = document.getElementById("adsSelectType");
 const amountCurrency = document.querySelector(".js_amount_currency");
 const maxOrderCurrency = document.querySelector(".max_order_currency");
 const minOrderCurrency = document.querySelector(".min_order_currency");

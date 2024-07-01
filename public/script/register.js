@@ -28,7 +28,7 @@ regBtn.addEventListener("click", async(e)=>{
           password,
           first_name,
           last_name,
-          phone_number : 1234567821,
+          phone_number : 1534667821,
           country : "USA",
           display_picture : "http://example.com/path/to/display_picture.jpg",
 
