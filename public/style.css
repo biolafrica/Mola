@@ -1670,6 +1670,16 @@ option {
   margin-bottom: 10px;
 }
 
+/* error page */
+.email_sub_text,
+.password_sub_text{
+  color: red;
+  margin-bottom: 20px;
+}
+
+.error_input{
+  border: 1px solid red;
+}
 
 
 
