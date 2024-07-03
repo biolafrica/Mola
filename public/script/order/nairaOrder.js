@@ -1,6 +1,6 @@
-import {orders,nairaMatchOrder,nairaOrder} from "../../../Data/orders.js";
+import {nairaMatchOrder,} from "../../../Data/orders.js";
 import {formatCurrency} from "../utils.js";
-import{users,matchUser} from "../../../Data/user.js";
+import{matchUser} from "../../../Data/user.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {AuthenticateUser} from "../../../Data/user.js";
@@ -28,12 +28,15 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
     paginatedNairaOrders.forEach((orderItem)=>{
       let totalOrder = 0;
       let completedOrder = 0;
-      let matchingUser = matchUser(orderItem);
+      
+      totalOrder = orderItem.user.buy_order + orderItem.user.sell_order;
+      completedOrder = (((orderItem.user.buy_order + orderItem.user.sell_order)/totalOrder) * 100).toFixed(0);
+      let zeroCompletedOrder = completedOrder === 0 ? "100%" : completedOrder;
+      let dp = orderItem.user.display_picture === "http://example.com/path/to/display_picture.jpg" ? "avatar_1" : orderItem.user.display_picture;
 
-      totalOrder = matchingUser.buyOrder + matchingUser.sellOrder + matchingUser.cancelledOrder;
-      completedOrder = (((matchingUser.buyOrder + matchingUser.sellOrder)/totalOrder) * 100).toFixed(0);
 
-      let verified = matchingUser.advanceVerification === true ? "./public/icons/Verified.svg" : "";
+
+      let verified = orderItem.verification === true ? "./public/icons/Verified.svg" : "";
 
       
       let html = `
@@ -42,18 +45,18 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
           <div class="seller_container big">
 
             <div class="seller_container_image">
-              <img src="./public/avatar/${matchingUser.dp}.svg" alt="">
+              <img src="./public/avatar/${dp}.svg" alt="">
             </div>
 
             <div class="seller_container_user">
 
               <div class="seller_container_username">
-                <a href="./views/dashboard.html" target="_blank"><h6><b>${matchingUser.username}</b></h6></a>
+                <a href="./views/dashboard.html" target="_blank"><h6><b>${orderItem.user.username}</b></h6></a>
                 <img src="${verified}" alt=""></img>
               </div>
 
               <div class="seller_container_metrics">
-                <h6 class="light">${(totalOrder)} Orders | ${completedOrder}%</h6>
+                <h6 class="light">${(totalOrder)} Orders | ${zeroCompletedOrder}%</h6>
               </div>
 
             </div>
@@ -72,11 +75,11 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
 
           <div class="Limit_container big">
             <h5 class="small_title secondary light">Limit:</h5>
-            <h6 class="light">£${formatCurrency(orderItem.minimumOrder)} - £${formatCurrency(orderItem.maximumOrder)}</h6>
+            <h6 class="light">£${formatCurrency(orderItem.minimum_limit)} - £${formatCurrency(orderItem.maximum_limit)}</h6>
           </div>
 
           <div class="Buy_container big">
-            <button class="filled-btn js_buy_dash_btn" id="${orderItem.id}"><h6 id="${orderItem.id}">BUY NGN</h6></button>
+            <button class="filled-btn js_buy_dash_btn" id="${orderItem.ad_id}"><h6 id="${orderItem.ad_id}">BUY NGN</h6></button>
           </div>
 
           <!--for small and medium screen responsivenes-->
@@ -84,18 +87,18 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             <div class="seller_container">
 
               <div class="seller_container_image">
-                <img src="./public/avatar/${matchingUser.dp}.svg" alt="">
+                <img src="./public/avatar/${dp}.svg" alt="">
               </div>
 
               <div class="seller_container_user">
 
                 <div class="seller_container_username">
-                  <a href="./views/dashboard.html" target="_blank"><h5>${matchingUser.username}</h5></a>
+                  <a href="./views/dashboard.html" target="_blank"><h5>${orderItem.user.username}</h5></a>
                   <img src="${verified}" alt="">
                 </div>
 
                 <div class="seller_container_metrics">
-                  <h5 class="light">${totalOrder} Orders | ${completedOrder}%</h5>
+                  <h5 class="light">${totalOrder} Orders | ${zeroCompletedOrder}%</h5>
                 </div>
 
               </div>
@@ -114,7 +117,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
 
             <div class="Limit_container">
               <h5 class="small_title secondary light">Limit:</h5>
-              <h5 class="light">£${formatCurrency(orderItem.minimumOrder)} - £${formatCurrency(orderItem.maximumOrder)}</h5>
+              <h5 class="light">£${formatCurrency(orderItem.minimum_limit)} - £${formatCurrency(orderItem.maximum_limit)}</h5>
             </div>
 
           </div>
@@ -122,7 +125,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
           <div class="right_row">
 
             <div class="Buy_container">
-              <button class="filled-btn js_buy_dash_btn" id="${orderItem.id}"><h5 id="${orderItem.id}">BUY NGN</h5></button>
+              <button class="filled-btn js_buy_dash_btn" id="${orderItem.ad_id}"><h5 id="${orderItem.ad_id}">BUY NGN</h5></button>
             </div>
 
           </div>

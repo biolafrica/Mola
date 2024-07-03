@@ -1,8 +1,6 @@
-import {orders, poundsOrder, nairaOrder}  from "../../Data/orders.js";
-import { formatCurrency } from "./utils.js";
 import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";
-import { checkUser,getUserProfile } from "../../Data/user.js";
+import { checkUser} from "../../Data/user.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
@@ -22,8 +20,6 @@ const moreEl = document.querySelector(".js_more_info_popup");
 const token = localStorage.getItem("access");
 const landingPageEl = document.querySelector(".js_landing_page");
 const headerRightEl = document.querySelector(".js_header_right");
-
-
 
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
@@ -72,9 +68,41 @@ howSellBtn.addEventListener("click", ()=>{
 
 });
 
+let poundsOrder = [];
+let nairaOrder = [];
 
-displayAvailableGBPOrder(poundsOrder);
-displayAvailableNGNOrder(nairaOrder);
+async function loadPage(){
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/all-ads");
+    const data = await response.json();
+    console.log(data);
+    processOrders(data);
+
+    displayAvailableGBPOrder(poundsOrder);
+    displayAvailableNGNOrder(nairaOrder);
+    
+    
+  } catch (error) {
+    console.log("Error fetching ads:", error);
+    
+  }
+
+} 
+
+loadPage();
+function processOrders(orders){
+  orders.forEach((orderItem)=>{
+    if(orderItem.type === "Naira"){
+      nairaOrder.push(orderItem);
+    }else if(orderItem.type === "Pounds"){
+      poundsOrder.push(orderItem);
+    }
+
+  });
+}
+
+
+
 
 //search amount
 const form = document.querySelector(".js_amount_form");
@@ -220,7 +248,7 @@ async function renderHeader(){
 
 renderHeader();
 
-async function getAllAds (){
+/*async function getAllAds (){
   try {
     const response = await fetch("http://127.0.0.1:8000/api/all-ads");
     const data = await response.json();
@@ -233,7 +261,7 @@ async function getAllAds (){
  
 }
 
-getAllAds();
+getAllAds()*/
 
 /*const displayAvailableOrder =(orders)=>{
 

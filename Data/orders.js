@@ -1,7 +1,7 @@
 export let poundsOrder = [];
 export let nairaOrder = [];
 
-class Order {
+/*class Order {
   id;
   rate;
   amount;
@@ -123,8 +123,34 @@ poundsOrder.map((poundsOrderItem)=>{
 
 nairaOrder.map((nairaOrderItem)=>{
   return new Order (nairaOrderItem);
-})
+}) */
 
+export async function getAllAds (){
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/all-ads");
+    const data = await response.json();
+    return processOrders(data);
+    
+    
+  } catch (error) {
+    console.log("Error fetching ads:", error);
+    
+  }
+ 
+}
+
+function processOrders(orders){
+  orders.forEach((orderItem)=>{
+    if(orderItem.type === "NGN"){
+      nairaOrder.push(orderItem);
+    }else if(orderItem.type === "GBP"){
+      poundsOrder.push(orderItem);
+    }
+
+  });
+}
+
+getAllAds();
 
 
 export const poundsMatchOrder = (orderId)=>{
