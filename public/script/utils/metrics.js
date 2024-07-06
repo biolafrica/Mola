@@ -1,11 +1,11 @@
-export const calculateTotalOrder = (matchingUser)=>{
-  let totalOrder = matchingUser.buyOrder + matchingUser.sellOrder + matchingUser.cancelledOrder;
+export const calculateTotalOrder = (orderItem)=>{
+  let totalOrder = orderItem.user.buy_order + orderItem.user.sell_order;
   return totalOrder;
 
 };
 
-export const calculateCompleteOrder = (matchingUser, totalOrder)=>{
-  let completedOrder = (((matchingUser.buyOrder + matchingUser.sellOrder)/totalOrder) * 100).toFixed(0);
+export const calculateCompleteOrder = (orderItem, totalOrder)=>{
+  let completedOrder = (((orderItem.user.buy_order + orderItem.user.sell_order)/totalOrder) * 100).toFixed(0);
   return completedOrder;
 
 }

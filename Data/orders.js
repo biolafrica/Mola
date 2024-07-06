@@ -125,38 +125,11 @@ nairaOrder.map((nairaOrderItem)=>{
   return new Order (nairaOrderItem);
 }) */
 
-export async function getAllAds (){
-  try {
-    const response = await fetch("http://127.0.0.1:8000/api/all-ads");
-    const data = await response.json();
-    return processOrders(data);
-    
-    
-  } catch (error) {
-    console.log("Error fetching ads:", error);
-    
-  }
- 
-}
-
-function processOrders(orders){
-  orders.forEach((orderItem)=>{
-    if(orderItem.type === "NGN"){
-      nairaOrder.push(orderItem);
-    }else if(orderItem.type === "GBP"){
-      poundsOrder.push(orderItem);
-    }
-
-  });
-}
-
-getAllAds();
-
 
 export const poundsMatchOrder = (orderId)=>{
   let matchingOrder = {};
   poundsOrder.forEach((orderItem)=>{
-    if(orderId === orderItem.id){
+    if(orderId === orderItem.ad_id){
       matchingOrder = orderItem;
     }
 

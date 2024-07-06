@@ -1,8 +1,6 @@
-import {poundsMatchOrder} from "../../../Data/orders.js";
-import{matchUser} from "../../../Data/user.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
-import {formatCurrency} from "../utils/money.js";
+import {monitizeNumber} from "../utils/money.js";
 import{AuthenticateUser} from "../../../Data/user.js"
 
 
@@ -63,17 +61,17 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
 
         <div class="rate_container big">
           <h5 class="small_title secondary light">Rate:</h5>
-          <h4>${formatCurrency(orderItem.rate)}</h4>NGN
+          <h4>${orderItem.rate}</h4>NGN
         </div>
 
         <div class="Amount_available_container big">
           <h5 class="small_title secondary light">Available:</h5>
-          <h6 class="light">£${formatCurrency(orderItem.amount)}</h6>
+          <h6 class="light">£${orderItem.amount}</h6>
         </div>
 
         <div class="Limit_container big">
           <h5 class="small_title secondary light">Limit:</h5>
-          <h6 class="light">&#8358;${formatCurrency(orderItem.minimum_limit)} - &#8358;${formatCurrency(orderItem.maximum_limit)}</h6>
+          <h6 class="light">&#8358;${orderItem.minimum_limit} - &#8358;${orderItem.maximum_limit}</h6>
         </div>
 
         <div class="Buy_container big">
@@ -105,17 +103,17 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
 
           <div class="rate_container">
             <h5 class="small_title secondary light">Rate:</h5>
-            <h3>${formatCurrency(orderItem.rate)}</h3>NGN
+            <h3>${orderItem.rate}</h3>NGN
           </div>
 
           <div class="Amount_available_container">
             <h5 class="small_title secondary light">Available:</h5>
-            <h5 class="light">£${formatCurrency(orderItem.amount)}</h5>
+            <h5 class="light">£${orderItem.amount}</h5>
           </div>
 
           <div class="Limit_container">
             <h5 class="small_title secondary light">Limit:</h5>
-            <h5 class="light">&#8358;${formatCurrency(orderItem.minimum_limit)} - &#8358;${formatCurrency(orderItem.maximum_limit)}</h5>
+            <h5 class="light">&#8358;${orderItem.minimum_limit} - &#8358;${orderItem.maximum_limit}</h5>
           </div>
 
         </div>
@@ -141,7 +139,11 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
   
     document.querySelectorAll(".js_buy_dash_btn").forEach((btn)=>{
       btn.addEventListener("click", async(e)=>{
-        await AuthenticateUser(token);
+        const isAuthenticated = await AuthenticateUser(token);
+        if(!isAuthenticated){
+          return;
+        }
+      
         overlay.style.display = "initial";
         moreEl.style.display = "flex";
         let orderId = e.target.id;
@@ -151,10 +153,16 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
           const currencyType = orderType === "BUY NGN" ? "£" : "&#8358;";
           const currencyTypeLetter = orderType === "BUY NGN" ? "NGN" : "GBP";
           const currencyTypeLetterP = orderType === "BUY NGN" ? "GBP" : "NGN";
-          
-          const matchingOrder = poundsMatchOrder(orderId,);
-          const matchingUser = matchUser(matchingOrder);
-          const totalOrder = matchingUser.buyOrder + matchingUser.sellOrder + matchingUser.cancelledOrder;
+          let matchingOrder = {};
+          poundsOrder.forEach((orderItem)=>{
+            if (orderItem.ad_id === orderId){
+              matchingOrder = orderItem;
+            }
+
+          }) 
+         
+          const totalOrder = matchingOrder.user.buy_order + matchingOrder.user.sell_order;
+          let dp = matchingOrder.user.display_picture === "http://example.com/path/to/display_picture.jpg" ? "avatar_1" : matchingOrder.user.display_picture;
         
           //display more content
           let html = 
@@ -163,18 +171,18 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               <div class="more_info_popup_left_top">
     
                 <div class="more_info_popup_image">
-                  <img src="./public/avatar/${matchingUser.dp}.svg" alt="">
+                  <img src="./public/avatar/${dp}.svg" alt="">
                 </div>
     
                 <div class="more_info_popup_text">
     
                   <div class="more_info_popup_text_up">
-                    <h4>${matchingUser.username}</h4>
-                    <img src="${verified(matchingUser)}" alt="">
+                    <h4>${matchingOrder.user.username}</h4>
+                    <img src="${verified}" alt="">
                   </div>
     
                   <div class="more_info_popup_text_down">
-                    <h4 class="secondary">${calculateTotalOrder(matchingUser)} orders | ${calculateCompleteOrder(matchingUser,totalOrder)}% completion</h4>
+                    <h4 class="secondary">${calculateTotalOrder(matchingOrder)} orders | ${calculateCompleteOrder(matchingOrder,totalOrder)}% completion</h4>
                   </div>
                 </div>
     
@@ -184,29 +192,29 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
     
                 <div class="more_info_popup_verification">
                   <h4 class="secondary">Verification level</h4>
-                  <h4>${verifyType(matchingUser)}</h4>
+                  <h4>${verifyType(matchingOrder)}</h4>
                 </div>
     
                 <div class="more_info_popup_time_limit">
                   <h4 class="secondary">Payment Time Limit</h4>
-                  <h4>15 minutes</h4>
+                  <h4>${matchingOrder.time_limit} minutes</h4>
                 </div>
     
                 <div class="more_info_popup_amount">
                   <h4 class="secondary">Available Amount</h4>
-                  <h4>${formatCurrency(matchingOrder.amount)} ${currencyTypeLetter}</h4>
+                  <h4>${monitizeNumber(matchingOrder.amount)} ${currencyTypeLetter}</h4>
                 </div>
     
               </div>
               
               <div class="more_info_popup_left_bottom">
                 <h4>Seller's Terms(Read Carefully)</h4>
-                <h4 class="secondary">${matchingOrder.exchangeTerms}</h4>
+                <h4 class="secondary">${matchingOrder.exchange_terms}</h4>
               </div>
             </div>
     
             <div class="more_info_popup_right">
-              <h4>Rate: <b>${formatCurrency(matchingOrder.rate)} NGN</b></h4>
+              <h4>Rate: <b>${matchingOrder.rate} NGN</b></h4>
     
               <form action="">
     
@@ -215,7 +223,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
                   <input type="number" placeholder="0.00" class="js_send_amount" style="outline: none;">
                   <h4>${currencyTypeLetterP}</h4>
                 </div>
-                <h5 class="light js_limit_value" style="margin-bottom: 35px;">Limits ${currencyType}${formatCurrency(matchingOrder.minimumOrder)} - ${currencyType}${formatCurrency(matchingOrder.maximumOrder)}</h5>
+                <h5 class="light js_limit_value" style="margin-bottom: 35px;">Limits ${currencyType}${matchingOrder.minimum_limit} - ${currencyType}${matchingOrder.maximum_limit}</h5>
     
                 <Label><h4>I will receive:</h4></Label>
                 <div class="input_money" style="width: 100%;">
@@ -263,10 +271,8 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               payInput.classList.remove("js_input_money_color");
               limitEl.classList.remove("js_limit_value_color");
             }
-            console.log(inputValue);
-    
-    
-            const convertedValue = inputValue / matchingOrder.rate;
+            
+            const convertedValue = inputValue / (matchingOrder.rate * 100);
             const converts = parseFloat(convertedValue.toFixed(2));
             receiveEl.value = converts;
           });
