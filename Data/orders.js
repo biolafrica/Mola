@@ -1,7 +1,8 @@
-export let order = JSON.parse(localStorage.getItem("order")) || {};
+export let order = JSON.parse(localStorage.getItem("order")) || [];
 
-export function addOrder(data){
-  order = data;
+export function addOrder(data, product){
+  order.push(data);
+  order.push(product);
   saveToStorage();
 
 }

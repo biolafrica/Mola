@@ -1,3 +1,6 @@
+import{order} from "../../Data/orders.js";
+
+
 const timeEl = document.querySelector(".js_order_timer");
 const transferredBtn = document.querySelector(".js_transferred");
 const cancelledBtn = document.querySelector(".js_cancelled")
@@ -26,8 +29,6 @@ transferredBtn.addEventListener("click", (()=>{
 
 }));
 
-
-
 function timeReset (){
   clearInterval(intervalId);
   timeLeft = 900;
@@ -36,3 +37,5 @@ function timeReset (){
   timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
 
 }
+
+console.log(order);

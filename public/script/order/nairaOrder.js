@@ -285,6 +285,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
 
           document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
             const ads = orderId;
+            const adsDetails = matchingOrder;
             const selected_amount = payEl.value;
             console.log(ads, selected_amount);
 
@@ -299,7 +300,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
                 body : JSON.stringify({ads,selected_amount,})
               })
               const data = await response.json();
-              addOrder(data);
+              addOrder(data,adsDetails);
               
             } catch (error) {
               console.log(error);
