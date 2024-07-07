@@ -225,7 +225,7 @@ async function renderBanks(token){
  
   
   banks.forEach((bank)=>{
-    let displaySortCode = bank.bank_type === "NGN" ? "no_sort_code" : "";
+    let displaySortCode = bank.bank_type === "Naira" ? "no_sort_code" : "";
   
     let html = 
     `
@@ -333,10 +333,8 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
   const bank_sort_code = (document.getElementById("sortCode")).value;
   const bank_type = (document.querySelector(".js_popup_bank_type")).textContent;
 
-  const selectedBankType = bank_type === "GBP Bank Account" ? "GBP" : "NGN";
+  const selectedBankType = bank_type === "GBP Bank Account" ? "Pounds" : "Naira";
   const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : 0;
-  console.log(token);
-  console.log(bank_account_name, bank_name, bank_account_number, bank_sort_code, bank_type, selectedBankType, sortCodeChoice)
  
   try {
     const response = await fetch("http://127.0.0.1:8000/api/banks/", {
@@ -363,6 +361,10 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
       overlay.style.display = "none";
       bankPopupEl.style.display = "none";
       bankBtn.value = "Add_Bank";
+      bank_name = "";
+      bank_account_name = "";
+      bank_account_number = "";
+      bank_sort_code = "";
       renderBanks(token);
     }
 
@@ -376,3 +378,4 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
 });
 
 console.log(await getUserProfile(token));
+console.log(await loadBanks(token));

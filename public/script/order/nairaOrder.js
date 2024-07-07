@@ -2,6 +2,7 @@ import {monitizeNumber} from "../utils/money.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {AuthenticateUser} from "../../../Data/user.js";
+import{addOrder} from "../../../Data/orders.js";
 
 const ngnEl = document.querySelector(".js_ngn_el");
 const overlay = document.querySelector(".js_overlay");
@@ -239,7 +240,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
     
               <div class="more_info_popup_button">
                 <button class="outlined-btn" id="cancelBtn"><h5>Cancel</h5></button>
-                <a href="./views/order.html"><button style="width: 100%;" class="filled-btn Js_buy_order_btn"><h5>Buy ${currencyTypeLetter}</h5></button></a>
+                <a><button style="width: 100%;" class="filled-btn js_buy_order_btn" id="${matchingOrder.ad_id}"><h5>Buy ${currencyTypeLetter}</h5></button></a>
               </div>
     
               
@@ -281,6 +282,34 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             receiveEl.value = converts;
     
           });
+
+          document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
+            const ads = orderId;
+            const selected_amount = payEl.value;
+            console.log(ads, selected_amount);
+
+            try {
+              const response = await fetch("http://127.0.0.1:8000/api/orders/", {
+                method : "POST",
+                headers : {
+                  "Authorization" : `Bearer ${token}`,
+                  "content-Type" : "application/json",
+                },
+
+                body : JSON.stringify({ads,selected_amount,})
+              })
+              const data = await response.json();
+              addOrder(data);
+              
+            } catch (error) {
+              console.log(error);
+              
+            };
+            
+            window.location.href = "../../../views/order.html";
+
+
+          })
         }
       
       })
