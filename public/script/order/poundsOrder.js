@@ -95,7 +95,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               </div>
 
               <div class="seller_container_metrics">
-                <h5 class="light">${totalOrder} Orders | ${zeroCompletedOrder}%</h5>
+                <h5 class="light">${totalOrder} Orders | ${zeroCompletedOrder}% completion</h5>
               </div>
 
             </div>
@@ -281,7 +281,9 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
 
           document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
             const ads = orderId;
+            const adsDetails = matchingOrder;
             const selected_amount = payEl.value;
+            const errorMessageEl = document.querySelector(".js_error_popup");
             console.log(ads, selected_amount);
 
             try {
@@ -295,7 +297,23 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
                 body : JSON.stringify({ads,selected_amount,})
               })
               const data = await response.json();
-              addOrder(data);
+              if(data[0] === "You must completed or cancel your pending order before creating a new one."){
+                let html =
+                `
+                  <img src="./public/icons/Cancel.svg" alt="">
+                  <h4>Kindly complete your pending order</h4>
+                `;
+                errorMessageEl.innerHTML = html;
+                errorMessageEl.style.display = "flex";
+                setTimeout(()=>{
+                  errorMessageEl.style.display = "none";
+                },3000);
+               
+              }else{
+                addOrder(data,adsDetails);
+                window.location.href = "../../../views/order.html";
+
+              }
               
             } catch (error) {
               console.log(error);

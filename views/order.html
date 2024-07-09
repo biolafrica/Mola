@@ -9,7 +9,7 @@
 
   <body>
     <!--payment confirmation popup-->
-    <div class="payment_confirmation_popup">
+    <div class="payment_confirmation_popup js_payment_confirm_popup">
 
       <div class="payment_confirmation_popup_heading">
         <h4>Payment Confirmation</h4>
@@ -66,10 +66,11 @@
         </div>
 
       </div>
+
     </div>
 
-    <!--order cancellation popup-->
-    <div class="cancel_order_popup">
+    <!--buyer order cancellation popup-->
+    <div class="cancel_order_popup js_buyer_cancel_popup">
 
       <div class="cancel_order_popup_heading">
         <h4>Order Cancellation</h4>
@@ -119,8 +120,63 @@
         </div>
 
         <div class="payment_cancellation_popup_bank_button">
-          <button class="inactive-btn"><h5>Back</h5></button>
-          <button class="filled-btn"><h5>Cancel order</h5></button>
+          <button class="inactive-btn js_cancel_cancelled_buyer"><h5>Back</h5></button>
+          <button class="filled-btn js_cancel_confirm_buyer"><h5>Cancel order</h5></button>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+    <!--seller order cancellation popup-->
+    <div class="cancel_order_popup js_seller_cancel_popup">
+
+      <div class="cancel_order_popup_heading">
+        <h4>Order Cancellation</h4>
+        <img src="../public/icons/Close small.svg" alt="">
+      </div>
+
+      <div class="cancel_order_popup_body">
+
+        <h4>Why do you want to cancel ?</h4>
+
+        <form action="">
+          <div class="seller_requirement_container">
+            <input type="radio" name="category" id="sellerRequirement" value="I didn't meet seller requirement">
+            <label for="sellerRequirement"><h4>I cant access my bank account</h4></label>
+          </div>
+
+          <div class="extra_fee_container">
+            <input type="radio" name="category" id="extraFee" value="seller is asking for extra fee">
+            <label for="extraFee"><h4>No response from buyer</h4></label>
+          </div>
+
+          <div class="no_response_container">
+            <input type="radio" name="category" id="noResponse" value="No response from seller">
+            <label for="noResponse"><h4>I am not interested anymore</h4></label>
+          </div>
+
+          <div class="not_buying_container">
+            <input type="radio" name="category" id="notBuying" value="Not interested in buying anymore">
+            <label for="notBuying"><h4> Other reasons</h4></label>
+          </div>
+
+        </form>
+
+        <div class="payment_cancellation_popup_bank_confirm">
+          <div class="order_cancel_checkbox_container">
+            <input type="checkbox" id="cancelCheckbox">
+            <label for="cancelCheckbox">
+              <h4>I have not received payment from the buyer</h4>
+            </label>
+          </div>
+        </div>
+
+        <div class="payment_cancellation_popup_bank_button">
+          <button class="inactive-btn js_cancel_cancelled_seller"><h5>Back</h5></button>
+          <button class="filled-btn js_cancel_confirm_seller"><h5>Cancel order</h5></button>
         </div>
 
       </div>
@@ -169,6 +225,7 @@
     </div>
 
     <div class="overlay js_overlay"></div>
+
 
     <header>
 
@@ -251,131 +308,167 @@
       </div>
     </header>
 
-    <div class="order_head">
-      <div class="order_head_left">
-        <h3>Pay seller within: 
-          <span><b class="js_order_timer">15 : 00</b></span>
-        </h3>
+    <div class="order_page_container">
+
+      <!--<div class="order_head">
+        <div class="order_head_left">
+          <h3>Pay seller within: 
+            <span><b class="js_order_timer">15 : 00</b></span>
+          </h3>
+        </div>
+
+        <div class="order_head_right">
+
+          <h4 style="color:var(--Secondary-Text-light)">
+            Order ID: 
+            <span style="color:var(--Text-light)">
+              A123456789
+            </span>
+          </h4>
+
+          <h4 style="color:var(--Secondary-Text-light)">
+            Time created: 
+            <span style="color:var(--Text-light)">
+              2021-05-01 15:37:43
+            </span>
+          </h4>
+
+        </div>
       </div>
 
-      <div class="order_head_right">
+      <div class="orders_container">
+        <div class="order_bodys_container">
 
-        <h4 style="color:var(--Secondary-Text-light)">
-          Order ID: 
-          <span style="color:var(--Text-light)">
-            A123456789
-          </span>
-        </h4>
+          <div class="order_body_container">
 
-        <h4 style="color:var(--Secondary-Text-light)">
-          Time created: 
-          <span style="color:var(--Text-light)">
-            2021-05-01 15:37:43
-          </span>
-        </h4>
+            <div class="order_body">
 
-      </div>
-    </div>
-
-    <div class="orders_container">
-      <div class="order_bodys_container">
-
-        <div class="order_body_container">
-
-          <div class="order_body">
-
-            <div class="order_details">
-    
-              <div class="order_details_head">
-                <h4><b>ORDER CREATED</b></h4>
-                <h4 style="color:var(--Secondary-Text-light)">Confirming your transaction details delow</h4>
-              </div>
-    
-              <div class="order_details_body">
-                <div class="order_sent">
-                  <h4 style="color:var(--Secondary-Text-light)">I am Sending</h4>
-                  <h4><b>£20,000.00</b></h4>
+              <div class="order_details">
+      
+                <div class="order_details_head">
+                  <h4><b>ORDER CREATED</b></h4>
+                  <h4 style="color:var(--Secondary-Text-light)">Confirming your transaction details delow</h4>
                 </div>
-    
-                <div class="order_price">
-                  <h4 style="color:var(--Secondary-Text-light)">Price</h4>
-                  <h4><b>£1,700.00</b></h4>
-                </div>
-                
-                <div class="order_received">
-                  <h4 style="color:var(--Secondary-Text-light)">I am Sending</h4>
-                  <h4><b>N20,000.00</b></h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="order_terms_details">
-    
-              <h4><b>
-                TRANSACTION TERMS
-              </b></h4>
-
-              <h4 style="color:var(--Secondary-Text-light)">
-                Please use your full name as comment if your bank account name is different from registered account name
-              </h4>
-            
-            </div>
-    
-            <div class="order_payment_details">
-    
-              <div class="order_payment_details_head">
-                <h4><b>PAYMENT INFORMATION</b></h4>
-                <h4 style="color:var(--Secondary-Text-light)">Transfer <b style="color:var(--Text-light)">£20,000.00</b> the account details below;</h4>
-              </div>
-    
-              <div class="order_payment_details_body">
-    
-                <div class="order_payment_details_body_up">
-                  <div class="account_name">
-                    <h4 style="color:var(--Secondary-Text-light)">Name</h4>
-                    <h4>Abiodun Lateef Biobaku</h4>
+      
+                <div class="order_details_body">
+                  <div class="order_sent">
+                    <h4 style="color:var(--Secondary-Text-light)">I am Sending</h4>
+                    <h4><b>£20,000.00</b></h4>
                   </div>
-                  <div class="bank">
-                    <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
-                    <h4>Lloyd's Bank</h4>
-                  </div>
-    
-                </div>
-    
-                <div class="order_payment_details_body_down">
-                  <div class="account_number">
-                    <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
-                    <h4>0121615892</h4>
-                  </div>
-                  <div class="sort_code">
-                    <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
-                    <h4>01-02-13</h4>
+      
+                  <div class="order_price">
+                    <h4 style="color:var(--Secondary-Text-light)">Price</h4>
+                    <h4><b>£1,700.00</b></h4>
                   </div>
                   
+                  <div class="order_received">
+                    <h4 style="color:var(--Secondary-Text-light)">I am Sending</h4>
+                    <h4><b>N20,000.00</b></h4>
+                  </div>
                 </div>
-               
               </div>
-    
-    
-            </div>
-    
-            <div class="order_payment_status">
-    
-              <div class="order_payment_status_head">
-                <h4><b>PAYMENT UPDATE</b></h4>
-                <h4 style="color:var(--Secondary-Text-light)">Click on "Transferred" to notify the seller after payment</h4>
+
+              <div class="order_terms_details">
+      
+                <h4><b>
+                  TRANSACTION TERMS
+                </b></h4>
+
+                <h4 style="color:var(--Secondary-Text-light)">
+                  Please use your full name as comment if your bank account name is different from registered account name
+                </h4>
+              
               </div>
-    
-              <div class="order_payment_status_body">
+      
+              <div class="order_payment_details">
+      
+                <div class="order_payment_details_head">
+                  <h4><b>PAYMENT INFORMATION</b></h4>
+                  <h4 style="color:var(--Secondary-Text-light)">Transfer <b style="color:var(--Text-light)">£20,000.00</b> the account details below;</h4>
+                </div>
+      
+                <div class="order_payment_details_body">
+      
+                  <div class="order_payment_details_body_up">
+                    <div class="account_name">
+                      <h4 style="color:var(--Secondary-Text-light)">Name</h4>
+                      <h4>Abiodun Lateef Biobaku</h4>
+                    </div>
+                    <div class="bank">
+                      <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
+                      <h4>Lloyd's Bank</h4>
+                    </div>
+      
+                  </div>
+      
+                  <div class="order_payment_details_body_down">
+                    <div class="account_number">
+                      <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
+                      <h4>0121615892</h4>
+                    </div>
+                    <div class="sort_code">
+                      <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
+                      <h4>01-02-13</h4>
+                    </div>
+                    
+                  </div>
                 
-                <button class="filled-btn js_transferred">
-                  <h5>Transferred</h5>
-                </button>
+                </div>
+      
+      
+              </div>
+      
+              <div class="order_payment_status">
+      
+                <div class="order_payment_status_head">
+                  <h4><b>PAYMENT UPDATE</b></h4>
+                  <h4 style="color:var(--Secondary-Text-light)">Click on "Transferred" to notify the seller after payment</h4>
+                </div>
+      
+                <div class="order_payment_status_body">
+                  
+                  <button class="filled-btn js_transferred">
+                    <h5>Transferred</h5>
+                  </button>
 
-                <button class="text-btn js_cancelled">
-                  <h5>Cancel Order</h5>
-                </button>
+                  <button class="text-btn js_cancelled">
+                    <h5>Cancel Order</h5>
+                  </button>
 
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="user_term_container">
+
+            <div class="user_terms">
+
+              <div class="user_term_head">
+                <div class="user_term_image">
+                  <img src="../public/images/3D Avatars.svg" alt="">
+                </div>
+    
+                <div class="user_term_user">
+    
+                  <div class="user_term_username">
+                    <h4>Biolafrica</h4>
+                    <img src="../public/icons/Verified.svg" alt="">
+                  </div>
+    
+                  <div class="user_term_metrics">
+                    <h5 style="color:var(--Secondary-Text-light)">128 Orders | 100%</h5>
+                  </div>
+    
+                </div>
+
+              </div>
+
+              <div class="user_term_body">
+                <h4>Terms(Please Read Carefully)</h4>
+                <h4 style="color:var(--Secondary-Text-light);">Please use your full name as comment if your bank account name is different from the registered account name</h4>
               </div>
             </div>
 
@@ -383,39 +476,7 @@
 
         </div>
 
-        <div class="user_term_container">
-
-          <div class="user_terms">
-
-            <div class="user_term_head">
-              <div class="user_term_image">
-                <img src="../public/images/3D Avatars.svg" alt="">
-              </div>
-  
-              <div class="user_term_user">
-  
-                <div class="user_term_username">
-                  <h4>Biolafrica</h4>
-                  <img src="../public/icons/Verified.svg" alt="">
-                </div>
-  
-                <div class="user_term_metrics">
-                  <h5 style="color:var(--Secondary-Text-light)">128 Orders | 100%</h5>
-                </div>
-  
-              </div>
-
-            </div>
-
-            <div class="user_term_body">
-              <h4>Terms(Please Read Carefully)</h4>
-              <h4 style="color:var(--Secondary-Text-light);">Please use your full name as comment if your bank account name is different from the registered account name</h4>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      </div>-->
 
     </div>
 
@@ -451,8 +512,6 @@
       
   
     </section>
-
-    <input type="file">
 
     <script type="module" src="../public/script/order.js"></script>
   </body>

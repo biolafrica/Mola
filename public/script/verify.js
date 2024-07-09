@@ -361,11 +361,12 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
       overlay.style.display = "none";
       bankPopupEl.style.display = "none";
       bankBtn.value = "Add_Bank";
+      renderBanks(token);
       bank_name = "";
       bank_account_name = "";
       bank_account_number = "";
       bank_sort_code = "";
-      renderBanks(token);
+     
     }
 
     

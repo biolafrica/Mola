@@ -827,6 +827,15 @@ form button {
   margin: 20px 0px;
 }
 
+.user_term_image{
+  width: 48px;
+  height: 48px;
+}
+
+.user_term_image img{
+  width: 100%;
+}
+
 /* order-history-page  */
 .order_history_container,
 .my_ads_container {
@@ -1688,19 +1697,21 @@ option {
 }
 
 /* success popup */
-.success_popup{
+.success_popup,
+.error_popup{
   display: none;
   align-items: center;
   gap: 8px;
   border: 1px solid var(--Border-light);
   border-radius: 5px;
-  padding: 14px 16px;
-  max-width: 350px;
+  padding: 25px 20px;
+  max-width: 400px;
   background-color: white;
   box-shadow: var(--elevate-1);
   position: fixed;
   right: 5px;
   top: 5px;
+  z-index: 100;
 }
 
 
@@ -2112,7 +2123,8 @@ option {
     max-width: none;
   }
 
-  .big {
+  .big,
+  .no_display {
     display: none;
   }
 
@@ -2499,7 +2511,7 @@ option {
     height: 22px;
   }
 
-  .icon {
+  .icon{
     width: 24px;
     height: 24px;
   }
