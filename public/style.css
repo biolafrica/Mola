@@ -982,7 +982,7 @@ option {
 
 .post_ads_progress_container {
   width: 30%;
-  height: 278px;
+  height: 200px;
   border: 1px solid var(--Border-light);
   border-radius: 5px;
   box-shadow: var(--elevate-1);
@@ -1073,6 +1073,13 @@ option {
   margin-top: 10px;
 }
 
+.important_info {
+  padding: 10px 15px;
+  background-color: var(--Layout-Background-light);
+  border: none;
+  border-radius: 5px;
+}
+
 /* post ads popup  */
 
 .bank_option_popup_head,
@@ -1109,6 +1116,41 @@ option {
   color: var(--Secondary-Text-light);
 }
 
+.ads_confirm_popup{
+  flex-direction: column;
+  padding: 30px;
+  gap: 20px;
+  
+}
+
+.important_info {
+  padding: 10px 15px;
+  background-color: var(--Layout-Background-light);
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ads_popup_column,
+.ads_confirm_popup_head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.ads_confirm_button{
+  display: flex;
+  gap: 20px;
+}
+
+.ads_confirm_button button{
+  width: 50%;
+
+}
 /* profile page */
 
 .user_verification_container,
@@ -1497,7 +1539,8 @@ option {
 .payment_confirmation_popup,
 .order_created_popup,
 .support_popup,
-.cancel_order_popup{
+.cancel_order_popup,
+.ads_confirm_popup{
   display: none;
   width: 50%;
   border-radius: 5px;

@@ -11,83 +11,63 @@
 
     <div class="overlay js_overlay"></div>
 
-    <!-- add bank popup option-->
-    <div class="bank_option_popup" style="padding: 30px;">
+    <!-- add ads confirmation popup-->
+    <div class="ads_confirm_popup js_ads_confirm_popup">
 
-      <div class="bank_option_popup_head">
-        <h4><b>Select Payment Method</b></h4>
-        <img class="payment_cancel" src="../public/icons/Close small.svg" alt="">
+      <!--<div class="ads_confirm_popup_head">
+        <h4><b>Confirm Post</b></h4>
+        <img class="ads_confirm_cancel" src="../public/icons/Close small.svg" alt="">
       </div>
 
-      <div class="bank_option_popup_body">
+      <div class="important_info">
+        <img src="../public/icons/Error.svg" alt="">
+        After publishing the SELL ads, ads amount in your wallet will be frozen.
+      </div>
+      
+      <div class="ads_confirm_popup_body">
 
-        <div class="bank_option_popup_list">
-
-          <div class="bank_option_popup_list_head">
-            <h4>Account Type  <b>GBP</b></h4>
-            <img src="../public/icons/Mode edit.svg" alt="">
-          </div>
-          <div class="bank_option_popup_list_body">
-
-            <div class="bank_name_popup">
-              <h4 class="secondary">Name</h4>
-              <h4>Abiodun Biobaku</h4>
-            </div>
-
-            <div class="banker_name_popup">
-              <h4 class="secondary">Bank</h4>
-              <h4>Lloyds Bank</h4>
-            </div>
-
-            <div class="bank_account_popup">
-              <h4 class="secondary">Account Number</h4>
-              <h4>0121615892</h4>
-            </div>
-
-            <div class="bank_sort_code_popup">
-              <h4 class="secondary">Sort Code</h4>
-              <h4>01-02-03</h4>
-            </div>
-
-
-          </div>
-        
+        <div class="ads_popup_column">
+          <h4 class="secondary">Currency</h4>
+          <h4><b> Naira</b></h4>
         </div>
 
-        <div class="bank_option_popup_list">
+        <div class="ads_popup_column">
+          <h4 class="secondary">Amount</h4>
+          <h4><b>£5,000</b></h4>
+        </div>
 
-          <div class="bank_option_popup_list_head">
-            <h4>Account Type  <b>GBP</b></h4>
-            <img src="../public/icons/Mode edit.svg" alt="">
-          </div>
-          <div class="bank_option_popup_list_body">
+        <div class="ads_popup_column">
+          <h4 class="secondary">Rate</h4>
+          <h4><b>&#8358;1,900</b></h4>
+        </div>
 
-            <div class="bank_name_popup">
-              <h4 class="secondary">Name</h4>
-              <h4>Abiodun Biobaku</h4>
-            </div>
+        <div class="ads_popup_column">
+          <h4 class="secondary">Max Limit</h4>
+          <h4><b>£5,000</b></h4>
+        </div>
 
-            <div class="banker_name_popup">
-              <h4 class="secondary">Bank</h4>
-              <h4>Lloyds Bank</h4>
-            </div>
+        <div class="ads_popup_column">
+          <h4 class="secondary">Min Limit</h4>
+          <h4><b>£5,000</b></h4>
+        </div>
 
-            <div class="bank_account_popup">
-              <h4 class="secondary">Account Number</h4>
-              <h4>0121615892</h4>
-            </div>
-
-            <div class="bank_sort_code_popup">
-              <h4 class="secondary">Sort Code</h4>
-              <h4>01-02-03</h4>
-            </div>
-
-
-          </div>
-        
+        <div class="ads_popup_column">
+          <h4 class="secondary">Time Limit</h4>
+          <h4><b>15 mins</b></h4>
         </div>
 
       </div>
+
+      <div class="important_info">
+        <img src="../public/icons/Error.svg" alt="">
+        Your default pounds bank will be displayed to the buyer.
+      </div>
+
+      <div class="ads_confirm_button">
+        <button class="outlined-btn">Cancel</button>
+        <button class="filled-btn js_confirm_ads_btn">Confirm Post</button>
+      </div>-->
+
     </div>
 
     <header>
@@ -195,13 +175,6 @@
     
           <div class="line"></div>
     
-          <div class="stage_3">
-            <img src="../public/icons/Radio button unchecked.svg" alt="">
-            <h4>Set Payment Method</h4>
-          </div>
-    
-          <div class="line"></div>
-    
           <div class="stage_4">
             <img src="../public/icons/Radio button unchecked.svg" alt="">
             <h4>Set Exchange Term</h4>
@@ -251,46 +224,6 @@
               <option value="30">30 mins</option>
               <option value="45">45 mins</option>
             </select>
-    
-            <div class="post_ads_form_bank">
-              <h4>Payment Method</h4>
-
-              <div class="bank_option_popup_list in_bank">
-
-                <div class="bank_option_popup_list_head">
-                  <h4>Account Type  <b>GBP</b></h4>
-                  <img src="../public/icons/Mode edit.svg" alt="">
-                </div>
-                <div class="bank_option_popup_list_body">
-        
-                  <div class="bank_name_popup">
-                    <h4 class="secondary">Name</h4>
-                    <h4>Abiodun Biobaku</h4>
-                  </div>
-        
-                  <div class="banker_name_popup">
-                    <h4 class="secondary">Bank</h4>
-                    <h4>Lloyds Bank</h4>
-                  </div>
-        
-                  <div class="bank_account_popup">
-                    <h4 class="secondary">Account Number</h4>
-                    <h4>0121615892</h4>
-                  </div>
-        
-                  <div class="bank_sort_code_popup">
-                    <h4 class="secondary">Sort Code</h4>
-                    <h4>01-02-03</h4>
-                  </div>
-        
-        
-                </div>
-              
-              </div>
-
-              <button class="filled-btn select_bank_option"><h5>Add Bank</h5></button>
-
-            </div>
     
             <label for="exchangeTerm"><h4>Exchange Terms:</h4></label>
             <textarea name="" id="exchangeTerm" placeholder="Enter extra infromation for your buyer" required></textarea>
