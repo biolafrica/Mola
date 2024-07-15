@@ -288,6 +288,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             const adsDetails = matchingOrder;
             const selected_amount = payEl.value;
             const errorMessageEl = document.querySelector(".js_error_popup");
+            console.log(matchingOrder.ad_id);
 
             try {
               const response = await fetch("http://127.0.0.1:8000/api/orders/", {
@@ -297,7 +298,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
                   "content-Type" : "application/json",
                 },
 
-                body : JSON.stringify({ads,selected_amount,})
+                body : JSON.stringify({ads_id:matchingOrder.ad_id, selected_amount})
               })
               const data = await response.json();
 
@@ -315,7 +316,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
                
               }else{
                 addOrder(data,adsDetails);
-                window.location.href = "../../../views/order.html";
+                window.location.href = `../../../views/order.html?orderId=${data.order_id}&adsId=${adsDetails.ad_id}`;
 
               }
               

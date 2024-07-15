@@ -149,14 +149,16 @@ a {
 .filled-btn:hover,
 .inactive-btn:hover,
 .outlined-btn:hover,
-.text-btn:hover {
+.text-btn:hover,
+.feedback_btn:hover {
   filter: brightness(0.9);
 }
 
 .filled-btn:active,
 .inactive-btn:active,
 .outlined-btn:active,
-.text-btn:active {
+.text-btn:active,
+.feedback_btn:active {
   transform: translateY(2px);
 }
 
@@ -627,6 +629,20 @@ form button {
 .no_ads {
   text-align: center;
   margin: 50px auto;
+}
+
+.feedback_icon{
+  display: flex;
+  gap: 20px;
+  
+}
+
+.feedback_btn{
+  border-radius: 100px;
+  padding: 10px 10px;
+  border: none;
+  display: flex;
+  align-items: center;
 }
 
 /* more about selected order popup  */

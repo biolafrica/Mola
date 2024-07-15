@@ -21,6 +21,29 @@ let timeLeft = 900;
 let intervalId;
 
 console.log(order);
+const url = new URL(window.location.href);
+const param =  url.searchParams.get("orderId");
+console.log(param)
+
+async function renderOrder(){
+  try {
+    const response = await fetch (`http://127.0.0.1:8000/api/seller/orders/${param}/`, {
+      method : 'GET',
+      headers: {
+        "Authorization" : `Bearer ${token}`,
+        "Content-Type" : "application/json"
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+};
+
+renderOrder();
 
 async function renderPage(){
   let user = await getUserProfile(token);
@@ -380,7 +403,26 @@ async function renderPage(){
                 </div>
               </div>
 
+              <div class="feedback_container">
+                <h4><b>Rating</b></h4>
+              
+                <div class="feedback_icon">
+                  <button class="feedback_btn"> <img src="../public/icons/Thumb up.svg" alt=""> </button>
+                  <button class="feedback_btn"> <img src="../public/icons/Thumb down.svg" alt=""> </buttton>
+                </div>
+
+                <form action="">
+                  <label for="feedback">  <h4>How did you feel about the transaction</h4></label>
+                  <textarea name="" id="feedback" placeholder="please input how you feel about the transaction"></textarea>
+
+                  <button class="filled-btn">Publish</button>
+                </form>
+              </div>
+
+
             </div>
+
+
 
           </div>
 
@@ -540,7 +582,6 @@ function renderMadePaymentPopup (ads, order){
       
     } catch (error) {
       console.log(error)
-      
     }
 
   })
@@ -615,8 +656,33 @@ function renderReceivePaymentPopup (ads, order){
     popupEl.style.display = "none";
   });
 
-  confirmBtn.addEventListener("click", ()=>{
-    console.log("taye");
+  confirmBtn.addEventListener("click", async()=>{
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/orders/${order.order_id}/release/`, {
+        method : "PUT",
+        headers : {
+          "Authorization" : `Bearer ${token}`,
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          ads: selectedAds,
+          selected_ammount : selecetedAmount
+        }) 
+
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if(data.status){
+        overlay.style.display = "none";
+        popupEl.style.display = "none";
+        
+
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
 
   })
 
