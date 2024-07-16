@@ -1,5 +1,5 @@
 import{order} from "../../Data/orders.js";
-import{calculateTotalOrder,calculateCompleteOrder} from "../../public/script/utils/metrics.js";
+import{calculateOrderTotal,calculateOrderCompletion} from "../../public/script/utils/metrics.js";
 import{monitizeNumber} from "../../public/script/utils/money.js";
 import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
@@ -35,6 +35,7 @@ async function renderOrder(){
       }
     });
     const data = await response.json();
+    renderPage(data);
     console.log(data);
     
   } catch (error) {
@@ -45,29 +46,27 @@ async function renderOrder(){
 
 renderOrder();
 
-async function renderPage(){
+async function renderPage(data){
   let user = await getUserProfile(token);
   console.log(user);
-  let selectedOrder = order[0];
-  let selectedAds = order[1];
-  let totalOrder = calculateTotalOrder(selectedAds);
-  let date = convertDateAndTime(selectedOrder.date_and_time);
+  let totalOrder = calculateOrderTotal(data);
+  let date = convertDateAndTime(data.date_and_time);
 
-  if(user.username === selectedAds.user.username){
-    let sellerBtnStateChange = selectedOrder.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
-    let sellerTimerStateChange = selectedOrder.buyer_confirmed === false ? '' : "no_display" ;
-    let sellerTimerHeaderStateChange = selectedOrder.buyer_confirmed === false && selectedOrder.status === "pending" ? "Buyer will pay within:" :
-                                      selectedOrder.buyer_confirmed === true && selectedOrder.status === "pending" ? "Confirm payment from the buyer":
-                                      selectedOrder.buyer_confirmed === true && selectedOrder.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(selectedOrder.selected_amount)}`:
-                                      selectedOrder.buyer_confirmed === true && selectedOrder.status === "cancelled" ? "This order was cancelled": "";
-    let sellerSentStateChange = selectedOrder.buyer_confirmed === false ? "I received" : "I am receiving";
-    let sellerReceiveStateChange = selectedOrder.status === "completed" ? "I am sending" : "I sent";
-    let sellerOrderStatusChange = selectedOrder.buyer_confirmed === false && selectedOrder.status === "pending" ? "ORDER INITIATED" :
-                                  selectedOrder.buyer_confirmed === true && selectedOrder.status === "pending" ? "VERIFY PAYMENT" :
-                                  selectedOrder.buyer_confirmed === true && selectedOrder.status === "completed" ? "ORDER COMPLETED" :
-                                  selectedOrder.buyer_confirmed === false && selectedOrder.status === "cancelled" ? "ORDER CANCELLED" :"";
-    let sellerTransferStatusChange = selectedOrder.buyer_confirmed === false ? "confirm" : "I received";
-    let sellerCancelledChange = selectedOrder.status === "cancelled" ? "no_display" : "";
+  if(user.username === data.seller.username){
+    let sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
+    let sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
+    let sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Buyer will pay within:" :
+                                      data.buyer_confirmed === true && data.status === "pending" ? "Confirm payment from the buyer":
+                                      data.buyer_confirmed === true && data.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(data.selected_amount)}`:
+                                      data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+    let sellerSentStateChange = data.buyer_confirmed === false ? "I received" : "I am receiving";
+    let sellerReceiveStateChange = data.status === "completed" ? "I am sending" : "I sent";
+    let sellerOrderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER INITIATED" :
+                                  data.buyer_confirmed === true && data.status === "pending" ? "VERIFY PAYMENT" :
+                                  data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
+                                  data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+    let sellerTransferStatusChange = data.buyer_confirmed === false ? "confirm" : "I received";
+    let sellerCancelledChange = data.status === "cancelled" ? "no_display" : "";
 
 
     let sellerHTML = 
@@ -75,7 +74,7 @@ async function renderPage(){
       <div class="order_head">
         <div class="order_head_left">
           <h3>${sellerTimerHeaderStateChange} 
-            <span><b class="js_order_timer ${sellerTimerStateChange}">${selectedAds.time_limit} : 00</b></span>
+            <span><b class="js_order_timer ${sellerTimerStateChange}">${data.ads.time_limit} : 00</b></span>
           </h3>
         </div>
 
@@ -84,7 +83,7 @@ async function renderPage(){
           <h4 style="color:var(--Secondary-Text-light)">
             Order ID: 
             <span style="color:var(--Text-light)">
-              ${selectedOrder.order_id}
+              ${data.order_id}
             </span>
           </h4>
 
@@ -115,17 +114,17 @@ async function renderPage(){
                 <div class="order_details_body">
                   <div class="order_sent">
                     <h4 style="color:var(--Secondary-Text-light)">${sellerSentStateChange}</h4>
-                    <h4><b>£${monitizeNumber(selectedOrder.receiving_amount)}</b></h4>
+                    <h4><b>£${monitizeNumber(data.receiving_amount)}</b></h4>
                   </div>
 
                   <div class="order_price">
                     <h4 style="color:var(--Secondary-Text-light)">Rate</h4>
-                    <h4><b>£${monitizeNumber(selectedAds.rate)}</b></h4>
+                    <h4><b>£${monitizeNumber(data.ads.rate)}</b></h4>
                   </div>
                   
                   <div class="order_received">
                     <h4 style="color:var(--Secondary-Text-light)">${sellerReceiveStateChange}</h4>
-                    <h4><b>&#8358;${monitizeNumber(selectedOrder.selected_amount)}</b></h4>
+                    <h4><b>&#8358;${monitizeNumber(data.selected_amount)}</b></h4>
                   </div>
                 </div>
               </div>
@@ -137,7 +136,7 @@ async function renderPage(){
                 </b></h4>
 
                 <h4 style="color:var(--Secondary-Text-light)">
-                  ${selectedAds.exchange_terms}
+                  ${data.ads.exchange_terms}
                 </h4>
               
               </div>
@@ -146,7 +145,7 @@ async function renderPage(){
 
                 <div class="order_payment_details_head">
                   <h4><b>PAYMENT INFORMATION</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(selectedOrder.selected_amount)}</b> the account details below;</h4>
+                  <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(data.selected_amount)}</b> the account details below;</h4>
                 </div>
 
                 <div class="order_payment_details_body">
@@ -154,11 +153,11 @@ async function renderPage(){
                   <div class="order_payment_details_body_up">
                     <div class="account_name">
                       <h4 style="color:var(--Secondary-Text-light)">Name</h4>
-                      <h4>${selectedOrder.default_bank.bank_account_name}</h4>
+                      <h4>${data.buyer.default_bank.bank_account_name}</h4>
                     </div>
                     <div class="bank">
                       <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
-                      <h4>${selectedOrder.default_bank.bank_name}</h4>
+                      <h4>${data.buyer.default_bank.bank_name}</h4>
                     </div>
 
                   </div>
@@ -166,11 +165,11 @@ async function renderPage(){
                   <div class="order_payment_details_body_down">
                     <div class="account_number">
                       <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
-                      <h4>${selectedOrder.default_bank.bank_account_number}</h4>
+                      <h4>${data.buyer.default_bank.bank_account_number}</h4>
                     </div>
                     <div class="sort_code">
                       <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
-                      <h4>${selectedOrder.default_bank.bank_sort_code}</h4>
+                      <h4>${data.buyer.default_bank.bank_sort_code}</h4>
                     </div>
                     
                   </div>
@@ -216,12 +215,12 @@ async function renderPage(){
                 <div class="user_term_user">
 
                   <div class="user_term_username">
-                    <h4>${selectedAds.user.username}</h4>
-                    <img src="${verified(selectedAds)}" alt="">
+                    <h4>${data.seller.username}</h4>
+                    <img src="${verified(data.seller)}" alt="">
                   </div>
 
                   <div class="user_term_metrics">
-                    <h5 style="color:var(--Secondary-Text-light)">${calculateTotalOrder(selectedAds)} Orders | ${calculateCompleteOrder(selectedAds, totalOrder)}%</h5>
+                    <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data, totalOrder)}%</h5>
                   </div>
 
                 </div>
@@ -230,7 +229,7 @@ async function renderPage(){
 
               <div class="user_term_body">
                 <h4>Terms(Please Read Carefully)</h4>
-                <h4 style="color:var(--Secondary-Text-light);">${selectedAds.exchange_terms}</h4>
+                <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
               </div>
             </div>
 
@@ -246,7 +245,7 @@ async function renderPage(){
     const receivedBtn = document.querySelector(".js_received");
     const sellerCancelledBtn = document.querySelector(".seller_js_cancelled");
     receivedBtn.addEventListener("click", ()=>{
-      renderReceivePaymentPopup (selectedAds, selectedOrder);
+      renderReceivePaymentPopup (data);
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
 
@@ -258,27 +257,27 @@ async function renderPage(){
     })
 
   }else{
-    let buyerBtnStateChange = selectedOrder.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
-    let timerStateChange = selectedOrder.buyer_confirmed === false ? '' : "no_display" ;
-    let timerHeaderStateChange = selectedOrder.buyer_confirmed === false && selectedOrder.status === "pending" ? "Pay seller within:" :
-                                selectedOrder.buyer_confirmed === true && selectedOrder.status === "pending" ? "Wait for seller to confirm payment":
-                                selectedOrder.buyer_confirmed === true && selectedOrder.status === "completed" ? `Successfully received &#8358;${monitizeNumber(selectedOrder.selected_amount)}`:
-                                selectedOrder.buyer_confirmed === true && selectedOrder.status === "cancelled" ? "This order was cancelled": "";
-    let sentStateChange = selectedOrder.buyer_confirmed === false ? "I am sending" : "I sent";
-    let receiveStateChange = selectedOrder.status === "completed" ? "I received" : "I am receiving";
-    let orderStatusChange = selectedOrder.buyer_confirmed === false && selectedOrder.status === "pending" ? "ORDER CREATED" :
-                            selectedOrder.buyer_confirmed === true && selectedOrder.status === "pending" ? "PENDING CONFIRMATION" :
-                            selectedOrder.buyer_confirmed === true && selectedOrder.status === "completed" ? "ORDER COMPLETED" :
-                            selectedOrder.buyer_confirmed === false && selectedOrder.status === "cancelled" ? "ORDER CANCELLED" :"";
-    let transferStatusChange = selectedOrder.buyer_confirmed === false ? "Transfer" : "I transferred";
-    let cancelledChange = selectedOrder.status === "cancelled" ? "no_display" : "";
+    let buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
+    let timerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
+    let timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Pay seller within:" :
+                                data.buyer_confirmed === true && data.status === "pending" ? "Wait for seller to confirm payment":
+                                data.buyer_confirmed === true && data.status === "completed" ? `Successfully received &#8358;${monitizeNumber(data.selected_amount)}`:
+                                data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+    let sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
+    let receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
+    let orderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER CREATED" :
+                            data.buyer_confirmed === true && data.status === "pending" ? "PENDING CONFIRMATION" :
+                            data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
+                            data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+    let transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
+    let cancelledChange = data.status === "cancelled" ? "no_display" : "";
 
     let html = 
     `
       <div class="order_head">
         <div class="order_head_left">
           <h3>${timerHeaderStateChange} 
-            <span><b class="js_order_timer ${timerStateChange}">${selectedAds.time_limit} : 00</b></span>
+            <span><b class="js_order_timer ${timerStateChange}">${data.ads.time_limit} : 00</b></span>
           </h3>
         </div>
 
@@ -287,7 +286,7 @@ async function renderPage(){
           <h4 style="color:var(--Secondary-Text-light)">
             Order ID: 
             <span style="color:var(--Text-light)">
-              ${selectedOrder.order_id}
+              ${data.order_id}
             </span>
           </h4>
 
@@ -318,17 +317,17 @@ async function renderPage(){
                 <div class="order_details_body">
                   <div class="order_sent">
                     <h4 style="color:var(--Secondary-Text-light)">${sentStateChange}</h4>
-                    <h4><b>£${monitizeNumber(selectedOrder.selected_amount)}</b></h4>
+                    <h4><b>£${monitizeNumber(data.selected_amount)}</b></h4>
                   </div>
 
                   <div class="order_price">
                     <h4 style="color:var(--Secondary-Text-light)">Price</h4>
-                    <h4><b>£${monitizeNumber(selectedAds.rate)}</b></h4>
+                    <h4><b>£${monitizeNumber(data.ads.rate)}</b></h4>
                   </div>
                   
                   <div class="order_received">
                     <h4 style="color:var(--Secondary-Text-light)">${receiveStateChange}</h4>
-                    <h4><b>&#8358;${monitizeNumber(selectedOrder.receiving_amount)}</b></h4>
+                    <h4><b>&#8358;${monitizeNumber(data.receiving_amount)}</b></h4>
                   </div>
                 </div>
               </div>
@@ -340,7 +339,7 @@ async function renderPage(){
                 </b></h4>
 
                 <h4 style="color:var(--Secondary-Text-light)">
-                  ${selectedAds.exchange_terms}
+                  ${data.ads.exchange_terms}
                 </h4>
               
               </div>
@@ -349,7 +348,7 @@ async function renderPage(){
 
                 <div class="order_payment_details_head">
                   <h4><b>PAYMENT INFORMATION</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">${transferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(selectedOrder.selected_amount)}</b> the account details below;</h4>
+                  <h4 style="color:var(--Secondary-Text-light)">${transferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(data.selected_amount)}</b> the account details below;</h4>
                 </div>
 
                 <div class="order_payment_details_body">
@@ -357,11 +356,11 @@ async function renderPage(){
                   <div class="order_payment_details_body_up">
                     <div class="account_name">
                       <h4 style="color:var(--Secondary-Text-light)">Name</h4>
-                      <h4>${selectedAds.selected_bank.bank_account_name}</h4>
+                      <h4>${data.seller.default_bank.bank_account_name}</h4>
                     </div>
                     <div class="bank">
                       <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
-                      <h4>${selectedAds.selected_bank.bank_name}</h4>
+                      <h4>${data.seller.default_bank.bank_name}</h4>
                     </div>
 
                   </div>
@@ -369,11 +368,11 @@ async function renderPage(){
                   <div class="order_payment_details_body_down">
                     <div class="account_number">
                       <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
-                      <h4>${selectedAds.selected_bank.bank_account_number}</h4>
+                      <h4>${data.seller.default_bank.bank_account_number}</h4>
                     </div>
                     <div class="sort_code">
                       <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
-                      <h4>${selectedAds.selected_bank.bank_sort_code}</h4>
+                      <h4>${data.seller.default_bank.bank_sort_code}</h4>
                     </div>
                     
                   </div>
@@ -438,12 +437,12 @@ async function renderPage(){
                 <div class="user_term_user">
 
                   <div class="user_term_username">
-                    <h4>${selectedAds.user.username}</h4>
-                    <img src="${verified(selectedAds)}" alt="">
+                    <h4>${data.seller.username}</h4>
+                    <img src="${verified(data.seller)}" alt="">
                   </div>
 
                   <div class="user_term_metrics">
-                    <h5 style="color:var(--Secondary-Text-light)">${calculateTotalOrder(selectedAds)} Orders | ${calculateCompleteOrder(selectedAds, totalOrder)}% completion</h5>
+                    <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data,totalOrder)}% completion</h5>
                   </div>
 
                 </div>
@@ -452,7 +451,7 @@ async function renderPage(){
 
               <div class="user_term_body">
                 <h4>Terms(Please Read Carefully)</h4>
-                <h4 style="color:var(--Secondary-Text-light);">${selectedAds.exchange_terms}</h4>
+                <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
               </div>
             </div>
 
@@ -469,8 +468,8 @@ async function renderPage(){
     const transferredBtn = document.querySelector(".js_transferred");
     const cancelledBtn = document.querySelector(".buyer_js_cancelled");
     transferredBtn.addEventListener("click", ()=>{
-      // stop timer
-      renderMadePaymentPopup (selectedAds, selectedOrder);
+      // stop timer code
+      renderMadePaymentPopup (data);
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
       
@@ -484,9 +483,9 @@ async function renderPage(){
 
   }
 }
-renderPage();
 
-function renderMadePaymentPopup (ads, order){
+
+function renderMadePaymentPopup (value){
   let html = 
   `
     <div class="payment_confirmation_popup_heading">
@@ -495,7 +494,7 @@ function renderMadePaymentPopup (ads, order){
     </div>
 
     <div class="payment_confirmation_popup_body">
-      <h4>Please confirm that you transferred £${order.selected_amount} to the bank account below;</h4>
+      <h4>Please confirm that you transferred £${value.selected_amount} to the bank account below;</h4>
 
       <div class="payment_confirmation_popup_bank">
 
@@ -507,21 +506,21 @@ function renderMadePaymentPopup (ads, order){
 
           <div class="payment_confirmation_popup_bank_details">
             <h4 class="secondary">Name</h4>
-            <h4>${ads.selected_bank.bank_account_name}</h4>
+            <h4>${value.seller.default_bank.bank_account_name}</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
             <h4 class="secondary">Bank Name</h4>
-            <h4>${ads.selected_bank.bank_name}</h4>
+            <h4>${value.seller.default_bank.bank_name}</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
-            <h4 class="secondary">${ads.selected_bank.bank_account_number}</h4>
+            <h4 class="secondary">${value.seller.default_bank.bank_account_number}</h4>
             <h4>0121615892</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
-            <h4 class="secondary">${ads.selected_bank.bank_sort_code}</h4>
+            <h4 class="secondary">${value.seller.default_bank.bank_sort_code}</h4>
             <h4>01-02-03</h4>
           </div>
 
@@ -548,8 +547,8 @@ function renderMadePaymentPopup (ads, order){
   popupEl.innerHTML = html;
   const cancelBtn = document.querySelector(".js_buyer_cancel_btn");
   const confirmBtn = document.querySelector(".js_buyer_confirm_btn");
-  const selectedAds = ads.ad_id;
-  const selecetedAmount = ads.amount;
+  const selectedAds = value.ads.ad_id;
+  const selectedAmount = value.selected_amount;
 
   cancelBtn.addEventListener("click", ()=>{
     overlay.style.display = "none";
@@ -558,7 +557,7 @@ function renderMadePaymentPopup (ads, order){
 
   confirmBtn.addEventListener("click", async()=>{
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/orders/${order.order_id}/confirm-payment/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/orders/${value.order_id}/confirm-payment/`, {
         method : "PUT",
         headers : {
           "Authorization" : `Bearer ${token}`,
@@ -566,7 +565,7 @@ function renderMadePaymentPopup (ads, order){
         },
         body : JSON.stringify({
           ads: selectedAds,
-          selected_ammount : selecetedAmount
+          selected_amount : selectedAmount
         }) 
 
       });
@@ -574,6 +573,7 @@ function renderMadePaymentPopup (ads, order){
       const data = await response.json();
       console.log(data);
       if(data.status){
+        renderOrder();
         overlay.style.display = "none";
         popupEl.style.display = "none";
         
@@ -588,7 +588,7 @@ function renderMadePaymentPopup (ads, order){
 
 }
 
-function renderReceivePaymentPopup (ads, order){
+function renderReceivePaymentPopup (value){
   let html = 
   `
     <div class="payment_confirmation_popup_heading">
@@ -597,7 +597,7 @@ function renderReceivePaymentPopup (ads, order){
     </div>
 
     <div class="payment_confirmation_popup_body">
-      <h4>Please confirm that you received £${order.selected_amount} from the bank account below;</h4>
+      <h4>Please confirm that you received £${value.selected_amount} from the bank account below;</h4>
 
       <div class="payment_confirmation_popup_bank">
 
@@ -609,21 +609,21 @@ function renderReceivePaymentPopup (ads, order){
 
           <div class="payment_confirmation_popup_bank_details">
             <h4 class="secondary">Name</h4>
-            <h4>${ads.selected_bank.bank_account_name}</h4>
+            <h4>${value.buyer.default_bank.bank_account_name}</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
             <h4 class="secondary">Bank Name</h4>
-            <h4>${ads.selected_bank.bank_name}</h4>
+            <h4>${value.buyer.default_bank.bank_name}</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
-            <h4 class="secondary">${ads.selected_bank.bank_account_number}</h4>
+            <h4 class="secondary">${value.buyer.default_bank.bank_account_number}</h4>
             <h4>0121615892</h4>
           </div>
 
           <div class="payment_confirmation_popup_bank_details">
-            <h4 class="secondary">${ads.selected_bank.bank_sort_code}</h4>
+            <h4 class="secondary">${value.buyer.default_bank.bank_sort_code}</h4>
             <h4>01-02-03</h4>
           </div>
 
@@ -658,7 +658,7 @@ function renderReceivePaymentPopup (ads, order){
 
   confirmBtn.addEventListener("click", async()=>{
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/orders/${order.order_id}/release/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/orders/${value.order_id}/release/`, {
         method : "PUT",
         headers : {
           "Authorization" : `Bearer ${token}`,

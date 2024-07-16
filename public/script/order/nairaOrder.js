@@ -316,7 +316,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
                
               }else{
                 addOrder(data,adsDetails);
-                window.location.href = `../../../views/order.html?orderId=${data.order_id}&adsId=${adsDetails.ad_id}`;
+                window.location.href = `../../../views/order.html?orderId=${data.order_id}`;
 
               }
               
