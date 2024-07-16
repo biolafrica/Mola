@@ -337,7 +337,8 @@ form button {
 
 .checkbox-container,
 .order_cancel_checkbox_container,
-.payment_checkbox_container {
+.payment_checkbox_container,
+.bank_checkbox_container{
   display: flex;
   align-items: center;
   gap: 5px;

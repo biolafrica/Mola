@@ -12,6 +12,8 @@
     <!--bank form popup-->
     <div class="bank_account_form_popup" style="padding: 30px;">
 
+      
+
       <div class="bank_account_form_popup_head">
         <h4 class="popup_bank_type js_popup_bank_type">GBP Bank Account</h4>
         <img class="popup_bank_cancel_icon" src="../public/icons/Cancel.svg" alt="">
@@ -31,6 +33,13 @@
 
           <label class="popup_sort" for="sortCode"><h4><b>Sort Code:</b></h4></label>
           <input class="popup_sort_input" type="text" placeholder="Enter your account sort code" id="sortCode" required>
+
+          <div class="bank_checkbox_container">
+            <input type="checkbox" id="bankCheckbox" style="margin: 0;">
+            <label for="bankCheckbox">
+              <h4 id="">Make it my default bank</h4>
+            </label>
+          </div>
 
           <div class="bank_account_form_popup_body_btn">
             <button class="outline-btn popup_bank_cancel"><h5>Back</h5></button>
@@ -560,6 +569,7 @@
                 <div class="bank_account_list_head_right">
                   <img src="../public/icons/Mode edit.svg" alt="">
                   <img src="../public/icons/Delete.svg" alt="">
+                  
                 </div>
                 
               </div>

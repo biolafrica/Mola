@@ -81,8 +81,7 @@ phoneCancelIcon.addEventListener("click", ()=>{
 
 bankBtn.addEventListener('change', (e)=>{
   const selectedValue = e.target.value;
-  console.log(selectedValue);
-
+  
   if(selectedValue === "NGN_Account"){
     overlay.style.display = "initial";
     bankPopupEl.style.display = "initial";
@@ -95,6 +94,8 @@ bankBtn.addEventListener('change', (e)=>{
     overlay.style.display = "initial";
     bankPopupEl.style.display = "initial";
     bankHeading.innerHTML = "GBP Bank Account";
+    popupSort.style.display = "initial";
+    popupInput.style.display = "initial";
     
 
   }
@@ -226,6 +227,7 @@ async function renderBanks(token){
   
   banks.forEach((bank)=>{
     let displaySortCode = bank.bank_type === "Naira" ? "no_sort_code" : "";
+    let defaultBank = bank.is_default === true ? "../public/icons/Check Mark.svg" : "";
   
     let html = 
     `
@@ -238,6 +240,7 @@ async function renderBanks(token){
           </div>
     
           <div class="bank_account_list_head_right">
+            <img class="js_one_bank_select" src="${defaultBank}" alt="">
             <img class="js_one_bank_edit" src="../public/icons/Mode edit.svg" alt="">
             <img class="js_one_bank_delete" id="${bank.bank_id}" src="../public/icons/Delete.svg" alt="">
           </div>
@@ -332,6 +335,8 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
   const bank_account_number = (document.getElementById("accountNo")).value;
   const bank_sort_code = (document.getElementById("sortCode")).value;
   const bank_type = (document.querySelector(".js_popup_bank_type")).textContent;
+  const checkEl = document.getElementById("bankCheckbox");
+  const bank_check = checkEl.checked ? true : false;
 
   const selectedBankType = bank_type === "GBP Bank Account" ? "Pounds" : "Naira";
   const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : 0;
@@ -350,7 +355,7 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
         bank_account_name,
         bank_account_number,
         bank_sort_code :sortCodeChoice,
-        is_default: true
+        is_default: bank_check
       })
     
     });
@@ -358,14 +363,14 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
     console.log(data);
 
     if(data.bank_id){
-      overlay.style.display = "none";
-      bankPopupEl.style.display = "none";
-      bankBtn.value = "Add_Bank";
-      renderBanks(token);
       bank_name = "";
       bank_account_name = "";
       bank_account_number = "";
       bank_sort_code = "";
+      overlay.style.display = "none";
+      bankPopupEl.style.display = "none";
+      bankBtn.value = "Add_Bank";
+      renderBanks(token);
      
     }
 
