@@ -4,7 +4,7 @@ import{monitizeNumber} from "../../public/script/utils/money.js";
 import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
 
-const timeEl = document.querySelector(".js_order_timer");
+
 const orderPageEl = document.querySelector(".order_page_container");
 const token = localStorage.getItem("access");
 const popupEl = document.querySelector(".js_payment_confirm_popup");
@@ -15,10 +15,6 @@ const cancelCancelledSellerBtn = document.querySelector(".js_cancel_cancelled_se
 const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_seller");
 const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
 const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
-
-
-let timeLeft = 900;
-let intervalId;
 
 console.log(order);
 const url = new URL(window.location.href);
@@ -51,197 +47,12 @@ async function renderPage(data){
   console.log(user);
   let totalOrder = calculateOrderTotal(data);
   let date = convertDateAndTime(data.date_and_time);
-
+  const time = data.ads.time_limit === 15 ? 900 : data.ads.time_limit === 30 ? 1800 : data.ads.time_limit === 45 ? 2700 : 3600;
+  let timeLeft = time;
+  let intervalId;
+  
   if(user.username === data.seller.username){
-    let sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
-    let sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
-    let sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Buyer will pay within:" :
-                                      data.buyer_confirmed === true && data.status === "pending" ? "Confirm payment from the buyer":
-                                      data.buyer_confirmed === true && data.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(data.selected_amount)}`:
-                                      data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
-    let sellerSentStateChange = data.buyer_confirmed === false ? "I received" : "I am receiving";
-    let sellerReceiveStateChange = data.status === "completed" ? "I am sending" : "I sent";
-    let sellerOrderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER INITIATED" :
-                                  data.buyer_confirmed === true && data.status === "pending" ? "VERIFY PAYMENT" :
-                                  data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
-                                  data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
-    let sellerTransferStatusChange = data.buyer_confirmed === false ? "confirm" : "I received";
-    let sellerCancelledChange = data.status === "cancelled" ? "no_display" : "";
-
-
-    let sellerHTML = 
-    `
-      <div class="order_head">
-        <div class="order_head_left">
-          <h3>${sellerTimerHeaderStateChange} 
-            <span><b class="js_order_timer ${sellerTimerStateChange}">${data.ads.time_limit} : 00</b></span>
-          </h3>
-        </div>
-
-        <div class="order_head_right">
-
-          <h4 style="color:var(--Secondary-Text-light)">
-            Order ID: 
-            <span style="color:var(--Text-light)">
-              ${data.order_id}
-            </span>
-          </h4>
-
-          <h4 style="color:var(--Secondary-Text-light)">
-            Time created: 
-            <span style="color:var(--Text-light)">
-              ${date}
-            </span>
-          </h4>
-
-        </div>
-      </div>
-
-      <div class="orders_container">
-        <div class="order_bodys_container">
-
-          <div class="order_body_container">
-
-            <div class="order_body">
-
-              <div class="order_details">
-
-                <div class="order_details_head">
-                  <h4><b>${sellerOrderStatusChange}</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">Confirming your transaction details delow</h4>
-                </div>
-
-                <div class="order_details_body">
-                  <div class="order_sent">
-                    <h4 style="color:var(--Secondary-Text-light)">${sellerSentStateChange}</h4>
-                    <h4><b>£${monitizeNumber(data.receiving_amount)}</b></h4>
-                  </div>
-
-                  <div class="order_price">
-                    <h4 style="color:var(--Secondary-Text-light)">Rate</h4>
-                    <h4><b>£${monitizeNumber(data.ads.rate)}</b></h4>
-                  </div>
-                  
-                  <div class="order_received">
-                    <h4 style="color:var(--Secondary-Text-light)">${sellerReceiveStateChange}</h4>
-                    <h4><b>&#8358;${monitizeNumber(data.selected_amount)}</b></h4>
-                  </div>
-                </div>
-              </div>
-
-              <div class="order_terms_details">
-
-                <h4><b>
-                  TRANSACTION TERMS
-                </b></h4>
-
-                <h4 style="color:var(--Secondary-Text-light)">
-                  ${data.ads.exchange_terms}
-                </h4>
-              
-              </div>
-
-              <div class="order_payment_details ${sellerCancelledChange}">
-
-                <div class="order_payment_details_head">
-                  <h4><b>PAYMENT INFORMATION</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(data.selected_amount)}</b> the account details below;</h4>
-                </div>
-
-                <div class="order_payment_details_body">
-
-                  <div class="order_payment_details_body_up">
-                    <div class="account_name">
-                      <h4 style="color:var(--Secondary-Text-light)">Name</h4>
-                      <h4>${data.buyer.default_bank.bank_account_name}</h4>
-                    </div>
-                    <div class="bank">
-                      <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
-                      <h4>${data.buyer.default_bank.bank_name}</h4>
-                    </div>
-
-                  </div>
-
-                  <div class="order_payment_details_body_down">
-                    <div class="account_number">
-                      <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
-                      <h4>${data.buyer.default_bank.bank_account_number}</h4>
-                    </div>
-                    <div class="sort_code">
-                      <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
-                      <h4>${data.buyer.default_bank.bank_sort_code}</h4>
-                    </div>
-                    
-                  </div>
-                
-                </div>
-
-
-              </div>
-
-              <div class="order_payment_status ${sellerCancelledChange}">
-
-                <div class="order_payment_status_head">
-                  <h4><b>PAYMENT UPDATE</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">Click on "Received" to notify the buyer after confirmation</h4>
-                </div>
-
-                <div class="order_payment_status_body">
-                  
-                  <button class="inactive-btn js_received">
-                    <h5>Received</h5>
-                  </button>
-
-                  <button class="text-btn seller_js_cancelled">
-                    <h5>Cancel Order</h5>
-                  </button>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="user_term_container">
-
-            <div class="user_terms">
-
-              <div class="user_term_head">
-                <div class="user_term_image">
-                  <img src="../public/avatar/avatar_1.svg" alt="">
-                </div>
-
-                <div class="user_term_user">
-
-                  <div class="user_term_username">
-                    <h4>${data.seller.username}</h4>
-                    <img src="${verified(data.seller)}" alt="">
-                  </div>
-
-                  <div class="user_term_metrics">
-                    <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data, totalOrder)}%</h5>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="user_term_body">
-                <h4>Terms(Please Read Carefully)</h4>
-                <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `;
-
-    orderPageEl.innerHTML = sellerHTML;
+    renderSellerHTML(data, totalOrder,date);
     const receivedBtn = document.querySelector(".js_received");
     const sellerCancelledBtn = document.querySelector(".seller_js_cancelled");
     receivedBtn.addEventListener("click", ()=>{
@@ -257,218 +68,12 @@ async function renderPage(data){
     })
 
   }else{
-    let buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
-    let timerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
-    let timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Pay seller within:" :
-                                data.buyer_confirmed === true && data.status === "pending" ? "Wait for seller to confirm payment":
-                                data.buyer_confirmed === true && data.status === "completed" ? `Successfully received &#8358;${monitizeNumber(data.selected_amount)}`:
-                                data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
-    let sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
-    let receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
-    let orderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER CREATED" :
-                            data.buyer_confirmed === true && data.status === "pending" ? "PENDING CONFIRMATION" :
-                            data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
-                            data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
-    let transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
-    let cancelledChange = data.status === "cancelled" ? "no_display" : "";
 
-    let html = 
-    `
-      <div class="order_head">
-        <div class="order_head_left">
-          <h3>${timerHeaderStateChange} 
-            <span><b class="js_order_timer ${timerStateChange}">${data.ads.time_limit} : 00</b></span>
-          </h3>
-        </div>
-
-        <div class="order_head_right">
-
-          <h4 style="color:var(--Secondary-Text-light)">
-            Order ID: 
-            <span style="color:var(--Text-light)">
-              ${data.order_id}
-            </span>
-          </h4>
-
-          <h4 style="color:var(--Secondary-Text-light)">
-            Time created: 
-            <span style="color:var(--Text-light)">
-              ${date}
-            </span>
-          </h4>
-
-        </div>
-      </div>
-
-      <div class="orders_container">
-        <div class="order_bodys_container">
-
-          <div class="order_body_container">
-
-            <div class="order_body">
-
-              <div class="order_details">
-
-                <div class="order_details_head">
-                  <h4><b>${orderStatusChange}</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">Transaction details;</h4>
-                </div>
-
-                <div class="order_details_body">
-                  <div class="order_sent">
-                    <h4 style="color:var(--Secondary-Text-light)">${sentStateChange}</h4>
-                    <h4><b>£${monitizeNumber(data.selected_amount)}</b></h4>
-                  </div>
-
-                  <div class="order_price">
-                    <h4 style="color:var(--Secondary-Text-light)">Price</h4>
-                    <h4><b>£${monitizeNumber(data.ads.rate)}</b></h4>
-                  </div>
-                  
-                  <div class="order_received">
-                    <h4 style="color:var(--Secondary-Text-light)">${receiveStateChange}</h4>
-                    <h4><b>&#8358;${monitizeNumber(data.receiving_amount)}</b></h4>
-                  </div>
-                </div>
-              </div>
-
-              <div class="order_terms_details">
-
-                <h4><b>
-                  TRANSACTION TERMS
-                </b></h4>
-
-                <h4 style="color:var(--Secondary-Text-light)">
-                  ${data.ads.exchange_terms}
-                </h4>
-              
-              </div>
-
-              <div class="order_payment_details ${cancelledChange}">
-
-                <div class="order_payment_details_head">
-                  <h4><b>PAYMENT INFORMATION</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">${transferStatusChange} <b style="color:var(--Text-light)">£${monitizeNumber(data.selected_amount)}</b> the account details below;</h4>
-                </div>
-
-                <div class="order_payment_details_body">
-
-                  <div class="order_payment_details_body_up">
-                    <div class="account_name">
-                      <h4 style="color:var(--Secondary-Text-light)">Name</h4>
-                      <h4>${data.seller.default_bank.bank_account_name}</h4>
-                    </div>
-                    <div class="bank">
-                      <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
-                      <h4>${data.seller.default_bank.bank_name}</h4>
-                    </div>
-
-                  </div>
-
-                  <div class="order_payment_details_body_down">
-                    <div class="account_number">
-                      <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
-                      <h4>${data.seller.default_bank.bank_account_number}</h4>
-                    </div>
-                    <div class="sort_code">
-                      <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
-                      <h4>${data.seller.default_bank.bank_sort_code}</h4>
-                    </div>
-                    
-                  </div>
-                
-                </div>
-
-
-              </div>
-
-              <div class="order_payment_status ${cancelledChange}">
-
-                <div class="order_payment_status_head">
-                  <h4><b>PAYMENT UPDATE</b></h4>
-                  <h4 style="color:var(--Secondary-Text-light)">Click on "Transferred" to notify the seller after payment</h4>
-                </div>
-
-                <div class="order_payment_status_body">
-                  
-                  <button class="${buyerBtnStateChange} js_transferred">
-                    <h5>Transferred</h5>
-                  </button>
-
-                  <button class="text-btn buyer_js_cancelled">
-                    <h5>Cancel Order</h5>
-                  </button>
-
-                </div>
-              </div>
-
-              <div class="feedback_container">
-                <h4><b>Rating</b></h4>
-              
-                <div class="feedback_icon">
-                  <button class="feedback_btn"> <img src="../public/icons/Thumb up.svg" alt=""> </button>
-                  <button class="feedback_btn"> <img src="../public/icons/Thumb down.svg" alt=""> </buttton>
-                </div>
-
-                <form action="">
-                  <label for="feedback">  <h4>How did you feel about the transaction</h4></label>
-                  <textarea name="" id="feedback" placeholder="please input how you feel about the transaction"></textarea>
-
-                  <button class="filled-btn">Publish</button>
-                </form>
-              </div>
-
-
-            </div>
-
-
-
-          </div>
-
-          <div class="user_term_container">
-
-            <div class="user_terms">
-
-              <div class="user_term_head">
-                <div class="user_term_image">
-                  <img src="../public/avatar/avatar_1.svg" alt="">
-                </div>
-
-                <div class="user_term_user">
-
-                  <div class="user_term_username">
-                    <h4>${data.seller.username}</h4>
-                    <img src="${verified(data.seller)}" alt="">
-                  </div>
-
-                  <div class="user_term_metrics">
-                    <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data,totalOrder)}% completion</h5>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="user_term_body">
-                <h4>Terms(Please Read Carefully)</h4>
-                <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-    `;
-
-    orderPageEl.innerHTML = html;
+    renderBuyerHTML (data,totalOrder,date);
     const transferredBtn = document.querySelector(".js_transferred");
     const cancelledBtn = document.querySelector(".buyer_js_cancelled");
     transferredBtn.addEventListener("click", ()=>{
-      // stop timer code
+      stopTimer (intervalId, time, timeEl, timeLeft);
       renderMadePaymentPopup (data);
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
@@ -482,6 +87,15 @@ async function renderPage(data){
 
 
   }
+
+  const timeEl = document.querySelector(".js_order_timer");
+  const savedTimeLeft = localStorage.getItem("timeLeft");
+  if(savedTimeLeft !== null){
+    timeLeft = parseInt(savedTimeLeft, 10);
+  }
+  renderTimer(timeLeft,timeEl,intervalId);
+
+
 }
 
 
@@ -717,23 +331,442 @@ function pad(value){
   return value > 9 ? value : "0" + value;
 }
 
-function renderTimer(){
+function renderTimer(timeLeft, timeEl,intervalId){
   intervalId = setInterval(()=>{
     let min = Math.round(timeLeft / 60);
     let sec = timeLeft % 60;
   
     timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
-    timeLeft --
+    timeLeft --;
+
+    localStorage.setItem("timeLeft", timeLeft);
+
+    if(timeLeft <=0){
+      clearInterval(intervalId);
+      localStorage.removeItem("timeLeft");
+      // cancel order;
+    }
   }, 1000);
 
 }
-//renderTimer();
 
-function timeReset (){
+function stopTimer(intervalId, time, timeEl, timeLeft){
   clearInterval(intervalId);
-  timeLeft = 900;
-  min = Math.round(timeLeft/60);
-  sec = timeLeft % 60;
+  localStorage.removeItem("timeLeft");
+  let min = Math.round(timeLeft/60);
+  let sec = timeLeft % 60;
   timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
+
+}
+
+function renderBuyerHTML(data,totalOrder,date){
+
+  const buyerSendCurrency = data.ads.type === "Naira" ? '£' : "&#8358;";
+  const buyerReceiveCurrency = data.ads.type === "Naira" ? "&#8358;" : "£";
+  const buyerSortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_display";
+
+  const buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
+  const timerStateChange = data.buyer_confirmed === false ? '' : 'no_display';
+  const timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Pay seller within:" :
+                              data.buyer_confirmed === true && data.status === "pending" ? "Wait for seller to confirm payment":
+                              data.buyer_confirmed === true && data.status === "completed" ? `Successfully received &#8358;${monitizeNumber(data.selected_amount)}`:
+                              data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+  const sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
+  const receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
+  const orderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER CREATED" :
+                          data.buyer_confirmed === true && data.status === "pending" ? "PENDING CONFIRMATION" :
+                          data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
+                          data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+  const transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
+  const cancelledChange = data.status === "cancelled" ? "no_display" : "";
+
+  let html = 
+  `
+    <div class="order_head">
+      <div class="order_head_left">
+        <h3>${timerHeaderStateChange} 
+          <span><b class="${timerStateChange} js_order_timer"> </b></span>
+        </h3>
+      </div>
+
+      <div class="order_head_right">
+
+        <h4 style="color:var(--Secondary-Text-light)">
+          Order ID: 
+          <span style="color:var(--Text-light)">
+            ${data.order_id}
+          </span>
+        </h4>
+
+        <h4 style="color:var(--Secondary-Text-light)">
+          Time created: 
+          <span style="color:var(--Text-light)">
+            ${date}
+          </span>
+        </h4>
+
+      </div>
+    </div>
+
+    <div class="orders_container">
+      <div class="order_bodys_container">
+
+        <div class="order_body_container">
+
+          <div class="order_body">
+
+            <div class="order_details">
+
+              <div class="order_details_head">
+                <h4><b>${orderStatusChange}</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">Transaction details;</h4>
+              </div>
+
+              <div class="order_details_body">
+                <div class="order_sent">
+                  <h4 style="color:var(--Secondary-Text-light)">${sentStateChange}</h4>
+                  <h4><b>${buyerSendCurrency}${monitizeNumber(data.selected_amount)}</b></h4>
+                </div>
+
+                <div class="order_price">
+                  <h4 style="color:var(--Secondary-Text-light)">Price</h4>
+                  <h4><b>&#8358;${monitizeNumber(data.ads.rate)}</b></h4>
+                </div>
+                
+                <div class="order_received">
+                  <h4 style="color:var(--Secondary-Text-light)">${receiveStateChange}</h4>
+                  <h4><b>${buyerReceiveCurrency}${monitizeNumber(data.receiving_amount)}</b></h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="order_terms_details">
+
+              <h4><b>
+                TRANSACTION TERMS
+              </b></h4>
+
+              <h4 style="color:var(--Secondary-Text-light)">
+                ${data.ads.exchange_terms}
+              </h4>
+            
+            </div>
+
+            <div class="order_payment_details ${cancelledChange}">
+
+              <div class="order_payment_details_head">
+                <h4><b>PAYMENT INFORMATION</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">${transferStatusChange} <b style="color:var(--Text-light)">${buyerSendCurrency}${monitizeNumber(data.selected_amount)}</b> to the account details below;</h4>
+              </div>
+
+              <div class="order_payment_details_body">
+
+                <div class="order_payment_details_body_up">
+                  <div class="account_name">
+                    <h4 style="color:var(--Secondary-Text-light)">Name</h4>
+                    <h4>${data.seller.default_bank.bank_account_name}</h4>
+                  </div>
+                  <div class="bank">
+                    <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
+                    <h4>${data.seller.default_bank.bank_name}</h4>
+                  </div>
+
+                </div>
+
+                <div class="order_payment_details_body_down">
+                  <div class="account_number">
+                    <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
+                    <h4>${data.seller.default_bank.bank_account_number}</h4>
+                  </div>
+                  <div class="sort_code ${buyerSortCodeDisplay}">
+                    <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
+                    <h4>${data.seller.default_bank.bank_sort_code}</h4>
+                  </div>
+                  
+                </div>
+              
+              </div>
+
+
+            </div>
+
+            <div class="order_payment_status ${cancelledChange}">
+
+              <div class="order_payment_status_head">
+                <h4><b>PAYMENT UPDATE</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">Click on "Transferred" to notify the seller after payment</h4>
+              </div>
+
+              <div class="order_payment_status_body">
+                
+                <button class="${buyerBtnStateChange} js_transferred">
+                  <h5>Transferred</h5>
+                </button>
+
+                <button class="text-btn buyer_js_cancelled">
+                  <h5>Cancel Order</h5>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="feedback_container">
+              <h4><b>Rating</b></h4>
+            
+              <div class="feedback_icon">
+                <button class="feedback_btn"> <img src="../public/icons/Thumb up.svg" alt=""> </button>
+                <button class="feedback_btn"> <img src="../public/icons/Thumb down.svg" alt=""> </buttton>
+              </div>
+
+              <form action="">
+                <label for="feedback">  <h4>How did you feel about the transaction</h4></label>
+                <textarea name="" id="feedback" placeholder="please input how you feel about the transaction"></textarea>
+
+                <button class="filled-btn">Publish</button>
+              </form>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+
+        <div class="user_term_container">
+
+          <div class="user_terms">
+
+            <div class="user_term_head">
+              <div class="user_term_image">
+                <img src="../public/avatar/avatar_1.svg" alt="">
+              </div>
+
+              <div class="user_term_user">
+
+                <div class="user_term_username">
+                  <h4>${data.seller.username}</h4>
+                  <img src="${verified(data.seller)}" alt="">
+                </div>
+
+                <div class="user_term_metrics">
+                  <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data,totalOrder)}% completion</h5>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="user_term_body">
+              <h4>Terms(Please Read Carefully)</h4>
+              <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  `;
+
+  orderPageEl.innerHTML = html;
+
+};
+
+function renderSellerHTML(data,totalOrder,date){
+  const sendCurrency = data.ads.type === "Naira" ? '&#8358;' : "£";
+  const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
+  const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_display";
+  const sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
+  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
+  const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Buyer will pay within:" :
+                                    data.buyer_confirmed === true && data.status === "pending" ? "Confirm payment from the buyer":
+                                    data.buyer_confirmed === true && data.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(data.selected_amount)}`:
+                                    data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+
+  const sellerSentStateChange = data.buyer_confirmed === false ? "I am receiving" : "I received";
+  const sellerReceiveStateChange = data.status === "completed" ? "I sent" : "I am sending";
+  const sellerOrderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER INITIATED" :
+                                data.buyer_confirmed === true && data.status === "pending" ? "VERIFY PAYMENT" :
+                                data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
+                                data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+  const sellerTransferStatusChange = data.buyer_confirmed === false ? "confirm" : "I received";
+  const sellerCancelledChange = data.status === "cancelled" ? "no_display" : "";
+
+  let sellerHTML = 
+  `
+    <div class="order_head">
+      <div class="order_head_left">
+        <h3>${sellerTimerHeaderStateChange} 
+          <span><b class="js_order_timer ${sellerTimerStateChange}"> </b></span>
+        </h3>
+      </div>
+
+      <div class="order_head_right">
+
+        <h4 style="color:var(--Secondary-Text-light)">
+          Order ID: 
+          <span style="color:var(--Text-light)">
+            ${data.order_id}
+          </span>
+        </h4>
+
+        <h4 style="color:var(--Secondary-Text-light)">
+          Time created: 
+          <span style="color:var(--Text-light)">
+            ${date}
+          </span>
+        </h4>
+
+      </div>
+    </div>
+
+    <div class="orders_container">
+      <div class="order_bodys_container">
+
+        <div class="order_body_container">
+
+          <div class="order_body">
+
+            <div class="order_details">
+
+              <div class="order_details_head">
+                <h4><b>${sellerOrderStatusChange}</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">Transaction details;</h4>
+              </div>
+
+              <div class="order_details_body">
+                <div class="order_sent">
+                  <h4 style="color:var(--Secondary-Text-light)">${sellerSentStateChange}</h4>
+                  <h4><b>${receiveCurrency}${monitizeNumber(data.receiving_amount)}</b></h4>
+                </div>
+
+                <div class="order_price">
+                  <h4 style="color:var(--Secondary-Text-light)">Rate</h4>
+                  <h4><b>&#8358;${monitizeNumber(data.ads.rate)}</b></h4>
+                </div>
+                
+                <div class="order_received">
+                  <h4 style="color:var(--Secondary-Text-light)">${sellerReceiveStateChange}</h4>
+                  <h4><b>${sendCurrency}${monitizeNumber(data.selected_amount)}</b></h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="order_terms_details">
+
+              <h4><b>
+                TRANSACTION TERMS
+              </b></h4>
+
+              <h4 style="color:var(--Secondary-Text-light)">
+                ${data.ads.exchange_terms}
+              </h4>
+            
+            </div>
+
+            <div class="order_payment_details ${sellerCancelledChange}">
+
+              <div class="order_payment_details_head">
+                <h4><b>PAYMENT INFORMATION</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">${receiveCurrency}${monitizeNumber(data.receiving_amount)}</b> from the account details below;</h4>
+              </div>
+
+              <div class="order_payment_details_body">
+
+                <div class="order_payment_details_body_up">
+                  <div class="account_name">
+                    <h4 style="color:var(--Secondary-Text-light)">Name</h4>
+                    <h4>${data.buyer.default_bank.bank_account_name}</h4>
+                  </div>
+                  <div class="bank">
+                    <h4 style="color:var(--Secondary-Text-light)">Bank Name</h4>
+                    <h4>${data.buyer.default_bank.bank_name}</h4>
+                  </div>
+
+                </div>
+
+                <div class="order_payment_details_body_down">
+                  <div class="account_number">
+                    <h4 style="color:var(--Secondary-Text-light)">Account Number</h4>
+                    <h4>${data.buyer.default_bank.bank_account_number}</h4>
+                  </div>
+                  <div class="sort_code ${sortCodeDisplay}">
+                    <h4 style="color:var(--Secondary-Text-light)">Sort Code</h4>
+                    <h4>${data.buyer.default_bank.bank_sort_code}</h4>
+                  </div>
+                  
+                </div>
+              
+              </div>
+
+            </div>
+
+            <div class="order_payment_status ${sellerCancelledChange}">
+
+              <div class="order_payment_status_head">
+                <h4><b>PAYMENT UPDATE</b></h4>
+                <h4 style="color:var(--Secondary-Text-light)">Click on "Received" to notify the buyer after confirmation</h4>
+              </div>
+
+              <div class="order_payment_status_body">
+                
+                <button class="${sellerBtnStateChange} js_received">
+                  <h5>Received</h5>
+                </button>
+
+                <button class="text-btn seller_js_cancelled">
+                  <h5>Cancel Order</h5>
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="user_term_container">
+
+          <div class="user_terms">
+
+            <div class="user_term_head">
+              <div class="user_term_image">
+                <img src="../public/avatar/avatar_1.svg" alt="">
+              </div>
+
+              <div class="user_term_user">
+
+                <div class="user_term_username">
+                  <h4>${data.seller.username}</h4>
+                  <img src="${verified(data.seller)}" alt="">
+                </div>
+
+                <div class="user_term_metrics">
+                  <h5 style="color:var(--Secondary-Text-light)">${calculateOrderTotal(data)} Orders | ${calculateOrderCompletion(data, totalOrder)}%</h5>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="user_term_body">
+              <h4>Terms(Please Read Carefully)</h4>
+              <h4 style="color:var(--Secondary-Text-light);">${data.ads.exchange_terms}</h4>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+  orderPageEl.innerHTML = sellerHTML;
 
 }

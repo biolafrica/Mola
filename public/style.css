@@ -128,7 +128,8 @@ h6 {
   color: var(--Disabled-Text-light);
   padding: 10px 24px;
   gap: 8px;
-  cursor: none;
+  cursor: not-allowed;
+  pointer-events: none;
   border: none;
 }
 
@@ -2184,7 +2185,8 @@ option {
   }
 
   .big,
-  .no_display {
+  .no_display,
+  .no_displays {
     display: none;
   }
 
