@@ -640,13 +640,43 @@ form button {
 }
 
 .feedback_btn{
-  border-radius: 100px;
-  padding: 10px 10px;
-  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
 }
 
+.positive_effect{
+  background-color: green;
+  border: 1px solid green;
+  color: white;
+}
+
+.negative_effect{
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+}
+
+.feedback_icon{
+  margin: 20px 0px;
+}
+
+#ratingForm{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.no_view{
+  display: none;
+}
+
+.icon_comment{
+  display: flex;
+  gap: 10px
+}
 /* more about selected order popup  */
 .more_info_popup {
   display: none;

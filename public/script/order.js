@@ -67,6 +67,7 @@ async function renderPage(data){
       sellerCancelPopup.style.display = "initial";
     })
 
+
   }else{
 
     renderBuyerHTML (data,totalOrder,date);
@@ -78,6 +79,68 @@ async function renderPage(data){
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
       
+    });
+    
+    document.querySelector(".js_feedback_icon").addEventListener("click", (e)=>{
+
+      let positiveBtn = document.querySelector(".js_positive");
+      let negativeBtn = document.querySelector(".js_negative");
+      let feedbackTypeInput = document.getElementById("feedbackType");
+      
+      if( e.target.id === "positiveBtn" || e.target.id === "positiveIcon" || e.target.id === "positiveText"){
+
+        positiveBtn.classList.add("positive_effect");
+        negativeBtn.classList.remove("negative_effect");
+        feedbackTypeInput.value = "positive";
+        
+      }else if(e.target.id === "negativeBtn" || e.target.id === "negativeIcon" || e.target.id === "negativeText"){
+
+        negativeBtn.classList.add("negative_effect");
+        positiveBtn.classList.remove("positive_effect");
+        feedbackTypeInput.value = "positive";
+
+      }
+
+      
+
+    });
+
+    document.getElementById("ratingForm").addEventListener("submit", async(e)=>{
+      e.preventDefault();
+      let feedbackType = document.getElementById("feedbackType").value;
+      let feedbackText = document.getElementById("feedback").value;
+      let order = data.order_id;
+      let comments = feedbackText || 'No Comment';
+      
+      console.log(feedbackText, feedbackType);
+
+      try {
+
+        const response = await fetch("http://127.0.0.1:8000/api/orders/feedback/", {
+          method : "POST",
+          headers : { 
+            "Authorization" : `Bearer ${token}`,
+            "content-Type" : "application/json",
+          },
+          body : JSON.stringify({
+            order,
+            feedback_type : feedbackType,
+            comments
+          }),
+        })
+
+        const data = await response.json();
+        if(response.ok){
+          showFeedback(data.feedback_type, data.comments)
+        }else{
+          console.log(data);
+        }
+
+        
+      } catch (error) {
+        console.log(error)        
+      }
+
     })
 
     cancelledBtn.addEventListener("click", ()=>{
@@ -363,13 +426,14 @@ function renderBuyerHTML(data,totalOrder,date){
 
   const buyerSendCurrency = data.ads.type === "Naira" ? '£' : "&#8358;";
   const buyerReceiveCurrency = data.ads.type === "Naira" ? "&#8358;" : "£";
-  const buyerSortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_display";
+  const buyerSortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_view";
+  const buyerTimerDisplay = data.buyer_confirmed === true ? "no_view" : "";
 
   const buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
-  const timerStateChange = data.buyer_confirmed === false ? '' : 'no_display';
-  const timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Pay seller within:" :
+  const timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? 
+  "Pay seller within:" :
                               data.buyer_confirmed === true && data.status === "pending" ? "Wait for seller to confirm payment":
-                              data.buyer_confirmed === true && data.status === "completed" ? `Successfully received &#8358;${monitizeNumber(data.selected_amount)}`:
+                              data.buyer_confirmed === true && data.status === "completed" ? `Successfully received ${buyerReceiveCurrency}${monitizeNumber(data.receiving_amount)}`:
                               data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
   const sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
   const receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
@@ -379,13 +443,14 @@ function renderBuyerHTML(data,totalOrder,date){
                           data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
   const transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
   const cancelledChange = data.status === "cancelled" ? "no_display" : "";
+  const completedChange = data.status === "completed" ? "" : "no_view";
 
   let html = 
   `
     <div class="order_head">
       <div class="order_head_left">
         <h3>${timerHeaderStateChange} 
-          <span><b class="${timerStateChange} js_order_timer"> </b></span>
+          <span><b class="js_order_timer ${buyerTimerDisplay}"> </b></span>
         </h3>
       </div>
 
@@ -510,21 +575,34 @@ function renderBuyerHTML(data,totalOrder,date){
               </div>
             </div>
 
-            <div class="feedback_container">
+            <div class="feedback_container ${completedChange} js_feedback_container">
               <h4><b>Rating</b></h4>
             
-              <div class="feedback_icon">
-                <button class="feedback_btn"> <img src="../public/icons/Thumb up.svg" alt=""> </button>
-                <button class="feedback_btn"> <img src="../public/icons/Thumb down.svg" alt=""> </buttton>
+              <div class="feedback_icon js_feedback_icon">
+                <button class="feedback_btn outlined-btn js_positive" id="positiveBtn">
+                 <img src="../public/icons/Thumb up.svg" alt="thumb up icon" id="positiveIcon">
+                 <h4 id="positiveText">Positive</h4>
+                </button>
+
+                <button class="feedback_btn outlined-btn js_negative" id="negativeBtn">
+                 <img src="../public/icons/Thumb down.svg" alt="thumb down icon" id="negativeIcon">
+                 <h4 id="negativeText">Negative</h4>
+                </buttton>
               </div>
 
-              <form action="">
+              <form action="" id="ratingForm">
                 <label for="feedback">  <h4>How did you feel about the transaction</h4></label>
                 <textarea name="" id="feedback" placeholder="please input how you feel about the transaction"></textarea>
+                <input type="hidden" id="feedbackType" name="feedbackType" value="">
 
-                <button class="filled-btn">Publish</button>
+                <button class="filled-btn"><h4>Publish<h4></button>
               </form>
             </div>
+
+            <div class="completed_rating no_view js_completed_rating">
+              
+            </div>
+
 
 
           </div>
@@ -573,6 +651,7 @@ function renderBuyerHTML(data,totalOrder,date){
   `;
 
   orderPageEl.innerHTML = html;
+  fetchFeedback(data);
 
 };
 
@@ -769,4 +848,43 @@ function renderSellerHTML(data,totalOrder,date){
 
   orderPageEl.innerHTML = sellerHTML;
 
+}
+
+function showFeedback(feedbackType, comments){
+  const completedEl = document.querySelector(".js_completed_rating");
+  const uncompletedEl = document.querySelector(".js_feedback_container");
+
+  let type = data.feedback_type === "positive" ? "Thumb up" : "Thumb down";
+  let html = 
+  `
+    <h4><b>My Feedback</b></h4>
+    <div class="icon_comment">
+      <img class="selected_feedback" src="../public/icons/${type}.svg" alt="">
+      <h4 class="added_comment">${data.comments}</h4>
+    </div>
+  `;
+
+  uncompletedEl.classList.add("no_view");
+  completedEl.innerHTML = html;
+  completedEl.classList.remove("no_view");
+
+};
+
+const fetchFeedback = async (value)=>{
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/api/seller/orders/${value.order_id}`, {
+      headers : {
+        "Authorization" : `Bearer ${token}`,
+        "content-Type" : "application/json",
+      }
+    });
+    const data = await response.json();
+    if(response.ok && data.feedback_type){
+      showFeedback(data.feedback_type, data.comments)
+    }
+    
+  } catch (error) {
+    console.error("Error fetching Feedback:", error)
+    
+  }
 }
