@@ -1524,7 +1524,7 @@ option {
   height: 80px;
 }
 
-.settings_profile_avatar_middle h4 {
+.settings_profile_avatar_middle img {
   border-radius: 100px;
   background-color: var(--Layout-Background-dark);
   width: 52px;
@@ -1533,6 +1533,7 @@ option {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 
 }
 
