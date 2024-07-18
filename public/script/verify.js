@@ -6,8 +6,8 @@ const verifyCont = document.querySelector(".user_verification_right_container");
 const bankCont= document.querySelector(".bank_account_right_screen");
 const emailBtn = document.querySelector(".js_email_manage");
 const phoneBtn = document.querySelector(".js_phone_manage");
-const idBtn = document.querySelector(".js_id_manage");
-const addressBtn = document.querySelector(".js_address_manage");
+//const idBtn = document.querySelector(".js_id_manage");
+//const addressBtn = document.querySelector(".js_address_manage");
 const diligenceBtn = document.querySelector(".js_diligence_manage");
 const overlay = document.querySelector(".js_overlay");
 const emailPhonePopup = document.querySelector(".email_phone_verify_container");
@@ -28,6 +28,14 @@ const popupBankCancel = document.querySelector(".popup_bank_cancel");
 const popupIconCancel = document.querySelector(".popup_bank_cancel_icon");
 const bankSubmitBtn = document.querySelector(".confirmBank");
 const token = localStorage.getItem("access");
+const successPopupEl = document.querySelector(".js_success_popup");
+const accountNameEl = document.getElementById("bankName");
+const bankNameEl = document.getElementById("bankerName");
+const bankAccountNumberEl = document.getElementById("accountNo");
+const bankSortCodeEl = document.getElementById("sortCode");
+const bankTypeEl = document.querySelector(".js_popup_bank_type");
+const checkEl = document.getElementById("bankCheckbox");
+
 
 verifyEl.addEventListener("click", (e)=>{
   if(e.target === user_verification){
@@ -304,6 +312,17 @@ async function renderBanks(token){
           if(response.ok){
             console.log(`Wallet with ID ${walletId} deleted successfully`);
             document.getElementById(`${walletId}`).remove();
+            let html = 
+            `
+              <img src="./public/icons/Check Mark.svg" alt="">
+              <h4>Bank deleted Successfully</h4>
+            `;
+            successPopupEl.innerHTML = html;
+            successPopupEl.style.display = "flex";
+            setTimeout(()=>{
+              successPopupEl.style.display = "none";
+            },3000);
+
           }else{
             const errorData = await response.json();
             console.error("Failed to delete wallet:", errorData);
@@ -330,18 +349,17 @@ verificationDetails();
 
 bankSubmitBtn.addEventListener("click", async(e)=>{
   e.preventDefault();
-  const bank_account_name = (document.getElementById("bankName")).value;
-  const bank_name = (document.getElementById("bankerName")).value;
-  const bank_account_number = (document.getElementById("accountNo")).value;
-  const bank_sort_code = (document.getElementById("sortCode")).value;
-  const bank_type = (document.querySelector(".js_popup_bank_type")).textContent;
-  const checkEl = document.getElementById("bankCheckbox");
+  const bank_account_name = accountNameEl.value;
+  const bank_name = bankNameEl.value;
+  const bank_account_number = bankAccountNumberEl.value;
+  const bank_sort_code = bankSortCodeEl.value;
+  const bank_type = bankTypeEl.textContent;
   const bank_check = checkEl.checked ? true : false;
-
   const selectedBankType = bank_type === "GBP Bank Account" ? "Pounds" : "Naira";
   const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : 0;
  
   try {
+
     const response = await fetch("http://127.0.0.1:8000/api/banks/", {
       method : "POST",
       headers : {
@@ -359,25 +377,25 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
       })
     
     });
+
     const data = await response.json();
     console.log(data);
 
     if(data.bank_id){
-      bank_name = "";
-      bank_account_name = "";
-      bank_account_number = "";
-      bank_sort_code = "";
       overlay.style.display = "none";
       bankPopupEl.style.display = "none";
       bankBtn.value = "Add_Bank";
       renderBanks(token);
+      accountNameEl.value = "";
+      bankNameEl.value = "";
+      bankAccountNumberEl.value = "";
+      bankSortCodeEl.value = "";
+      checkEl.value = "";
      
     }
 
-    
-  } catch (error) {
+  } catch(error){
     console.log(error);
-    
   }
 
 

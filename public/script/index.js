@@ -1,6 +1,6 @@
 import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";
-import { checkUser} from "../../Data/user.js";
+import {checkUser} from "../../Data/user.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
