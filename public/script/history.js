@@ -1,5 +1,6 @@
 import{getUserProfile} from "../../Data/user.js";
 import{monitizeNumber} from "../script/utils/money.js";
+import {convertDateAndTime} from "../../Data/time.js";
 
 const token = localStorage.getItem("access");
 const orderHistoryEl = document.querySelector(".js_history_table");
@@ -115,16 +116,4 @@ async function renderPage(data){
   orderHistoryEl.innerHTML = orderHTML;
 
 
-}
-
-
-function convertDateAndTime(value){
-  const date = new Date(value);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-
-  return `${day}-${month}-${year} | ${hours}:${minutes}`;
 }

@@ -1,8 +1,9 @@
-import{order} from "../../Data/orders.js";
 import{calculateOrderTotal,calculateOrderCompletion} from "../../public/script/utils/metrics.js";
 import{monitizeNumber} from "../../public/script/utils/money.js";
 import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
+import{convertDateAndTimeSeconds} from "../../Data/time.js"
+
 
 
 const orderPageEl = document.querySelector(".order_page_container");
@@ -44,7 +45,7 @@ async function renderPage(data){
   let user = await getUserProfile(token);
   console.log(user);
   let totalOrder = calculateOrderTotal(data);
-  let date = convertDateAndTime(data.date_and_time);
+  let date = convertDateAndTimeSeconds(data.date_and_time);
   const time = data.ads.time_limit === 15 ? 900 : data.ads.time_limit === 30 ? 1800 : data.ads.time_limit === 45 ? 2700 : 3600;
   let timeLeft = time;
   let intervalId;
@@ -361,19 +362,6 @@ function renderReceivePaymentPopup (value){
     }
 
   })
-
-}
-
-function convertDateAndTime(value){
-  const date = new Date(value);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  const seconds = String (date.getSeconds()).padStart(2, "0");
-
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
 }
 
