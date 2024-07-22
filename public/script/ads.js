@@ -1,27 +1,42 @@
 import{getUserProfile} from "../../Data/user.js";
 import {convertDateAndTime} from "../../Data/time.js";
+import{monitizeNumber} from "../script/utils/money.js";
 
 const adsListEl = document.querySelector(".js_history_table");
+const currencyFilterEl = document.querySelector(".ads_currency_filter select");
+const statusFilterEl = document.querySelector(".ads_status_filter select");
 const token = localStorage.getItem("access");
+let adsData = [];
+
 console.log(await getUserProfile(token));
 
-
 async function getAllAds(){
-  const response = await fetch("http://127.0.0.1:8000/api/ads", {
-    method : "GET",
-    headers : {
-      'Authorization' : `Bearer ${token}`,
-      "Content-Type" : "application/json"
-    }
-  });
-
-  const data = await response.json();
-  console.log(data);
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/ads", {
+      method : "GET",
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+        "Content-Type" : "application/json"
+      }
+    });
+  
+    const data = await response.json();
+    console.log(data);
+    adsData = data;
+    renderPage(data);
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+  
 }
 
 getAllAds();
 
 function renderPage(data){
+  let adsHTML = "";
+
   data.forEach((dataItem)=>{
     const type = dataItem.type === "Pounds" ? "GBP" : "NGN";
     const sold = dataItem.amount - dataItem.remaining_amount;
@@ -42,12 +57,12 @@ function renderPage(data){
 
           <div class="Title">
             <h6 class="title_s_name">Amount Available</h6> 
-            <h6>N${dataItem.remaining_amount}</h6> 
+            <h6>N${monitizeNumber(dataItem.remaining_amount)}</h6> 
           </div>
 
           <div class="Title"> 
             <h6 class="title_name">Remaining Amount</h6> 
-            <h6>N${sold}</h6> 
+            <h6>N${monitizeNumber(sold)}</h6> 
           </div>
 
         </div>
@@ -56,12 +71,12 @@ function renderPage(data){
 
           <div class="Title">
             <h6 class="title_s_name">Rate</h6> 
-            <h6>N${dataItem.rate}</h6> 
+            <h6>N${monitizeNumber(dataItem.rate)}</h6> 
           </div>
 
           <div class="Title"> 
             <h6 class="title_name">Limit</h6> 
-            <h6>£${dataItem.minimum_limit} - £${dataItem.maximum_limit}</h6> 
+            <h6>£${monitizeNumber(dataItem.minimum_limit)} - £${monitizeNumber(dataItem.maximum_limit)}</h6> 
           </div>
 
         </div>
@@ -69,19 +84,19 @@ function renderPage(data){
         <div class="time_column">
           <div class="Title">
             <h6 class="title_s_name">Time Created</h6> 
-            <h6>2024-05-21 | 04:41</h6> 
+            <h6>${convertDateAndTime(dataItem.date)}</h6> 
           </div>
 
           <div class="Title"> 
             <h6 class="title_name">Time Edited</h6> 
-            <h6>2024-05-21 | 04:41</h6> 
+            <h6>${convertDateAndTime(dataItem.date)}</h6> 
           </div>
         </div>
 
         <div class="status_ads_column">
           <div class="Title"> 
             <h6 class="title_name">Status</h6> 
-            <h6>Active</h6> 
+            <h6>${dataItem.status}</h6> 
           </div>
         </div>
 
@@ -98,7 +113,26 @@ function renderPage(data){
 
       </a>                                                       
     `;
+    adsHTML += html;
 
-  })
+  });
 
+  adsListEl.innerHTML = adsHTML;
+
+};
+
+currencyFilterEl.addEventListener("change", filterAds);
+statusFilterEl.addEventListener("change", filterAds);
+
+function filterAds(){
+  const currencyValue = currencyFilterEl.value;
+  const statusValue = statusFilterEl.value;
+
+  const filteredAds = adsData.filter(ad =>{
+    const matchesCurrency = currencyValue === "all" || ad.type === currencyValue;
+    const matchesStatus = statusValue === "all" || ad.status.toLowerCase() === statusValue.toLowerCase();
+    return matchesCurrency && matchesStatus;
+  });
+
+  renderPage(filteredAds);
 }

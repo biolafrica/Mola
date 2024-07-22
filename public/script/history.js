@@ -22,6 +22,7 @@ async function renderOrder(){
     console.log(data)
     
   } catch (error) {
+    console.log(error);
     
   }
 }
