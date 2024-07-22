@@ -16,10 +16,8 @@ const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_sel
 const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
 const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
 
-console.log(order);
 const url = new URL(window.location.href);
 const param =  url.searchParams.get("orderId");
-console.log(param)
 
 async function renderOrder(){
   try {
@@ -53,6 +51,7 @@ async function renderPage(data){
   
   if(user.username === data.seller.username){
     renderSellerHTML(data, totalOrder,date);
+
     const receivedBtn = document.querySelector(".js_received");
     const sellerCancelledBtn = document.querySelector(".seller_js_cancelled");
     receivedBtn.addEventListener("click", ()=>{
@@ -71,6 +70,7 @@ async function renderPage(data){
   }else{
 
     renderBuyerHTML (data,totalOrder,date);
+
     const transferredBtn = document.querySelector(".js_transferred");
     const cancelledBtn = document.querySelector(".buyer_js_cancelled");
     transferredBtn.addEventListener("click", ()=>{
@@ -101,7 +101,6 @@ async function renderPage(data){
 
       }
 
-      
 
     });
 
@@ -148,10 +147,10 @@ async function renderPage(data){
       buyerCancelPopup.style.display = "initial";
     })
 
-
   }
 
   const timeEl = document.querySelector(".js_order_timer");
+
   const savedTimeLeft = localStorage.getItem("timeLeft");
   if(savedTimeLeft !== null){
     timeLeft = parseInt(savedTimeLeft, 10);
@@ -394,7 +393,7 @@ function pad(value){
   return value > 9 ? value : "0" + value;
 }
 
-function renderTimer(timeLeft, timeEl,intervalId){
+function renderTimer(timeLeft,timeEl,intervalId){
   intervalId = setInterval(()=>{
     let min = Math.round(timeLeft / 60);
     let sec = timeLeft % 60;
@@ -660,7 +659,7 @@ function renderSellerHTML(data,totalOrder,date){
   const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
   const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_display";
   const sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
-  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display" ;
+  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display";
   const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Buyer will pay within:" :
                                     data.buyer_confirmed === true && data.status === "pending" ? "Confirm payment from the buyer":
                                     data.buyer_confirmed === true && data.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(data.selected_amount)}`:
@@ -679,9 +678,8 @@ function renderSellerHTML(data,totalOrder,date){
   `
     <div class="order_head">
       <div class="order_head_left">
-        <h3>${sellerTimerHeaderStateChange} 
-          <span><b class="js_order_timer ${sellerTimerStateChange}"> </b></span>
-        </h3>
+        <h3>${sellerTimerHeaderStateChange}</h3>
+        <h3><b class="js_order_timer ${sellerTimerStateChange}"> </b></h3>
       </div>
 
       <div class="order_head_right">

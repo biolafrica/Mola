@@ -100,7 +100,3 @@ async function renderProfileDetails(){
   userNameEl.innerHTML = userNameHTML;
   userDPEl.innerHTML =userDPHTML;
 }
-console.log (await getUserProfile(token));
-
-
-

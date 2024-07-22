@@ -2216,9 +2216,12 @@ option {
   }
 
   .big,
-  .no_display,
-  .no_displays {
+  .no_display{
     display: none;
+  }
+
+  .order_head_left{
+    display: flex;
   }
 
   /*how it works screen*/
