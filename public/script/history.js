@@ -4,8 +4,11 @@ import {convertDateAndTime} from "../../Data/time.js";
 
 const token = localStorage.getItem("access");
 const orderHistoryEl = document.querySelector(".js_history_table");
+const statusBtns = document.querySelectorAll(".history_status_filter button");
+const orderTypeSelect = document.querySelector("#order-type");
+
+let ordersData = [];
 console.log(await getUserProfile(token));
-let orderHTML = '';
 
 async function renderOrder(){
   try {
@@ -18,6 +21,7 @@ async function renderOrder(){
       }
     });
     const data = await response.json();
+    ordersData = data;
     renderPage(data);
     console.log(data)
     
@@ -29,8 +33,40 @@ async function renderOrder(){
 
 renderOrder();
 
+async function filterOrders(){
+  const user = await getUserProfile(token);
+  const selectedStatusEl = document.querySelector(".history_status_filter .filled-btn h5");
+  const selectedStatus = selectedStatusEl ? selectedStatusEl.textContent.toLowerCase(): "all";
+  const selectedType = orderTypeSelect.value;
+  
+
+  const filteredOrders = ordersData.filter(order => {
+    let type = user.username === order.seller.username ? "sell" : "buy";
+    const matchesStatus = selectedStatus === "all" || order.status.toLowerCase() === selectedStatus;
+    const matchesType = selectedType === "all" || type.toLowerCase()=== selectedType;
+    return matchesStatus && matchesType;
+  })
+  renderPage(filteredOrders);
+};
+
+statusBtns.forEach((button)=>{
+  button.addEventListener("click", (e)=>{
+    statusBtns.forEach((btn) =>{ 
+      btn.classList.remove("filled-btn");
+      btn.classList.add("text-btn");
+    
+    });
+    button.classList.remove("text-btn");
+    button.classList.add("filled-btn");
+    filterOrders();
+  });
+});
+
+orderTypeSelect.addEventListener("change", filterOrders);
+
 async function renderPage(data){
   const user = await getUserProfile(token);
+  let orderHTML = '';
 
   data.forEach((dataItem)=>{
     const type = dataItem.ads.type === "Pounds" ? 'GBP' : "NGN";
@@ -117,4 +153,4 @@ async function renderPage(data){
   orderHistoryEl.innerHTML = orderHTML;
 
 
-}
+};
