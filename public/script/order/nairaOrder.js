@@ -262,21 +262,21 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
           const limitEl = document.querySelector(".js_limit_value");
     
           //coversation input 
-            payEl.addEventListener("input", (e)=>{
+          payEl.addEventListener("input", (e)=>{
     
-            const inputValue = (Number(e.target.value)) * 100;
-    
-            if(inputValue < matchingOrder.minimumOrder && inputValue > 0){
-              payInput.classList.add("js_input_money_color");
-              limitEl.classList.add("js_limit_value_color");
-            } else if(inputValue === 0){
+            const inputValue = (Number(e.target.value));
+
+            if(inputValue === 0){
               payInput.classList.remove("js_input_money_color");
               limitEl.classList.remove("js_limit_value_color");
+            }else if(inputValue < matchingOrder.minimum_limit || inputValue > matchingOrder.maximum_limit){
+              payInput.classList.add("js_input_money_color");
+              limitEl.classList.add("js_limit_value_color");
             }else{
               payInput.classList.remove("js_input_money_color");
               limitEl.classList.remove("js_limit_value_color");
             }
-            
+    
             const convertedValue = inputValue * matchingOrder.rate;
             const converts = parseFloat((convertedValue.toFixed(2))/100);
             receiveEl.value = converts;

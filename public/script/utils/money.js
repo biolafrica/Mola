@@ -10,3 +10,15 @@ export const convertCurrency = (price)=>{
 export const monitizeNumber=(price)=>{
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function convertNaira(inputValue, matchingAds){
+  const convertedValue = inputValue * matchingAds.rate;
+  const converts = parseFloat((convertedValue.toFixed(2)));
+  return converts
+};
+
+export function convertPounds(inputValue, matchingAds){
+  const convertedValue = (inputValue * 100) / (matchingAds.rate * 100);
+  const converts = parseFloat(convertedValue.toFixed(2));
+  return converts;
+};
