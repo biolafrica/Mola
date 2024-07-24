@@ -6,8 +6,13 @@ const adsListEl = document.querySelector(".js_history_table");
 const currencyFilterEl = document.querySelector(".ads_currency_filter select");
 const statusFilterEl = document.querySelector(".ads_status_filter select");
 const token = localStorage.getItem("access");
-let adsData = [];
+const paginationNoEl = document.querySelector("#paginationNo");
+const prevPagesEl = document.querySelector("#prevPages");
+const nextPagesEl = document.querySelector("#nextPages");
 
+let adsData = [];
+let currentPage = 1;
+const itemsPerPage = 3;
 console.log(await getUserProfile(token));
 
 async function getAllAds(){
@@ -35,12 +40,16 @@ async function getAllAds(){
 getAllAds();
 
 function renderPage(data){
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedData = data.slice(start, end);
+
   let adsHTML = "";
 
-  data.forEach((dataItem)=>{
+  paginatedData.forEach((dataItem)=>{
     const type = dataItem.type === "Pounds" ? "GBP" : "NGN";
     const sold = dataItem.amount - dataItem.remaining_amount;
-    let html = 
+    adsHTML += 
     `
       <a class="ads_table_body" href="./adsdetails.html">
       
@@ -113,13 +122,54 @@ function renderPage(data){
 
       </a>                                                       
     `;
-    adsHTML += html;
-
+    
   });
 
   adsListEl.innerHTML = adsHTML;
+  renderPagination(data.length);
 
 };
+
+function renderPagination(totalItems){
+  const totalPages = Math.ceil(totalItems/itemsPerPage);
+  let paginationHTML = "";
+
+  for (let i = 1; i <= totalPages; i++){
+    paginationHTML += 
+    `
+    <div class="page ${i === currentPage ? "filled_page" : ""}" data-page="${i}">
+    <h5 class="light">${i}</h5>
+    </div>
+
+    `;
+  }
+  paginationNoEl.innerHTML = paginationHTML;
+  addPaginationEventListeners();
+}
+
+function addPaginationEventListeners(){
+  document.querySelectorAll(".pagination_no .page").forEach((pageEl)=>{
+    pageEl.addEventListener("click", (e)=>{
+      currentPage = parseInt(e.target.closest(".page").dataset.page);
+      filterAds();
+    });
+  });
+
+  prevPagesEl.addEventListener("click", ()=>{
+    if(currentPage > 1){
+      currentPage--;
+      filterAds();
+    }
+  });
+
+  nextPagesEl.addEventListener("click", ()=>{
+    const totalPages = Math.ceil(adsData.length / itemsPerPage);
+    if(currentPage < totalPages){
+      currentPage++;
+      filterAds();
+    }
+  });
+}
 
 currencyFilterEl.addEventListener("change", filterAds);
 statusFilterEl.addEventListener("change", filterAds);
