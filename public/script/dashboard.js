@@ -1,11 +1,21 @@
-import{getUserProfile} from "../../Data/user.js"
+import{getUserProfile} from "../../Data/user.js";
+import{monitizeNumber} from "../script/utils/money.js";
 
 const adsBtn = document.querySelector(".js_ads_btn");
 const feedbackBtn = document.querySelector(".js_feedback_btn");
 const adsEl = document.querySelector(".dashboard_body_ads_container");
 const feedbackEl = document.querySelector(".dashboard_body_feedbacks_container");
 const dashboardHeadEl = document.querySelector(".js_dashboard_head");
+const adsListEl = document.querySelector(".js_row_head_body");
 const token = localStorage.getItem("access");
+const paginationNoEl = document.querySelector("#paginationNo");
+const prevPagesEl = document.querySelector("#prevPages");
+const nextPagesEl = document.querySelector("#nextPages");
+
+let currentPage = 1;
+const itemsPerPage = 3;
+let adsData = [];
+console.log(await getUserProfile(token));
 
 adsBtn.addEventListener("click", ()=>{
   adsBtn.classList.remove("text-btn");
@@ -107,4 +117,166 @@ async function renderDashboardHead(){
 
 }
 
+async function getAllAds(){
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/ads", {
+      method : "GET",
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+        "Content-Type" : "application/json"
+      }
+    });
+  
+    const data = await response.json();
+    console.log(data);
+    adsData = data;
+    renderAds(data);
+  
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+  
+}
+
+getAllAds();
+
+function renderAds(data){
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedData = data.slice(start, end);
+
+  let adsHTML = "";
+
+  paginatedData.forEach((dataItem)=>{
+
+    if(dataItem.status === "active"){
+      const type =  dataItem.type === "Pounds" ? "GBP" : "NGN";
+      const amountCurrency = dataItem.type === "Pounds" ? "£" : "&#8358;";
+      const limitCurrency = dataItem.type === "Pounds" ? "&#8358;" : "£";
+
+      adsHTML += 
+      `
+        <div class="row_head">
+          
+          <div class="seller_container big">
+            <div class="seller_container_image seller_dashboard">
+              <img src="../public/icons/Flag circle.svg" alt="">
+              <h4><b>${type}</b></h4>
+            </div>
+          </div>
+
+          <div class="rate_container big">
+            <h4 class="small_title secondary">Rate:</h4>
+            <h3>${monitizeNumber(dataItem.rate)}</h3>NGN
+          </div>
+
+          <div class="Amount_available_container big">
+            <h4 class="small_title secondary">Available:</h4>
+            <h4>${amountCurrency}${monitizeNumber(dataItem.amount)}</h4>
+          </div>
+
+          <div class="Limit_container big">
+            <h4 class="small_title secondary">Limit:</h4>
+            <h4>${limitCurrency}${monitizeNumber(dataItem.minimum_limit)} - ${limitCurrency}${monitizeNumber(dataItem.maximum_limit)}</h4>
+          </div>
+
+          <div class="Buy_container big">
+            <button class="filled-btn js_buy_dash_btn"><h5>BUY ${type}</h5></button>
+          </div>
+
+          <!--for small and medium screen responsivenes-->
+          <div class="left_row">
+            <div class="seller_container">
+
+              <div class="seller_container_image seller_dashboard">
+                <img src="../public/icons/Flag circle.svg" alt="">
+                <h4><b>${type}</b></h4>
+              </div>
+
+            </div>
+
+            <div class="rate_container">
+              <h4 class="small_title secondary">Rate:</h4>
+              <h3>${monitizeNumber(dataItem.rate)}</h3>NGN
+            </div>
+
+            <div class="Amount_available_container">
+              <h4 class="small_title secondary">Available:</h4>
+              <h4>${amountCurrency}${monitizeNumber(dataItem.amount)}</h4>
+            </div>
+
+            <div class="Limit_container">
+              <h4 class="small_title secondary">Limit:</h4>
+              <h4>${limitCurrency}${monitizeNumber(dataItem.minimum_limit)} - ${limitCurrency}${monitizeNumber(dataItem.maximum_limit)} GBP</h4>
+            </div>
+
+          </div>
+
+          <div class="right_row">
+
+            <div class="Buy_container">
+              <button class="filled-btn js_buy_dash_btn"><h5>BUY ${type}</h5></button>
+            </div>
+
+          </div>
+          
+        </div>
+
+      `;
+
+    };
+    adsListEl.innerHTML = adsHTML;
+    renderPagination(data.length);
+  });
+
+
+
+};
+
+function renderPagination(totalItems){
+  const totalPages = Math.ceil(totalItems/itemsPerPage);
+  let paginationHTML = "";
+
+  for (let i = 1; i <= totalPages; i++){
+    paginationHTML += 
+    `
+    <div class="page ${i === currentPage ? "filled_page" : ""}" data-page="${i}">
+    <h5 class="light">${i}</h5>
+    </div>
+
+    `;
+  }
+  paginationNoEl.innerHTML = paginationHTML;
+  addPaginationEventListeners();
+};
+
+function addPaginationEventListeners(){
+  document.querySelectorAll(".pagination_no .page").forEach((pageEl)=>{
+    pageEl.addEventListener("click", (e)=>{
+      currentPage = parseInt(e.target.closest(".page").dataset.page);
+      renderAds(adsData);
+    });
+  });
+
+  prevPagesEl.addEventListener("click", ()=>{
+    if(currentPage > 1){
+      currentPage--;
+      renderAds(adsData);
+    }
+  });
+
+  nextPagesEl.addEventListener("click", ()=>{
+    const totalPages = Math.ceil(adsData.length / itemsPerPage);
+    if(currentPage < totalPages){
+      currentPage++;
+      renderAds(adsData);
+    }
+  });
+}
+
+
+
+renderFeedback();
 renderDashboardHead();
