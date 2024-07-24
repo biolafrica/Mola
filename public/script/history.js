@@ -6,8 +6,13 @@ const token = localStorage.getItem("access");
 const orderHistoryEl = document.querySelector(".js_history_table");
 const statusBtns = document.querySelectorAll(".history_status_filter button");
 const orderTypeSelect = document.querySelector("#order-type");
+const paginationNoEl = document.querySelector("#paginationNo");
+const prevPagesEl = document.querySelector("#prevPages");
+const nextPagesEl = document.querySelector("#nextPages");
 
 let ordersData = [];
+let currentPage = 1;
+const itemsPerPage = 3;
 console.log(await getUserProfile(token));
 
 async function renderOrder(){
@@ -66,9 +71,14 @@ orderTypeSelect.addEventListener("change", filterOrders);
 
 async function renderPage(data){
   const user = await getUserProfile(token);
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedData = data.slice(start, end);
+
+
   let orderHTML = '';
 
-  data.forEach((dataItem)=>{
+  paginatedData.forEach((dataItem)=>{
     const type = dataItem.ads.type === "Pounds" ? 'GBP' : "NGN";
     const time = convertDateAndTime(dataItem.date_and_time);
     const sentValue = user.username === dataItem.seller.username ? dataItem.selected_amount : dataItem.receiving_amount;
@@ -88,7 +98,7 @@ async function renderPage(data){
       dataItem.ads.type === "Naira" && user.username !== dataItem.seller.username ? "&#8358;": "£";
 
 
-    let html = 
+    orderHTML += 
     `
       <a class="history_table_body" href="../../views/order.html?orderId=${dataItem.order_id}">
 
@@ -146,11 +156,49 @@ async function renderPage(data){
       </a>
 
     `;
-    orderHTML += html;
-    
   });
 
   orderHistoryEl.innerHTML = orderHTML;
-
-
+  renderPagination(data.length);
 };
+
+function renderPagination(totalItems){
+  const totalPages = Math.ceil(totalItems/itemsPerPage);
+  let paginationHTML = "";
+
+  for (let i = 1; i <= totalPages; i++){
+    paginationHTML += 
+    `
+    <div class="page ${i === currentPage ? "filled_page" : ""}" data-page="${i}">
+    <h5 class="light">${i}</h5>
+    </div>
+
+    `;
+  }
+  paginationNoEl.innerHTML = paginationHTML;
+  addPaginationEventListeners();
+}
+
+function addPaginationEventListeners(){
+  document.querySelectorAll(".pagination_no .page").forEach((pageEl)=>{
+    pageEl.addEventListener("click", (e)=>{
+      currentPage = parseInt(e.target.closest(".page").dataset.page);
+      filterOrders();
+    });
+  });
+
+  prevPagesEl.addEventListener("click", ()=>{
+    if(currentPage > 1){
+      currentPage--;
+      filterOrders();
+    }
+  });
+
+  nextPagesEl.addEventListener("click", ()=>{
+    const totalPages = Math.ceil(ordersData.length / itemsPerPage);
+    if(currentPage < totalPages){
+      currentPage++;
+      filterOrders();
+    }
+  });
+}
