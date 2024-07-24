@@ -411,7 +411,40 @@ form button {
   border-radius: 5px;
   display: none;
 
+
 }
+.active_order_container{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 20px 0px;
+  width: 30%;
+  height: 500px;
+  margin: 100px 100px;
+}
+
+.active_order_header{
+  padding: 15px 15px;
+  border-bottom: 1px solid var(--Border-light);
+}
+
+.column_left_details{
+  display: flex;
+  gap: 20px;
+}
+
+.active_order_column{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--Layout-Background-light);
+  padding: 20px 15px;
+}
+
+.active_order_user{
+  display: flex;
+}
+
+
 
 /* available orders */
 .filter_container {
@@ -1805,7 +1838,6 @@ option {
   top: 5px;
   z-index: 100;
 }
-
 
 
 @media(max-width:768px) {
