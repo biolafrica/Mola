@@ -243,32 +243,34 @@ header {
   cursor: pointer;
 }
 
-.profile_container {
+.profile_container,
+.more_container,
+.order_container{
   position: relative;
-}
-
-.more_container {
-  position: relative;
-
 }
 
 .profile_container:hover .profile_tooltip,
-.profile_tooltip:hover .profile_tooltip {
-  display: block;
-
-}
-
+.profile_tooltip:hover .profile_tooltip,
 .more_container:hover .more_tooltip,
-.more_tooltip:hover .more_tooltip {
+.more_tooltip:hover .more_tooltip,
+.order_container:hover .order_tooltip_container,
+.order_tooltip_container:hover .order_tooltip_container
+ {
   display: block;
-
 }
 
-.profile_tooltip {
+.profile_tooltip{
   position: absolute;
   top: 25px;
   left: -280px;
   right: -103px;
+  background-color: white;
+}
+.order_tooltip_container{
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  right: -303px;
   background-color: white;
 
 }
@@ -285,7 +287,9 @@ header {
 .more_tooltip_nav:hover {
   background-color: var(--Layout-Background-light);
 }
-
+.order_link{
+  display: flex ;
+}
 /* login */
 
 .login_container,
@@ -413,13 +417,13 @@ form button {
 
 
 }
-.active_order_container{
+.order_tooltip_container{
   border: 1px solid var(--Border-light);
   border-radius: 5px;
   padding: 20px 0px;
-  width: 30%;
-  height: 500px;
-  margin: 100px 100px;
+  min-height: 500px;
+  box-shadow: var(--elevate-3);
+  display: none;
 }
 
 .active_order_header{
@@ -430,6 +434,7 @@ form button {
 .column_left_details{
   display: flex;
   gap: 20px;
+  margin: 10px 0;
 }
 
 .active_order_column{
@@ -958,6 +963,16 @@ form button {
   display: flex;
   align-items: center;
 }
+.processing_status_filter{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  width: fit-content;
+    
+}
 
 select {
   padding: 15px 10px;
@@ -1018,6 +1033,18 @@ option {
 .title_name,
 .title_s_name {
   display: none;
+}
+
+.filter_container_history{
+  border: 1px solid var(--Border-light);
+  border-radius: 5px;
+  padding: 5px 2px;
+  width: fit-content;
+}
+.filter_container_history_container{
+  box-shadow: var(--elevate-2);
+  padding: 20px;
+  padding-left: 100px;
 }
 
 /* my-ads-page  */
@@ -1923,7 +1950,7 @@ option {
     grid-template-columns: 1fr;
   }
 
-  .order_container h5,
+  .my_order_text,
   .profile_none,
   .more_none {
     display: none;
@@ -2036,6 +2063,8 @@ option {
     display: flex;
     justify-content: space-between;
   }
+
+  
 
   .history_metrics {
     display: none;
@@ -2302,6 +2331,7 @@ option {
     width: 100%;
   }
 }
+
 
 @media(min-width:769px) and (max-width:992px) {
 
