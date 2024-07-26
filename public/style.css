@@ -6,6 +6,7 @@ body {
   padding: 0;
   color: var(--Text-light);
   font-size: 1rem;
+  overflow-x: hidden;
 }
 
 h1,
@@ -1402,7 +1403,6 @@ option {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5%;
 }
 
 .basic_verification_body_email_left,
@@ -1648,6 +1648,11 @@ option {
   z-index: 1;
 }
 
+.border{
+  border: 2px solid black;
+  
+}
+
 .edit_username_container_head,
 .edit_avatar_container_head,
 .change_password_container_head,
@@ -1705,16 +1710,17 @@ option {
   width: 80px;
   height: 80px;
   cursor: pointer;
-  border: 3px solid transparent;
   border-radius: 100px;
 }
 
-.avatar_icon:active {
-  border: 3px solid black;
+.avatar_icon:active{
+  transform: translateY(2px);
+
 }
 
 .password_error {
   margin-bottom: 20px;
+  color: red;
 }
 
 
@@ -2064,8 +2070,6 @@ option {
     justify-content: space-between;
   }
 
-  
-
   .history_metrics {
     display: none;
   }
@@ -2304,8 +2308,6 @@ option {
     margin: 5px auto;
   }
 
-
-
   /*footer*/
   .footer {
     display: grid;
@@ -2330,6 +2332,70 @@ option {
   .more_info_popup_button a {
     width: 100%;
   }
+
+  .settings_profile_container,
+  .settings_notification_container {
+    padding: 0px;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: 80px;
+
+  }
+  .settings_profile_username,
+  .settings_profile_avatar,
+  .settings_profile_password,
+  .settings_notification_email,
+  .settings_notification_sms,
+  .settings_notification_push{
+    border-bottom: 1px solid var(--Seperator-light);
+    padding: 15px 0px;
+  }
+  .settings_profile_username_small_down,
+  .settings_profile_avatar_small_down,
+  .settings_profile_password_small_down{
+    margin-top: 10px;
+  }
+
+  .basic_verification_body_email_left,
+.basic_verification_body_phone_left,
+.advance_verification_body_diligence_left,
+.intermediate_verification_body_id_left,
+.intermediate_verification_body_address_left,
+.settings_profile_password_left,
+.settings_profile_avatar_left,
+.settings_profile_username_left,
+.settings_notification_email_left,
+.settings_notification_sms_left,
+.settings_notification_push_left {
+  width: 350px;
+}
+
+.basic_verification_body_email_middle,
+.basic_verification_body_phone_middle,
+.advance_verification_body_diligence_middle,
+.intermediate_verification_body_email_middle,
+.intermediate_verification_body_address_middle,
+.settings_profile_username_middle,
+.settings_profile_avatar_middle,
+.settings_profile_password_middle {
+  width: 100px;
+}
+
+.edit_username_container,
+.edit_avatar_container,
+.change_password_container{
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  height: 80%;
+
+}
+
+
+
 }
 
 
@@ -2628,6 +2694,63 @@ option {
   .more_info_popup {
     width: 90%;
   }
+
+  .settings_profile_container,
+  .settings_notification_container {
+    padding: 0px;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: 80px;
+
+  }
+  .settings_profile_username,
+  .settings_profile_avatar,
+  .settings_profile_password,
+  .settings_notification_email,
+  .settings_notification_sms,
+  .settings_notification_push{
+    border-bottom: 1px solid var(--Seperator-light);
+    padding: 15px 0px;
+  }
+  .settings_profile_username_small_down,
+  .settings_profile_avatar_small_down,
+  .settings_profile_password_small_down{
+    margin-top: 10px;
+  }
+
+  .basic_verification_body_email_left,
+  .basic_verification_body_phone_left,
+  .advance_verification_body_diligence_left,
+  .intermediate_verification_body_id_left,
+  .intermediate_verification_body_address_left,
+  .settings_profile_password_left,
+  .settings_profile_avatar_left,
+  .settings_profile_username_left,
+  .settings_notification_email_left,
+  .settings_notification_sms_left,
+  .settings_notification_push_left {
+    max-width: 350px;
+  }
+
+  .basic_verification_body_email_middle,
+  .basic_verification_body_phone_middle,
+  .advance_verification_body_diligence_middle,
+  .intermediate_verification_body_email_middle,
+  .intermediate_verification_body_address_middle,
+  .settings_profile_username_middle,
+  .settings_profile_avatar_middle,
+  .settings_profile_password_middle {
+    width: 150px;
+  }
+
+  .edit_username_container,
+.edit_avatar_container,
+.change_password_container{
+  width: 70%;
+ 
+
+}
 }
 
 @media(min-width:993px) {

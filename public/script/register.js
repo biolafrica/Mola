@@ -83,9 +83,5 @@ regBtn.addEventListener("click", async(e)=>{
 
   }
  
-
-  
-
- 
 })
 
