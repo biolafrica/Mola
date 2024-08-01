@@ -11,6 +11,13 @@ const paginationNumbersEl = document.getElementById("paginationNo");
 const prevPageEl = document.getElementById("prevPages");
 const nextPageEl = document.getElementById("nextPages");
 const token = localStorage.getItem("access");
+console.log(token)
+
+const socket = new WebSocket('ws://127.0.0.1:8000/order/');
+socket.onopen = function (){
+  console.log("websocket connection established");
+};
+
 
 export const displayAvailableNGNOrder =(nairaOrder)=>{
   let displayNGN = "";
@@ -36,7 +43,6 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
 
 
       let verified = orderItem.verification === true ? "./public/icons/Verified.svg" : "";
-
       
       let html = `
         <div class="row_head">
@@ -290,7 +296,53 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             const errorMessageEl = document.querySelector(".js_error_popup");
             console.log(matchingOrder.ad_id);
 
-            try {
+            const request ={
+              "action" : "create_order",
+              "token" : `Bearer ${token}`,
+              "ads_id" : matchingOrder.ad_id,
+              "selected-amount" : selected_amount
+            }
+            
+            socket.send(JSON.stringify(request));
+            
+            socket.onmessage = function(e){
+              const data = JSON.parse(e.data);
+              console.log("Message for server:", data);
+            
+              if(data.status === "Order created successfully"){
+                window.location.href = `../../../views/order.html?orderId=${data.order_id}`;
+            
+              } else if(data.error === "You must complete or cancel your pending order before creating a new one."){
+                let html =
+                `
+                  <img src="./public/icons/Cancel.svg" alt="">
+                  <h4>Kindly complete your pending order</h4>
+                `;
+                errorMessageEl.innerHTML = html;
+                errorMessageEl.style.display = "flex";
+                setTimeout(()=>{
+                  errorMessageEl.style.display = "none";
+                },3000);
+                
+              } else{
+                console.error("Error:", data.error)
+              }
+            }
+            
+            socket.onclose = function(e){
+              if(e.wasClean){
+                console.log(`connection closed cleanly, code=${e.code}, reason=${e.reason}`);
+              } else {
+                console.error ("connection died")
+              }
+            
+            }
+            
+            socket.onerror = function(error){
+              console.error(`websocket error : ${error.message}`);
+            }
+
+            /*try {
               const response = await fetch("http://127.0.0.1:8000/api/orders/", {
                 method : "POST",
                 headers : {
@@ -315,7 +367,6 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
                 },3000);
                
               }else{
-                addOrder(data,adsDetails);
                 window.location.href = `../../../views/order.html?orderId=${data.order_id}`;
 
               }
@@ -323,7 +374,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             } catch (error) {
               console.log(error);
               
-            };
+            };*/
             
           })
         }

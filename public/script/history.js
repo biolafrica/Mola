@@ -16,7 +16,7 @@ console.log(await getUserProfile(token));
 // Fetch order from the backend 
 async function renderOrder(){
   try {
-    const response = await fetch ("http://127.0.0.1:8000/api/seller/orders/", 
+    const response = await fetch ("http://127.0.0.1:8000/api/all-orders/", 
     {
       method : 'GET',
       headers: {
@@ -145,7 +145,7 @@ function renderPagination(totalItems, type){
   for (let i = 1; i <= totalPages; i++){
     paginationHTML += 
     `
-    <div class="page ${i === (type === "pending" ?  currentPagePending :currentPageCompleted) ? "filled_page" : ""}" data-page="${i}">
+    <div class="page ${i === (type === "pending" ?  currentPagePending :currentPageCompleted) ? "filled_page" : "page"}" data-page="${i}">
     <h5 class="light">${i}</h5>
     </div>
 
