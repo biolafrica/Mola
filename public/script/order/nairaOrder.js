@@ -1,4 +1,4 @@
-import {monitizeNumber} from "../utils/money.js";
+import {monitizeNumber, convertNaira} from "../utils/money.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {AuthenticateUser} from "../../../Data/user.js";
@@ -11,7 +11,6 @@ const paginationNumbersEl = document.getElementById("paginationNo");
 const prevPageEl = document.getElementById("prevPages");
 const nextPageEl = document.getElementById("nextPages");
 const token = localStorage.getItem("access");
-console.log(token)
 
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
 socket.onopen = function (){
@@ -283,24 +282,25 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
               limitEl.classList.remove("js_limit_value_color");
             }
     
-            const convertedValue = inputValue * matchingOrder.rate;
-            const converts = parseFloat((convertedValue.toFixed(2))/100);
-            receiveEl.value = converts;
+            //const convertedValue = inputValue * matchingOrder.rate;
+            //const converts = parseFloat((convertedValue.toFixed(2))/100);
+            const convertedValue = convertNaira(inputValue,matchingOrder);
+            receiveEl.value = convertedValue;
     
           });
 
           document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
             const ads = orderId;
             const adsDetails = matchingOrder;
-            const selected_amount = payEl.value;
+            const selected_amount = Math.floor(payEl.value);
             const errorMessageEl = document.querySelector(".js_error_popup");
-            console.log(matchingOrder.ad_id);
+            console.log(adsDetails);
 
             const request ={
-              "action" : "create_order",
-              "token" : `Bearer ${token}`,
-              "ads_id" : matchingOrder.ad_id,
-              "selected-amount" : selected_amount
+              action : "create_order",
+              token : `Bearer ${token}`,
+              ads_id : matchingOrder.ad_id,
+              selected_amount,
             }
             
             socket.send(JSON.stringify(request));
@@ -310,7 +310,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
               console.log("Message for server:", data);
             
               if(data.status === "Order created successfully"){
-                window.location.href = `../../../views/order.html?orderId=${data.order_id}`;
+               window.location.href = `../../../views/order.html?orderId=${data.order.order_id}`
             
               } else if(data.error === "You must complete or cancel your pending order before creating a new one."){
                 let html =

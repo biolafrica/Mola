@@ -4,7 +4,35 @@ import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
 import{convertDateAndTimeSeconds} from "../../Data/time.js"
 
+const socket = new WebSocket('ws://127.0.0.1:8000/order/');
+socket.onopen = function (){
+  console.log("websocket connection established");
+};
 
+
+socket.onmessage = function(e){
+  const data = JSON.parse(e.data);
+  console.log("Message for server:", data);
+
+  if(data.status === "Payment confirmed"){
+    renderOrder();
+  } else{
+    console.error("Error:", data.error)
+  }
+}
+
+socket.onclose = function(e){
+  if(e.wasClean){
+    console.log(`connection closed cleanly, code=${e.code}, reason=${e.reason}`);
+  } else {
+    console.error ("connection died")
+  }
+
+}
+
+socket.onerror = function(error){
+  console.error(`websocket error : ${error.message}`);
+}
 
 const orderPageEl = document.querySelector(".order_page_container");
 const token = localStorage.getItem("access");
@@ -113,6 +141,8 @@ async function renderPage(data){
       let comments = feedbackText || 'No Comment';
       
       console.log(feedbackText, feedbackType);
+
+    
 
       try {
 
@@ -224,7 +254,7 @@ function renderMadePaymentPopup (value){
   popupEl.innerHTML = html;
   const cancelBtn = document.querySelector(".js_buyer_cancel_btn");
   const confirmBtn = document.querySelector(".js_buyer_confirm_btn");
-  const selectedAds = value.ads.ad_id;
+  const selectedAds = value.order_id;
   const selectedAmount = value.selected_amount;
 
   cancelBtn.addEventListener("click", ()=>{
@@ -233,7 +263,42 @@ function renderMadePaymentPopup (value){
   })
 
   confirmBtn.addEventListener("click", async()=>{
-    try {
+
+    const request ={
+      "action" : "confirm_payment",
+      "token" : `Bearer ${token}`,
+      "order_id" : selectedAds,
+    }
+
+    socket.send(JSON.stringify(request));
+
+    socket.onmessage = function(e){
+      const data = JSON.parse(e.data);
+      console.log("Message for server:", data);
+
+      if(data.status === "Payment confirmed"){
+        renderOrder();
+        overlay.style.display = "none";
+        popupEl.style.display = "none";
+      } else{
+        console.error("Error:", data.error)
+      }
+    }
+
+    socket.onclose = function(e){
+      if(e.wasClean){
+        console.log(`connection closed cleanly, code=${e.code}, reason=${e.reason}`);
+      } else {
+        console.error ("connection died")
+      }
+    
+    }
+    
+    socket.onerror = function(error){
+      console.error(`websocket error : ${error.message}`);
+    }
+    
+    /*try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${value.order_id}/confirm-payment/`, {
         method : "PUT",
         headers : {
@@ -253,13 +318,12 @@ function renderMadePaymentPopup (value){
         renderOrder();
         overlay.style.display = "none";
         popupEl.style.display = "none";
-        
-
+      
       }
       
     } catch (error) {
       console.log(error)
-    }
+    }*/
 
   })
 
