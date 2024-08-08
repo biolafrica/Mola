@@ -15,7 +15,7 @@ const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_sel
 const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
 const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
 
-
+//websocket setup
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
 socket.onopen = function (){
   console.log("websocket connection established");
@@ -26,7 +26,7 @@ socket.onmessage = function(e){
   console.log("Message for server:", data);
   handleWebsocketMessage(data);
 
-}
+};
 
 socket.onclose = function(e){
   if(e.wasClean){
@@ -35,28 +35,57 @@ socket.onclose = function(e){
     console.error ("connection died")
   }
 
-}
+};
 
 socket.onerror = function(error){
   console.error(`websocket error : ${error.message}`);
-}
+};
 
 function handleWebsocketMessage(data){
 
-  if(data.status === "Payment confirmed" || data.status === "Funds released"){
+  if(data.status === "Payment confirmed"){
     renderOrder();
     overlay.style.display = "none";
     popupEl.style.display = "none";
    
+  } else if (
+    data.status === "Funds released successfully" 
+  ){
+    renderOrder();
+    overlay.style.display = "none";
+    popupEl.style.display = "none";
+  } else if (
+    data.status === "Order cancelled"
+  ){
+    renderOrder();
+    overlay.style.display = "none";
+    buyerCancelPopup.style.display = "none";
+    sellerCancelPopup.style.display = "none";
+
   } else{
     console.error("Error:", data.error)
   }
 
-}
+};
 
+
+// extracting orderId from urlparameters
 const url = new URL(window.location.href);
 const param =  url.searchParams.get("orderId");
 
+
+// get selected value from deleted popup
+function getSelectedCategory (category){
+  const selectedRadio = document.querySelector('input [name="category"]:checked');
+
+  if (selectedRadio){
+    return selectedRadio.value;
+  }else{
+    return null
+  }
+}
+
+// extracting order from the backend
 async function renderOrder(){
   try {
     const response = await fetch (`http://127.0.0.1:8000/api/all-orders/${param}/`, {
@@ -75,9 +104,10 @@ async function renderOrder(){
     
   }
 };
-
 renderOrder();
 
+
+// render order on both seller and buyer page
 async function renderPage(data){
   let user = await getUserProfile(token);
   let totalOrder = calculateOrderTotal(data);
@@ -103,6 +133,19 @@ async function renderPage(data){
       sellerCancelPopup.style.display = "initial";
     })
 
+    const sellerCancellationValue = getSelectedCategory("sellerCategory");
+    confirmCancelledSellerBtn.addEventListener("click", ()=>{
+      const request ={
+        action : "cancel_order",
+        token : `Bearer ${token}`,
+        order_id : data.order_id,
+        cancellation_description : sellerCancellationValue,
+      }
+  
+      socket.send(JSON.stringify(request));
+  
+    })
+
 
   }else{
 
@@ -117,6 +160,8 @@ async function renderPage(data){
       popupEl.style.display = "initial";
       
     });
+
+    
     
     document.querySelector(".js_feedback_icon").addEventListener("click", (e)=>{
 
@@ -186,6 +231,19 @@ async function renderPage(data){
       buyerCancelPopup.style.display = "initial";
     })
 
+  confirmCancelledBuyerBtn.addEventListener("click", ()=>{
+    const buyerCancellationValue = getSelectedCategory("buyerCategory");
+    const request ={
+      action : "cancel_order",
+      token : `Bearer ${token}`,
+      order_id : data.order_id,
+      cancellation_description : buyerCancellationValue,
+    }
+
+    socket.send(JSON.stringify(request));
+
+  })
+
   }
 
   /*const timeEl = document.querySelector(".js_order_timer");
@@ -200,6 +258,8 @@ async function renderPage(data){
 
 };
 
+
+//function to render buyer transferred confirmation popup
 function renderMadePaymentPopup (value){
   let html = 
   `
@@ -263,7 +323,6 @@ function renderMadePaymentPopup (value){
   const cancelBtn = document.querySelector(".js_buyer_cancel_btn");
   const confirmBtn = document.querySelector(".js_buyer_confirm_btn");
   const selectedAds = value.order_id;
-  const selectedAmount = value.selected_amount;
 
   cancelBtn.addEventListener("click", ()=>{
     overlay.style.display = "none";
@@ -337,6 +396,8 @@ function renderMadePaymentPopup (value){
 
 };
 
+
+//function to render seeller received confirmation popup
 function renderReceivePaymentPopup (value){
   let html = 
   `
@@ -446,6 +507,8 @@ function renderReceivePaymentPopup (value){
 
 };
 
+
+// popup cancel popup screen
 cancelCancelledSellerBtn.addEventListener("click", ()=>{
   overlay.style.display = "none";
   sellerCancelPopup.style.display = "none";
@@ -458,10 +521,12 @@ cancelCancelledBuyerBtn.addEventListener("click", ()=>{
 
 });
 
+
 function pad(value){
   return value > 9 ? value : "0" + value;
 };
 
+// function to calculate timer
 function renderTimer(timeLeft,timeEl,intervalId){
   
   intervalId = setInterval(()=>{
@@ -494,7 +559,7 @@ function initializeTimer(data, timeLimit){
     //cancel order
   }
 
-}
+};
 
 function stopTimer(intervalId, time, timeEl, timeLimit){
   clearInterval(intervalId);
@@ -505,6 +570,8 @@ function stopTimer(intervalId, time, timeEl, timeLimit){
 
 };
 
+
+//function to generate page HTML for buyer and seller
 function renderBuyerHTML(data,totalOrder,date){
 
   const buyerSendCurrency = data.ads.type === "Naira" ? '£' : "&#8358;";
@@ -741,7 +808,7 @@ function renderSellerHTML(data,totalOrder,date){
   const sendCurrency = data.ads.type === "Naira" ? '&#8358;' : "£";
   const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
   const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "my_display";
-  const sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
+  const sellerBtnStateChange = data.buyer_confirmed === false || data.status === "completed" ? "inactive-btn" : "filled-btn";
   const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "my_display";
   const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "BUYER WILL PAY WITHIN:" :
                                     data.buyer_confirmed === true && data.status === "pending" ? "CONFIRM THE PAYMENT":
@@ -930,6 +997,8 @@ function renderSellerHTML(data,totalOrder,date){
 
 };
 
+
+// function to display or take feedback from customers
 function showFeedback(feedbackType, comments){
   const completedEl = document.querySelector(".js_completed_rating");
   const uncompletedEl = document.querySelector(".js_feedback_container");
@@ -969,12 +1038,14 @@ const fetchFeedback = async (value)=>{
   }
 };
 
+
+// function to display time countdown HTML
 const renderTimerHTML=(heading, time)=>{
   const timerContainerEl = document.querySelector(".js_order_head");
   let html = 
   `
-    <h3><b>${heading}</b></h3>
-    <h3><b class="js_order_timer ${time}"></b></h3>
+    <h4><b>${heading}</b></h4>
+    <h4><b class="js_order_timer ${time}"></b></h4>
   `;
   timerContainerEl.innerHTML = html;
 
