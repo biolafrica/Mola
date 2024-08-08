@@ -4,21 +4,28 @@ import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
 import{convertDateAndTimeSeconds} from "../../Data/time.js"
 
+const orderPageEl = document.querySelector(".order_page_container");
+const token = localStorage.getItem("access");
+const popupEl = document.querySelector(".js_payment_confirm_popup");
+const overlay = document.querySelector(".js_overlay");
+const buyerCancelPopup = document.querySelector(".js_buyer_cancel_popup");
+const sellerCancelPopup = document.querySelector(".js_seller_cancel_popup");
+const cancelCancelledSellerBtn = document.querySelector(".js_cancel_cancelled_seller");
+const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_seller");
+const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
+const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
+
+
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
 socket.onopen = function (){
   console.log("websocket connection established");
 };
 
-
 socket.onmessage = function(e){
   const data = JSON.parse(e.data);
   console.log("Message for server:", data);
+  handleWebsocketMessage(data);
 
-  if(data.status === "Payment confirmed"){
-    renderOrder();
-  } else{
-    console.error("Error:", data.error)
-  }
 }
 
 socket.onclose = function(e){
@@ -34,16 +41,18 @@ socket.onerror = function(error){
   console.error(`websocket error : ${error.message}`);
 }
 
-const orderPageEl = document.querySelector(".order_page_container");
-const token = localStorage.getItem("access");
-const popupEl = document.querySelector(".js_payment_confirm_popup");
-const overlay = document.querySelector(".js_overlay");
-const buyerCancelPopup = document.querySelector(".js_buyer_cancel_popup");
-const sellerCancelPopup = document.querySelector(".js_seller_cancel_popup");
-const cancelCancelledSellerBtn = document.querySelector(".js_cancel_cancelled_seller");
-const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_seller");
-const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
-const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
+function handleWebsocketMessage(data){
+
+  if(data.status === "Payment confirmed" || data.status === "Funds released"){
+    renderOrder();
+    overlay.style.display = "none";
+    popupEl.style.display = "none";
+   
+  } else{
+    console.error("Error:", data.error)
+  }
+
+}
 
 const url = new URL(window.location.href);
 const param =  url.searchParams.get("orderId");
@@ -71,11 +80,10 @@ renderOrder();
 
 async function renderPage(data){
   let user = await getUserProfile(token);
-  console.log(user);
   let totalOrder = calculateOrderTotal(data);
   let date = convertDateAndTimeSeconds(data.date_and_time);
   const time = data.ads.time_limit === 15 ? 900 : data.ads.time_limit === 30 ? 1800 : data.ads.time_limit === 45 ? 2700 : 3600;
-  let timeLeft = time;
+  let timeLimit = time;
   let intervalId;
   
   if(user.username === data.seller.username){
@@ -103,7 +111,7 @@ async function renderPage(data){
     const transferredBtn = document.querySelector(".js_transferred");
     const cancelledBtn = document.querySelector(".buyer_js_cancelled");
     transferredBtn.addEventListener("click", ()=>{
-      stopTimer (intervalId, time, timeEl, timeLeft);
+      //stopTimer (intervalId, time, timeEl, timeLeft);
       renderMadePaymentPopup (data);
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
@@ -180,17 +188,17 @@ async function renderPage(data){
 
   }
 
-  const timeEl = document.querySelector(".js_order_timer");
-
+  /*const timeEl = document.querySelector(".js_order_timer");
   const savedTimeLeft = localStorage.getItem("timeLeft");
   if(savedTimeLeft !== null){
     timeLeft = parseInt(savedTimeLeft, 10);
   }
-  renderTimer(timeLeft,timeEl,intervalId);
+  renderTimer(timeLimit,timeEl,intervalId);*/
+
+  initializeTimer(data,timeLimit);
 
 
-}
-
+};
 
 function renderMadePaymentPopup (value){
   let html = 
@@ -265,14 +273,14 @@ function renderMadePaymentPopup (value){
   confirmBtn.addEventListener("click", async()=>{
 
     const request ={
-      "action" : "confirm_payment",
-      "token" : `Bearer ${token}`,
-      "order_id" : selectedAds,
+      action : "confirm_payment",
+      token : `Bearer ${token}`,
+      order_id : selectedAds,
     }
 
     socket.send(JSON.stringify(request));
 
-    socket.onmessage = function(e){
+    /*socket.onmessage = function(e){
       const data = JSON.parse(e.data);
       console.log("Message for server:", data);
 
@@ -298,7 +306,7 @@ function renderMadePaymentPopup (value){
       console.error(`websocket error : ${error.message}`);
     }
     
-    /*try {
+    try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${value.order_id}/confirm-payment/`, {
         method : "PUT",
         headers : {
@@ -327,7 +335,7 @@ function renderMadePaymentPopup (value){
 
   })
 
-}
+};
 
 function renderReceivePaymentPopup (value){
   let html = 
@@ -398,7 +406,16 @@ function renderReceivePaymentPopup (value){
   });
 
   confirmBtn.addEventListener("click", async()=>{
-    try {
+    let order_id = value.order_id;
+    const request = {
+      action : "release_funds",
+      token : `Bearer ${token}`,
+      order_id
+
+    }
+    socket.send(JSON.stringify(request));
+
+    /*try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${value.order_id}/release/`, {
         method : "PUT",
         headers : {
@@ -423,55 +440,70 @@ function renderReceivePaymentPopup (value){
       
     } catch (error) {
       console.log(error)
-    }
+    } */
 
   })
 
-}
+};
 
 cancelCancelledSellerBtn.addEventListener("click", ()=>{
   overlay.style.display = "none";
   sellerCancelPopup.style.display = "none";
 
-})
+});
 
 cancelCancelledBuyerBtn.addEventListener("click", ()=>{
   overlay.style.display = "none";
   buyerCancelPopup.style.display = "none";
 
-})
+});
 
 function pad(value){
   return value > 9 ? value : "0" + value;
-}
+};
 
 function renderTimer(timeLeft,timeEl,intervalId){
+  
   intervalId = setInterval(()=>{
-    let min = Math.round(timeLeft / 60);
+    let min = Math.floor(timeLeft / 60);
     let sec = timeLeft % 60;
   
     timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
     timeLeft --;
 
-    localStorage.setItem("timeLeft", timeLeft);
-
     if(timeLeft <=0){
       clearInterval(intervalId);
-      localStorage.removeItem("timeLeft");
       // cancel order;
     }
   }, 1000);
 
+};
+
+function initializeTimer(data, timeLimit){
+  const orderCreationTime = new Date(data.date_and_time);
+  const currentTime = new Date();
+  const timeElapsed = Math.floor((currentTime - orderCreationTime)/1000);
+  let timeLeft = timeLimit - timeElapsed;
+  const timeEl = document.querySelector(".js_order_timer");
+  let intervalId;
+
+  if(timeLeft > 0){
+    renderTimer(timeLeft,timeEl,intervalId)
+  }else{
+    timeEl.innerHTML = "00:00"
+    //cancel order
+  }
+
 }
 
-function stopTimer(intervalId, time, timeEl, timeLeft){
+function stopTimer(intervalId, time, timeEl, timeLimit){
   clearInterval(intervalId);
   localStorage.removeItem("timeLeft");
   let min = Math.round(timeLeft/60);
   let sec = timeLeft % 60;
   timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
 
-}
+};
 
 function renderBuyerHTML(data,totalOrder,date){
 
@@ -482,10 +514,10 @@ function renderBuyerHTML(data,totalOrder,date){
 
   const buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
   const timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? 
-  "Pay seller within:" :
-                              data.buyer_confirmed === true && data.status === "pending" ? "Wait for seller to confirm payment":
-                              data.buyer_confirmed === true && data.status === "completed" ? `Successfully received ${buyerReceiveCurrency}${monitizeNumber(data.receiving_amount)}`:
-                              data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+  "PAY SELLER WITHIN:" :
+                              data.buyer_confirmed === true && data.status === "pending" ? "WAIT FOR PAYMENT CONFIRMATION":
+                              data.buyer_confirmed === true && data.status === "completed" ? `SUCCESSFULLY RECEIVED ${buyerReceiveCurrency}${monitizeNumber(data.receiving_amount)}`:
+                              data.buyer_confirmed === true && data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
   const sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
   const receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
   const orderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER CREATED" :
@@ -499,10 +531,8 @@ function renderBuyerHTML(data,totalOrder,date){
   let html = 
   `
     <div class="order_head">
-      <div class="order_head_left">
-        <h3>${timerHeaderStateChange} 
-          <span><b class="js_order_timer ${buyerTimerDisplay}"> </b></span>
-        </h3>
+      <div class="order_head_left js_order_head">
+        
       </div>
 
       <div class="order_head_right">
@@ -703,19 +733,20 @@ function renderBuyerHTML(data,totalOrder,date){
 
   orderPageEl.innerHTML = html;
   fetchFeedback(data);
-
+  renderTimerHTML(timerHeaderStateChange,buyerTimerDisplay);
+  
 };
 
 function renderSellerHTML(data,totalOrder,date){
   const sendCurrency = data.ads.type === "Naira" ? '&#8358;' : "£";
   const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
-  const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_display";
+  const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "my_display";
   const sellerBtnStateChange = data.buyer_confirmed === false ? "inactive-btn" : "filled-btn";
-  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "no_display";
-  const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "Buyer will pay within:" :
-                                    data.buyer_confirmed === true && data.status === "pending" ? "Confirm payment from the buyer":
-                                    data.buyer_confirmed === true && data.status === "completed" ? `Successfully sold &#8358;${monitizeNumber(data.selected_amount)}`:
-                                    data.buyer_confirmed === true && data.status === "cancelled" ? "This order was cancelled": "";
+  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "my_display";
+  const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "BUYER WILL PAY WITHIN:" :
+                                    data.buyer_confirmed === true && data.status === "pending" ? "CONFIRM THE PAYMENT":
+                                    data.buyer_confirmed === true && data.status === "completed" ? `SUCCESSFULLY SOLD &#8358;${monitizeNumber(data.selected_amount)}`:
+                                    data.buyer_confirmed === true && data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
 
   const sellerSentStateChange = data.buyer_confirmed === false ? "I am receiving" : "I received";
   const sellerReceiveStateChange = data.status === "completed" ? "I sent" : "I am sending";
@@ -729,9 +760,8 @@ function renderSellerHTML(data,totalOrder,date){
   let sellerHTML = 
   `
     <div class="order_head">
-      <div class="order_head_left">
-        <h3>${sellerTimerHeaderStateChange}</h3>
-        <h3><b class="js_order_timer ${sellerTimerStateChange}"> </b></h3>
+      <div class="order_head_left js_order_head">
+    
       </div>
 
       <div class="order_head_right">
@@ -770,7 +800,7 @@ function renderSellerHTML(data,totalOrder,date){
               <div class="order_details_body">
                 <div class="order_sent">
                   <h4 style="color:var(--Secondary-Text-light)">${sellerSentStateChange}</h4>
-                  <h4><b>${receiveCurrency}${monitizeNumber(data.receiving_amount)}</b></h4>
+                  <h4><b>${receiveCurrency}${monitizeNumber(data.selected_amount)}</b></h4>
                 </div>
 
                 <div class="order_price">
@@ -780,7 +810,7 @@ function renderSellerHTML(data,totalOrder,date){
                 
                 <div class="order_received">
                   <h4 style="color:var(--Secondary-Text-light)">${sellerReceiveStateChange}</h4>
-                  <h4><b>${sendCurrency}${monitizeNumber(data.selected_amount)}</b></h4>
+                  <h4><b>${sendCurrency}${monitizeNumber(data.receiving_amount)}</b></h4>
                 </div>
               </div>
             </div>
@@ -801,7 +831,7 @@ function renderSellerHTML(data,totalOrder,date){
 
               <div class="order_payment_details_head">
                 <h4><b>PAYMENT INFORMATION</b></h4>
-                <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">${receiveCurrency}${monitizeNumber(data.receiving_amount)}</b> from the account details below;</h4>
+                <h4 style="color:var(--Secondary-Text-light)">${sellerTransferStatusChange} <b style="color:var(--Text-light)">${receiveCurrency}${monitizeNumber(data.selected_amount)}</b> from the account details below;</h4>
               </div>
 
               <div class="order_payment_details_body">
@@ -893,12 +923,12 @@ function renderSellerHTML(data,totalOrder,date){
       </div>
 
     </div>
-
   `;
 
   orderPageEl.innerHTML = sellerHTML;
+  renderTimerHTML(sellerTimerHeaderStateChange, sellerTimerStateChange);
 
-}
+};
 
 function showFeedback(feedbackType, comments){
   const completedEl = document.querySelector(".js_completed_rating");
@@ -922,7 +952,7 @@ function showFeedback(feedbackType, comments){
 
 const fetchFeedback = async (value)=>{
   try {
-    const response = await fetch(`http://127.0.0.1:8000/api/seller/orders/${value.order_id}`, {
+    const response = await fetch(`http://127.0.0.1:8000/api/all-orders/${value.order_id}`, {
       headers : {
         "Authorization" : `Bearer ${token}`,
         "content-Type" : "application/json",
@@ -937,4 +967,15 @@ const fetchFeedback = async (value)=>{
     console.error("Error fetching Feedback:", error)
     
   }
-}
+};
+
+const renderTimerHTML=(heading, time)=>{
+  const timerContainerEl = document.querySelector(".js_order_head");
+  let html = 
+  `
+    <h3><b>${heading}</b></h3>
+    <h3><b class="js_order_timer ${time}"></b></h3>
+  `;
+  timerContainerEl.innerHTML = html;
+
+};

@@ -1872,6 +1872,16 @@ option {
   z-index: 100;
 }
 
+.my_display{
+  display: none;
+  visibility: hidden;
+}
+
+.order_head_left{
+  display: flex;
+  gap: 5px;
+}
+
 
 @media(max-width:768px) {
   .landing_page {
@@ -2282,11 +2292,7 @@ option {
 
   .big,
   .no_display{
-    display: none;
-  }
-
-  .order_head_left{
-    display: flex;
+  display: none;
   }
 
   /*how it works screen*/
