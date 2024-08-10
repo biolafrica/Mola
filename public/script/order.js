@@ -75,14 +75,14 @@ const param =  url.searchParams.get("orderId");
 
 
 // get selected value from deleted popup
-function getSelectedCategory (category){
-  const selectedRadio = document.querySelector('input [name="category"]:checked');
+const buyerRadio = document.querySelectorAll('input[name="buyerCategory"]');
+function getSelectedCategory (buyerRadio){
+  buyerRadio.forEach(radio =>{
+    if(radio.checked){
+      return radio.value;
+    }
+  })
 
-  if (selectedRadio){
-    return selectedRadio.value;
-  }else{
-    return null
-  }
 }
 
 // extracting order from the backend
@@ -134,7 +134,8 @@ async function renderPage(data){
     })
 
     const sellerCancellationValue = getSelectedCategory("sellerCategory");
-    confirmCancelledSellerBtn.addEventListener("click", ()=>{
+    confirmCancelledSellerBtn.addEventListener("click", (e)=>{
+      console.log(sellerCancellationValue);
       const request ={
         action : "cancel_order",
         token : `Bearer ${token}`,
@@ -231,30 +232,24 @@ async function renderPage(data){
       buyerCancelPopup.style.display = "initial";
     })
 
-  confirmCancelledBuyerBtn.addEventListener("click", ()=>{
-    const buyerCancellationValue = getSelectedCategory("buyerCategory");
-    const request ={
+  confirmCancelledBuyerBtn.addEventListener("click", (e)=>{
+    const buyerCancellationValue = getSelectedCategory(buyerRadio);
+    console.log(buyerCancellationValue);
+
+    /*const request ={
       action : "cancel_order",
       token : `Bearer ${token}`,
       order_id : data.order_id,
       cancellation_description : buyerCancellationValue,
     }
 
-    socket.send(JSON.stringify(request));
+    socket.send(JSON.stringify(request));*/
 
   })
 
   }
 
-  /*const timeEl = document.querySelector(".js_order_timer");
-  const savedTimeLeft = localStorage.getItem("timeLeft");
-  if(savedTimeLeft !== null){
-    timeLeft = parseInt(savedTimeLeft, 10);
-  }
-  renderTimer(timeLimit,timeEl,intervalId);*/
-
   initializeTimer(data,timeLimit);
-
 
 };
 

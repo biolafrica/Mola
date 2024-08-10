@@ -863,6 +863,7 @@ form button {
 .seller_requirement_container,
 .bank_network_container{
   display: flex;
+  align-items: center;
   gap: 10px;
   margin: 5px 0px;
 }
@@ -2363,44 +2364,53 @@ option {
     margin-top: 10px;
   }
 
-  .basic_verification_body_email_left,
-.basic_verification_body_phone_left,
-.advance_verification_body_diligence_left,
-.intermediate_verification_body_id_left,
-.intermediate_verification_body_address_left,
-.settings_profile_password_left,
-.settings_profile_avatar_left,
-.settings_profile_username_left,
-.settings_notification_email_left,
-.settings_notification_sms_left,
-.settings_notification_push_left {
-  width: 350px;
-}
+    .basic_verification_body_email_left,
+  .basic_verification_body_phone_left,
+  .advance_verification_body_diligence_left,
+  .intermediate_verification_body_id_left,
+  .intermediate_verification_body_address_left,
+  .settings_profile_password_left,
+  .settings_profile_avatar_left,
+  .settings_profile_username_left,
+  .settings_notification_email_left,
+  .settings_notification_sms_left,
+  .settings_notification_push_left {
+    width: 350px;
+  }
 
-.basic_verification_body_email_middle,
-.basic_verification_body_phone_middle,
-.advance_verification_body_diligence_middle,
-.intermediate_verification_body_email_middle,
-.intermediate_verification_body_address_middle,
-.settings_profile_username_middle,
-.settings_profile_avatar_middle,
-.settings_profile_password_middle {
-  width: 100px;
-}
+  .basic_verification_body_email_middle,
+  .basic_verification_body_phone_middle,
+  .advance_verification_body_diligence_middle,
+  .intermediate_verification_body_email_middle,
+  .intermediate_verification_body_address_middle,
+  .settings_profile_username_middle,
+  .settings_profile_avatar_middle,
+  .settings_profile_password_middle {
+    width: 100px;
+  }
 
-.edit_username_container,
-.edit_avatar_container,
-.change_password_container{
-  width: 100%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  height: 80%;
+  .edit_username_container,
+  .edit_avatar_container,
+  .change_password_container{
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    height: 80%;
 
-}
+  }
 
-
+  .cancel_order_popup{
+    
+    width: 100%;
+    top:auto;
+    left:50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+  }
 
 }
 

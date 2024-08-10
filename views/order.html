@@ -84,7 +84,7 @@
         <form action="">
 
           <div class="bank_network_container">
-            <input type="radio" name="buyerCategory" id="bankNetwork" value="Bank network issue">
+            <input type="radio" name="buyerCategory" id="bankNetwork" value="Bank network issue" required>
             <label for="bankNetwork"><h4>Bank network issue</h4></label>
           </div>
 
@@ -108,26 +108,23 @@
             <label for="notBuying"><h4>Not interested in buying anymore</h4></label>
           </div>
 
+          <div class="payment_cancellation_popup_bank_confirm">
+            <div class="order_cancel_checkbox_container">
+              <input type="checkbox" id="cancelCheckbox">
+              <label for="cancelCheckbox">
+                <h4>I have not paid the seller</h4>
+              </label>
+            </div>
+          </div>
+
+          <div class="payment_cancellation_popup_bank_button">
+            <button class="inactive-btn js_cancel_cancelled_buyer"><h5>Back</h5></button>
+            <button class="filled-btn js_cancel_confirm_buyer"><h5>Cancel order</h5></button>
+          </div>
+
         </form>
 
-        <div class="payment_cancellation_popup_bank_confirm">
-          <div class="order_cancel_checkbox_container">
-            <input type="checkbox" id="cancelCheckbox">
-            <label for="cancelCheckbox">
-              <h4>I have not paid the seller</h4>
-            </label>
-          </div>
-        </div>
-
-        <div class="payment_cancellation_popup_bank_button">
-          <button class="inactive-btn js_cancel_cancelled_buyer"><h5>Back</h5></button>
-          <button class="filled-btn js_cancel_confirm_buyer"><h5>Cancel order</h5></button>
-        </div>
-
       </div>
-
-
-
     </div>
 
     <!--seller order cancellation popup-->
@@ -143,8 +140,9 @@
         <h4>Why do you want to cancel ?</h4>
 
         <form action="">
+
           <div class="seller_requirement_container">
-            <input type="radio" name="sellerCategory" id="sellerRequirement" value="I didn't meet seller requirement">
+            <input type="radio" name="sellerCategory" id="sellerRequirement" value="I didn't meet seller requirement" required>
             <label for="sellerRequirement"><h4>I cant access my bank account</h4></label>
           </div>
 
@@ -163,25 +161,23 @@
             <label for="notBuying"><h4> Other reasons</h4></label>
           </div>
 
+          <div class="payment_cancellation_popup_bank_confirm">
+            <div class="order_cancel_checkbox_container">
+              <input type="checkbox" id="cancelCheckbox" required>
+              <label for="cancelCheckbox">
+                <h4>I have not received payment from the buyer</h4>
+              </label>
+            </div>
+          </div>
+
+          <div class="payment_cancellation_popup_bank_button">
+            <button class="outlined-btn js_cancel_cancelled_seller"><h5>Back</h5></button>
+            <button class="filled-btn js_cancel_confirm_seller"><h5>Cancel order</h5></button>
+          </div>
+
         </form>
 
-        <div class="payment_cancellation_popup_bank_confirm">
-          <div class="order_cancel_checkbox_container">
-            <input type="checkbox" id="cancelCheckbox">
-            <label for="cancelCheckbox">
-              <h4>I have not received payment from the buyer</h4>
-            </label>
-          </div>
-        </div>
-
-        <div class="payment_cancellation_popup_bank_button">
-          <button class="inactive-btn js_cancel_cancelled_seller"><h5>Back</h5></button>
-          <button class="filled-btn js_cancel_confirm_seller"><h5>Cancel order</h5></button>
-        </div>
-
       </div>
-
-
 
     </div>
 
