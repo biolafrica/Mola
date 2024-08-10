@@ -2,7 +2,6 @@ import {monitizeNumber, convertNaira} from "../utils/money.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {AuthenticateUser} from "../../../Data/user.js";
-import{addOrder} from "../../../Data/orders.js";
 
 const ngnEl = document.querySelector(".js_ngn_el");
 const overlay = document.querySelector(".js_overlay");
@@ -294,7 +293,6 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             const adsDetails = matchingOrder;
             const selected_amount = Math.floor(payEl.value);
             const errorMessageEl = document.querySelector(".js_error_popup");
-            console.log(adsDetails);
 
             const request ={
               action : "create_order",

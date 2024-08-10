@@ -1,9 +1,7 @@
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
-import {monitizeNumber} from "../utils/money.js";
+import {monitizeNumber, convertPounds} from "../utils/money.js";
 import{AuthenticateUser} from "../../../Data/user.js";
-import{addOrder} from "../../../Data/orders.js";
-
 
 const gbpEl = document.querySelector(".js_gbp_el");
 const overlay = document.querySelector(".js_overlay");
@@ -13,7 +11,10 @@ const prevPageEl = document.getElementById("prevPage");
 const nextPageEl = document.getElementById("nextPage");
 const token = localStorage.getItem("access");
 
-
+const socket = new WebSocket('ws://127.0.0.1:8000/order/');
+socket.onopen = function (){
+  console.log("websocket connection established");
+};
 
 export const displayAvailableGBPOrder = (poundsOrder)=>{
   let displayGBP = "";
@@ -261,22 +262,23 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
           //coversation input 
           payEl.addEventListener("input", (e)=>{
     
-            const inputValue = (Number(e.target.value)) * 100;
+            const inputValue = (Number(e.target.value));
     
-            if(inputValue < matchingOrder.minimumOrder && inputValue > 0){
-              payInput.classList.add("js_input_money_color");
-              limitEl.classList.add("js_limit_value_color");
-            } else if(inputValue === 0){
+           if(inputValue === 0){
               payInput.classList.remove("js_input_money_color");
               limitEl.classList.remove("js_limit_value_color");
+            }else if(inputValue < matchingOrder.minimum_limit || inputValue > matchingOrder.maximum_limit){
+              payInput.classList.add("js_input_money_color");
+              limitEl.classList.add("js_limit_value_color");
             }else{
               payInput.classList.remove("js_input_money_color");
               limitEl.classList.remove("js_limit_value_color");
             }
             
-            const convertedValue = inputValue / (matchingOrder.rate * 100);
-            const converts = parseFloat(convertedValue.toFixed(2));
-            receiveEl.value = converts;
+            //const convertedValue = inputValue / (matchingOrder.rate * 100);
+            //const converts = parseFloat(convertedValue.toFixed(2));
+            const convertedValue = convertPounds(inputValue, matchingOrder)
+            receiveEl.value = convertedValue;
           });
 
           document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
@@ -284,9 +286,55 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
             const adsDetails = matchingOrder;
             const selected_amount = payEl.value;
             const errorMessageEl = document.querySelector(".js_error_popup");
-            console.log(ads, selected_amount);
+            
+            const request ={
+              action : "create_order",
+              token : `Bearer ${token}`,
+              ads_id : matchingOrder.ad_id,
+              selected_amount,
+            }
 
-            try {
+            socket.send(JSON.stringify(request));
+            
+            socket.onmessage = function(e){
+              const data = JSON.parse(e.data);
+              console.log("Message for server:", data);
+            
+              if(data.status === "Order created successfully"){
+               window.location.href = `../../../views/order.html?orderId=${data.order.order_id}`
+            
+              } else if(data.error === "You must complete or cancel your pending order before creating a new one."){
+                let html =
+                `
+                  <img src="./public/icons/Cancel.svg" alt="">
+                  <h4>Kindly complete your pending order</h4>
+                `;
+                errorMessageEl.innerHTML = html;
+                errorMessageEl.style.display = "flex";
+                setTimeout(()=>{
+                  errorMessageEl.style.display = "none";
+                },3000);
+                
+              } else{
+                console.error("Error:", data.error)
+              }
+            }
+            
+            socket.onclose = function(e){
+              if(e.wasClean){
+                console.log(`connection closed cleanly, code=${e.code}, reason=${e.reason}`);
+              } else {
+                console.error ("connection died")
+              }
+            
+            }
+            
+            socket.onerror = function(error){
+              console.error(`websocket error : ${error.message}`);
+            }
+
+
+            /*try {
               const response = await fetch("http://127.0.0.1:8000/api/orders/", {
                 method : "POST",
                 headers : {
@@ -320,7 +368,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               
             };
             
-            window.location.href = "../../../views/order.html";
+            window.location.href = "../../../views/order.html";*/
 
 
           })
