@@ -38,10 +38,10 @@ poundBtn.addEventListener("click", ()=>{
 });
 
 howBuyBtn.addEventListener("click", ()=>{
-  howBuyBtn.classList.remove("inactive-btn");
+  howBuyBtn.classList.remove("outlined-btn");
   howBuyBtn.classList.add("filled-btn");
   howSellBtn.classList.remove("active_btn");
-  howSellBtn.classList.add("inactive-btn");
+  howSellBtn.classList.add("outlined-btn");
   orderSellEl.style.display = "none";
   sellSellEl.style.display = "none";
   paymentSellEl.style.display ='none';
@@ -52,10 +52,10 @@ howBuyBtn.addEventListener("click", ()=>{
 });
 
 howSellBtn.addEventListener("click", ()=>{
-  howSellBtn.classList.remove("inactive-btn");
+  howSellBtn.classList.remove("outlined-btn");
   howSellBtn.classList.add("filled-btn");
   howBuyBtn.classList.remove("active_btn");
-  howBuyBtn.classList.add("inactive-btn");
+  howBuyBtn.classList.add("outlined-btn");
   orderSellEl.style.display = "initial";
   sellSellEl.style.display = "initial";
   paymentSellEl.style.display ='initial';

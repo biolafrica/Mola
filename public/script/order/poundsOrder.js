@@ -275,8 +275,6 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               limitEl.classList.remove("js_limit_value_color");
             }
             
-            //const convertedValue = inputValue / (matchingOrder.rate * 100);
-            //const converts = parseFloat(convertedValue.toFixed(2));
             const convertedValue = convertPounds(inputValue, matchingOrder)
             receiveEl.value = convertedValue;
           });
@@ -332,53 +330,11 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
             socket.onerror = function(error){
               console.error(`websocket error : ${error.message}`);
             }
-
-
-            /*try {
-              const response = await fetch("http://127.0.0.1:8000/api/orders/", {
-                method : "POST",
-                headers : {
-                  "Authorization" : `Bearer ${token}`,
-                  "content-Type" : "application/json",
-                },
-
-                body : JSON.stringify({ads,selected_amount,})
-              })
-              const data = await response.json();
-              if(data[0] === "You must completed or cancel your pending order before creating a new one."){
-                let html =
-                `
-                  <img src="./public/icons/Cancel.svg" alt="">
-                  <h4>Kindly complete your pending order</h4>
-                `;
-                errorMessageEl.innerHTML = html;
-                errorMessageEl.style.display = "flex";
-                setTimeout(()=>{
-                  errorMessageEl.style.display = "none";
-                },3000);
-               
-              }else{
-                addOrder(data,adsDetails);
-                window.location.href = "../../../views/order.html";
-
-              }
-              
-            } catch (error) {
-              console.log(error);
-              
-            };
-            
-            window.location.href = "../../../views/order.html";*/
-
-
           })
-          
-
         }
 
       });
 
-    
     });
 
   }

@@ -1875,12 +1875,23 @@ option {
 
 .my_display{
   display: none;
-  visibility: hidden;
+}
+
+.big,
+.no_display{
+display: none;
 }
 
 .order_head_left{
   display: flex;
   gap: 5px;
+}
+
+.buyerError,
+.sellerError{
+  color: red ;
+  text-align: center;
+  padding: 5px;
 }
 
 
@@ -2291,10 +2302,7 @@ option {
     max-width: none;
   }
 
-  .big,
-  .no_display{
-  display: none;
-  }
+ 
 
   /*how it works screen*/
   .how_it_works_body {
@@ -2326,7 +2334,12 @@ option {
   .more_info_popup {
     flex-direction: column-reverse;
     width: 100%;
-    transform: translate(-50%, -40%);
+    top:auto;
+    left:50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    border-radius: 20px 20px 0 0;
 
   }
 
@@ -2402,7 +2415,6 @@ option {
   }
 
   .cancel_order_popup{
-    
     width: 100%;
     top:auto;
     left:50%;

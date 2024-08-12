@@ -76,14 +76,34 @@ const param =  url.searchParams.get("orderId");
 
 // get selected value from deleted popup
 const buyerRadio = document.querySelectorAll('input[name="buyerCategory"]');
-function getSelectedCategory (buyerRadio){
+const sellerRadio = document.querySelectorAll('input[name="sellerCategory"]');
+
+function getBuyerCategory (){
   buyerRadio.forEach(radio =>{
-    if(radio.checked){
-      return radio.value;
-    }
+    const buyerReason = document.getElementById("buyerReason");
+    radio.addEventListener("click", (e)=>{
+      let name = e.target.value;
+      console.log(name);
+      return buyerReason.value = name;
+    });
+  
   })
 
 }
+
+function getSellerCategory (){
+  sellerRadio.forEach(radio =>{
+    const sellerReason = document.getElementById("sellerReason");
+    radio.addEventListener("click", (e)=>{
+      let name = e.target.value;
+      console.log(name);
+      return sellerReason.value = name;
+    });
+  
+  })
+
+}
+
 
 // extracting order from the backend
 async function renderOrder(){
@@ -128,22 +148,37 @@ async function renderPage(data){
 
     })
 
-    sellerCancelledBtn.addEventListener("click", ()=>{
+    sellerCancelledBtn.addEventListener("click", (e)=>{
+      e.preventDefault();
       overlay.style.display = "initial";
       sellerCancelPopup.style.display = "initial";
     })
 
-    const sellerCancellationValue = getSelectedCategory("sellerCategory");
+    getSellerCategory();
+    const sellerCheckbox = document.getElementById('sellerCancelCheckbox');
+    const sellerErrorMessage = document.querySelector(".js_seller_error");
+
     confirmCancelledSellerBtn.addEventListener("click", (e)=>{
+      e.preventDefault();
+      let sellerCancellationValue = sellerReason.value;
       console.log(sellerCancellationValue);
-      const request ={
-        action : "cancel_order",
-        token : `Bearer ${token}`,
-        order_id : data.order_id,
-        cancellation_description : sellerCancellationValue,
+
+      if(sellerCheckbox.checked && sellerCancellationValue === ""){
+        sellerErrorMessage.innerHTML = "kindly select a reason for cancellation!";
+      }else if (sellerCheckbox.checked){
+        const request ={
+          action : "cancel_order",
+          token : `Bearer ${token}`,
+          order_id : data.order_id,
+          cancellation_description : sellerCancellationValue,
+        }
+        socket.send(JSON.stringify(request));
+      }else if (!sellerCheckbox.checked){
+        sellerErrorMessage.innerHTML = "kindly check the confirmation box!";
+      } else if (sellerCancellationValue === "" && !sellerCheckbox.checked){
+        sellerErrorMessage.innerHTML = "kindly select a reason and check the confirmation box!";
       }
-  
-      socket.send(JSON.stringify(request));
+      
   
     })
 
@@ -227,25 +262,41 @@ async function renderPage(data){
 
     })
 
-    cancelledBtn.addEventListener("click", ()=>{
+    cancelledBtn.addEventListener("click", (e)=>{
+      e.preventDefault();
       overlay.style.display = "initial";
       buyerCancelPopup.style.display = "initial";
     })
 
-  confirmCancelledBuyerBtn.addEventListener("click", (e)=>{
-    const buyerCancellationValue = getSelectedCategory(buyerRadio);
-    console.log(buyerCancellationValue);
+    getBuyerCategory();
+    const buyerCheckbox = document.getElementById('cancelCheckbox');
+    const buyerErrorMessage = document.querySelector(".js_buyer_error");
 
-    /*const request ={
-      action : "cancel_order",
-      token : `Bearer ${token}`,
-      order_id : data.order_id,
-      cancellation_description : buyerCancellationValue,
-    }
+  
+    confirmCancelledBuyerBtn.addEventListener("click", (e)=>{
+      e.preventDefault();
+      let buyerCancellationValue = buyerReason.value;
+      console.log(buyerCancellationValue);
 
-    socket.send(JSON.stringify(request));*/
+      if(buyerCheckbox.checked && buyerCancellationValue === ""){
+        buyerErrorMessage.innerHTML = "kindly select a reason for cancellation!";
+      }else if (buyerCheckbox.checked){
+        const request ={
+          action : "cancel_order",
+          token : `Bearer ${token}`,
+          order_id : data.order_id,
+          cancellation_description : buyerCancellationValue,
+        }
+        socket.send(JSON.stringify(request));
+      }else if (!buyerCheckbox.checked){
+        buyerErrorMessage.innerHTML = "kindly check the confirmation box!";
+      } else if (buyerCancellationValue === "" && !buyerCheckbox.checked){
+        buyerErrorMessage.innerHTML = "kindly select a reason and check the confirmation box!";
+      }
+      
+      
 
-  })
+    })
 
   }
 
@@ -587,8 +638,8 @@ function renderBuyerHTML(data,totalOrder,date){
                           data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
                           data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
   const transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
-  const cancelledChange = data.status === "cancelled" ? "no_display" : "";
   const completedChange = data.status === "completed" ? "" : "no_view";
+  const cancelChange = data.buyer_confirmed === true || data.status === "cancelled" ? "no_view" : "";
 
   let html = 
   `
@@ -660,7 +711,7 @@ function renderBuyerHTML(data,totalOrder,date){
             
             </div>
 
-            <div class="order_payment_details ${cancelledChange}">
+            <div class="order_payment_details">
 
               <div class="order_payment_details_head">
                 <h4><b>PAYMENT INFORMATION</b></h4>
@@ -698,7 +749,7 @@ function renderBuyerHTML(data,totalOrder,date){
 
             </div>
 
-            <div class="order_payment_status ${cancelledChange}">
+            <div class="order_payment_status">
 
               <div class="order_payment_status_head">
                 <h4><b>PAYMENT UPDATE</b></h4>
@@ -711,7 +762,7 @@ function renderBuyerHTML(data,totalOrder,date){
                   <h5>Transferred</h5>
                 </button>
 
-                <button class="text-btn buyer_js_cancelled">
+                <button class="text-btn buyer_js_cancelled ${cancelChange}">
                   <h5>Cancel Order</h5>
                 </button>
 
@@ -803,7 +854,7 @@ function renderSellerHTML(data,totalOrder,date){
   const sendCurrency = data.ads.type === "Naira" ? '&#8358;' : "£";
   const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
   const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "my_display";
-  const sellerBtnStateChange = data.buyer_confirmed === false || data.status === "completed" ? "inactive-btn" : "filled-btn";
+  const sellerBtnStateChange = data.buyer_confirmed === false || data.status === "completed" || data.status === "cancelled" ? "inactive-btn" : "filled-btn";
   const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "my_display";
   const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "BUYER WILL PAY WITHIN:" :
                                     data.buyer_confirmed === true && data.status === "pending" ? "CONFIRM THE PAYMENT":
@@ -817,7 +868,7 @@ function renderSellerHTML(data,totalOrder,date){
                                 data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
                                 data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
   const sellerTransferStatusChange = data.buyer_confirmed === false ? "confirm" : "I received";
-  const sellerCancelledChange = data.status === "cancelled" ? "no_display" : "";
+  const cancelChange = data.buyer_confirmed === true || data.status === "cancelled" ? "no_view" : "";
 
   let sellerHTML = 
   `
@@ -889,7 +940,7 @@ function renderSellerHTML(data,totalOrder,date){
             
             </div>
 
-            <div class="order_payment_details ${sellerCancelledChange}">
+            <div class="order_payment_details">
 
               <div class="order_payment_details_head">
                 <h4><b>PAYMENT INFORMATION</b></h4>
@@ -926,7 +977,7 @@ function renderSellerHTML(data,totalOrder,date){
 
             </div>
 
-            <div class="order_payment_status ${sellerCancelledChange}">
+            <div class="order_payment_status">
 
               <div class="order_payment_status_head">
                 <h4><b>PAYMENT UPDATE</b></h4>
@@ -939,7 +990,7 @@ function renderSellerHTML(data,totalOrder,date){
                   <h5>Received</h5>
                 </button>
 
-                <button class="text-btn seller_js_cancelled">
+                <button class="text-btn seller_js_cancelled ${cancelChange}">
                   <h5>Cancel Order</h5>
                 </button>
 
