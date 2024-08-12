@@ -1038,16 +1038,32 @@ option {
 }
 
 .filter_container_history{
-  border: 1px solid var(--Border-light);
-  border-radius: 5px;
-  padding: 5px 2px;
-  width: fit-content;
+  border-bottom: 1px solid var(--Seperator-light);
+  margin: 30px auto;
+  max-width: 1200px;
 }
-.filter_container_history_container{
-  box-shadow: var(--elevate-2);
-  padding: 20px;
-  padding-left: 100px;
+
+.line_button{
+  border: none;
+  background-color: transparent;
+  padding: 10px 15px;
+  border-bottom: 2px solid black;
+  margin: 0;
+  cursor: pointer;
 }
+
+.ord_button{
+  border: none;
+  background-color: transparent;
+  padding: 10px 15px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.completed_order_container{
+  display: none;
+}
+
 
 /* my-ads-page  */
 .my_ads_filter_container {
@@ -1877,7 +1893,6 @@ option {
   display: none;
 }
 
-.big,
 .no_display{
 display: none;
 }
@@ -1990,6 +2005,10 @@ display: none;
 
   .header_right {
     gap: 5px;
+  }
+
+  .big{
+    display: none;
   }
 
   .header_left img {

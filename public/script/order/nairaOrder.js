@@ -293,6 +293,7 @@ export const displayAvailableNGNOrder =(nairaOrder)=>{
             const adsDetails = matchingOrder;
             const selected_amount = Math.floor(payEl.value);
             const errorMessageEl = document.querySelector(".js_error_popup");
+            console.log(adsDetails);
 
             const request ={
               action : "create_order",

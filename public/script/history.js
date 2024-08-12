@@ -6,6 +6,40 @@ const token = localStorage.getItem("access");
 const statusBtns = document.querySelectorAll(".history_status_filter button");
 const activeStatusBtns = document.querySelectorAll(".processing_status_filter button");
 const orderTypeSelect = document.querySelector("#order-type");
+const activeBtn = document.querySelector('.js_active_order');
+const completedBtn = document.querySelector('.js_complete_order');
+const activeEl = document.querySelector(".js_processing_order_container");
+const completedEl = document.querySelector(".js_completed_order_container");
+
+//buttons for active and completed orders
+activeBtn.addEventListener("click", ()=>{
+  activeBtn.classList.remove("ord_button");
+  activeBtn.classList.add("line_button");
+  completedBtn.classList.remove("line_button");
+  completedBtn.classList.add("ord_button");
+  activeBtn.classList.remove("secondary");
+  completedBtn.classList.add("secondary");
+  activeEl.style.display = "initial";
+  completedEl.style.display = "none";
+  
+});
+
+completedBtn.addEventListener("click", ()=>{
+  completedBtn.classList.add("line_button");
+  completedBtn.classList.remove("ord_button");
+  activeBtn.classList.remove("line_button");
+  activeBtn.classList.add("ord_button");
+  completedBtn.classList.remove("secondary");
+  activeBtn.classList.add("secondary");
+  activeEl.style.display = "none";
+  completedEl.style.display = "initial";
+
+
+
+ 
+})
+
+
 
 let ordersData = [];
 let currentPagePending = 1;
@@ -64,7 +98,6 @@ function filterPendingOrders(condition){
 }
 
 
-
 // buttons event listener for filtering
 statusBtns.forEach((button)=>{
   button.addEventListener("click", (e)=>{
@@ -100,7 +133,6 @@ activeStatusBtns.forEach((button)=>{
 });
 
 orderTypeSelect.addEventListener("change", filterCompletedOrders);
-
 
 
 // render order data to the page dynamically 

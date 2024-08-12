@@ -275,6 +275,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               limitEl.classList.remove("js_limit_value_color");
             }
             
+        
             const convertedValue = convertPounds(inputValue, matchingOrder)
             receiveEl.value = convertedValue;
           });
