@@ -1,5 +1,6 @@
 import {loadBanks} from "../../Data/bank.js";
 import { getUserProfile } from "../../Data/user.js";
+import { renderHeader } from "./script.js";
 
 const verifyEl = document.querySelector(".user_verification_left_container");
 const verifyCont = document.querySelector(".user_verification_right_container");
@@ -345,6 +346,7 @@ renderBanks(token);
 renderProfile();
 renderUserDetails();
 verificationDetails();
+renderHeader();
 
 
 bankSubmitBtn.addEventListener("click", async(e)=>{

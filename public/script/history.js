@@ -1,6 +1,7 @@
 import{getUserProfile} from "../../Data/user.js";
 import{monitizeNumber} from "../script/utils/money.js";
 import {convertDateAndTime} from "../../Data/time.js";
+import { renderHeader } from "./script.js";
 
 const token = localStorage.getItem("access");
 const statusBtns = document.querySelectorAll(".history_status_filter button");
@@ -312,3 +313,5 @@ function generateOrderHTML(dataItem, user,orderHTML){
   return orderHTML;
 
 }
+
+renderHeader();

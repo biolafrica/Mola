@@ -1,4 +1,5 @@
 import {getUserProfile} from "../../Data/user.js";
+import { renderHeader } from "./script.js";
 
 const avatarEditBtn = document.querySelector(".js_avatar_btn");
 const usernameEditBtn = document.querySelector(".js_username_btn");
@@ -13,6 +14,7 @@ const usernameCancelBtn = document.querySelector(".username_cancel_btn");
 const userNameEl = document.querySelector(".js_profile_username");
 const userDPEl = document.querySelector(".js_profile_avatar");
 const token = localStorage.getItem("access");
+
 
 renderProfileDetails();
 console.log(await getUserProfile(token))
@@ -244,3 +246,4 @@ function changeDP(){
 changePassword();
 changeUsername();
 changeDP();
+renderHeader();

@@ -1,6 +1,7 @@
 import{getUserProfile} from "../../Data/user.js";
 import {convertDateAndTime} from "../../Data/time.js";
 import{monitizeNumber} from "../script/utils/money.js";
+import { renderHeader } from "./script.js";
 
 const adsListEl = document.querySelector(".js_history_table");
 const currencyFilterEl = document.querySelector(".ads_currency_filter select");
@@ -186,3 +187,5 @@ function filterAds(){
 
   renderPage(filteredAds);
 }
+
+renderHeader();

@@ -1,4 +1,5 @@
 import {monitizeNumber} from './utils/money.js';
+import { renderHeader } from './script.js';
 
 const currencySelect = document.getElementById("adsSelectType");
 const amountCurrency = document.querySelector(".js_amount_currency");
@@ -10,6 +11,8 @@ const overlay = document.querySelector(".js_overlay");
 const form = document.querySelector(".js_post_ad_form");
 const token = localStorage.getItem('access');
 const confirmAdsEl = document.querySelector(".js_ads_confirm_popup");
+
+renderHeader();
 
 form.addEventListener("submit", async(e)=>{
   e.preventDefault();

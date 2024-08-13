@@ -3,6 +3,7 @@ import{monitizeNumber, convertNaira, convertPounds} from "../script/utils/money.
 import { calculateTotalOrder, calculateCompleteOrder } from "./utils/metrics.js";
 import { verifyType, verified } from "./utils/verification.js";
 import {AuthenticateUser} from "../../Data/user.js";
+import { renderHeader } from "./script.js";
 
 const adsBtn = document.querySelector(".js_ads_btn");
 const feedbackBtn = document.querySelector(".js_feedback_btn");
@@ -466,3 +467,4 @@ function addPaginationEventListeners(){
 
 
 renderDashboardHead();
+renderHeader();

@@ -2,7 +2,8 @@ import{calculateOrderTotal,calculateOrderCompletion} from "../../public/script/u
 import{monitizeNumber} from "../../public/script/utils/money.js";
 import{verified} from "../../public/script/utils/verification.js";
 import{getUserProfile} from "../../Data/user.js";
-import{convertDateAndTimeSeconds} from "../../Data/time.js"
+import{convertDateAndTimeSeconds} from "../../Data/time.js";
+import { renderHeader } from "./script.js";
 
 const orderPageEl = document.querySelector(".order_page_container");
 const token = localStorage.getItem("access");
@@ -14,6 +15,8 @@ const cancelCancelledSellerBtn = document.querySelector(".js_cancel_cancelled_se
 const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_seller");
 const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
 const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
+
+renderHeader();
 
 //websocket setup
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');

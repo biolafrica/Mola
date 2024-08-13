@@ -11,26 +11,20 @@
   <body>
 
     <header>
-
       <div class="header_left">
         <a href="../index.html"><img src="../public/icons/Currency exchange.svg" alt=""></a>
         <a href="../index.html"><h3><b>Mola</b></h3></a>
-        
       </div>
-  
-      <div class="header_right">
-  
-        <a class="order_container" href="/views/history.html">
-          <img src="../public/icons/Receipt long.svg" alt="">
-          <h5>My Orders</h5>
-        </a>
-  
-        <div class="profile_container">
-          <img src="../public/icons/Account circle.svg" alt="">
-          <h5 class="profile_none">My profile</h5>
-  
+
+      <div class="header-middle js_header_middle">
+        
+        <div class="profile_header_container">
+
+          <h5>Profile</h5>
+          <img src="../public/icons/Keyboard arrow down.png" alt="arrow down icon">
+
           <div class="profile_tooltip">
-  
+
             <div class="profile_tooltip_header"> 
               <h5 style="padding-left: 20px;">Biolafrica</h5>
               <div class="profile_verification_details">
@@ -40,7 +34,7 @@
             </div>
             
             <div class="profile_tooltip_body">
-  
+
               <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
                 <img src="../public/icons/Dashboard.svg" alt="">
                 <h4>Dashboard</h4>
@@ -66,30 +60,102 @@
       
             </div>
           </div>
+
         </div>
-  
-        <div class="more_container">
-          <img src="../public/icons/Pending.svg" alt="">
-          <h5 class="more_none">More</h5>
-          <img src="../public/icons/Arrow drop down.svg" alt="">
-  
+
+        <div class="ads_container">
+          <h5>Ads</h5>
+          <img src="../public/icons/Keyboard arrow down.png" alt="arrow down icon">
+
           <div class="more_tooltip">
-  
+
             <a class="more_tooltip_nav" href="/views/postadd.html">
-              <img src="../public/icons/Playlist add.svg" alt="">
-              <h4>Post New Ads</h4>
+              <img src="../public/icons/add ads.png" alt="">
+              <h4>Post Ads</h4>
             </a>
-  
+
             <a class="more_tooltip_nav" href="/views/ads.html">
-              <img src="../public/icons/Format list bulleted.svg" alt="">
+              <img src="../public/icons/ads List.png" alt="">
               <h4>My Ads</h4>
             </a>
       
           </div>
+
         </div>
-  
+
       </div>
+
+      <div class="header-right js_header_right">
+
+        <a class="order_header_container" href="/views/history.html" >
+          <div class="notification">1</div>
+          <img src="../public/icons/Article.png" alt="order icon">
+          <h5 class="order_name">Order</h5>
+        </a>
+
+        <div class="hamburger js_hamburger">
+          <img src="../public/icons/Menu.png" alt="menu icon">
+        </div>
+
+        <div class="close js_close">
+          <img src="../public/icons/Close.png" alt="close icon">
+        </div>
+       
+      </div>
+
     </header>
+
+    <!---hamburger small screen menu-->
+    <div class="sub_menu js_sub_menu">
+
+      <div class="profile_sub-menu">
+        <h6 class="profile_sub-menu_heading"><b>Profile</b></h6>
+
+        <div class="profile_sub-menu_first">
+
+          <a class="profile_sub-menu_wallet" href="/views/dashboard.html">
+            <img  src="../public/icons/Wallet.png" alt="wallet icon">
+            <h5><b>Wallet</b></h5>
+          </a>
+
+          <a class="profile_sub-menu_account" href="/views/verify.html">
+            <img src="../public/icons/Manage accounts.svg" alt="account icon">
+            <h5><b>Account</b></h5>
+          </a>
+        </div>
+
+        <div class="profile_sub-menu_second">
+          <a class="profile_sub-menu_profile" href="/views/settings.html">
+            <img src="../public/icons/Settings.svg" alt="settings icon">
+            <h5><b>Settings</b></h5>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="ads_sub-menu">
+        <h6 class="ads_sub-menu_heading"><b>Ads</b></h6>
+
+        <div class="ads_sub-menu_first">
+
+          <a class="ads_sub-menu_new_ads" href="/views/postadd.html">
+            <img src="../public/icons/add ads.png" alt="post ads icon">
+            <h5><b>Post Ads</b></h5>
+          </a>
+
+          <a class="ads_sub-menu_my_ads" href="/views/ads.html">
+            <img src="../public/icons/ads List.png" alt="ads list icon">
+            <h5><b>My Ads</b></h5>
+          </a>
+
+        </div>
+
+      </div>
+
+      <button class="outlined-btn sub_menu_button"><h4>Logout</h4></button>
+      
+
+    </div>
 
     <div class="my_ads_container">
       <h3 class="my_ads_head">My Ads</h3>
