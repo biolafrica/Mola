@@ -210,9 +210,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 60px;
+  padding: 25px 120px;
   border-bottom: 1px solid var(--Border-light);
   margin: 0px auto;
+  
 }
 
 .brand_header {
@@ -246,13 +247,18 @@ header {
 
 .profile_container,
 .more_container,
-.order_container{
+.order_container,
+.profile_header_container,
+.ads_container
+{
   position: relative;
 }
 
 .profile_container:hover .profile_tooltip,
+.profile_header_container:hover .profile_tooltip,
 .profile_tooltip:hover .profile_tooltip,
 .more_container:hover .more_tooltip,
+.ads_container:hover .more_tooltip,
 .more_tooltip:hover .more_tooltip,
 .order_container:hover .order_tooltip_container,
 .order_tooltip_container:hover .order_tooltip_container
@@ -291,6 +297,105 @@ header {
 .order_link{
   display: flex ;
 }
+
+.sub_menu{
+  width: 100%;
+  top:0;
+  left:50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  margin:0;
+  background-color: white;
+  z-index: 1;
+  position: fixed;
+  padding: 30px 0px 0px 50px;
+  margin-top: 80px;
+  display: none;
+
+}
+
+.header-middle img,
+.header-right img,
+.ads_sub-menu_first img,
+.profile_sub-menu_first img{
+  width: 24px;
+  height: 24px;
+}
+
+.profile_header_container,
+.ads_container,
+.header-left,
+.order_header_container,
+.profile_container,
+.profile_sub-menu_wallet,
+.profile_sub-menu_account,
+.profile_sub-menu_profile,
+.ads_sub-menu_new_ads,
+.ads_sub-menu_my_ads{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+.ads_sub-menu_first,
+.profile_sub-menu_first,
+.profile_sub-menu_second{
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  margin: 15px 0px;
+}
+
+.sub_menu_button{
+  width: 80%;
+  margin: 100px auto 0px auto;
+}
+
+.profile_sub-menu_heading,
+.ads_sub-menu_heading{
+  color: var(--Secondary-Text-light);
+  margin: 30px 0px 20px 0px;
+}
+
+.header-middle
+{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-right{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.order_header_container{
+  position: relative;
+  
+}
+
+.notification{
+  background-color: red;
+  border-radius: 100px;
+  color: white;
+  padding: 3px 6px;
+  font-size: 10px;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+
+
+}
+.hamburger,
+.close{
+  display: none;
+  cursor: pointer;
+}
+
+
 /* login */
 
 .login_container,
@@ -2443,6 +2548,15 @@ display: none;
     border-radius: 20px 20px 0 0;
   }
 
+  .order_name,
+  .header-middle{
+    display: none;
+  }
+
+  .hamburger{
+    display: initial;
+  }
+
 }
 
 
@@ -2792,12 +2906,22 @@ display: none;
   }
 
   .edit_username_container,
-.edit_avatar_container,
-.change_password_container{
-  width: 70%;
- 
+  .edit_avatar_container,
+  .change_password_container{
+    width: 70%;
+  
+  }
 
-}
+  .order_name,
+  .header-middle{
+    display: none;
+  }
+
+  .hamburger{
+    display: initial;
+  }
+
+
 }
 
 @media(min-width:993px) {
