@@ -127,22 +127,32 @@ async function renderUserDetails(){
     </div>
 
     <div class="user_primary_details">
-      <h4>${user.username}</h4>
+      <h4><b>${user.username}</b></h4>
 
       <div class="joined_container">
-        <img src="../public/icons/Date range.svg" alt="">
-        <h5>Joined ${formattedDate}</h5>
+        <img class="light" src="../public/icons/Date range.svg" alt="">
+        <h5 class="light">Joined ${formattedDate}</h5>
       </div>
 
       <div class="verification_container">
-        <h5>www.molaex.com/${user.username}</h5>
-        <img src="../public/icons/Content copy.png" alt="">
+        <h5 class="light secondary" id="usernameLink">www.molaex.com/${user.username}</h5>
+        <img src="../public/icons/Content copy.png" alt="copy icon" id="copyIcon" style="cursor:pointer;">
       </div>
 
     </div>
 
   `;
   detailsEl.innerHTML = html;
+
+  document.getElementById("copyIcon").addEventListener("click", function(){
+    const textToCopy = document.getElementById("usernameLink").innerText;
+
+    navigator.clipboard.writeText(textToCopy).then(function(){
+      alert("Text copied to clipboard:" + textToCopy);
+    }).catch(function(err){
+      console.error("could not copy text:", err);
+    });
+  });
 
 
 }
