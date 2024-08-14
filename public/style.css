@@ -1467,7 +1467,6 @@ option {
 .personal_information,
 .basic_verification,
 .intermediate_verification,
-.advance_verification,
 .settings_profile_container,
 .settings_notification_container {
   padding: 30px;
@@ -1495,8 +1494,7 @@ option {
 }
 
 .basic_verification_head h5,
-.intermediate_verification_head h5,
-.advance_verification_head h5 {
+.intermediate_verification_head h5{
   margin-bottom: 20px;
 
 }
@@ -1504,7 +1502,6 @@ option {
 
 .basic_verification_body_email,
 .basic_verification_body_phone,
-.advance_verification_body_diligence,
 .intermediate_verification_body_id,
 .intermediate_verification_body_address,
 .settings_profile_username,
@@ -1513,12 +1510,11 @@ option {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .basic_verification_body_small_down,
 .intermediate_verification_body_down,
-.advance_verification_body_down,
 .settings_profile_username_small_down,
 .settings_profile_avatar_small_down,
 .settings_profile_password_small_down {
@@ -1529,7 +1525,6 @@ option {
 
 .basic_verification_body_email_left,
 .basic_verification_body_phone_left,
-.advance_verification_body_diligence_left,
 .intermediate_verification_body_id_left,
 .intermediate_verification_body_address_left,
 .settings_profile_password_left,
@@ -1545,7 +1540,6 @@ option {
 
 .basic_verification_body_email_middle,
 .basic_verification_body_phone_middle,
-.advance_verification_body_diligence_middle,
 .intermediate_verification_body_email_middle,
 .intermediate_verification_body_address_middle,
 .settings_profile_username_middle,
@@ -1683,23 +1677,6 @@ option {
   margin-bottom: 20px;
 }
 
-.booked_success_container {
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.booked_success_container img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-}
-
-.booked_success_container button {
-  width: 60%;
-  margin: 20px 0;
-
-}
-
 /* settings page */
 .avatar_icon {
   width: 80px;
@@ -1747,8 +1724,6 @@ option {
 .edit_avatar_container,
 .change_password_container,
 .email_phone_verify_container,
-.due_diligence_popup,
-.booked_success_container,
 .bank_account_form_popup,
 .bank_option_popup,
 .payment_confirmation_popup,
@@ -1795,7 +1770,6 @@ option {
 .edit_password_container_body,
 .email_phone_verify_body,
 .due_diligence_verify_body,
-.booked_success_container,
 .payment_confirmation_popup_body,
 .cancel_order_popup_body{
   padding: 20px 24px;
@@ -2176,10 +2150,7 @@ display: none;
     margin: 0px auto;
 
   }
-  .ads_table_body:hover{
-    background-color: black;
-
-  }
+ 
 
   .head {
     display: none;
@@ -2324,7 +2295,6 @@ display: none;
   .basic_verification_body_phone,
   .intermediate_verification_body_id,
   .intermediate_verification_body_address,
-  .advance_verification_body_diligence,
   .settings_profile_username,
   .settings_profile_avatar,
   .settings_profile_password {
@@ -2335,30 +2305,29 @@ display: none;
 
   .basic_verification_body_small_down,
   .intermediate_verification_body_down,
-  .advance_verification_body_down,
   .settings_profile_username_small_down,
   .settings_profile_avatar_small_down,
   .settings_profile_password_small_down {
     justify-content: space-between;
-  }
-
-  .verification_container {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 0px;
+    margin-left: 20px;
   }
 
   .user_details {
     align-items: start;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0px;
+    border: none;
+    margin: 30px 0px 30px 0px;
+    margin-bottom: 30px;
+    box-shadow: none;
+
   }
 
   .verification_container img {
     height: 20px;
     width: 20px;
-  }
-
-  .bank_account_form_popup {
-    width: 80%;
   }
 
   /* dashboard page*/
@@ -2501,9 +2470,8 @@ display: none;
     margin-top: 10px;
   }
 
-    .basic_verification_body_email_left,
+  .basic_verification_body_email_left,
   .basic_verification_body_phone_left,
-  .advance_verification_body_diligence_left,
   .intermediate_verification_body_id_left,
   .intermediate_verification_body_address_left,
   .settings_profile_password_left,
@@ -2517,13 +2485,12 @@ display: none;
 
   .basic_verification_body_email_middle,
   .basic_verification_body_phone_middle,
-  .advance_verification_body_diligence_middle,
   .intermediate_verification_body_email_middle,
   .intermediate_verification_body_address_middle,
   .settings_profile_username_middle,
   .settings_profile_avatar_middle,
   .settings_profile_password_middle {
-    width: 100px;
+    width:fit-content;
   }
 
   .edit_username_container,
@@ -2538,7 +2505,10 @@ display: none;
 
   }
 
-  .cancel_order_popup{
+  .cancel_order_popup,
+  .bank_account_form_popup,
+  .email_phone_verify_container
+  {
     width: 100%;
     top:auto;
     left:50%;
@@ -2548,6 +2518,17 @@ display: none;
     border-radius: 20px 20px 0 0;
   }
 
+  .bank_account_form_popup{
+    width: 100%;
+    top:auto;
+    left:50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+  }
+
+
   .order_name,
   .header-middle{
     display: none;
@@ -2555,6 +2536,25 @@ display: none;
 
   .hamburger{
     display: initial;
+  }
+
+  .bank_account_list {
+    margin: 0px 0px 40px 0px ;
+  }
+
+  .personal_information,
+  .basic_verification,
+  .intermediate_verification,
+  .settings_profile_container,
+  .settings_notification_container{
+    padding: 0;
+    border: none;
+    border-top: 1px solid var(--Seperator-light);
+    padding-top: 30px;
+    border-radius: 0px;
+    box-shadow:none;
+    margin-bottom: 30px;
+
   }
 
 }
@@ -2882,7 +2882,6 @@ display: none;
 
   .basic_verification_body_email_left,
   .basic_verification_body_phone_left,
-  .advance_verification_body_diligence_left,
   .intermediate_verification_body_id_left,
   .intermediate_verification_body_address_left,
   .settings_profile_password_left,
@@ -2896,13 +2895,12 @@ display: none;
 
   .basic_verification_body_email_middle,
   .basic_verification_body_phone_middle,
-  .advance_verification_body_diligence_middle,
   .intermediate_verification_body_email_middle,
   .intermediate_verification_body_address_middle,
   .settings_profile_username_middle,
   .settings_profile_avatar_middle,
   .settings_profile_password_middle {
-    width: 150px;
+    width: fit-content;
   }
 
   .edit_username_container,
@@ -2919,6 +2917,11 @@ display: none;
 
   .hamburger{
     display: initial;
+  }
+
+  .bank_account_form_popup,
+  .email_phone_verify_container{
+    width: 80%;
   }
 
 

@@ -9,16 +9,13 @@ const emailBtn = document.querySelector(".js_email_manage");
 const phoneBtn = document.querySelector(".js_phone_manage");
 //const idBtn = document.querySelector(".js_id_manage");
 //const addressBtn = document.querySelector(".js_address_manage");
-const diligenceBtn = document.querySelector(".js_diligence_manage");
 const overlay = document.querySelector(".js_overlay");
 const emailPhonePopup = document.querySelector(".email_phone_verify_container");
-const diligencePopup = document.querySelector(".due_diligence_popup");
 const phoneElOne = document.querySelector('.js_phone_1');
 const phoneElTwo = document.querySelector(".js_phone_2");
 const headingEl = document.querySelector(".js_phone_email_topic");
 const emailElOne = document.querySelector('.js_email_1');
 const emailElTwo = document.querySelector(".js_email_2");
-const cancelIcon = document.querySelector(".js_popup_cancel");
 const phoneCancelIcon = document.querySelector(".js_phone_popup_cancel");
 const bankBtn = document.getElementById("bankBtn");
 const bankHeading = document.querySelector(".popup_bank_type");
@@ -36,7 +33,8 @@ const bankAccountNumberEl = document.getElementById("accountNo");
 const bankSortCodeEl = document.getElementById("sortCode");
 const bankTypeEl = document.querySelector(".js_popup_bank_type");
 const checkEl = document.getElementById("bankCheckbox");
-
+const smallBankBtn = document.querySelector(".small_bank_btn");
+const smallVerifyBtn = document.querySelector(".small_verify_btn");
 
 verifyEl.addEventListener("click", (e)=>{
   if(e.target === user_verification){
@@ -48,6 +46,8 @@ verifyEl.addEventListener("click", (e)=>{
     verifyCont.style.display ="none"; 
   }
 });
+
+
 
 emailBtn.addEventListener("click", ()=>{
   overlay.style.display = "initial";
@@ -66,18 +66,6 @@ phoneBtn.addEventListener("click", ()=>{
 
 })
 
-diligenceBtn.addEventListener("click", ()=>{
-  overlay.style.display = "initial";
-  diligencePopup.style.display = "initial";
-
-})
-
-cancelIcon.addEventListener("click", ()=>{
-  overlay.style.display = "none";
-  diligencePopup.style.display = "none";
-
-});
-
 phoneCancelIcon.addEventListener("click", ()=>{
   overlay.style.display = "none";
   emailPhonePopup.style.display = "none";
@@ -86,7 +74,7 @@ phoneCancelIcon.addEventListener("click", ()=>{
   emailElTwo.style.display = "initial";
   phoneElOne.style.display = "flex";
   phoneElTwo.style.display = "initial";
-})
+});
 
 bankBtn.addEventListener('change', (e)=>{
   const selectedValue = e.target.value;
@@ -139,24 +127,16 @@ async function renderUserDetails(){
     </div>
 
     <div class="user_primary_details">
-      <h3>${user.username}</h3>
+      <h4>${user.username}</h4>
 
       <div class="joined_container">
         <img src="../public/icons/Date range.svg" alt="">
-        <h4>Joined ${formattedDate}</h4>
+        <h5>Joined ${formattedDate}</h5>
       </div>
 
       <div class="verification_container">
-
-        <div class="user_basic">
-          <h4>Basic Verification</h4>
-          <img src="../public/icons/Cancel.svg" alt="">
-        </div>
-
-        <div class="user_intermediate">
-          <h4>Intermediate Verification</h4>
-          <img src="../public/icons/Cancel.svg" alt="">
-        </div>
+        <h5>www.molaex.com/${user.username}</h5>
+        <img src="../public/icons/Content copy.png" alt="">
       </div>
 
     </div>
@@ -402,6 +382,25 @@ bankSubmitBtn.addEventListener("click", async(e)=>{
 
 
 });
+
+smallBankBtn.addEventListener("click", ()=>{
+  bankCont.style.display = "initial";
+  verifyCont.style.display ="none";
+  smallBankBtn.classList.remove("text-btn");
+  smallBankBtn.classList.add("filled-btn");
+  smallVerifyBtn.classList.add("text-btn");
+  smallVerifyBtn.classList.remove("filled-btn");
+})
+
+smallVerifyBtn.addEventListener("click", ()=>{
+  bankCont.style.display = "none";
+  verifyCont.style.display ="initial";
+  smallBankBtn.classList.remove("filled-btn");
+  smallBankBtn.classList.add("text-btn");
+  smallVerifyBtn.classList.add("filled-btn");
+  smallVerifyBtn.classList.remove("text-btn");
+  
+})
 
 console.log(await getUserProfile(token));
 console.log(await loadBanks(token));
