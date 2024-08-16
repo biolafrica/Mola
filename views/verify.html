@@ -10,11 +10,11 @@
   <body>
 
     <!--bank form popup-->
-    <div class="bank_account_form_popup" style="padding: 30px;">
+    <div class="bank_account_form_popup js_bank_account_form_popup" style="padding: 30px;">
 
       <div class="bank_account_form_popup_head">
         <h4 class="popup_bank_type js_popup_bank_type">GBP Bank Account</h4>
-        <img class="popup_bank_cancel_icon" src="../public/icons/Cancel.svg" alt="">
+        <img class="popup_bank_cancel_icon" src="../public/icons/Cancel.svg" alt="" style="cursor:pointer;">
       </div>
 
       <div class="bank_account_form_popup_body">
@@ -27,10 +27,12 @@
           <input type="text" placeholder="Enter your bank name" id="bankerName" required>
           
           <label for="accountNo"><h4><b>Account Number:</b></h4></label>
-          <input type="text" placeholder="Enter your account number" id="accountNo" required>
+          <input type="text" placeholder="Enter your account number" id="accountNo" style="margin-bottom: 0;" required>
+          <div class="js_account_no_error account_no_error"></div>
 
           <label class="popup_sort" for="sortCode"><h4><b>Sort Code:</b></h4></label>
-          <input class="popup_sort_input" type="text" placeholder="Enter your account sort code" id="sortCode" required>
+          <input class="popup_sort_input" type="text" placeholder="Enter your account sort code" id="sortCode" required style="margin-bottom: 0;">
+          <div class="js_sort_error sort_error"></div>
 
           <div class="bank_checkbox_container">
             <input type="checkbox" id="bankCheckbox" style="margin: 0;">
@@ -55,7 +57,7 @@
 
       <div class="email_phone_verify_heading">
         <h4><b class="js_phone_email_topic"></b></h4>
-        <img class="js_phone_popup_cancel" src="../public/icons/Close small.svg" alt="">
+        <img class="js_phone_popup_cancel" src="../public/icons/Close small.svg" alt="" style="cursor:pointer;">
       </div>
 
       <div class="email_phone_verify_body">
@@ -145,7 +147,7 @@
 
     <!--success popup-->
     <div class="success_popup js_success_popup">
-      <img src="./public/icons/Check Mark.svg" alt="">
+      <img src="../public/icons/Check Mark.svg" alt="">
       <h4>Bank deleted Successfully</h4>
     </div>
 
@@ -419,8 +421,7 @@
                 <div class="basic_verification_body_small_down">
 
                   <div class="basic_verification_body_email_middle js_email">
-                    <!--<img src="../public/icons/Check Mark.svg" alt="">
-                    <h5 class="light js_email">biolafrica@gmail.com</h5>-->
+                   
                   </div>
     
                   <div class="basic_verification_body_email_right js_email_manage">
@@ -493,7 +494,7 @@
               <div class="intermediate_verification_body_down">
                 <div class="intermediate_verification_body_email_middle js_verification">
                   <img src="../public/icons/Error.svg" alt="">
-                  <h5 class="light">Not Enabled</h5>
+                  <h6 class="light">Not Enabled</h6>
                 </div>
     
                 <div class="intermediate_verification_body_email_right">
@@ -513,7 +514,7 @@
     
                   <div class="intermediate_verification_address_text">
                     <h4>Proof of Address</h4>
-                    <h5 class="light secondary">verify your residence address</h5>
+                    <h6 class="light secondary">verify your residence address</h6>
                   </div>
                 </div>
 
@@ -522,7 +523,7 @@
               <div class="intermediate_verification_body_down">
                 <div class="intermediate_verification_body_address_middle js_proof_address">
                   <img src="../public/icons/Error.svg" alt="">
-                  <h5 class="light">Not Enabled</h5>
+                  <h6 class="light">Not Enabled</h6>
                 </div>
     
                 <div class="intermediate_verification_body_address_right">

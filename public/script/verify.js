@@ -27,12 +27,6 @@ const popupIconCancel = document.querySelector(".popup_bank_cancel_icon");
 const bankSubmitBtn = document.querySelector(".confirmBank");
 const token = localStorage.getItem("access");
 const successPopupEl = document.querySelector(".js_success_popup");
-const accountNameEl = document.getElementById("bankName");
-const bankNameEl = document.getElementById("bankerName");
-const bankAccountNumberEl = document.getElementById("accountNo");
-const bankSortCodeEl = document.getElementById("sortCode");
-const bankTypeEl = document.querySelector(".js_popup_bank_type");
-const checkEl = document.getElementById("bankCheckbox");
 const smallBankBtn = document.querySelector(".small_bank_btn");
 const smallVerifyBtn = document.querySelector(".small_verify_btn");
 
@@ -46,8 +40,6 @@ verifyEl.addEventListener("click", (e)=>{
     verifyCont.style.display ="none"; 
   }
 });
-
-
 
 emailBtn.addEventListener("click", ()=>{
   overlay.style.display = "initial";
@@ -97,21 +89,70 @@ bankBtn.addEventListener('change', (e)=>{
 
   }
 
+
+  bankSubmitBtn.addEventListener("click", async(e)=>{
+    e.preventDefault();
+    const bank_account_name = document.getElementById("bankName").value;
+    const bank_name = document.getElementById("bankerName").value;
+    const bank_account_number = document.getElementById("accountNo").value;
+    const bank_sort_code = document.getElementById("sortCode").value;
+    const bank_type =  document.querySelector(".js_popup_bank_type").textContent;
+    const bank_check = document.getElementById("bankCheckbox").checked ? true : false;
+    const selectedBankType = bank_type === "GBP Bank Account" ? "Pounds" : "Naira";
+    const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : "";
+    const sortCodeErrorEl = document.querySelector(".js_sort_error");
+    const accountNumberErrEl = document.querySelector(".js_account_no_error");
+  
+    try {
+  
+      const response = await fetch("http://127.0.0.1:8000/api/banks/", {
+        method : "POST",
+        headers : {
+          "Authorization" : `Bearer ${token}`,
+          "Content-Type" : "application/json"
+        },
+  
+        body : JSON.stringify({
+          bank_type : selectedBankType,
+          bank_name,
+          bank_account_name,
+          bank_account_number,
+          bank_sort_code :sortCodeChoice,
+          is_default: bank_check
+        })
+      
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      if(data.bank_id){
+        cancelInput();
+        overlay.style.display = "none";
+        bankPopupEl.style.display = "none";
+        bankBtn.value = "Add_Bank";
+        renderBanks(token);
+        
+       
+      }else if (data.bank_account_number){
+        let bankErr = data.bank_account_number[0] || ""; 
+        console.log(bankErr)
+        accountNumberErrEl.innerHTML = bankErr;
+
+      }else{
+        let sortErr = data.bank_sort_code[0] || "";
+        console.log(sortErr);
+        sortCodeErrorEl.innerHTML = sortErr;
+
+      }
+  
+    } catch(error){
+      console.log(error);
+    }
+  
+  });
+
 });
-
-popupBankCancel.addEventListener("click", ()=>{
-  overlay.style.display = "none";
-  bankPopupEl.style.display = "none";
-  bankBtn.value = "Add_Bank";
-
-})
-
-popupIconCancel.addEventListener("click", ()=>{
-  overlay.style.display = "none";
-  bankPopupEl.style.display = "none";
-  bankBtn.value = "Add_Bank";
-
-})
 
 async function renderUserDetails(){
   let detailsEl = document.querySelector(".js_user_details");
@@ -209,7 +250,7 @@ async function verificationDetails(){
   let phoneHTML = 
   `
     <img src="../public/icons/${verifiedIcon}.svg" alt="">
-    <h5 class="light">${phoneNumber}</h5>
+    <h6 class="light">${phoneNumber}</h6>
   `;
   emailEl.innerHTML = emailHTML;
   phoneEl.innerHTML = phoneHTML;
@@ -240,8 +281,8 @@ async function renderBanks(token){
     
           <div class="bank_account_list_head_right">
             <img class="js_one_bank_select" src="${defaultBank}" alt="">
-            <img class="js_one_bank_edit" src="../public/icons/Mode edit.svg" alt="">
-            <img class="js_one_bank_delete" id="${bank.bank_id}" src="../public/icons/Delete.svg" alt="">
+            <img class="js_one_bank_edit" src="../public/icons/Mode edit.svg" alt="" style="cursor:pointer;" id="${bank.bank_id}">
+            <img class="js_one_bank_delete" id="${bank.bank_id}" src="../public/icons/Delete.svg" alt="" style="cursor:pointer;">
           </div>
           
         </div>
@@ -284,6 +325,30 @@ async function renderBanks(token){
   });
   
   banklistEl.innerHTML = renderBankList;
+
+  document.querySelectorAll(".js_one_bank_edit").forEach((bankEdit)=>{
+    bankEdit.addEventListener("click", async(e)=>{
+      let bankId = e.target.id;
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/banks/${bankId}`,
+        {
+          method: "GET",
+          headers: {
+            "Authorization" : `Bearer ${token}`,
+            "Content-Type" : "application/json"
+          }
+        });
+
+        const data = await response.json();
+        console.log(data);
+        renderEditedBankHTML(data); 
+      } catch (error) {
+        console.log(error)
+        
+      }
+
+    })
+  });
 
   document.querySelectorAll(".js_one_bank_delete").forEach((bankItem)=>{
     bankItem.addEventListener("click", (e)=>{
@@ -332,66 +397,124 @@ async function renderBanks(token){
 
 };
 
+function renderEditedBankHTML (data){
+  const displaySort = data.bank_type === "Naira" ? "no_view" : "";
+  const displaySortInput = data.bank_type === "Naira" ? "hidden" : "text";
+  const checked = data.is_default === true ? "checked" : ""; 
+  
+  let html =
+  `
+    <div class="bank_account_form_popup_head">
+      <h4 class="popup_bank_type js_popup_bank_type">Edit ${data.bank_type} Bank Account</h4>
+      <img class="popup_bank_cancel_icon js_bank_cancel" src="../public/icons/Cancel.svg" alt="">
+      <input type="hidden" id="bankType" name="bankType" value="${data.bank_type}">
+    </div>
+
+    <div class="bank_account_form_popup_body">
+
+      <form action="" id="bankForm">
+        <label for="bankName"><h4><b>Name:</b></h4></label>
+        <input type="text" placeholder="Enter your registered name" id="bankName" required value= "${data.bank_account_name}">
+
+        <label for="bankerName"><h4><b>Bank Name:</b></h4></label>
+        <input type="text" placeholder="Enter your bank name" id="bankerName" required value= "${data.bank_name}">
+        
+        <label for="accountNo"><h4><b>Account Number:</b></h4></label>
+        <input type="text" placeholder="Enter your account number" id="accountNo" required value= "${data.bank_account_number}">
+
+        <label class="${displaySort}" for="sortCode"><h4><b>Sort Code:</b></h4></label>
+        <input  type="${displaySortInput}" placeholder="Enter your account sort code" id="sortCode" required value= "${data.bank_sort_code}">
+
+        <div class="bank_checkbox_container">
+          <input type="checkbox" id="bankCheckbox" style="margin: 0;" ${checked}>
+          <label for="bankCheckbox">
+            <h4 id="">Make it my default bank</h4>
+          </label>
+        </div>
+
+        <div class="bank_account_form_popup_body_btn">
+          <button class="outline-btn popup_bank_cancel"><h5>Back</h5></button>
+          <button class="filled-btn confirmBank"><h5>Confirm</h5></button>
+          
+        </div>
+
+      </form>
+
+    </div>
+
+  `;
+
+  bankPopupEl.innerHTML = html;
+  overlay.style.display = "initial";
+  bankPopupEl.style.display = "initial";
+
+
+  document.querySelector(".confirmBank").addEventListener("click", async(e)=>{
+    e.preventDefault();
+    const bank_account_name = document.getElementById("bankName").value;
+    const bank_name = document.getElementById("bankerName").value;
+    const bank_account_number = document.getElementById("accountNo").value;
+    const bank_sort_code = document.getElementById("sortCode").value;
+    const bank_check = document.getElementById("bankCheckbox").checked ? true : false;
+    const bank_type = document.getElementById("bankType").value;
+
+
+    try {
+
+      const response = await fetch(`http://127.0.0.1:8000/api/banks/${data.bank_id}/`, {
+        method : "PUT",
+        headers : {
+          "Authorization" : `Bearer ${token}`,
+          "Content-Type" : "application/json"
+        },
+  
+        body : JSON.stringify({
+          bank_type,
+          bank_name,
+          bank_account_name,
+          bank_account_number,
+          bank_sort_code,
+          is_default: bank_check,
+         
+        })
+      
+      });
+  
+      const value = await response.json();
+      console.log(value);
+  
+      if(response.ok){
+        cancelInput();
+        overlay.style.display = "none";
+        bankPopupEl.style.display = "none";
+        renderBanks(token);
+      }
+  
+    } catch(error){
+      console.log(error);
+    }
+  });
+
+  document.querySelector(".popup_bank_cancel").addEventListener("click", (e)=>{
+    e.preventDefault();
+    cancelInput();
+    cancelOverlay();
+
+  })
+  document.querySelector(".js_bank_cancel").addEventListener("click", ()=>{
+    cancelInput();
+    cancelOverlay();
+
+  });
+
+
+}
+
 renderBanks(token);
 renderProfile();
 renderUserDetails();
 verificationDetails();
 renderHeader();
-
-
-bankSubmitBtn.addEventListener("click", async(e)=>{
-  e.preventDefault();
-  const bank_account_name = accountNameEl.value;
-  const bank_name = bankNameEl.value;
-  const bank_account_number = bankAccountNumberEl.value;
-  const bank_sort_code = bankSortCodeEl.value;
-  const bank_type = bankTypeEl.textContent;
-  const bank_check = checkEl.checked ? true : false;
-  const selectedBankType = bank_type === "GBP Bank Account" ? "Pounds" : "Naira";
-  const sortCodeChoice = bank_type === "GBP Bank Account" ? bank_sort_code : 0;
- 
-  try {
-
-    const response = await fetch("http://127.0.0.1:8000/api/banks/", {
-      method : "POST",
-      headers : {
-        "Authorization" : `Bearer ${token}`,
-        "Content-Type" : "application/json"
-      },
-
-      body : JSON.stringify({
-        bank_type : selectedBankType,
-        bank_name,
-        bank_account_name,
-        bank_account_number,
-        bank_sort_code :sortCodeChoice,
-        is_default: bank_check
-      })
-    
-    });
-
-    const data = await response.json();
-    console.log(data);
-
-    if(data.bank_id){
-      overlay.style.display = "none";
-      bankPopupEl.style.display = "none";
-      bankBtn.value = "Add_Bank";
-      renderBanks(token);
-      accountNameEl.value = "";
-      bankNameEl.value = "";
-      bankAccountNumberEl.value = "";
-      bankSortCodeEl.value = "";
-      checkEl.value = "";
-     
-    }
-
-  } catch(error){
-    console.log(error);
-  }
-
-
-});
 
 smallBankBtn.addEventListener("click", ()=>{
   bankCont.style.display = "initial";
@@ -411,6 +534,37 @@ smallVerifyBtn.addEventListener("click", ()=>{
   smallVerifyBtn.classList.remove("text-btn");
   
 })
+
+popupBankCancel.addEventListener("click", (e)=>{
+  e.preventDefault();
+  cancelInput();
+  cancelOverlay();
+  
+});
+
+popupIconCancel.addEventListener("click", ()=>{
+  cancelInput();
+  cancelOverlay();
+ 
+})
+
+function cancelOverlay(){
+  overlay.style.display = "none";
+  bankPopupEl.style.display = "none";
+  bankBtn.value = "Add_Bank";
+
+};
+
+function cancelInput(){
+  document.getElementById("bankName").value = "";
+  document.getElementById("bankerName").value = "";
+  document.getElementById("accountNo").value = "";
+  document.getElementById("sortCode").value = "";
+  document.getElementById("bankCheckbox").value = "";
+  document.querySelector(".js_sort_error").innerHTML = "";
+  document.querySelector(".js_account_no_error").innerHTML = "";
+}
+
 
 console.log(await getUserProfile(token));
 console.log(await loadBanks(token));
