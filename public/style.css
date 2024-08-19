@@ -603,7 +603,7 @@ form button {
 }
 
 
-.row_head {
+.row_head{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(204px, 1fr));
   border-bottom: 1px solid var(--Border-light);
@@ -678,6 +678,12 @@ form button {
   justify-content: center;
   margin: 50px auto;
   gap: 15px;
+}
+
+.wallet_pagination{
+  margin: 30px auto 0px auto;
+  border-top: 1px solid var(--Seperator-light);
+  padding: 15px 0px;
 }
 
 .pagination_number,
@@ -1990,6 +1996,79 @@ display: none;
   padding: 5px;
 }
 
+/* wallet*/
+.wallet_container{
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.balance_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  border: 1px solid var(--Border-light);
+  border-radius: 15px;
+  box-shadow: var(--elevate-1);
+  padding: 50px 78px;
+  box-sizing: border-box;
+  
+}
+
+.user_virtual_account,
+.balance_list_money{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wallet_history{
+  margin: 5px  auto 40px auto;
+  border: 1px solid var(--Border-light);
+  border-radius: 15px;
+  box-shadow: var(--elevate-1);
+  box-sizing: border-box;
+
+}
+.wallet_history_head,
+.large_screen_wallet_row{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  background-color: var(--Layout-Background-light);
+  width: 100%;
+  column-gap: 1%;
+  padding: 15px 50px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-sizing: border-box;
+
+}
+.large_screen_wallet_row{
+  border-radius: 0;
+  background-color: transparent;
+  border-top: 1px solid var(--Seperator-light);
+  padding: 25px 50px;
+}
+
+.small_screen_wallet_row{
+  display: none;
+  
+}
+
+.selectCurrency{
+  border: none;
+  width: 90px;
+}
+
+.small_screen_right{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wallet_text{
+  margin: 0px 20px;
+}
+
 
 @media(max-width:768px) {
   .landing_page {
@@ -2549,6 +2628,61 @@ display: none;
 
   }
 
+  .wallet_row{
+    padding: 10px 0px 10px 0px;
+    border-top: 1px solid var(--Seperator-light);
+  }
+
+  .small_screen_wallet_row{
+    display: flex;
+    display: initial;
+    margin-bottom: 20px;
+
+  }
+  .large_screen_wallet_row{
+    display: none;
+  }
+  .wallet_history_head{
+    display: none;
+  }
+
+  .wallet_history{
+    border: none;
+    box-shadow: none;
+    margin: 0px 20px;
+  }
+  
+  .wallet_pagination{
+    border: none;
+  }
+  .balance_list{
+    text-align: center;
+  }
+
+  .balance_container{
+    flex-direction: column;
+    margin: 5px 20px 20px 20px;
+    padding: 20px 10px;
+  }
+  .small_screen_left{
+    margin-bottom: 5px;
+  }
+
+  .balance_list_money{
+    flex-direction: column-reverse;
+    gap: 0;
+
+  }
+  .selectCurrency{
+    padding: 2px;
+    width: 70px;
+  
+  }
+  .account_action_button{
+    margin-top: 15px;
+
+  }
+
 }
 
 
@@ -2914,6 +3048,60 @@ display: none;
   .bank_account_form_popup,
   .email_phone_verify_container{
     width: 80%;
+  }
+  .wallet_row{
+    padding: 10px 0px 10px 0px;
+    border-top: 1px solid var(--Seperator-light);
+  }
+
+  .small_screen_wallet_row{
+    display: flex;
+    display: initial;
+    margin-bottom: 20px;
+
+  }
+  .large_screen_wallet_row{
+    display: none;
+  }
+  .wallet_history_head{
+    display: none;
+  }
+
+  .wallet_history{
+    border: none;
+    box-shadow: none;
+    margin: 0px 20px;
+  }
+  
+  .wallet_pagination{
+    border: none;
+  }
+  .balance_list{
+    text-align: center;
+  }
+
+  .balance_container{
+    flex-direction: column;
+    margin: 5px 20px 20px 20px;
+    padding: 20px 10px;
+  }
+  .small_screen_left{
+    margin-bottom: 5px;
+  }
+
+  .balance_list_money{
+    flex-direction: column-reverse;
+    gap: 0;
+
+  }
+  .selectCurrency{
+    padding: 2px;
+    width: 70px;
+  
+  }
+  .account_action_button{
+    margin-top: 15px;
+
   }
 
 
