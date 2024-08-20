@@ -4,7 +4,6 @@ import { calculateTotalOrder, calculateCompleteOrder } from "./utils/metrics.js"
 import { verifyType, verified } from "./utils/verification.js";
 import {AuthenticateUser} from "../../Data/user.js";
 import { renderHeader } from "./script.js";
-
 const adsBtn = document.querySelector(".js_ads_btn");
 const feedbackBtn = document.querySelector(".js_feedback_btn");
 const adsEl = document.querySelector(".dashboard_body_ads_container");
@@ -25,20 +24,20 @@ let adsData = [];
 console.log(await getUserProfile(token));
 
 adsBtn.addEventListener("click", ()=>{
-  adsBtn.classList.remove("text-btn");
-  adsBtn.classList.add("filled-btn");
-  feedbackBtn.classList.remove("filled-btn");
-  feedbackBtn.classList.add("text-btn");
-  adsEl.style.display = "initial";
+  adsBtn.classList.remove("ord_button");
+  adsBtn.classList.add("line_button");
+  feedbackBtn.classList.remove("line_button");
+  feedbackBtn.classList.add("ord_button");
+  adsEl.style.display = "flex";
   feedbackEl.style.display= "none";
 
 });
 
 feedbackBtn.addEventListener("click", ()=>{
-  feedbackBtn.classList.remove("text-btn");
-  feedbackBtn.classList.add("filled-btn");
-  adsBtn.classList.remove("filled-btn");
-  adsBtn.classList.add("text-btn");
+  feedbackBtn.classList.remove("ord_button");
+  feedbackBtn.classList.add("line_button");
+  adsBtn.classList.remove("line_button");
+  adsBtn.classList.add("ord_button");
   adsEl.style.display = "none";
   feedbackEl.style.display= "initial";
 
@@ -65,15 +64,15 @@ async function renderDashboardHead(){
     </div>
 
     <div class="dashboard_head_top_text">
-      <h3>${user.username}</h3>
+      <h5>${user.username}</h5>
 
       <div class="dashboard_head_top_text_middle">
         <img src="../public/icons/Date range.svg" alt="">
-        <h4>Joined ${formattedDate}</h4>
+        <h6>Joined ${formattedDate}</h6>
       </div>
 
       <div class="dashboard_head_top_text_bottom">
-        <h4>${verifiedStatus}</h4>
+        <h6>${verifiedStatus}</h6>
         <img src="../public/icons/Check Mark.svg" alt="">
       </div>
     </div>
@@ -85,16 +84,16 @@ async function renderDashboardHead(){
 
       <div class="dasboard_head_bottom_top_left">
         <div class="all_trades_container">
-          <h4 class="secondary">All Trades</h4>
+          <h5 class="secondary">All Trades</h5>
           <div class="all_tardes_metrics">
             <h2 class="dashboard_metrics_big">${totalOrder}</h2>
             <h4 class="dashboard_metrics_small">${totalOrder}</h4>
-            <h4>Buy <b>${user.buy_order}</b> | Sell <b>${user.sell_order}</b></h4>
+            <h6>Buy <b>${user.buy_order}</b> | Sell <b>${user.sell_order}</b></h6>
           </div>
         </div>
 
         <div class="completion_rate_container">
-          <h4 class="secondary">Completion Rate</h4>
+          <h5 class="secondary">Completion Rate</h5>
           <div class="completion_rate_metrics">
             <h2 class="dashboard_metrics_big">${formattedCompletion}%</h2>
             <h4 class="dashboard_metrics_small">${formattedCompletion}%</h4>
@@ -105,11 +104,11 @@ async function renderDashboardHead(){
 
       <div class="dasboard_head_bottom_top_right">
         <div class="positive_feedbacks_container">
-          <h4 class="secondary">Feedbacks</h4>
+          <h5 class="secondary">Feedbacks</h5>
           <div class="all_feedbacks_metrics">
             <h2 class="dashboard_metrics_big">${totalFeedback}</h2>
             <h4 class="dashboard_metrics_small">${totalFeedback}</h4>
-            <h4>Positive <b>${user.positive_feedback}</b> | Negative <b>${user.negative_feedback}</b></h4>
+            <h6>Positive <b>${user.positive_feedback}</b> | Negative <b>${user.negative_feedback}</b></h6>
           </div>
 
         </div>

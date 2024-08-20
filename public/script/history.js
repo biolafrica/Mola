@@ -149,7 +149,6 @@ async function renderCompletedOrder(ordersData){
 
     `;
     document.querySelector(".js_completed_table").innerHTML = html;
-    renderPagination(ordersData.length, 'completed');
   }else{
 
     paginatedData.forEach((dataItem)=>{
@@ -158,7 +157,6 @@ async function renderCompletedOrder(ordersData){
     });
   
     document.querySelector(".js_completed_table").innerHTML = orderHTML;
-    renderPagination(ordersData.length, 'completed');
   }
 };
 

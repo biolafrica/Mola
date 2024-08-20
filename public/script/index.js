@@ -140,7 +140,6 @@ searchPounds.addEventListener("input", (e)=>{
   console.log(filteredAds);
   if(filteredAds.length === 0){
     empty();
-    renderNairaPaginationNumbers();
   }else{
     displayAvailableNGNAds(filteredAds);
   }
