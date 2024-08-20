@@ -157,243 +157,279 @@
 
     </div>
 
-    <div class="my_ads_container">
-      <h3 class="my_ads_head">My Ads</h3>
+    <div class="ads_main_container">
 
-      <div class="my_ads_filter_container">
+      <h4 class="my_ads_head secondary"><b>My Ads</b></h4>
 
-        <div class="ads_currency_filter">
+      <div class="my_ads_container">
 
-          <select name="" id="order-type">
-            <option value="all">All</option>
-            <option value="Naira">NGN</option>
-            <option value="Pounds">GBP</option>
-          </select>
+        <div class="my_ads_filter_container">
+
+          <div class="ads_currency_filter">
+
+            <select name="" id="order-type">
+              <option value="all">All</option>
+              <option value="Naira">NGN</option>
+              <option value="Pounds">GBP</option>
+            </select>
+
+          </div>
+
+          <div class="ads_status_filter">
+
+            <select name="" id="order-type">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="offline">Offline</option>
+              <option value="completed">Completed</option>
+            </select>
+
+          </div>
 
         </div>
 
-        <div class="ads_status_filter">
+        <div class="my_ads_table_container">
 
-          <select name="" id="order-type">
-            <option value="all">All</option>
-            <option value="active">Active</option>
-            <option value="offline">Offline</option>
-            <option value="completed">Completed</option>
-          </select>
+          <div class="ads_table_head heading">
 
-        </div>
-
-      </div>
-
-      <div class="my_ads_table_container">
-
-        <div class="ads_table_head">
-
-          <div class="ads_column head">
-            <h6>Ad ID</h6>
-            <h6>Type</h6>
-          </div>
-  
-          <div class="amount_column head">
-            <h6>Available Amount</h6>
-            <h6>Sold Amount</h6>
-          </div>
-    
-          <div class="rate_column head">
-            <h6>Rate</h6>
-            <h6>Limit</h6>
-          </div>
-    
-          <div class="time_column head">
-            <h6>Time Created</h6>
-            <h6>Time Edited</h6>
-          </div>
-    
-          <div class="status_ads_column head">
-            <h6>Status</h6>
-          </div>
-    
-          <div class="action_column head">
-            <h6>Action</h6>
-          </div>
-  
-        </div>
-
-        <div class="history_table_body_container js_history_table">
-
-          <!--<a class="ads_table_body" href="./adsdetails.html">
-  
-            <div class="ads_column">
-  
-              <div class="Title">
-                <h6><b>Buy(NGN)</b></h6> 
-                <h6>mola12345</h6> 
-              </div>
-  
+            <div class="ads_column head">
+              <h6>Ad ID</h6>
+              <h6>Type</h6>
             </div>
     
-            <div class="amount_column">
-  
-              <div class="Title">
-                <h6 class="title_s_name">Amount Available</h6> 
-                <h6>N15,000.00</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Sold Amount</h6> 
-                <h6>N0.00</h6> 
-              </div>
-  
+            <div class="amount_column head">
+              <h6>Available Amount</h6>
+              <h6>Sold Amount</h6>
             </div>
       
-            <div class="rate_column">
-
-              <div class="Title">
-                <h6 class="title_s_name">Rate</h6> 
-                <h6>N1,900.00</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Limit</h6> 
-                <h6>£100.00 - £500.00</h6> 
-              </div>
-
+            <div class="rate_column head">
+              <h6>Rate</h6>
+              <h6>Limit</h6>
             </div>
       
-            <div class="time_column">
-              <div class="Title">
-                <h6 class="title_s_name">Time Created</h6> 
-                <h6>2024-05-21 | 04:41</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Time Edited</h6> 
-                <h6>2024-05-21 | 04:41</h6> 
-              </div>
+            <div class="time_column head">
+              <h6>Time Created</h6>
+              <h6>Time Edited</h6>
             </div>
       
-            <div class="status_ads_column">
-              <div class="Title"> 
-                <h6 class="title_name">Status</h6> 
-                <h6>Active</h6> 
-              </div>
+            <div class="status_ads_column head">
+              <h6>Status</h6>
+            </div>
+      
+            <div class="action_column head">
+              <h6>Action</h6>
             </div>
     
-            <div class="action_column">
-              <div class="Title"> 
-                <h4 class="title_name">Action</h4>  
-                <div>
-                  <img src="../public/icons/Remove red eye.svg" alt="">
-                  <img src="../public/icons/Mode edit.svg" alt="">
-                  <img src="../public/icons/Close small.svg" alt="">
+          </div>
+
+          <div class="history_table_body_container js_history_table">
+
+            <!--<a class="ads_table_body" href="./adsdetails.html">
+    
+              <div class="ads_column">
+    
+                <div class="Title">
+                  <h6><b>Buy(NGN)</b></h6> 
+                  <h6>mola12345</h6> 
                 </div>
-              </div>
-            </div>
     
-          </a>
-
-          <a class="ads_table_body" href="./adsdetails.html">
-  
-            <div class="ads_column">
-  
-              <div class="Title">
-                <h6><b>Buy(NGN)</b></h6> 
-                <h6>mola12345</h6> 
               </div>
-  
-            </div>
+      
+              <div class="amount_column">
     
-            <div class="amount_column">
-  
-              <div class="Title">
-                <h6 class="title_s_name">Amount Available</h6> 
-                <h6>N15,000.00</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Sold Amount</h6> 
-                <h6>N0.00</h6> 
-              </div>
-  
-            </div>
-      
-            <div class="rate_column">
-
-              <div class="Title">
-                <h6 class="title_s_name">Rate</h6> 
-                <h6>N1,900.00</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Limit</h6> 
-                <h6>£100.00 - £500.00</h6> 
-              </div>
-
-            </div>
-      
-            <div class="time_column">
-              <div class="Title">
-                <h6 class="title_s_name">Time Created</h6> 
-                <h6>2024-05-21 | 04:41</h6> 
-              </div>
-  
-              <div class="Title"> 
-                <h6 class="title_name">Time Edited</h6> 
-                <h6>2024-05-21 | 04:41</h6> 
-              </div>
-            </div>
-      
-            <div class="status_ads_column">
-              <div class="Title"> 
-                <h6 class="title_name">Status</h6> 
-                <h6>Active</h6> 
-              </div>
-            </div>
-    
-            <div class="action_column">
-              <div class="Title"> 
-                <h4 class="title_name">Action</h4>  
-                <div>
-                  <img src="../public/icons/Remove red eye.svg" alt="">
-                  <img src="../public/icons/Mode edit.svg" alt="">
-                  <img src="../public/icons/Close small.svg" alt="">
+                <div class="Title">
+                  <h6 class="title_s_name">Amount Available</h6> 
+                  <h6>N15,000.00</h6> 
                 </div>
-              </div>
-            </div>
     
-          </a>-->
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="pagination">
-      <img src="../public/icons/Keyboard arrow left.svg" alt="Previous" id="prevPages" class="pagination_arrows">
-
-      <div class="pagination_no" id="paginationNo">
-
-        <!--<div class="page filled_page"><h5 class="light">1</h5></div>
-
-        <div class="page"><h5 class="light">2</h5></div>
+                <div class="Title"> 
+                  <h6 class="title_name">Sold Amount</h6> 
+                  <h6>N0.00</h6> 
+                </div>
+    
+              </div>
         
-        <div class="page"><h5 class="light">3</h5></div>
+              <div class="rate_column">
 
-        <div class="page"><h5 class="light">4</h5></div>
+                <div class="Title">
+                  <h6 class="title_s_name">Rate</h6> 
+                  <h6>N1,900.00</h6> 
+                </div>
+    
+                <div class="Title"> 
+                  <h6 class="title_name">Limit</h6> 
+                  <h6>£100.00 - £500.00</h6> 
+                </div>
 
-        <div class="page"><h5 class="light">5</h5></div>
+              </div>
+        
+              <div class="time_column">
+                <div class="Title">
+                  <h6 class="title_s_name">Time Created</h6> 
+                  <h6>2024-05-21 | 04:41</h6> 
+                </div>
+    
+                <div class="Title"> 
+                  <h6 class="title_name">Time Edited</h6> 
+                  <h6>2024-05-21 | 04:41</h6> 
+                </div>
+              </div>
+        
+              <div class="status_ads_column">
+                <div class="Title"> 
+                  <h6 class="title_name">Status</h6> 
+                  <h6>Active</h6> 
+                </div>
+              </div>
+      
+              <div class="action_column">
+                <div class="Title"> 
+                  <h4 class="title_name">Action</h4>  
+                  <div>
+                    <img src="../public/icons/Remove red eye.svg" alt="">
+                    <img src="../public/icons/Mode edit.svg" alt="">
+                    <img src="../public/icons/Close small.svg" alt="">
+                  </div>
+                </div>
+              </div>
+      
+            </a>
 
-        <div class="page"><h5 class="light">6</h5></div>
+            <a class="ads_table_body" href="./adsdetails.html">
+    
+              <div class="ads_column">
+    
+                <div class="Title">
+                  <h6><b>Buy(NGN)</b></h6> 
+                  <h6>mola12345</h6> 
+                </div>
+    
+              </div>
+      
+              <div class="amount_column">
+    
+                <div class="Title">
+                  <h6 class="title_s_name">Amount Available</h6> 
+                  <h6>N15,000.00</h6> 
+                </div>
+    
+                <div class="Title"> 
+                  <h6 class="title_name">Sold Amount</h6> 
+                  <h6>N0.00</h6> 
+                </div>
+    
+              </div>
+        
+              <div class="rate_column">
 
-        <div class="page"><h5 class="light">10</h5></div>-->
+                <div class="Title">
+                  <h6 class="title_s_name">Rate</h6> 
+                  <h6>N1,900.00</h6> 
+                </div>
+    
+                <div class="Title"> 
+                  <h6 class="title_name">Limit</h6> 
+                  <h6>£100.00 - £500.00</h6> 
+                </div>
+
+              </div>
+        
+              <div class="time_column">
+                <div class="Title">
+                  <h6 class="title_s_name">Time Created</h6> 
+                  <h6>2024-05-21 | 04:41</h6> 
+                </div>
+    
+                <div class="Title"> 
+                  <h6 class="title_name">Time Edited</h6> 
+                  <h6>2024-05-21 | 04:41</h6> 
+                </div>
+              </div>
+        
+              <div class="status_ads_column">
+                <div class="Title"> 
+                  <h6 class="title_name">Status</h6> 
+                  <h6>Active</h6> 
+                </div>
+              </div>
+      
+              <div class="action_column">
+                <div class="Title"> 
+                  <h4 class="title_name">Action</h4>  
+                  <div>
+                    <img src="../public/icons/Remove red eye.svg" alt="">
+                    <img src="../public/icons/Mode edit.svg" alt="">
+                    <img src="../public/icons/Close small.svg" alt="">
+                  </div>
+                </div>
+              </div>
+      
+            </a>-->
+
+          </div>
+
+        </div>
+
+        <div class="pagination">
+          <img src="../public/icons/Keyboard arrow left.svg" alt="Previous" id="prevPages" class="pagination_arrows">
+    
+          <div class="pagination_no" id="paginationNo">
+    
+            <!--<div class="page filled_page"><h5 class="light">1</h5></div>
+    
+            <div class="page"><h5 class="light">2</h5></div>
+            
+            <div class="page"><h5 class="light">3</h5></div>
+    
+            <div class="page"><h5 class="light">4</h5></div>
+    
+            <div class="page"><h5 class="light">5</h5></div>
+    
+            <div class="page"><h5 class="light">6</h5></div>
+    
+            <div class="page"><h5 class="light">10</h5></div>-->
+    
+          </div>
+    
+          <img src="../public/icons/Keyboard arrow right.svg" alt="Next" id="nextPages" class="pagination_arrows">
+    
+        </div>
 
       </div>
 
-      <img src="../public/icons/Keyboard arrow right.svg" alt="Next" id="nextPages" class="pagination_arrows">
-
     </div>
+    <section class="footers">
+      <div class="footer">
 
+        <div class="footer_left">
+          <h2><b>Mola</b></h2>
+        </div>
+    
+        <div class="footer_middle">
+          <a href=""><h4><b>Privacy and Terms</b></h4></a>
+          <a href=""><h4><b>About Mola</b></h4></a>
+          <a href=""><h4><b>Support</b></h4></a>
+        </div>
+    
+        <div class="footer_right">
+          <h4>Follow us</h4>
+          <div class="socials_icon">
+            <a href=""><img src="../public/icons/Facebook.svg" alt=""></a>
+            <a href=""><img src="../public/icons/TwitterX.svg" alt=""></a>
+            <a href=""><img src="../public/icons/Instagram.svg" alt=""></a>
+            <a href=""><img src="../public/icons/LinkedIn.svg" alt=""></a>
+          </div>
+    
+        </div>
+
+      </div>
+
+      <h5 class="secondary light" style="text-align: center;">Copyright &copy; 2024 Mola Exchange Limited</h5>
+
+      
+
+    </section>
+   
     <script type="module" src="../public/script/ads.js"></script>
     
   </body>

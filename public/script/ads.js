@@ -188,4 +188,4 @@ function filterAds(){
   renderPage(filteredAds);
 }
 
-renderHeader();
+renderHeader()

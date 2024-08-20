@@ -1140,7 +1140,9 @@ form button {
     
 }
 
-.history_type_filter select{
+.history_type_filter select,
+.ads_currency_filter select,
+.ads_status_filter select{
   padding: 10px;
   width: 100px;
   
@@ -1242,11 +1244,17 @@ option {
 .my_ads_filter_container {
   display: flex;
   gap: 20px;
+  padding: 10px 0px;
 
 }
 
 .my_ads_head {
   margin: 20px 0px;
+ 
+}
+.ads_main_container{
+  max-width: 1200px;
+  margin: 0px auto;
 }
 
 /* post ads  */
