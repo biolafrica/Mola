@@ -1075,8 +1075,14 @@ form button {
 /* order-history-page  */
 .order_history_container,
 .my_ads_container {
-  max-width: 1160px;
-  margin: 20px auto;
+  max-width: 1200px;
+  margin: 5px  auto 40px auto;
+  border: 1px solid var(--Border-light);
+  border-radius: 15px;
+  box-shadow: var(--elevate-1);
+  box-sizing: border-box;
+  min-height: 800px;
+  position: relative;
 }
 
 .history_metrics {
@@ -1103,31 +1109,47 @@ form button {
 .history_filter {
   display: flex;
   gap: 15px;
-  margin: 20px 0;
+  margin: 20px 0px;
+  padding: 0px 20px;
+  width: fit-content;
+  box-sizing: border-box;
 }
 
 .history_status_filter {
   border: 1px solid var(--Border-light);
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 5px;
-  display: flex;
-  align-items: center;
+  height: fit-content;
+
 }
+
+.history_status_filter button{
+  margin: 0;
+
+}
+
 .processing_status_filter{
   border: 1px solid var(--Border-light);
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 8px;
+  padding: 3px;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0px;
   width: fit-content;
+  margin-left: 20px;
     
+}
+
+.history_type_filter select{
+  padding: 10px;
+  width: 100px;
+  
 }
 
 select {
   padding: 15px 10px;
   border: 1px solid var(--Border-light);
-  border-radius: 5px;
+  border-radius: 8px;
   width: 150px;
   cursor: pointer;
   appearance: none;
@@ -1154,9 +1176,12 @@ option {
 .ads_table_body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  border-bottom: 1px solid var(--Seperator-light);
+  border-top: 1px solid var(--Seperator-light);
   column-gap: 0.1%;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding: 5px 20px;
+  width: 100%;
+  box-sizing: border-box;
 
 }
 
@@ -2525,8 +2550,6 @@ display: none;
     max-width: none;
   }
 
- 
-
   /*how it works screen*/
   .how_it_works_body {
     display: grid;
@@ -2733,6 +2756,15 @@ display: none;
   }
   .heading{
     display: none;
+  }
+
+  .order_history_container,
+  .my_ads_container {
+    margin: 5px  auto 40px auto;
+    border: none;
+    box-shadow:none;
+    box-sizing: border-box;
+  
   }
 
 }
@@ -3162,6 +3194,15 @@ display: none;
     display: none;
   }
 
+  .order_history_container,
+  .my_ads_container {
+    margin: 5px  auto 40px auto;
+    border: none;
+    box-shadow:none;
+    box-sizing: border-box;
+  
+  }
+
 
 }
 
@@ -3224,7 +3265,7 @@ display: none;
 
   .history_filter,
   .history_table {
-    margin: 20px 20px;
+    margin: 20px 0px;
   }
 
 

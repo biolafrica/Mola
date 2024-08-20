@@ -139,13 +139,27 @@ async function renderCompletedOrder(ordersData){
   const paginatedData = ordersData.slice(start, end);
 
   let orderHTML = '';
-  paginatedData.forEach((dataItem)=>{
-    orderHTML = generateOrderHTML(dataItem, user,orderHTML);
-  
-  });
+  if(paginatedData.length === 0){
+    let html = 
+    `
+      <div class="empty_container">
+        <img src="../public/icons/Hourglass empty.svg" alt="">
+        <h4>No order</h4>
+      </div>
 
-  document.querySelector(".js_completed_table").innerHTML = orderHTML;
-  renderPagination(ordersData.length, 'completed');
+    `;
+    document.querySelector(".js_completed_table").innerHTML = html;
+    renderPagination(ordersData.length, 'completed');
+  }else{
+
+    paginatedData.forEach((dataItem)=>{
+      orderHTML = generateOrderHTML(dataItem, user,orderHTML);
+    
+    });
+  
+    document.querySelector(".js_completed_table").innerHTML = orderHTML;
+    renderPagination(ordersData.length, 'completed');
+  }
 };
 
 async function renderPendingOrder(ordersData){
@@ -155,14 +169,26 @@ async function renderPendingOrder(ordersData){
   const paginatedData = ordersData.slice(start, end);
 
   let orderHTML = '';
-  paginatedData.forEach((dataItem)=>{
-    orderHTML = generateOrderHTML(dataItem, user,orderHTML);
-  
-  });
+  if(paginatedData.length === 0){
+    let html = 
+    `
+      <div class="empty_container">
+        <img src="../public/icons/Hourglass empty.svg" alt="">
+        <h4>No pending order</h4>
+      </div>
 
-  document.querySelector(".js_pending_table").innerHTML = orderHTML;
-  renderPagination(ordersData.length, 'pending');
+    `;
+    document.querySelector(".js_pending_table").innerHTML = html;
+    renderPagination(ordersData.length, 'pending');
+   
+  }else{
 
+    paginatedData.forEach((dataItem)=>{
+      orderHTML = generateOrderHTML(dataItem, user,orderHTML);
+    });
+    document.querySelector(".js_pending_table").innerHTML = orderHTML;
+    renderPagination(ordersData.length, 'pending');
+  }
 }
 
 // render pagination
