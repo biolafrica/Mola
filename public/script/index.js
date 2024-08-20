@@ -1,4 +1,4 @@
-import {displayAvailableNGNOrder} from "./order/nairaOrder.js";
+import {displayAvailableNGNAds} from "./order/nairaOrder.js";
 import {displayAvailableGBPOrder} from "./order/poundsOrder.js";
 import {checkUser} from "../../Data/user.js";
 import { renderHeader } from "./script.js";
@@ -17,6 +17,7 @@ const sellSellEl = document.querySelector(".js_pay_seller_sell");
 const paymentSellEl = document.querySelector(".js_receive_payment_sell");
 const token = localStorage.getItem("access");
 const landingPageEl = document.querySelector(".js_landing_page");
+const ngnEl = document.querySelector(".js_ngn_el");
 
 
 
@@ -78,7 +79,7 @@ async function loadPage(){
     processOrders(data);
 
     displayAvailableGBPOrder(poundsOrder);
-    displayAvailableNGNOrder(nairaOrder);
+    displayAvailableNGNAds(nairaOrder);
     
     
   } catch (error) {
@@ -100,25 +101,63 @@ function processOrders(orders){
   });
 }
 
-//search amount
-const form = document.querySelector(".js_amount_form");
-form.addEventListener("input", (e)=>{
+/*search amount
+document.querySelector(".js_gb_amount_form").addEventListener("input", (e)=>{
   const inputValue = e.target.value;
+  console.log(inputValue);
   let matchingOrders =[];
   orders.forEach((orderItem)=>{
-    if(orderItem.minimumOrder <= (inputValue * 100)){
+    if(orderItem.minimumOrder === (inputValue * 100)){
       matchingOrders.push(orderItem)
     }
   });
   displayAvailableGBPOrder(matchingOrders);
-  displayAvailableNGNOrder(matchingOrders);
+  displayAvailableNGNAds(matchingOrders);
 
   if(inputValue === ""){
     displayAvailableGBPOrder(orders);
-    displayAvailableNGNOrder(orders);
+    displayAvailableNGNAds(orders);
+  }
+
+});*/
+
+let searchPounds = document.querySelector(".js_gb_amount_form");
+searchPounds.addEventListener("input", (e)=>{
+  const inputValue = parseFloat(e.target.value.trim());
+  console.log(inputValue);
+
+  if(isNaN(inputValue) || inputValue === ""){
+    displayAvailableNGNAds(nairaOrder);
+    
+  }
+
+  const filteredAds = nairaOrder.filter((ads)=>{
+    const minimumLimit = Math.ceil(parseFloat(ads.minimum_limit));
+    console.log(minimumLimit);
+    return minimumLimit <= inputValue;
+  
+  });
+  console.log(filteredAds);
+  if(filteredAds.length === 0){
+    empty();
+    renderNairaPaginationNumbers();
+  }else{
+    displayAvailableNGNAds(filteredAds);
   }
 
 });
+
+function empty (){
+  let html = 
+  `
+    <div class="empty_container">
+      <img src="./public/icons/Hourglass empty.svg" alt="">
+      <h4>No Ads</h4>
+    </div>
+
+  `;
+  ngnEl.innerHTML = html;
+}
 
 async function renderLandingPage(){
 

@@ -34,10 +34,6 @@ completedBtn.addEventListener("click", ()=>{
   activeBtn.classList.add("secondary");
   activeEl.style.display = "none";
   completedEl.style.display = "initial";
-
-
-
- 
 })
 
 
@@ -72,7 +68,6 @@ async function renderOrder(){
 }
 
 renderOrder();
-
 
 // filter completed order base on selected status and type
 async function filterCompletedOrders(){

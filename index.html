@@ -271,14 +271,21 @@
       <div class="filter_container">
 
         <div class="filter_container_type">
-          <button class="filled-btn js-buy-ngn"><h5>Buy NGN</h5></button>
-          <button class="text-btn js_buy_gbp"><h5>Buy GBP</h5></button>
+          <button class="filled-btn js-buy-ngn search_btn"><h6>Buy NGN</h6></button>
+          <button class="text-btn js_buy_gbp search_btn"><h6>Buy GBP</h6></button>
         </div>
 
         <div class="filter_container_amount">
-          <form  class="amount_form js_amount_form" action="">
-            <label for="amount"><h4>GBP</h4></label>
-            <input type="text" placeholder="Enter Amount" id="amount">
+          <form  class="amount_form js_gb_amount_form" action="">
+            <label for="amount"><h6>GBP</h6></label>
+            <input type="number" placeholder="Enter Amount" id="amount" class="home_input">
+          </form>
+        </div>
+
+        <div class="filter_container_amount no_view">
+          <form  class="amount_form js_ng_amount_form" action="">
+            <label for="amount"><h6>NGN</h6></label>
+            <input type="text" placeholder="Enter Amount" id="amount" class="home_input">
           </form>
         </div>
 
@@ -286,12 +293,12 @@
 
       <div class="orders_container buyNGN js_buy_el">
 
-        <div class="row_head">
-          <div class="seller_container head"><h6 class="light">Seller</h6></div>
-          <div class="rate_container head"><h6 class="light">Rate</h6></div>
-          <div class="Amount_available_container head"><h6 class="light">Amount</h6></div>
-          <div class="Limit_container head"><h6 class="light">Limit</h6></div>
-          <div class="Buy_container head"><h6 class="light">Buy</h6></div>
+        <div class="row_head heading">
+          <div class="seller_container head"><h6>Seller</h6></div>
+          <div class="rate_container head"><h6>Rate</h6></div>
+          <div class="Amount_available_container head"><h6>Amount</h6></div>
+          <div class="Limit_container head"><h6>Limit</h6></div>
+          <div class="Buy_container head"><h6>Buy</h6></div>
         </div>
 
         <div class="row_head_body js_ngn_el">
@@ -788,7 +795,7 @@
 
       <div class="orders_container buyGBP js_sell_el">
 
-        <div class="row_head">
+        <div class="row_head heading">
           <div class="seller_container head"><h6 class="light">Seller</h6></div>
           <div class="rate_container head"><h6 class="light">Rate</h6></div>
           <div class="Amount_available_container head"><h6 class="light">Amount</h6></div>
@@ -1384,7 +1391,6 @@
 
     </section>
 
-  
     <script type="module" src="./public/script/index.js"></script>
 
   </body>
