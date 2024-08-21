@@ -56,7 +56,7 @@ export async function renderHeader(){
         <div class="profile_tooltip_body">
 
           <a class="profile_tooltip_body_nav" href="/views/wallet.html">
-            <img src="../public/icons/Dashboard.svg" alt="">
+            <img src="../public/icons/Wallet.png" alt="">
             <h4>Wallet</h4>
           </a>
 
@@ -118,14 +118,34 @@ export async function renderHeader(){
     subMenuEl.style.display = "initial";
     hamburgerBtn.style.display = "none";
     cancelBtn.style.display = "initial";
-  })
+    
+  });
+
 
   cancelBtn.addEventListener("click", ()=>{
     subMenuEl.style.display = "none";
     hamburgerBtn.style.display = "initial";
     cancelBtn.style.display = "none";
 
+  });
+
+  window.addEventListener("resize", ()=>{
+    const screenWidth = window.innerWidth;
+    if(screenWidth > 992){
+      subMenuEl.style.display = "none";
+      hamburgerBtn.style.display = "none";
+      cancelBtn.style.display = "none";
+
+    }else if( subMenuEl.style.display === "initial"){
+      hamburgerBtn.style.display = "none";
+
+    }else{
+      hamburgerBtn.style.display = "block";
+
+    }
+
   })
+
 
 
 }
