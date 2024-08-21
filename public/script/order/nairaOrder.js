@@ -40,7 +40,6 @@ export const displayAvailableNGNAds =(nairaOrder)=>{
       `;
 
       ngnEl.innerHTML = html;
-      renderNairaPaginationNumbers();
 
     }else{
     // display available order dynamically

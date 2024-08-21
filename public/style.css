@@ -270,7 +270,7 @@ header {
 .more_container,
 .order_container,
 .profile_header_container,
-.ads_container
+.ad_container
 {
   position: relative;
 }
@@ -279,7 +279,7 @@ header {
 .profile_header_container:hover .profile_tooltip,
 .profile_tooltip:hover .profile_tooltip,
 .more_container:hover .more_tooltip,
-.ads_container:hover .more_tooltip,
+.ad_container:hover .more_tooltip,
 .more_tooltip:hover .more_tooltip,
 .order_container:hover .order_tooltip_container,
 .order_tooltip_container:hover .order_tooltip_container
@@ -344,7 +344,7 @@ header {
 }
 
 .profile_header_container,
-.ads_container,
+.ad_container,
 .header-left,
 .order_header_container,
 .profile_container,
@@ -577,7 +577,7 @@ form button {
 }
 
 /* available orders */
-.main_content,
+
 .dashboard_body_ads_container{
   margin: 5px  auto 40px auto;
   border: 1px solid var(--Border-light);
@@ -591,6 +591,18 @@ form button {
   flex-direction: column;
 }
 
+.main_content{
+  margin: 5px  auto 40px auto;
+  border: 1px solid var(--Border-light);
+  border-radius: 15px;
+  box-shadow: var(--elevate-1);
+  box-sizing: border-box;
+  max-width: 1200px;
+  min-height: 800px ;
+  position: relative;
+
+}
+
 .filter_container {
   display: flex;
   align-items: center;
@@ -598,7 +610,7 @@ form button {
   margin: 20px 20px;
 }
 
-.orders_container.buyGBP {
+.ads_container.buyGBP {
   display: none;
 }
 
@@ -884,7 +896,7 @@ form button {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  z-index: 1;
+  z-index: 6;
 }
 
 .overlay {
@@ -895,6 +907,7 @@ form button {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  z-index: 1;
 }
 
 .more_info_popup_left {
@@ -946,11 +959,15 @@ form button {
 
 
 /* orders-page  */
-.orders_container {
+.ads_container {
   display: grid;
   grid-template-columns: 1fr;
   margin: 0 auto;
 
+}
+.orders_container{
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .order_head {
@@ -1074,6 +1091,7 @@ form button {
 .user_term_image img{
   width: 100%;
 }
+
 
 /* order-history-page  */
 .order_history_container,
@@ -2149,6 +2167,10 @@ display: none;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.head_round{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 
 
 @media(max-width:768px) {
@@ -2156,7 +2178,7 @@ display: none;
     padding: 32px;
   }
 
-  .orders_container {
+  .ads_container {
     padding: 0 32px;
   }
 
@@ -2299,7 +2321,7 @@ display: none;
     width: 100%;
   }
 
-  .orders_container,
+  .ad_container,
   .order_head {
     padding: 30px 24px;
   }
@@ -2766,13 +2788,24 @@ display: none;
   }
 
   .order_history_container,
-  .my_ads_container {
+  .my_ads_container,
+  .main_content,
+  .dashboard_body_ads_container {
     margin: 5px  auto 40px auto;
     border: none;
     box-shadow:none;
     box-sizing: border-box;
   
   }
+
+  .dashboard_body_filter,
+  .dashboard_body_ads_container{
+    margin: 0px;
+    
+  }
+ 
+
+  
 
 }
 
@@ -2860,7 +2893,7 @@ display: none;
     width: 100%;
   }
 
-  .orders_container,
+  .ad_container,
   .order_head {
     padding: 30px 24px;
   }
@@ -3015,7 +3048,7 @@ display: none;
     justify-content: space-between;
     width: 100%;
     margin: 0px auto;
-    padding: 15px 0px;
+    padding: 15px 10px;
   }
 
   .left_row,
@@ -3202,12 +3235,20 @@ display: none;
   }
 
   .order_history_container,
-  .my_ads_container {
+  .my_ads_container, 
+  .main_content,
+  .dashboard_body_ads_container {
     margin: 5px  auto 40px auto;
     border: none;
     box-shadow:none;
     box-sizing: border-box;
   
+  }
+
+  .dashboard_body_filter,
+  .dashboard_body_ads_container{
+    margin: 0px;
+    
   }
 
 

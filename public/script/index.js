@@ -18,7 +18,9 @@ const paymentSellEl = document.querySelector(".js_receive_payment_sell");
 const token = localStorage.getItem("access");
 const landingPageEl = document.querySelector(".js_landing_page");
 const ngnEl = document.querySelector(".js_ngn_el");
-
+const gbpEl = document.querySelector(".js_gbp_el");
+const poundsInputEl = document.querySelector(".js_filter_gbp");
+const nairaInputEl = document.querySelector(".js_filter_ng");
 
 
 nairaBtn.addEventListener("click", ()=>{
@@ -28,7 +30,10 @@ nairaBtn.addEventListener("click", ()=>{
   poundBtn.classList.add("text-btn");
   poundEl.style.display = "none";
   nairaEl.style.display = "initial";
-  
+  poundsInputEl.classList.remove("no_view");
+  nairaInputEl.classList.add("no_view");
+  loadPage()
+
 });
 
 poundBtn.addEventListener("click", ()=>{
@@ -37,7 +42,11 @@ poundBtn.addEventListener("click", ()=>{
   poundBtn.classList.remove("text-btn");
   poundBtn.classList.add("filled-btn");
   nairaEl.style.display = "none";
-  poundEl.style.display = "initial";  
+  poundEl.style.display = "initial";
+  poundsInputEl.classList.add("no_view");
+  nairaInputEl.classList.remove("no_view");
+  
+  loadPage();  
 });
 
 howBuyBtn.addEventListener("click", ()=>{
@@ -68,18 +77,20 @@ howSellBtn.addEventListener("click", ()=>{
 
 });
 
-let poundsOrder = [];
-let nairaOrder = [];
+
+let newData = [];
 
 async function loadPage(){
   try {
     const response = await fetch("http://127.0.0.1:8000/api/all-ads");
     const data = await response.json();
     console.log(data);
-    processOrders(data);
-
+    let nairaOrder = nairaOrders(data);
+    let poundsOrder = poundsOrders(data);
+    newData = data;
     displayAvailableGBPOrder(poundsOrder);
     displayAvailableNGNAds(nairaOrder);
+    console.log(nairaOrder)
     
     
   } catch (error) {
@@ -90,15 +101,11 @@ async function loadPage(){
 } 
 
 loadPage();
-function processOrders(orders){
-  orders.forEach((orderItem)=>{
-    if(orderItem.type === "Naira"){
-      nairaOrder.push(orderItem);
-    }else if(orderItem.type === "Pounds"){
-      poundsOrder.push(orderItem);
-    }
-
-  });
+function nairaOrders(ads){
+  return ads.filter(ad =>ad.type === "Naira");
+}
+function poundsOrders(ads){
+  return ads.filter(ad =>ad.type === "Pounds");
 }
 
 /*search amount
@@ -124,29 +131,59 @@ document.querySelector(".js_gb_amount_form").addEventListener("input", (e)=>{
 let searchPounds = document.querySelector(".js_gb_amount_form");
 searchPounds.addEventListener("input", (e)=>{
   const inputValue = parseFloat(e.target.value.trim());
+  let nairaOrder = nairaOrders(newData);
   console.log(inputValue);
 
-  if(isNaN(inputValue) || inputValue === ""){
-    displayAvailableNGNAds(nairaOrder);
+  if(isNaN(inputValue) || inputValue === 0){
+    loadPage();
     
-  }
-
-  const filteredAds = nairaOrder.filter((ads)=>{
-    const minimumLimit = Math.ceil(parseFloat(ads.minimum_limit));
-    console.log(minimumLimit);
-    return minimumLimit <= inputValue;
-  
-  });
-  console.log(filteredAds);
-  if(filteredAds.length === 0){
-    empty();
   }else{
-    displayAvailableNGNAds(filteredAds);
+
+    const filteredAds = nairaOrder.filter((ads)=>{
+      const minimumLimit = Math.ceil(parseFloat(ads.minimum_limit));
+      console.log(minimumLimit);
+      return minimumLimit <= inputValue;
+    
+    });
+    console.log(filteredAds);
+    if(filteredAds.length === 0){
+      empty(ngnEl);
+    }else{
+      displayAvailableNGNAds(filteredAds);
+    } 
   }
 
 });
 
-function empty (){
+let searchNaira = document.querySelector(".js_ng_amount_form");
+searchNaira.addEventListener("input", (e)=>{
+  const inputValue = parseFloat(e.target.value.trim());
+  let poundOrder = poundsOrders(newData);
+  console.log(inputValue);
+
+  if(isNaN(inputValue) || inputValue === 0){
+    loadPage();
+    
+  }else{
+
+    const filteredAds = poundOrder.filter((ads)=>{
+      const minimumLimit = Math.ceil(parseFloat(ads.minimum_limit));
+      console.log(minimumLimit);
+      return minimumLimit <= inputValue;
+    
+    });
+    console.log(filteredAds);
+    if(filteredAds.length === 0){
+      empty(gbpEl);
+    }else{
+      displayAvailableGBPOrder(filteredAds);
+    } 
+  }
+
+});
+
+
+function empty (ngnEl){
   let html = 
   `
     <div class="empty_container">

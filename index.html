@@ -154,7 +154,7 @@
 
         </div>
 
-        <div class="ads_container">
+        <div class="ad_container">
           <h5>Ads</h5>
           <img src="../public/icons/Keyboard arrow down.png" alt="arrow down icon">
 
@@ -275,23 +275,24 @@
           <button class="text-btn js_buy_gbp search_btn"><h6>Buy GBP</h6></button>
         </div>
 
-        <div class="filter_container_amount">
-          <form  class="amount_form js_gb_amount_form" action="">
+        <div class="filter_container_amount js_filter_gbp">
+          <form  class="amount_form" action="">
             <label for="amount"><h6>GBP</h6></label>
-            <input type="number" placeholder="Enter Amount" id="amount" class="home_input">
+            <input type="number" placeholder="Enter Amount" id="amount" class="home_input js_gb_amount_form" >
           </form>
         </div>
 
-        <div class="filter_container_amount no_view">
-          <form  class="amount_form js_ng_amount_form" action="">
+        <div class="filter_container_amount no_view js_filter_ng">
+          <form  class="amount_form" action="">
             <label for="amount"><h6>NGN</h6></label>
-            <input type="text" placeholder="Enter Amount" id="amount" class="home_input">
+            <input type="number" placeholder="Enter Amount" id="amount" class="home_input js_ng_amount_form">
           </form>
         </div>
+       
 
       </div>
 
-      <div class="orders_container buyNGN js_buy_el">
+      <div class="ads_container buyNGN js_buy_el">
 
         <div class="row_head heading">
           <div class="seller_container head"><h6>Seller</h6></div>
@@ -793,7 +794,7 @@
         
       </div>
 
-      <div class="orders_container buyGBP js_sell_el">
+      <div class="ads_container buyGBP js_sell_el">
 
         <div class="row_head heading">
           <div class="seller_container head"><h6 class="light">Seller</h6></div>
