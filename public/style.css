@@ -2753,9 +2753,6 @@ display: none;
     margin: 0px 20px;
   }
   
-  .pagination{
-    border: none;
-  }
   .balance_list{
     text-align: center;
   }
@@ -3048,7 +3045,7 @@ display: none;
     justify-content: space-between;
     width: 100%;
     margin: 0px auto;
-    padding: 15px 10px;
+    padding: 15px 20px;
   }
 
   .left_row,
@@ -3200,9 +3197,7 @@ display: none;
     margin: 0px 20px;
   }
   
-  .pagination{
-    border: none;
-  }
+
   .balance_list{
     text-align: center;
   }

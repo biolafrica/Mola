@@ -168,7 +168,9 @@ async function renderPage(data){
 
       if(sellerCheckbox.checked && sellerCancellationValue === ""){
         sellerErrorMessage.innerHTML = "kindly select a reason for cancellation!";
+
       }else if (sellerCheckbox.checked){
+
         const request ={
           action : "cancel_order",
           token : `Bearer ${token}`,
@@ -176,8 +178,11 @@ async function renderPage(data){
           cancellation_description : sellerCancellationValue,
         }
         socket.send(JSON.stringify(request));
+
       }else if (!sellerCheckbox.checked){
+
         sellerErrorMessage.innerHTML = "kindly check the confirmation box!";
+
       } else if (sellerCancellationValue === "" && !sellerCheckbox.checked){
         sellerErrorMessage.innerHTML = "kindly select a reason and check the confirmation box!";
       }
@@ -193,7 +198,7 @@ async function renderPage(data){
     const transferredBtn = document.querySelector(".js_transferred");
     const cancelledBtn = document.querySelector(".buyer_js_cancelled");
     transferredBtn.addEventListener("click", ()=>{
-      //stopTimer (intervalId, time, timeEl, timeLeft);
+      stopTimer (intervalId);
       renderMadePaymentPopup (data);
       overlay.style.display = "initial";
       popupEl.style.display = "initial";
@@ -587,7 +592,13 @@ function renderTimer(timeLeft,timeEl,intervalId){
 
     if(timeLeft <=0){
       clearInterval(intervalId);
-      // cancel order;
+      const request ={
+        action : "cancel_order",
+        token : `Bearer ${token}`,
+        order_id : data.order_id,
+        cancellation_description : "Time ended",
+      }
+      socket.send(JSON.stringify(request));
     }
   }, 1000);
 
@@ -610,12 +621,8 @@ function initializeTimer(data, timeLimit){
 
 };
 
-function stopTimer(intervalId, time, timeEl, timeLimit){
+function stopTimer(intervalId){
   clearInterval(intervalId);
-  localStorage.removeItem("timeLeft");
-  let min = Math.round(timeLeft/60);
-  let sec = timeLeft % 60;
-  timeEl.innerHTML = `${pad(min)} : ${pad(sec)}`;
 
 };
 

@@ -39,7 +39,6 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
       `;
 
       gbpEl.innerHTML = html;
-      renderPaginationNumbers();
 
     }else{
       paginatedOrders.forEach((orderItem)=>{
@@ -47,9 +46,14 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
         let completedOrder = 0;
         
         totalOrder = orderItem.user.buy_order + orderItem.user.sell_order;
+
         completedOrder = (((orderItem.user.buy_order + orderItem.user.sell_order)/totalOrder) * 100).toFixed(0);
+
         let zeroCompletedOrder = completedOrder === 0 ? "100%" : completedOrder;
+
         let dp = orderItem.user.display_picture === "http://example.com/path/to/display_picture.jpg" ? "avatar_1" : orderItem.user.display_picture;
+
+        let verified = orderItem.verification === true ? "./public/icons/Verified.svg" : "";
 
         let hmlt = `
         <div class="row_head">
@@ -99,7 +103,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
             <div class="seller_container">
 
               <div class="seller_container_image">
-                <img src="./public/avatar/${orderItem.dp}.svg" alt="">
+                <img src="./public/avatar/${dp}.svg" alt="">
               </div>
 
               <div class="seller_container_user">
@@ -110,7 +114,7 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
                 </div>
 
                 <div class="seller_container_metrics">
-                  <h5 class="light">${totalOrder} Orders | ${zeroCompletedOrder}% completion</h5>
+                  <h5 class="light">${totalOrder} Orders | ${zeroCompletedOrder}% </h5>
                 </div>
 
               </div>

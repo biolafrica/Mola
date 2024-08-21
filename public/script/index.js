@@ -29,7 +29,7 @@ nairaBtn.addEventListener("click", ()=>{
   poundBtn.classList.remove("filled-btn");
   poundBtn.classList.add("text-btn");
   poundEl.style.display = "none";
-  nairaEl.style.display = "initial";
+  nairaEl.style.display = "grid";
   poundsInputEl.classList.remove("no_view");
   nairaInputEl.classList.add("no_view");
   loadPage()
@@ -42,7 +42,7 @@ poundBtn.addEventListener("click", ()=>{
   poundBtn.classList.remove("text-btn");
   poundBtn.classList.add("filled-btn");
   nairaEl.style.display = "none";
-  poundEl.style.display = "initial";
+  poundEl.style.display = "grid";
   poundsInputEl.classList.add("no_view");
   nairaInputEl.classList.remove("no_view");
   
@@ -98,15 +98,16 @@ async function loadPage(){
     
   }
 
-} 
+}; 
 
 loadPage();
 function nairaOrders(ads){
   return ads.filter(ad =>ad.type === "Naira");
-}
+};
+
 function poundsOrders(ads){
   return ads.filter(ad =>ad.type === "Pounds");
-}
+};
 
 /*search amount
 document.querySelector(".js_gb_amount_form").addEventListener("input", (e)=>{
