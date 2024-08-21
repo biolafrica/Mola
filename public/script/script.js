@@ -55,9 +55,9 @@ export async function renderHeader(){
         
         <div class="profile_tooltip_body">
 
-          <a class="profile_tooltip_body_nav" href="/views/dashboard.html">
+          <a class="profile_tooltip_body_nav" href="/views/wallet.html">
             <img src="../public/icons/Dashboard.svg" alt="">
-            <h4>Dashboard</h4>
+            <h4>Wallet</h4>
           </a>
 
           <a class="profile_tooltip_body_nav" href="/views/verify.html">

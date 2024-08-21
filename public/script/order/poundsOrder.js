@@ -56,9 +56,9 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
 
           <div class="seller_container big">
 
-            <div class="seller_container_image">
+            <a class="seller_container_image" href="../../views/dashboard.html" target="_blank">
               <img src="./public/avatar/${dp}.svg" alt="">
-            </div>
+            </a>
 
             <div class="seller_container_user">
 
