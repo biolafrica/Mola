@@ -16,7 +16,7 @@
         <a href="../index.html"><h3><b>Mola</b></h3></a>
       </div>
 
-      <div class="header-middle">
+      <div class="header-middle js_header_middle">
         
         <div class="profile_header_container">
 
@@ -85,7 +85,7 @@
 
       </div>
 
-      <div class="header-right">
+      <div class="header-right js_header_right">
         <a class="order_header_container" href="/views/history.html" >
           <div class="notification">1</div>
           <img src="../public/icons/Article.png" alt="order icon">
@@ -164,9 +164,13 @@
 
         <div class="balance_list">
           <h4>Available Balance:</h4>
+
           <div class="balance_list_money">
-            <h2><b class="Naira_balance">5,000.00</b></h2>
-            <h2 class="no_view"><b class="Pounds_balance">5,000.00</b></h2>
+            
+            <div class="all_balance js_all_balance">
+              <!--<h2 class="Naira_balance js_naira_balance"><b>5,000.00</b></h2>
+              <h2 class=" Pounds_balance no_view js_pounds_balance"><b>4,000.00</b></h2>-->
+            </div>
 
             <select class="selectCurrency" name="" id="currencySelect">
               <option value="Naira">NGN</option>
@@ -174,6 +178,7 @@
             </select>
 
           </div>
+
           <div class="user_virtual_account">
             <h4>988048757 | Paystack-Titan</h4>
             <h4 class="no_view">988048757 | Stripe-Titan</h4>

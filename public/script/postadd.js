@@ -1,53 +1,33 @@
-import {monitizeNumber} from './utils/money.js';
+import {monitizeNumber, convertTwoDecimal} from './utils/money.js';
 import { renderHeader } from './script.js';
 
-const currencySelect = document.getElementById("adsSelectType");
-const amountCurrency = document.querySelector(".js_amount_currency");
-const maxOrderCurrency = document.querySelector(".max_order_currency");
-const minOrderCurrency = document.querySelector(".min_order_currency");
+
+
 const rate = document.querySelector(".min_order_currency");
 const bankOptionBtn = document.querySelector(".select_bank_option");
 const overlay = document.querySelector(".js_overlay");
-const form = document.querySelector(".js_post_ad_form");
 const token = localStorage.getItem('access');
 const confirmAdsEl = document.querySelector(".js_ads_confirm_popup");
 
 renderHeader();
+async function getTotalBalance(){
+  const response = await fetch("http://127.0.0.1:8000/api/user/wallet-total/",
+  {
+    method : "GET",
+    headers : {
+      "Authorization" : `Bearer ${token}`,
+      "Content-Type" : "application/json",
+    },
+  });
 
-form.addEventListener("submit", async(e)=>{
-  e.preventDefault();
-  let nameType = form.adsSelectType.value === 'NGN' ? "Naira" : "Pounds";
-  let type = nameType;
-  let amount = form.amountInput.value;
-  let maximum_limit = form.maxOrderInput.value;
-  let minimum_limit = form.minOrderInput.value;
-  let time_limit = form.payTimeLimit.value;
-  let exchange_terms = form.exchangeTerm.value;
-  let rate = form.rateInput.value;
+  const data = await response.json();
+  console.log(data);
+  renderInput(data);
 
-  renderAdsConfirmation(type,amount,maximum_limit,minimum_limit,time_limit,rate,exchange_terms);
-  overlay.style.display = "initial";
-  confirmAdsEl.style.display = "flex";
-
-
-});
-
-currencySelect.addEventListener("change", (e)=>{
-  let selectedValue = e.target.value;
-  if(selectedValue === "GBP"){
-    amountCurrency.textContent = "GBP";
-    maxOrderCurrency.textContent = "NGN";
-    minOrderCurrency.textContent = "NGN";
-
-  } else if(selectedValue === "NGN"){
-    amountCurrency.textContent = "NGN";
-    maxOrderCurrency.textContent = "GBP";
-    minOrderCurrency.textContent = "GBP";
-
-  }
+};
+getTotalBalance();
 
 
-});
 
 function renderAdsConfirmation(type,amount,maximum_limit,minimum_limit,time_limit,rate,exchange_terms){
   let bankType = type === "Naira" ? "Pounds" :  "Naira";
@@ -156,5 +136,108 @@ function renderAdsConfirmation(type,amount,maximum_limit,minimum_limit,time_limi
     confirmAdsEl.style.display = "none";
   })
 
+
+}
+
+function renderInput(data){
+  let formEl = document.querySelector(".js_post_ads_form");
+
+  let html = 
+  `
+    <form action="" class="post_ad_form js_post_ad_form">
+        
+      <label for="adsSelectType"><h4>I want to sell:</h4></label>
+      <select name="" id="adsSelectType">
+        <option value="NGN">NGN</option>
+        <option value="GBP">GBP</option>
+      </select>
+
+      <label for="amountInput"><h4>Total Amount:</h4></label>
+      <div style="margin-bottom: 0;" class="input_money">
+        <input type="text" placeholder="0.00" id="amountInput" required>
+        <h4 class="js_amount_currency">NGN</h4>
+      </div>
+      <h5 style="margin-bottom: 35px;" class="amount_balance">Balance: &#8358;${convertTwoDecimal(data.total_naira)}</h5>
+      
+      <label for="rateInput"><h4>Rate:</h4></label>
+      <div style="margin-bottom: 0;" class="input_money">
+        <input type="text" placeholder="0.00" id="rateInput">
+        <h4>NGN</h4>
+      </div>
+      <h5 style="margin-bottom: 35px;">Your rate should be between N1,900.00 - 1,919.00</h5>
+
+      <label for="minOrderInput"><h4>Max Order Limit:</h4></label>
+      <div class="input_money">
+        <input type="text" placeholder="0.00" id="maxOrderInput" required >
+        <h4 class="max_order_currency">GBP</h4>
+      </div>
+
+      <label for="maxOrderInput"><h4>Min Order limit:</h4></label>
+      <div class="input_money">
+        <input type="text" placeholder="0.00" id="minOrderInput" required>
+        <h4 class="min_order_currency">GBP</h4>
+      </div>
+
+      <label for="payTimeLimit"><h4>Pay Time Limit:</h4></label>
+      <select name="" id="payTimeLimit">
+        <option value="15">15 mins</option>
+        <option value="30">30 mins</option>
+        <option value="45">45 mins</option>
+      </select>
+
+      <label for="exchangeTerm"><h4>Exchange Terms:</h4></label>
+      <textarea name="" id="exchangeTerm" placeholder="Enter extra infromation for your buyer" required></textarea>
+
+      <button class="filled-btn "><h5>Submit</h5></button>
+
+    </form>
+  `;
+
+  formEl.innerHTML = html;
+
+  const form = document.querySelector(".js_post_ad_form");
+  const currencySelect = document.getElementById("adsSelectType");
+  const amountCurrency = document.querySelector(".js_amount_currency");
+  const maxOrderCurrency = document.querySelector(".max_order_currency");
+  const minOrderCurrency = document.querySelector(".min_order_currency");
+
+  form.addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    let nameType = form.adsSelectType.value === 'NGN' ? "Naira" : "Pounds";
+    let type = nameType;
+    let amount = form.amountInput.value;
+    let maximum_limit = form.maxOrderInput.value;
+    let minimum_limit = form.minOrderInput.value;
+    let time_limit = form.payTimeLimit.value;
+    let exchange_terms = form.exchangeTerm.value;
+    let rate = form.rateInput.value;
+  
+    renderAdsConfirmation(type,amount,maximum_limit,minimum_limit,time_limit,rate,exchange_terms);
+    overlay.style.display = "initial";
+    confirmAdsEl.style.display = "flex";
+  
+  
+  });
+  
+  currencySelect.addEventListener("change", async(e)=>{
+    let selectedValue = e.target.value;
+    let balanceInput = document.querySelector(".amount_balance");
+  
+    if(selectedValue === "GBP"){
+      amountCurrency.textContent = "GBP";
+      maxOrderCurrency.textContent = "NGN";
+      minOrderCurrency.textContent = "NGN";
+      balanceInput.innerHTML = `Balance £${convertTwoDecimal(data.total_pounds)}`;
+  
+    } else if(selectedValue === "NGN"){
+      amountCurrency.textContent = "NGN";
+      maxOrderCurrency.textContent = "GBP";
+      minOrderCurrency.textContent = "GBP";
+      balanceInput.innerHTML = `Balance &#8358;${convertTwoDecimal(data.total_naira)}`;
+  
+    }
+  
+  
+  });
 
 }

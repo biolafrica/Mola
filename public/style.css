@@ -1192,11 +1192,9 @@ option {
   background-color: var(--Layout-Background-light);
 }
 
-/*select:focus{
-  border-color: #007bff;
-  box-shadow: var(--elevate-1);
+.selectCurrency:focus{
   outline: none;
-}*/
+}
 
 .history_table_head,
 .ads_table_head,

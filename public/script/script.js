@@ -2,8 +2,7 @@ import { checkUser } from "../../Data/user.js";
 
 
 const token = localStorage.getItem("access");
-const headerRightEl = document.querySelector(".js_header_right");
-const headerMiddleEl = document.querySelector(".js_header_middle");
+
 
 export async function renderHeader(){
   let valueI = 
@@ -104,9 +103,11 @@ export async function renderHeader(){
     </div>
   `;
 
-  let headerContent = await checkUser(token)
+  const headerRightEl = document.querySelector(".js_header_right");
+  const headerMiddleEl = document.querySelector(".js_header_middle");
+  let headerContent = await checkUser(token);
   let authenticatedheaderContent = headerContent === false ? value : valueI;
-  let authenticatedheaderMiddleContent = headerContent === false ? "" : valueII
+  let authenticatedheaderMiddleContent = headerContent === false ? "" : valueII;
   headerRightEl .innerHTML = authenticatedheaderContent;
   headerMiddleEl.innerHTML = authenticatedheaderMiddleContent;
 
