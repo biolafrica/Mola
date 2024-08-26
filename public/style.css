@@ -804,11 +804,16 @@ form button {
 .place_order,
 .receive_payment,
 .pay_seller {
-  border: 1px solid var(--Border-light);
-  border-radius: 10px;
-  padding: 50px 20px;
   width: 33%;
   margin: 20px 0;
+}
+
+.place_order img,
+.receive_payment img,
+.pay_seller img {
+  width: 90%;
+  margin: 0 auto;
+  
 }
 
 .place_order_sell,
@@ -2592,8 +2597,15 @@ display: none;
   .place_order,
   .receive_payment,
   .pay_seller {
-    width: 90%;
-    margin: 5px auto;
+    width: 100%;
+    margin: 30px auto;
+  }
+
+
+  .place_order img,
+  .receive_payment img,
+  .pay_seller img {
+    width: 100%;
   }
 
   /*footer*/

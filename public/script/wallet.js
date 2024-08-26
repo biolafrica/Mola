@@ -1,7 +1,9 @@
 import { renderHeader } from "./script.js";
-import { monitizeNumber, convertTwoDecimal } from "./utils/money.js";
+import{convertTwoDecimal } from "./utils/money.js";
 
 const token = localStorage.getItem("access");
+console.log(token);
+
 
 
 
@@ -56,3 +58,24 @@ function displayCurrency(data){
 
 
 }
+
+async function initiatePayment(){
+  const response = await fetch ("http://127.0.0.1:8000/api/paystack/initiate-payment/", {
+    method : "POST",
+    headers : {
+      "Authorization" : `Bearer ${token}`,
+      "Content-Type" : "application/json",
+    },
+    body : JSON.stringify({
+      amount : 1000,
+      email_address : "olli@gmail.com"
+    }),
+
+  });
+
+  const data = await response.json();
+  console.log(data);
+
+}
+
+initiatePayment();
