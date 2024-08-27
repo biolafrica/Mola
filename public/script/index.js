@@ -21,6 +21,7 @@ const ngnEl = document.querySelector(".js_ngn_el");
 const gbpEl = document.querySelector(".js_gbp_el");
 const poundsInputEl = document.querySelector(".js_filter_gbp");
 const nairaInputEl = document.querySelector(".js_filter_ng");
+const moreTextEl = document.querySelector(".question_sub_container h6");
 
 
 nairaBtn.addEventListener("click", ()=>{
@@ -78,6 +79,24 @@ howSellBtn.addEventListener("click", ()=>{
 });
 
 
+document.querySelectorAll(".faq_icon").forEach((iconContainer)=>{
+  const expandIcon = iconContainer.querySelector(".expand");
+  const collapseIcon = iconContainer.querySelector(".collapse");
+  const textContainer = iconContainer.parentElement.querySelector("h6");
+
+  const toggleContent = ()=>{
+    textContainer.classList.toggle("no_view");
+    expandIcon.classList.toggle("no_view");
+    collapseIcon.classList.toggle("no_view");
+  }
+
+  expandIcon.addEventListener("click", toggleContent);
+  collapseIcon.addEventListener("click", toggleContent);
+})
+
+
+
+
 let newData = [];
 
 async function loadPage(){
@@ -108,26 +127,6 @@ function nairaOrders(ads){
 function poundsOrders(ads){
   return ads.filter(ad =>ad.type === "Pounds");
 };
-
-/*search amount
-document.querySelector(".js_gb_amount_form").addEventListener("input", (e)=>{
-  const inputValue = e.target.value;
-  console.log(inputValue);
-  let matchingOrders =[];
-  orders.forEach((orderItem)=>{
-    if(orderItem.minimumOrder === (inputValue * 100)){
-      matchingOrders.push(orderItem)
-    }
-  });
-  displayAvailableGBPOrder(matchingOrders);
-  displayAvailableNGNAds(matchingOrders);
-
-  if(inputValue === ""){
-    displayAvailableGBPOrder(orders);
-    displayAvailableNGNAds(orders);
-  }
-
-});*/
 
 let searchPounds = document.querySelector(".js_gb_amount_form");
 searchPounds.addEventListener("input", (e)=>{
@@ -182,7 +181,6 @@ searchNaira.addEventListener("input", (e)=>{
   }
 
 });
-
 
 function empty (ngnEl){
   let html = 
