@@ -23,7 +23,6 @@ const poundsInputEl = document.querySelector(".js_filter_gbp");
 const nairaInputEl = document.querySelector(".js_filter_ng");
 const moreTextEl = document.querySelector(".question_sub_container h6");
 
-
 nairaBtn.addEventListener("click", ()=>{
   nairaBtn.classList.remove("text-btn");
   nairaBtn.classList.add("filled-btn");
@@ -78,7 +77,6 @@ howSellBtn.addEventListener("click", ()=>{
 
 });
 
-
 document.querySelectorAll(".faq_icon").forEach((iconContainer)=>{
   const expandIcon = iconContainer.querySelector(".expand");
   const collapseIcon = iconContainer.querySelector(".collapse");
@@ -93,9 +91,6 @@ document.querySelectorAll(".faq_icon").forEach((iconContainer)=>{
   expandIcon.addEventListener("click", toggleContent);
   collapseIcon.addEventListener("click", toggleContent);
 })
-
-
-
 
 let newData = [];
 

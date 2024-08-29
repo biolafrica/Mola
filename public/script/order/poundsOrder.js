@@ -2,6 +2,7 @@ import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {monitizeNumber, convertPounds} from "../utils/money.js";
 import{AuthenticateUser} from "../../../Data/user.js";
+import { popupDisplayHTML } from "../utils/popup.js";
 
 const gbpEl = document.querySelector(".js_gbp_el");
 const overlay = document.querySelector(".js_overlay");
@@ -302,7 +303,6 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
               const ads = orderId;
               const adsDetails = matchingOrder;
               const selected_amount = payEl.value;
-              const errorMessageEl = document.querySelector(".js_error_popup");
               
               const request ={
                 action : "create_order",
@@ -321,16 +321,9 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
                 window.location.href = `../../../views/order.html?orderId=${data.order.order_id}`
               
                 } else if(data.error === "You must complete or cancel your pending order before creating a new one."){
-                  let html =
-                  `
-                    <img src="./public/icons/Cancel.svg" alt="">
-                    <h4>Kindly complete your pending order</h4>
-                  `;
-                  errorMessageEl.innerHTML = html;
-                  errorMessageEl.style.display = "flex";
-                  setTimeout(()=>{
-                    errorMessageEl.style.display = "none";
-                  },3000);
+                  let value = "Kindly complete your pending order";
+                  popupDisplayHTML(value);
+                
                   
                 } else{
                   console.error("Error:", data.error)

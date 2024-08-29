@@ -1,6 +1,7 @@
 import {loadBanks} from "../../Data/bank.js";
 import { getUserProfile } from "../../Data/user.js";
 import { renderHeader } from "./script.js";
+import { popupDisplayHTML } from "./utils/popup.js";
 
 const verifyEl = document.querySelector(".user_verification_left_container");
 const verifyCont = document.querySelector(".user_verification_right_container");
@@ -26,7 +27,7 @@ const popupBankCancel = document.querySelector(".popup_bank_cancel");
 const popupIconCancel = document.querySelector(".popup_bank_cancel_icon");
 const bankSubmitBtn = document.querySelector(".confirmBank");
 const token = localStorage.getItem("access");
-const successPopupEl = document.querySelector(".js_success_popup");
+
 const smallBankBtn = document.querySelector(".small_bank_btn");
 const smallVerifyBtn = document.querySelector(".small_verify_btn");
 
@@ -132,8 +133,9 @@ bankBtn.addEventListener('change', (e)=>{
         bankPopupEl.style.display = "none";
         bankBtn.value = "Add_Bank";
         renderBanks(token);
+        let value = "bank added successfully";
+        popupDisplayHTML(value);
         
-       
       }else if (data.bank_account_number){
         let bankErr = data.bank_account_number[0] || ""; 
         console.log(bankErr)
@@ -189,7 +191,10 @@ async function renderUserDetails(){
     const textToCopy = document.getElementById("usernameLink").innerText;
 
     navigator.clipboard.writeText(textToCopy).then(function(){
-      alert("Text copied to clipboard:" + textToCopy);
+
+      let value = `copied ${textToCopy}`;
+      popupDisplayHTML(value)
+
     }).catch(function(err){
       console.error("could not copy text:", err);
     });
@@ -368,16 +373,9 @@ async function renderBanks(token){
           if(response.ok){
             console.log(`Wallet with ID ${walletId} deleted successfully`);
             document.getElementById(`${walletId}`).remove();
-            let html = 
-            `
-              <img src="./public/icons/Check Mark.svg" alt="">
-              <h4>Bank deleted Successfully</h4>
-            `;
-            successPopupEl.innerHTML = html;
-            successPopupEl.style.display = "flex";
-            setTimeout(()=>{
-              successPopupEl.style.display = "none";
-            },3000);
+
+            let value = "Bank deleted Successfully";
+            popupDisplayHTML(value);
 
           }else{
             const errorData = await response.json();
@@ -564,7 +562,6 @@ function cancelInput(){
   document.querySelector(".js_sort_error").innerHTML = "";
   document.querySelector(".js_account_no_error").innerHTML = "";
 }
-
 
 console.log(await getUserProfile(token));
 console.log(await loadBanks(token));

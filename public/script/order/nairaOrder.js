@@ -2,6 +2,7 @@ import {monitizeNumber, convertNaira} from "../utils/money.js";
 import {verified, verifyType} from "../utils/verification.js";
 import {calculateTotalOrder, calculateCompleteOrder} from "../utils/metrics.js";
 import {AuthenticateUser} from "../../../Data/user.js";
+import { popupDisplayHTML } from "../utils/popup.js";
 
 const ngnEl = document.querySelector(".js_ngn_el");
 const overlay = document.querySelector(".js_overlay");
@@ -15,7 +16,6 @@ const socket = new WebSocket('ws://127.0.0.1:8000/order/');
 socket.onopen = function (){
   console.log("websocket connection established");
 };
-
 
 export const displayAvailableNGNAds =(nairaOrder)=>{
   
@@ -294,9 +294,7 @@ export const displayAvailableNGNAds =(nairaOrder)=>{
                 payInput.classList.remove("js_input_money_color");
                 limitEl.classList.remove("js_limit_value_color");
               }
-      
-              //const convertedValue = inputValue * matchingOrder.rate;
-              //const converts = parseFloat((convertedValue.toFixed(2))/100);
+
               const convertedValue = convertNaira(inputValue,matchingOrder);
               receiveEl.value = convertedValue;
       
@@ -306,7 +304,6 @@ export const displayAvailableNGNAds =(nairaOrder)=>{
               const ads = orderId;
               const adsDetails = matchingOrder;
               const selected_amount = Math.floor(payEl.value);
-              const errorMessageEl = document.querySelector(".js_error_popup");
               console.log(adsDetails);
 
               const request ={
@@ -326,16 +323,8 @@ export const displayAvailableNGNAds =(nairaOrder)=>{
                 window.location.href = `../../../views/order.html?orderId=${data.order.order_id}`
               
                 } else if(data.error === "You must complete or cancel your pending order before creating a new one."){
-                  let html =
-                  `
-                    <img src="./public/icons/Cancel.svg" alt="">
-                    <h4>Kindly complete your pending order</h4>
-                  `;
-                  errorMessageEl.innerHTML = html;
-                  errorMessageEl.style.display = "flex";
-                  setTimeout(()=>{
-                    errorMessageEl.style.display = "none";
-                  },3000);
+                  let value = 'Kindly complete your pending order'
+                  popupDisplayHTML(value);
                   
                 } else{
                   console.error("Error:", data.error)

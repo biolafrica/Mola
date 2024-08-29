@@ -1,5 +1,6 @@
 import {getUserProfile} from "../../Data/user.js";
 import { renderHeader } from "./script.js";
+import { popupDisplayHTML } from "./utils/popup.js";
 
 const avatarEditBtn = document.querySelector(".js_avatar_btn");
 const usernameEditBtn = document.querySelector(".js_username_btn");
@@ -13,6 +14,7 @@ const avatarCancelBtn = document.querySelector(".avatar_cancel_btn");
 const usernameCancelBtn = document.querySelector(".username_cancel_btn");
 const userNameEl = document.querySelector(".js_profile_username");
 const userDPEl = document.querySelector(".js_profile_avatar");
+const successPopupEl = document.querySelector(".js_success_popup");
 const token = localStorage.getItem("access");
 
 
@@ -142,6 +144,8 @@ function changePassword(){
         if(response.ok){
           overlay.style.display = "none";
           passwordEl.style.display = "none";
+          let value = "Password Changed Succesfully";
+          popupDisplayHTML(value);
         }else {
           oldPasswordError.innerHTML = data.old_password[0];
           console.log(data.old_password[0]);
@@ -185,6 +189,8 @@ function changeUsername(){
         overlay.style.display = "none";
         usernameEl.style.display = "none";
         renderProfileDetails();
+        let value = "username changed Succesfully";
+        popupDisplayHTML(value);
 
       }
       
@@ -233,6 +239,8 @@ function changeDP(){
         overlay.style.display = "none";
         avatarEl.style.display = "none";
         renderProfileDetails();
+        let value = "dp changed successfully";
+        popupDisplayHTML(value)
       }
 
     } catch (error) {
