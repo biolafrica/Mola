@@ -343,40 +343,6 @@ export const displayAvailableNGNAds =(nairaOrder)=>{
               socket.onerror = function(error){
                 console.error(`websocket error : ${error.message}`);
               }
-
-              /*try {
-                const response = await fetch("http://127.0.0.1:8000/api/orders/", {
-                  method : "POST",
-                  headers : {
-                    "Authorization" : `Bearer ${token}`,
-                    "content-Type" : "application/json",
-                  },
-
-                  body : JSON.stringify({ads_id:matchingOrder.ad_id, selected_amount})
-                })
-                const data = await response.json();
-
-                if(data[0] === "You must completed or cancel your pending order before creating a new one."){
-                  let html =
-                  `
-                    <img src="./public/icons/Cancel.svg" alt="">
-                    <h4>Kindly complete your pending order</h4>
-                  `;
-                  errorMessageEl.innerHTML = html;
-                  errorMessageEl.style.display = "flex";
-                  setTimeout(()=>{
-                    errorMessageEl.style.display = "none";
-                  },3000);
-                
-                }else{
-                  window.location.href = `../../../views/order.html?orderId=${data.order_id}`;
-
-                }
-                
-              } catch (error) {
-                console.log(error);
-                
-              };*/
               
             })
           }

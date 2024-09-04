@@ -278,12 +278,12 @@ export const displayAvailableGBPOrder = (poundsOrder)=>{
             const payInput = document.querySelector(".js_input_money");
             const limitEl = document.querySelector(".js_limit_value");
       
-            //coversation input 
+            
             payEl.addEventListener("input", (e)=>{
       
               const inputValue = (Number(e.target.value));
       
-            if(inputValue === 0){
+              if(inputValue === 0){
                 payInput.classList.remove("js_input_money_color");
                 limitEl.classList.remove("js_limit_value_color");
               }else if(inputValue < matchingOrder.minimum_limit || inputValue > matchingOrder.maximum_limit){

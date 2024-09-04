@@ -140,14 +140,7 @@ async function renderCompletedOrder(ordersData){
 
   let orderHTML = '';
   if(paginatedData.length === 0){
-    let html = 
-    `
-      <div class="empty_container">
-        <img src="../public/icons/Hourglass empty.svg" alt="">
-        <h4>No order</h4>
-      </div>
-
-    `;
+    let html = renderEmptyHTML();
     document.querySelector(".js_completed_table").innerHTML = html;
   }else{
 
@@ -157,6 +150,7 @@ async function renderCompletedOrder(ordersData){
     });
   
     document.querySelector(".js_completed_table").innerHTML = orderHTML;
+    renderPagination(ordersData.length, 'all');
   }
 };
 
@@ -168,14 +162,7 @@ async function renderPendingOrder(ordersData){
 
   let orderHTML = '';
   if(paginatedData.length === 0){
-    let html = 
-    `
-      <div class="empty_container">
-        <img src="../public/icons/Hourglass empty.svg" alt="">
-        <h4>No pending order</h4>
-      </div>
-
-    `;
+    let html = renderEmptyHTML();
     document.querySelector(".js_pending_table").innerHTML = html;
     renderPagination(ordersData.length, 'pending');
    
@@ -331,6 +318,20 @@ function generateOrderHTML(dataItem, user,orderHTML){
   `;
   return orderHTML;
 
+}
+
+function renderEmptyHTML(){
+  let html = 
+  `
+    <div class="empty_container">
+      <img src="../public/icons/Hourglass empty.svg" alt="">
+      <h4>No order</h4>
+    </div>
+
+  `;
+
+  return html;
+  
 }
 
 renderHeader();
