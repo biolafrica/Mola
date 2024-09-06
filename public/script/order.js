@@ -15,6 +15,7 @@ const cancelCancelledSellerBtn = document.querySelector(".js_cancel_cancelled_se
 const confirmCancelledSellerBtn = document.querySelector(".js_cancel_confirm_seller");
 const cancelCancelledBuyerBtn = document.querySelector(".js_cancel_cancelled_buyer");
 const confirmCancelledBuyerBtn = document.querySelector(".js_cancel_confirm_buyer");
+console.log(token)
 
 renderHeader();
 
@@ -581,7 +582,7 @@ function pad(value){
 };
 
 // function to calculate timer
-function renderTimer(timeLeft,timeEl,intervalId){
+function renderTimer(data,timeLeft,timeEl,intervalId,){
   
   intervalId = setInterval(()=>{
     let min = Math.floor(timeLeft / 60);
@@ -613,7 +614,7 @@ function initializeTimer(data, timeLimit){
   let intervalId;
 
   if(timeLeft > 0){
-    renderTimer(timeLeft,timeEl,intervalId)
+    renderTimer(data,timeLeft,timeEl,intervalId)
   }else{
     timeEl.innerHTML = "00:00"
     //cancel order
@@ -633,23 +634,23 @@ function renderBuyerHTML(data,totalOrder,date){
   const buyerSendCurrency = data.ads.type === "Naira" ? '£' : "&#8358;";
   const buyerReceiveCurrency = data.ads.type === "Naira" ? "&#8358;" : "£";
   const buyerSortCodeDisplay = data.ads.type === 'Naira' ? "" : "no_view";
-  const buyerTimerDisplay = data.buyer_confirmed === true ? "no_view" : "";
+  const buyerTimerDisplay = data.buyer_confirmed === true|| (data.status === "cancelled" && data.buyer_confirmed === false) ? "no_view" : "";
 
   const buyerBtnStateChange = data.buyer_confirmed === false ? "filled-btn" : "inactive-btn";
   const timerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? 
   "PAY SELLER WITHIN:" :
                               data.buyer_confirmed === true && data.status === "pending" ? "WAIT FOR PAYMENT CONFIRMATION":
                               data.buyer_confirmed === true && data.status === "completed" ? `SUCCESSFULLY RECEIVED ${buyerReceiveCurrency}${monitizeNumber(data.receiving_amount)}`:
-                              data.buyer_confirmed === true && data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
+                              data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
   const sentStateChange = data.buyer_confirmed === false ? "I am sending" : "I sent";
   const receiveStateChange = data.status === "completed" ? "I received" : "I am receiving";
   const orderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER CREATED" :
                           data.buyer_confirmed === true && data.status === "pending" ? "PENDING CONFIRMATION" :
                           data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
-                          data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+                          data.status === "cancelled" ? "ORDER CANCELLED" :"";
   const transferStatusChange = data.buyer_confirmed === false ? "Transfer" : "I transferred";
   const completedChange = data.status === "completed" ? "" : "no_view";
-  const cancelChange = data.buyer_confirmed === true || data.status === "cancelled" ? "no_view" : "";
+  const cancelChange = data.status === "cancelled" || data.buyer_confirmed === true ? "no_view" : "";
 
   let html = 
   `
@@ -709,6 +710,8 @@ function renderBuyerHTML(data,totalOrder,date){
               </div>
             </div>
 
+            <div class="dash"></div>
+
             <div class="order_terms_details">
 
               <h4><b>
@@ -720,6 +723,8 @@ function renderBuyerHTML(data,totalOrder,date){
               </h4>
             
             </div>
+
+            <div class="dash no_views"></div>
 
             <div class="order_payment_details">
 
@@ -758,6 +763,8 @@ function renderBuyerHTML(data,totalOrder,date){
 
 
             </div>
+
+            <div class="dash"></div>
 
             <div class="order_payment_status">
 
@@ -865,20 +872,20 @@ function renderSellerHTML(data,totalOrder,date){
   const receiveCurrency = data.ads.type === "Naira" ? "£" : "&#8358;";
   const sortCodeDisplay = data.ads.type === 'Naira' ? "" : "my_display";
   const sellerBtnStateChange = data.buyer_confirmed === false || data.status === "completed" || data.status === "cancelled" ? "inactive-btn" : "filled-btn";
-  const sellerTimerStateChange = data.buyer_confirmed === false ? '' : "my_display";
+  const sellerTimerStateChange = data.buyer_confirmed === true|| (data.status === "cancelled" && data.buyer_confirmed === false) ? "no_view" : "";
   const sellerTimerHeaderStateChange = data.buyer_confirmed === false && data.status === "pending" ? "BUYER WILL PAY WITHIN:" :
                                     data.buyer_confirmed === true && data.status === "pending" ? "CONFIRM THE PAYMENT":
                                     data.buyer_confirmed === true && data.status === "completed" ? `SUCCESSFULLY SOLD &#8358;${monitizeNumber(data.selected_amount)}`:
-                                    data.buyer_confirmed === true && data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
+                                    data.status === "cancelled" ? "THIS ORDER WAS CANCELLED": "";
 
   const sellerSentStateChange = data.buyer_confirmed === false ? "I am receiving" : "I received";
   const sellerReceiveStateChange = data.status === "completed" ? "I sent" : "I am sending";
   const sellerOrderStatusChange = data.buyer_confirmed === false && data.status === "pending" ? "ORDER INITIATED" :
                                 data.buyer_confirmed === true && data.status === "pending" ? "VERIFY PAYMENT" :
                                 data.buyer_confirmed === true && data.status === "completed" ? "ORDER COMPLETED" :
-                                data.buyer_confirmed === false && data.status === "cancelled" ? "ORDER CANCELLED" :"";
+                                data.status === "cancelled" ? "ORDER CANCELLED" :"";
   const sellerTransferStatusChange = data.buyer_confirmed === false ? "confirm" : "I received";
-  const cancelChange = data.buyer_confirmed === true || data.status === "cancelled" ? "no_view" : "";
+  const cancelChange = data.status === "cancelled" || data.buyer_confirmed === true ? "no_view" : "";
 
   let sellerHTML = 
   `

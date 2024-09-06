@@ -4,6 +4,7 @@ import { AuthenticateUser } from "../../Data/user.js";
 import { verified, verifyType } from "./utils/verification.js";
 import { monitizeNumber, convertNaira, convertPounds } from "./utils/money.js";
 import { calculateCompleteOrder, calculateTotalOrder } from "./utils/metrics.js";
+import{popupDisplayHTML} from"./utils/popup.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
@@ -23,12 +24,9 @@ const ngnEl = document.querySelector(".js_ngn_el");
 const gbpEl = document.querySelector(".js_gbp_el");
 const poundsInputEl = document.querySelector(".js_filter_gbp");
 const nairaInputEl = document.querySelector(".js_filter_ng");
-const moreTextEl = document.querySelector(".question_sub_container h6");
 const overlay = document.querySelector(".js_overlay");
 const moreEl = document.querySelector(".js_more_info_popup");
-const paginationNumbersEl = document.getElementById("paginationNumbers");
-const prevPageEl = document.getElementById("prevPage");
-const nextPageEl = document.getElementById("nextPage");
+
 
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
 socket.onopen = function (){
@@ -105,36 +103,25 @@ document.querySelectorAll(".faq_icon").forEach((iconContainer)=>{
 })
 
 let newData = [];
+renderHeader();
+let currentPageNaira = 1;
+let currentPagePounds = 1;
+const itemsPerPage = 3;
+renderLandingPage();
+loadPage();
 
 async function loadPage(){
   try {
     const response = await fetch("http://127.0.0.1:8000/api/all-ads");
     const data = await response.json();
-    console.log(data);
-    //let nairaOrder = nairaAds(data);
-    //let poundsOrder = poundsAds(data);
     filteredNairaAds(data);
     filteredPoundsAds(data);
     newData = data;
-    //displayAvailableGBPOrder(poundsOrder);
-    //displayAvailableNGNAds(nairaOrder);
-    //console.log(nairaOrder)
-    
   } catch (error) {
     console.log("Error fetching ads:", error);
-    
   }
 
 }; 
-
-loadPage();
-function nairaAds(ads){
-  ads.filter(ad =>ad.type === "Naira");
-};
-
-function poundsAds(ads){
-  return ads.filter(ad =>ad.type === "Pounds");
-};
 
 let searchPounds = document.querySelector(".js_gb_amount_form");
 searchPounds.addEventListener("input", (e)=>{
@@ -190,7 +177,7 @@ searchNaira.addEventListener("input", (e)=>{
 
 });
 
-function empty (ngnEl){
+function empty(ngnEl){
   let html = 
   `
     <div class="empty_container">
@@ -231,14 +218,6 @@ async function renderLandingPage(){
   landingPageEl.innerHTML = html;
 
 }
-renderLandingPage();
-
-renderHeader();
-
-
-let currentPageNaira = 1;
-let currentPagePounds = 1;
-const itemsPerPage = 3;
 
 // filter data from the backend for naira and pounds
 function filteredNairaAds(ads){
@@ -580,7 +559,6 @@ function generateMoreDetailsHTML(matchingAds,currencyType, currencyTypeLetter, c
   moreEl.innerHTML = html;
 }
 
-
 // Render pagination
 function renderPagination(totalItems, type){
   const totalPages = Math.ceil(totalItems/itemsPerPage);
@@ -642,7 +620,6 @@ function addPaginationEventListeners(type){
     }
   });
 }
-
 
 function cancelPopup(){
   const cancelBtn = document.getElementById("cancelBtn");
