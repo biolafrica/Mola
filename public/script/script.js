@@ -47,7 +47,7 @@ export async function renderHeader(){
         <div class="profile_tooltip_header"> 
           <h5 style="padding-left: 20px;">Biolafrica</h5>
           <div class="profile_verification_details">
-            <img src="../public/icons/Verified user.svg" alt="">
+            <img src="../public/icons/Verified user.png" alt="">
             <h5 class="light">Intermediate Level Verified</h5>
           </div>
         </div>
@@ -60,12 +60,12 @@ export async function renderHeader(){
           </a>
 
           <a class="profile_tooltip_body_nav" href="/views/verify.html">
-            <img src="../public/icons/Manage accounts.svg" alt="">
+            <img src="../public/icons/Manage accounts.png" alt="">
             <h4>Account</h4>
           </a>
           
           <a class="profile_tooltip_body_nav" href="/views/settings.html">
-            <img src="../public/icons/Settings.svg" alt="">
+            <img src="../public/icons/Settings.png" alt="">
             <h4>Settings</h4>
           </a>
 
@@ -73,7 +73,7 @@ export async function renderHeader(){
 
         <div class="profile_tooltip_footer" >
           <a class="profile_tooltip_footer_nav" href="/views/login.html">
-            <img class="secondary" src="../public/icons/Logout.svg" alt="">
+            <img class="secondary" src="../public/icons/Logout.png" alt="">
             <h4>Logout</h4>
           </a>
 
@@ -89,12 +89,12 @@ export async function renderHeader(){
       <div class="more_tooltip">
 
         <a class="more_tooltip_nav" href="/views/postadd.html">
-          <img src="../public/icons/add ads.png" alt="">
+          <img src="../public/icons/List alt add.png" alt="">
           <h4>Post Ads</h4>
         </a>
 
         <a class="more_tooltip_nav" href="/views/ads.html">
-          <img src="../public/icons/ads List.png" alt="">
+          <img src="../public/icons/List alt.png" alt="">
           <h4>My Ads</h4>
         </a>
 

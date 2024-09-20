@@ -210,7 +210,7 @@ async function renderLandingPage(){
   
   let html =
   `
-    <h2><b>Peer-to-Peer Currency Exchange with Zero Fees</b></h2>
+    <h2><b>Peer-to-Peer Currency Exchange with <Span style="color: #2970ff;">Zero Fees</span></b></h2>
     <h3>Purchase any currency at your preferred exchange rates</h3>
     ${authenticatedUserContent}
 
