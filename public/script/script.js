@@ -105,6 +105,7 @@ export async function renderHeader(){
 
   const headerRightEl = document.querySelector(".js_header_right");
   const headerMiddleEl = document.querySelector(".js_header_middle");
+  const bodyEl = document.querySelector("body");
   let headerContent = await checkUser(token);
   let authenticatedheaderContent = headerContent === false ? value : valueI;
   let authenticatedheaderMiddleContent = headerContent === false ? "" : valueII;
@@ -119,6 +120,8 @@ export async function renderHeader(){
     subMenuEl.style.display = "initial";
     hamburgerBtn.style.display = "none";
     cancelBtn.style.display = "initial";
+    bodyEl.style.overflow = "hidden";
+
     
   });
 
@@ -127,6 +130,7 @@ export async function renderHeader(){
     subMenuEl.style.display = "none";
     hamburgerBtn.style.display = "initial";
     cancelBtn.style.display = "none";
+    bodyEl.style.overflow = "auto";
 
   });
 
