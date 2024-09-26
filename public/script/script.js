@@ -1,8 +1,6 @@
 import { checkUser } from "../../Data/user.js";
 
-
 const token = localStorage.getItem("access");
-
 
 export async function renderHeader(){
   let valueI = 
