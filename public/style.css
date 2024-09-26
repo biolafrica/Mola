@@ -852,35 +852,23 @@ form button {
 }
 
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px auto;
-  border-top: 1px solid var(--Border-light);
-  padding: 10px 60px;
-}
-
-.footer_middle,
-.footer_right {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
 .top_footer{
   text-align: center;
   padding: 200px 20px 100px 20px;
   color: var(--Text-dark);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   max-width: 1200px;
   border-bottom: 1px solid var(--Seperator-dark);
   margin: 0px auto;
-  
-
 }
+
+.top_footer h2{
+  margin-bottom: 5px;
+}
+
+.started_btn{
+  margin-top: 20px;
+}
+
 
 .footers{
   background-color:black;
