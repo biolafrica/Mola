@@ -152,3 +152,24 @@ export async function renderHeader(){
 
 
 }
+
+export function renderLoadingIcon(){
+  document.addEventListener("DOMContentLoaded", function(){
+    const animation = lottie.loadAnimation({
+      container: document.getElementById("lottie-animation"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path : "public/loader/6d65445d-8819-40c1-a16b-6193c6d9efc2.json"
+    });
+
+    window.addEventListener("load", function(){
+      const loader = document.getElementById("loading-animation");
+      this.setTimeout(()=>{
+        loader.classList.add('hidden');
+      },3000)
+     
+    });
+  });
+}
+

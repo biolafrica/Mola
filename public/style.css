@@ -271,12 +271,18 @@ header
   margin: 30px 0px;
 }
 
-.header_left,
-.header_middle{
+.header_left{
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
+.header_middle{
+  text-align: center;
+  margin-top: 30px;
+}
+
+
 
 .header_right {
   display: flex;
@@ -2451,6 +2457,24 @@ display: none;
   width: 90%;
 }
 
+/*animation*/
+#loading-animation{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#loading-animation.hidden{
+  display: none;
+}
+
 
 @media(max-width:768px) {
   .landing_page {
@@ -3203,7 +3227,6 @@ display: none;
 
 
 }
-
 
 @media(min-width:769px) and (max-width:992px) {
 

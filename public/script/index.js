@@ -1,5 +1,5 @@
 import {checkUser} from "../../Data/user.js";
-import { renderHeader } from "./script.js";
+import { renderHeader, renderLoadingIcon} from "./script.js";
 import { AuthenticateUser } from "../../Data/user.js";
 import { verified, verifyType } from "./utils/verification.js";
 import { monitizeNumber, convertNaira, convertPounds } from "./utils/money.js";
@@ -26,6 +26,8 @@ const poundsInputEl = document.querySelector(".js_filter_gbp");
 const nairaInputEl = document.querySelector(".js_filter_ng");
 const overlay = document.querySelector(".js_overlay");
 const moreEl = document.querySelector(".js_more_info_popup");
+
+renderLoadingIcon();
 
 
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
