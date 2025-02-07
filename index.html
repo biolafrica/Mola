@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./public/icons/favicon.ico">
-    <title>Mola Exchange - Homepage</title>
+    <title>Mola Exchange - Coming Soon</title>
     <link rel="stylesheet" href="./public/style.css">
   </head>
 
-  <body style="background-color: black;">
+  <body style="background-color: black; padding: 20px;">
+
     <div class="coming_soon_cont">
       <img src="./public/icons/launch.svg" alt="">
 
@@ -18,11 +19,35 @@
       </div>
 
 
-      <form>
-        <input type="email" name="" id="" placeholder="enter email adrees">
-        <button class="filled-btn coming_btn"><h4>Notify me</h4></button>
+      <form id="form">
+        <input type="email" name="" id="email" placeholder="enter email address">
+        <div class="success-text"></div>
+
+        <button class="filled-btn coming_btn" type="submit"><h4>Notify me</h4></button>
+        <div class="success-text"></div>
       </form>
+
     </div>
+
+    <script>
+      const buttonEl = document.getElementById("form");
+      const successEl = document.querySelector(".success-text")
+      const valueEl = document.getElementById("email")
+      buttonEl.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        successEl.innerHTML = "email added succesfully"
+        setTimeout(()=>{
+          valueEl.value = "";
+          successEl.innerHTML = "";
+        }, 3000)
+      
+        
+
+
+      })
+    </script>
+
+
 
     
   </body>

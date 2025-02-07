@@ -2486,6 +2486,7 @@ display: none;
   color: var(--Text-dark);
   text-align: center;
   position: absolute;
+  width: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -2499,6 +2500,11 @@ display: none;
 
 .coming_head{
   margin-bottom: 50px;
+}
+.success-text{
+  color: green;
+  margin-bottom: 10px;
+  text-align: start;
 }
 
 @media(max-width:768px) {
@@ -3248,6 +3254,10 @@ display: none;
   }
 
   .payment_confirmation_popup {
+    width: 90%;
+  }
+
+  .coming_soon_cont {
     width: 90%;
   }
 

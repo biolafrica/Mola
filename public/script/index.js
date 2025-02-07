@@ -4,7 +4,7 @@ import { AuthenticateUser } from "../../Data/user.js";
 import { verified, verifyType } from "./utils/verification.js";
 import { monitizeNumber, convertNaira, convertPounds } from "./utils/money.js";
 import { calculateCompleteOrder, calculateTotalOrder } from "./utils/metrics.js";
-import{popupDisplayHTML} from"./utils/popup.js";
+import {popupDisplayHTML} from"./utils/popup.js";
 import { handleInput } from "./utils/input.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
