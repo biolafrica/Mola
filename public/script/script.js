@@ -1,8 +1,9 @@
-import { checkUser } from "../../Data/user.js";
+import {checkUser} from "../../Data/user.js";
 
 const token = localStorage.getItem("access");
 
 export async function renderHeader(){
+
   let valueI = 
   `
     <a class="order_header_container" href="/views/history.html" >
@@ -153,7 +154,7 @@ export async function renderHeader(){
 
 }
 
-export function renderLoadingIcon(){
+/* export function renderLoadingIcon(){
   document.addEventListener("DOMContentLoaded", function(){
     const animation = lottie.loadAnimation({
       container: document.getElementById("lottie-animation"),
@@ -171,5 +172,5 @@ export function renderLoadingIcon(){
      
     });
   });
-}
+} */
 

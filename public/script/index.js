@@ -1,10 +1,11 @@
 import {checkUser} from "../../Data/user.js";
-import { renderHeader, renderLoadingIcon} from "./script.js";
+import { renderHeader} from "./script.js";
 import { AuthenticateUser } from "../../Data/user.js";
 import { verified, verifyType } from "./utils/verification.js";
 import { monitizeNumber, convertNaira, convertPounds } from "./utils/money.js";
 import { calculateCompleteOrder, calculateTotalOrder } from "./utils/metrics.js";
 import{popupDisplayHTML} from"./utils/popup.js";
+import { handleInput } from "./utils/input.js";
 
 const nairaBtn = document.querySelector(".js-buy-ngn");
 const poundBtn = document.querySelector(".js_buy_gbp");
@@ -26,8 +27,6 @@ const poundsInputEl = document.querySelector(".js_filter_gbp");
 const nairaInputEl = document.querySelector(".js_filter_ng");
 const overlay = document.querySelector(".js_overlay");
 const moreEl = document.querySelector(".js_more_info_popup");
-
-renderLoadingIcon();
 
 
 const socket = new WebSocket('ws://127.0.0.1:8000/order/');
@@ -264,7 +263,6 @@ function renderNairaAds(data){
       moreEl.style.display = "flex";
       let adId = e.target.id;
       const adType = e.target.textContent;
-      console.log(adId, adType)
 
       if(adType === "BUY NGN"){
         const currencyType = adType === "BUY NGN" ? "£" : "&#8358;";
@@ -278,10 +276,10 @@ function renderNairaAds(data){
           }
 
         });
-        console.log(matchingAds)
 
         generateMoreDetailsHTML(matchingAds,currencyType, currencyTypeLetter, currencyTypeLetterP);
         cancelPopup();
+        handleInput();
         covertInputtedCurrency(convertNaira,matchingAds);
         document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
           sendOrderCreationRequest(adId,matchingAds)
@@ -342,6 +340,7 @@ function renderPoundsAds(data){
         console.log(matchingAds)
 
         generateMoreDetailsHTML(matchingAds,currencyType, currencyTypeLetter, currencyTypeLetterP);
+         handleInput();
         cancelPopup();
         covertInputtedCurrency(convertPounds, matchingAds);
         document.querySelector(".js_buy_order_btn").addEventListener("click", async()=>{
@@ -535,14 +534,17 @@ function generateMoreDetailsHTML(matchingAds,currencyType, currencyTypeLetter, c
       <form action="">
 
         <Label><h4>I want to pay:</h4></Label>
-        <div class="input_money js_input_money" style="margin-bottom: 0px;width: 100%;">
+        
+        <div class="input_money js_input_money" style="margin-bottom: 0px;width: 100%;" id="inputFormz">
           <input type="number" placeholder="0.00" class="js_send_amount" style="outline: none;">
           <h4>${currencyTypeLetterP}</h4>
         </div>
+
         <h5 class="light js_limit_value" style="margin-bottom: 35px;">Limits ${currencyType}${matchingAds.minimum_limit} - ${currencyType}${matchingAds.maximum_limit}</h5>
 
+
         <Label><h4>I will receive:</h4></Label>
-        <div class="input_money" style="width: 100%;">
+        <div class="input_money" style="width: 100%;" id="inputFormz">
           <input type="text" placeholder="0.00" readonly class="js_receive_amount">
           <h4>${currencyTypeLetter}</h4>
         </div>
@@ -559,6 +561,10 @@ function generateMoreDetailsHTML(matchingAds,currencyType, currencyTypeLetter, c
 
   `;
   moreEl.innerHTML = html;
+
+
+
+
 }
 
 // Render pagination

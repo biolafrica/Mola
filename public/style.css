@@ -1470,8 +1470,29 @@ option {
 .input_money {
   display: flex;
   align-items: center;
+  gap: 2px ;
   width: 80%;
+  border: 1px solid var(--Border-light);
+  border-radius: 8px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
 
+}
+
+.input_money-focus{
+  border: 1px solid #2970ff;
+}
+
+.input_money input{
+  border: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.input_money input:focus{
+  outline: none;
+ 
 }
 
 .js_input_money_color {
@@ -1484,22 +1505,6 @@ option {
   color: red;
 }
 
-.input_money h4 {
-  border: 1px solid var(--Border-light);
-  border-radius: 5px;
-  padding: 10px 10px;
-  border-left: none;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-
-}
-
-.input_money input {
-  border-right: none;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  width: 100%;
-}
 
 .post_ads_form select,
 .input_money,
@@ -3222,9 +3227,9 @@ display: none;
     display: none;
   }
 
-
-
-
+  .payment_confirmation_popup {
+    width: 90%;
+  }
 
 }
 
@@ -3747,6 +3752,10 @@ display: none;
   .value_left,
   .value_right {
     width: 100%;
+  }
+
+  .payment_confirmation_popup{
+    width: 90%;
   }
 
 }

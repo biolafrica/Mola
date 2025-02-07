@@ -1,7 +1,6 @@
 import {monitizeNumber, convertTwoDecimal} from './utils/money.js';
 import { renderHeader } from './script.js';
-
-
+import {handleMultipleInput} from './utils/input.js';
 
 const rate = document.querySelector(".min_order_currency");
 const bankOptionBtn = document.querySelector(".select_bank_option");
@@ -10,6 +9,7 @@ const token = localStorage.getItem('access');
 const confirmAdsEl = document.querySelector(".js_ads_confirm_popup");
 
 renderHeader();
+
 async function getTotalBalance(){
   const response = await fetch("http://127.0.0.1:8000/api/user/wallet-total/",
   {
@@ -21,11 +21,11 @@ async function getTotalBalance(){
   });
 
   const data = await response.json();
-  console.log(data);
   renderInput(data);
 
 };
 getTotalBalance();
+
 
 
 
@@ -153,28 +153,28 @@ function renderInput(data){
       </select>
 
       <label for="amountInput"><h4>Total Amount:</h4></label>
-      <div style="margin-bottom: 0;" class="input_money">
-        <input type="text" placeholder="0.00" id="amountInput" required>
+      <div style="margin-bottom: 0;" class="input_money" id="inputFormz">
+        <input type="number" placeholder="0.00" id="amountInput" required>
         <h4 class="js_amount_currency">NGN</h4>
       </div>
       <h5 style="margin-bottom: 35px;" class="amount_balance">Balance: &#8358;${convertTwoDecimal(data.total_naira)}</h5>
       
       <label for="rateInput"><h4>Rate:</h4></label>
-      <div style="margin-bottom: 0;" class="input_money">
-        <input type="text" placeholder="0.00" id="rateInput">
+      <div style="margin-bottom: 0;" class="input_money" id="inputFormz">
+        <input type="number" placeholder="0.00" id="rateInput">
         <h4>NGN</h4>
       </div>
       <h5 style="margin-bottom: 35px;">Your rate should be between N1,900.00 - 1,919.00</h5>
 
       <label for="minOrderInput"><h4>Max Order Limit:</h4></label>
-      <div class="input_money">
-        <input type="text" placeholder="0.00" id="maxOrderInput" required >
+      <div class="input_money" id= "inputFormz">
+        <input type="number" placeholder="0.00" id="maxOrderInput" required >
         <h4 class="max_order_currency">GBP</h4>
       </div>
 
       <label for="maxOrderInput"><h4>Min Order limit:</h4></label>
-      <div class="input_money">
-        <input type="text" placeholder="0.00" id="minOrderInput" required>
+      <div class="input_money" id="inputFormz">
+        <input type="number" placeholder="0.00" id="minOrderInput" required>
         <h4 class="min_order_currency">GBP</h4>
       </div>
 
@@ -200,6 +200,8 @@ function renderInput(data){
   const amountCurrency = document.querySelector(".js_amount_currency");
   const maxOrderCurrency = document.querySelector(".max_order_currency");
   const minOrderCurrency = document.querySelector(".min_order_currency");
+
+  handleMultipleInput();
 
   form.addEventListener("submit", async(e)=>{
     e.preventDefault();

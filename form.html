@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .formz{
+        display: flex;
+        width: fit-content;
+        gap: 20px;
+        border: 1px solid transparent;
+        transition: border 0.3s ease; 
+
+      }
+
+      .formz-focused{
+        border: 2px solid blue;
+       
+      }
+
+
+      .formz input:focus{
+        outline: none;
+      }
+
+      .formz input{
+        border: none;
+      }
+
+    </style>
+  </head>
+
+
+  <body>
+
+    <div  action="" id="inputFormz" class="formz">
+      <input type="text" name="double">
+      <h6 class="input-currency">NGN</h6>
+    </div>
+
+
+    <script> 
+      const form = document.getElementById('inputFormz');
+      
+      form.addEventListener('focusin', function () {
+        form.classList.add('formz-focused');
+      });
+
+      form.addEventListener('focusout', function () {
+        form.classList.remove('formz-focused');
+      });
+
+    </script>
+
+    
+    
+  </body>
+
+</html>
